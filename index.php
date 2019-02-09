@@ -23,28 +23,32 @@ if ($results === false) {
 <!--HTML HERE-->
 
 
-<?php if (empty($form_results)): ?>
-<p>No results were found!</p>
-<?php else: ?>
-<ul>
-    <?php foreach ($form_results as $form_result): ?>
-    <li>
-        <article>
-            <h2>
-                <?=htmlspecialchars($form_result['fName']);?>
-                <?=htmlspecialchars($form_result['lName']);?>
-            </h2>
+<div class="container">
+    <h2>Visiting Academics:</h2>
 
-            <p>
-                <?=htmlspecialchars($form_result['fName']);?>
-                <?=htmlspecialchars($form_result['lName']);?>'s ID is:
-                <?=htmlspecialchars($form_result['idform']);?>
-            </p>
-        </article>
-    </li>
-    <?php endforeach;?>
-</ul>
-<?php endif;?>
+    <?php if (empty($form_results)): ?>
+    <p>No results were found!</p>
+    <?php else: ?>
+    <ul>
+        <?php foreach ($form_results as $form_result): ?>
+        <li>
+            <article>
+                <h2>
+                    <?=htmlspecialchars($form_result['fName']);?>
+                    <?=htmlspecialchars($form_result['lName']);?>
+                </h2>
+
+                <p>
+                    <?=htmlspecialchars($form_result['fName']);?>
+                    <?=htmlspecialchars($form_result['lName']);?>'s ID is:
+                    <?=htmlspecialchars($form_result['idform']);?>
+                </p>
+            </article>
+        </li>
+        <?php endforeach;?>
+    </ul>
+    <?php endif;?>
+</div>
 
 
 
