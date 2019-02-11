@@ -20,8 +20,9 @@ if ($results === false) {
 ?>
 <?php require 'includes/header.php';?>
 <!--HTML HERE-->
-
-
+//TODO
+TODO
+<!--TODO-->
 <div class="container">
     <h2>Visiting Academics:</h2>
 
@@ -48,19 +49,5 @@ if ($results === false) {
     </ul>
     <?php endif;?>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <?php require 'includes/footer.php';?>
