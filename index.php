@@ -4,7 +4,6 @@ $conn = getDB();
 // Here's an Sql query we can run (Just used it to test the database connection)
 $sql = "SELECT *
         FROM form";
-
 // To assign a result you need to use the mysqli_query method and pass it the connection and the query.
 // Note that this result will be FALSE if there's an error.
 $results = mysqli_query($conn, $sql);
