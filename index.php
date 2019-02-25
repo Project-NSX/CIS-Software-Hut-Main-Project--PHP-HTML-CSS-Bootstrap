@@ -20,8 +20,6 @@ if ($results === false) {
 ?>
 <?php require 'includes/header.php';?>
 <!--HTML HERE-->
-//TODO
-TODO
 <!--TODO-->
 <div class="container">
     <h2>Visiting Academics:</h2>
