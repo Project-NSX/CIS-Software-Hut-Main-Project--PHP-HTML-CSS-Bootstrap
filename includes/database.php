@@ -9,7 +9,7 @@ function getDB()
 {
     $db_host = "localhost";
     $db_name = "va_form";
-    $db_user = "cms_www";
+    $db_user = "root";
     $db_pass = "MyNewPass";
 
     $conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
