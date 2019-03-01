@@ -11,7 +11,7 @@ $conn = getDB();
 <a href="view_complete.php">View Complete Requests</a><br/>
 <br/>
 <a href="hos_approved_requests.php">HOS View Approved Requests</a><br/>
-<a href="hos_requests_pending_approval.php"></a>HOS View Requests Pending Approval<br/>
+<a href="hos_requests_pending_approval.php">HOS View Requests Pending Approval</a><br/>
 
 
 

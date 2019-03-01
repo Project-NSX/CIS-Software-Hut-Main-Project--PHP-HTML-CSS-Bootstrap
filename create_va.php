@@ -7,8 +7,8 @@ $conn = getDB();
 <h2>Create a Visiting Academic</h2>
 <a href="create_visit.php">Create a Visit</a><br/>
 <a href="view_requests.php">View Pending Requests</a><br/>
-<a href="view_complete.php">View Complete Requests</a><br/><br/>
-<a href="create_visit.php"></a>Create Visit<br/>
+<a href="view_complete.php">View Complete Requests</a><br/>
+<a href="create_visit.php">Create Visit</a><br/>
 <br/>
 <a href="academic_landing.php">Academic</a><br/>
 Or<br/>
