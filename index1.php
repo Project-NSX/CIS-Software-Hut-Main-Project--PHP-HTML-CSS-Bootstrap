@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $_SESSION["id"] = $id;
                         $_SESSION["username"] = $username;
                         $_SESSION["role"] = $role;
-$_SESSION["school"] = $school;
+                        $_SESSION["school"] = $school;
 
 
                         // Redirect user to welcome page
@@ -97,7 +97,6 @@ $_SESSION["school"] = $school;
 <?php require 'includes/header_index.php';?>
 <!--HTML HERE-->
 
-
 <div class="wrapper">
     <h2>Staff Login Page</h2>
     <p>Please fill in your credentials to login.</p>
@@ -117,17 +116,5 @@ $_SESSION["school"] = $school;
         </div>
     </form>
 </div>
-
-
-
-
-<br />
-<a href="academic_landing.php">Academic</a><br />
-<a href="cm_landing.php">College Manager</a><br />
-<a href="hos_landing.php">Head of school</a><br />
-<a href="hr_landing.php">Human Resources</a><br />
-
-
-
 
 <?php require 'includes/footer.php';?>

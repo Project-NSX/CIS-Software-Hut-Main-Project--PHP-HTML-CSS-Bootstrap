@@ -14,8 +14,7 @@
                 <a class="nav-link" href="cm_approved_requests.php">College Manager - View Approved Requests</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="cm_requests_pending_approval.php">College Manager - View Requests Pending
-                    Approval</a>
+                <a class="nav-link" href="cm_requests_pending_approval.php">College Manager - View Requests Pending Approval</a>
             </li>
         </ul>
     </div>

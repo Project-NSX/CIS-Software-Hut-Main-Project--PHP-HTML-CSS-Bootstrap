@@ -2,12 +2,12 @@
 // Initialize the session
 session_start();
 
-// // Check if the user is logged in, if not then redirect him to login page
-// if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-//     header("location: index1.php");
-//     exit;
-// }
-// ?>
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: index1.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <html>
@@ -35,16 +35,19 @@ session_start();
 <p>Welcome <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b><br/>
 
 Role: <b><?php echo htmlspecialchars($_SESSION["role"]);?></b><br/>
-<?php if($_SESSION["role"] != "College Manager"){?>
-School: <b><?php echo htmlspecialchars($_SESSION["school"]);
-}?>
-</b>
-</p>
 
+<!--There's something wrong with this where it'll show an incorectly for HR if the page is reloaded,
+also shows "College: " for HR-->
+<?php if($_SESSION["role"] === "aca" || $_SESSION["role"] === "hos"){?>
+School: <b><?php echo htmlspecialchars($_SESSION["school"]);
+}
+if($_SESSION["role"] === "cm"){?>
+College: <b><?php echo htmlspecialchars($_SESSION["school"]);
+}?>
+</b></p>
     <!--Bootstrap Container. Closing tag for this is in the footer, just before the closing body tag-->
     <div class="container">
         <header>
             <h1>Visiting Academic Form</h1>
         </header>
-
         <main>
