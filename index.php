@@ -114,6 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Login">
         </div>
+        WELCOME!!!!!
     </form>
 </div>
 
