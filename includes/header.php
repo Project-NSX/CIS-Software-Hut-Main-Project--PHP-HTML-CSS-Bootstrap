@@ -29,7 +29,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 </head>
-
 <body>
 <div align="right"><a href="logout.php" class="btn btn-primary">Sign Out</a></div>
 <p>Welcome <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b><br/>
