@@ -31,7 +31,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 </head>
 
 <body>
-<div align="right"><a href="logout.php" class="btn">Sign Out</a></div>
+<div align="right"><a href="logout.php" class="btn btn-primary">Sign Out</a></div>
 <p>Welcome <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b><br/>
 
 Role: <b><?php echo htmlspecialchars($_SESSION["role"]);?></b><br/>
