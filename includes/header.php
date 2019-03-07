@@ -35,8 +35,17 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 Role: <b><?php echo htmlspecialchars($_SESSION["role"]);?></b><br/>
 
-<!--There's something wrong with this where it'll show an incorectly for HR if the page is reloaded,
-also shows "College: " for HR-->
+<!--
+    TODO: Make the school and college display correctly.
+    This will require the use of another table when it's in there
+    as it'll need to get the college / school name based on the ID supplied
+
+    TODO: Make the role of the logged in user display correctly:
+    Academic
+    College Manager
+    Head of School
+    Human Resources
+-->
 <?php if($_SESSION["role"] === "aca" || $_SESSION["role"] === "hos"){?>
 School: <b><?php echo htmlspecialchars($_SESSION["school_id"]);?></b><br/>
 College: <b><?php echo htmlspecialchars($_SESSION["college_id"]);
