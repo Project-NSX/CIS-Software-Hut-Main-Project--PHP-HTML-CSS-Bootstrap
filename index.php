@@ -18,7 +18,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 }
 require_once'includes/database.php';
 // Define variables and initialize with empty values
-$username = $password = "";
+$username = $password_entered = "";
 $username_err = $password_err = "";
 
 // Processing form data when form is submitted
@@ -35,13 +35,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty(trim($_POST["password"]))) {
         $password_err = "Please enter your password.";
     } else {
-        $password = trim($_POST["password"]);
+        $password_entered = trim($_POST["password"]);
     }
 
     // Validate credentials
     if (empty($username_err) && empty($password_err)) {
         // Prepare a select statement
-        $sql = "SELECT role, school, username, password FROM user WHERE username = ?";
+        $sql = "SELECT role, school_id, college_id, username, password FROM user WHERE username = ?";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
             // Bind variables to the prepared statement as parameters
@@ -57,9 +57,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Check if username exists, if yes then verify password
                 if (mysqli_stmt_num_rows($stmt) == 1) {
                     // Bind result variables
-                    mysqli_stmt_bind_result($stmt, $role, $school, $username, $password_param);
+                    mysqli_stmt_bind_result($stmt, $role, $school_id, $college_id, $username, $password_db);
                     if (mysqli_stmt_fetch($stmt)) {
-                        if ($password == $password_param) {
+                        if ($password_entered == $password_db) {
                             // Password is correct, so start a new session
                             session_start();
 
@@ -68,8 +68,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;
                             $_SESSION["role"] = $role;
-                            $_SESSION["school"] = $school;
-
+                            $_SESSION["school_id"] = $school_id;
+                            $_SESSION["college_id"] = $college_id;
 
                             // Redirect user to welcome page
                             if ($role === "aca") {

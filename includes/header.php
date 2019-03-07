@@ -38,10 +38,11 @@ Role: <b><?php echo htmlspecialchars($_SESSION["role"]);?></b><br/>
 <!--There's something wrong with this where it'll show an incorectly for HR if the page is reloaded,
 also shows "College: " for HR-->
 <?php if($_SESSION["role"] === "aca" || $_SESSION["role"] === "hos"){?>
-School: <b><?php echo htmlspecialchars($_SESSION["school"]);
+School: <b><?php echo htmlspecialchars($_SESSION["school_id"]);?></b><br/>
+College: <b><?php echo htmlspecialchars($_SESSION["college_id"]);
 }
-if($_SESSION["role"] === "cm"){?>
-College: <b><?php echo htmlspecialchars($_SESSION["school"]);
+if($_SESSION["role"] === "cm"){?></b>
+College: <b><?php echo htmlspecialchars($_SESSION["college_id"]);
 }?>
 </b></p>
     <!--Bootstrap Container. Closing tag for this is in the footer, just before the closing body tag-->
