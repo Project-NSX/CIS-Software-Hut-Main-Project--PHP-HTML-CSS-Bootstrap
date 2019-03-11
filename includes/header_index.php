@@ -22,9 +22,9 @@
 
 <body>
     <!--Bootstrap Container. Closing tag for this is in the footer, just before the closing body tag-->
-    <div class="container">
-        <header>
+    <div class="jumbotron text-center">
             <h1>Visiting Academic Form</h1>
-        </header>
+            <img src="img\bangor_logo.png" alt="Bangor Uni Logo" width=25%>
+        </div>
 
         <main>
