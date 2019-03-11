@@ -14,3 +14,4 @@ if ($_SESSION["role"] === "hr")
 {
     require 'includes/navbars/hr_navbar.php';
 }
+// TODO: Make Current page get highlighted in navbar
