@@ -108,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php require 'includes/header_index.php';?>
 <!--HTML HERE-->
 
-<div class="wrapper">
+<div class="container">
     <h2>Staff Login Page</h2>
     <p>Please fill in your credentials to login.</p>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
