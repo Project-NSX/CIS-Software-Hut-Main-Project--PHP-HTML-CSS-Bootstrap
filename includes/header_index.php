@@ -24,7 +24,7 @@
     <!--Bootstrap Container. Closing tag for this is in the footer, just before the closing body tag-->
     <div class="jumbotron text-center">
             <h1>Visiting Academic Form</h1>
-            <img src="img\bangor_logo.png" alt="Bangor Uni Logo" class="img-fluid">
+            <img src="img\bangor_logo.png" alt="Bangor Uni Logo" class="img-fluid" width="25%">
         </div>
 
         <main>
