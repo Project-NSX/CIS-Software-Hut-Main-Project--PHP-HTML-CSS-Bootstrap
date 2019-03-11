@@ -1,7 +1,7 @@
 <?php
 // Initialize the session
 session_start();
-
+// TODO: Make session get trashed when window is closed or user is afk for an hour
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: index.php");
@@ -36,6 +36,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 Role: <b><?php echo htmlspecialchars($_SESSION["role"]);?></b><br/>
 
 <!--
+ 
     TODO: Make the school and college display correctly.
     This will require the use of another table when it's in there
     as it'll need to get the college / school name based on the ID supplied
@@ -60,3 +61,4 @@ College: <b><?php echo htmlspecialchars($_SESSION["college_id"]);
             <h1>Visiting Academic Form</h1>
         </header>
         <main>
+<!--TODO: Make a header bar here-->
