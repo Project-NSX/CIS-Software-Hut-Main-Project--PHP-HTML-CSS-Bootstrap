@@ -61,7 +61,7 @@ if ($result->num_rows > 0) {
         $uname = $row["username"];
         $passwd = $row["password"];
         echo "<p><strong>Username:</strong> $uname<br><strong>Password:</strong> $passwd</p>";
-        echo "<button class='btnG'>Approve Request </button> <button class='btnR' >Deny Request </button> <button class='btnA' >Prompt User to Resubmit</button>";
+        echo "<button class='btnG'>Approve Request $uname</button> <button class='btnR' >Deny Request $uname</button> <button class='btnA' >Prompt User to Resubmit $uname</button>";
         //echo "<tr><td>" . $row["username"]. "</td><td>" . $row["password"]. "</td></tr>";
     }
     echo "</table>";

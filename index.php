@@ -2,7 +2,7 @@
 // Initialize the session
 session_start();
 // TODO: Make the user log out when the page / browser is closed + after a certain time.
-
+$role;
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     // Redirect user to welcome page
