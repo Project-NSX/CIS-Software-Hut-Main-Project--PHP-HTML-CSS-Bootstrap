@@ -61,4 +61,5 @@ College: <b><?php echo htmlspecialchars($_SESSION["college_id"]);
             <h1>Visiting Academic Form</h1>
         </header>
         <main>
+        
 <!--TODO: Make a header bar here-->
