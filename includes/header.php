@@ -15,7 +15,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <head>
     <title>Visiting Academic Form</title>
     <meta charset="utf-8">
-
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
@@ -36,7 +37,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 Role: <b><?php echo htmlspecialchars($_SESSION["role"]);?></b><br/>
 
 <!--
- 
+
     TODO: Make the school and college display correctly.
     This will require the use of another table when it's in there
     as it'll need to get the college / school name based on the ID supplied
@@ -61,5 +62,5 @@ College: <b><?php echo htmlspecialchars($_SESSION["college_id"]);
             <h1>Visiting Academic Form</h1>
         </header>
         <main>
-        
+
 <!--TODO: Make a header bar here-->
