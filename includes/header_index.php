@@ -4,9 +4,9 @@
 
 <head>
     <title>Visiting Academic Form</title>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
