@@ -7,13 +7,13 @@ $role="";
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     // Redirect user to welcome page
-    if ($role === "aca") {
+    if ($role === "Academic") {
         header("location: academic_landing.php");
-    } elseif ($role === "cm") {
+    } elseif ($role === "College Manager") {
         header("location: cm_landing.php");
-    } elseif ($role === "hos") {
+    } elseif ($role === "Head Of School") {
         header("location: hos_landing.php");
-    } elseif ($role === "hr") {
+    } elseif ($role === "Human Resources") {
         header("location: hr_landing.php");
     }
     exit;
@@ -74,13 +74,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $_SESSION["college_id"] = $college_id;
 
                             // Redirect user to welcome page
-                            if ($role === "aca") {
+                            if ($role === "Academic") {
                                 header("location: academic_landing.php");
-                            } elseif ($role === "cm") {
+                            } elseif ($role === "College Manager") {
                                 header("location: cm_landing.php");
-                            } elseif ($role === "hos") {
+                            } elseif ($role === "Head Of School") {
                                 header("location: hos_landing.php");
-                            } elseif ($role === "hr") {
+                            } elseif ($role === "Human Resources") {
                                 header("location: hr_landing.php");
                             }
                         } else {

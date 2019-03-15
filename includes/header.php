@@ -12,7 +12,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <!DOCTYPE html>
 <html lang="en">
 <html>
-
 <head>
     <title>Visiting Academic Form</title>
     <meta charset="utf-8">
@@ -20,13 +19,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
     <!-- Popper JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
@@ -38,7 +34,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 Role: <b><?php echo htmlspecialchars($_SESSION["role"]);?></b><br/>
 
 <!--
-
     TODO: Make the school and college display correctly.
     This will require the use of another table when it's in there
     as it'll need to get the college / school name based on the ID supplied
@@ -49,11 +44,11 @@ Role: <b><?php echo htmlspecialchars($_SESSION["role"]);?></b><br/>
     Head of School
     Human Resources
 -->
-<?php if($_SESSION["role"] === "aca" || $_SESSION["role"] === "hos"){?>
+<?php if($_SESSION["role"] === "Academic" || $_SESSION["role"] === "Head Of School"){?>
 School: <b><?php echo htmlspecialchars($_SESSION["school_id"]);?></b><br/>
-College: <b><?php echo htmlspecialchars($_SESSION["college_id"]);
+<?php
 }
-if($_SESSION["role"] === "cm"){?></b>
+if($_SESSION["role"] === "College Manager"){?></b>
 College: <b><?php echo htmlspecialchars($_SESSION["college_id"]);
 }?>
 </b></p>
