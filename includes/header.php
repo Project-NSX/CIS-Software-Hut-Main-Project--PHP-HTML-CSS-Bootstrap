@@ -35,14 +35,7 @@ Role: <b><?php echo htmlspecialchars($_SESSION["role"]);?></b><br/>
 
 <!--
     TODO: Make the school and college display correctly.
-    This will require the use of another table when it's in there
-    as it'll need to get the college / school name based on the ID supplied
-
-    TODO: Make the role of the logged in user display correctly:
-    Academic
-    College Manager
-    Head of School
-    Human Resources
+    This requires getting the school and college name from the school / college table and binding it to a session variable on the index page
 -->
 <?php if($_SESSION["role"] === "Academic" || $_SESSION["role"] === "Head Of School"){?>
 School: <b><?php echo htmlspecialchars($_SESSION["school_id"]);?></b><br/>
