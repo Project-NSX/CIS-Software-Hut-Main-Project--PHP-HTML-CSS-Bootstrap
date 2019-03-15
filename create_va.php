@@ -30,12 +30,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone_number = $_POST['phone_number'];
     $visitor_type = $_POST['visitor_type'];
     $home_institution = $_POST['home_institution'];
+    $host_academic = $_SESSION['username'];
 
     if (empty($errors)) {
         //include database connection information
         $conn = getDB();
         // Sql query using placeholders
-        $sql = "INSERT INTO visitingAcademic (title, fName, lName, street, city, county, postcode, email, phoneNumber, visitorType, homeInstitution) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO visitingAcademic (title, fName, lName, street, city, county, postcode, email, phoneNumber, visitorType, homeInstitution, hostAcademic) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         // Prepare the sql statement for execution using the connection info provided from
         $stmt = mysqli_prepare($conn, $sql);
 
@@ -52,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             // Bind to: $stmt, value types: "sss", From the sources $_POST['title'] etc
-            mysqli_stmt_bind_param($stmt, "sssssssssss", $title, $f_name, $l_name, $street, $town_city, $county, $postcode, $email, $phone_number, $visitor_type, $home_institution);
+            mysqli_stmt_bind_param($stmt, "sssssssssss", $title, $f_name, $l_name, $street, $town_city, $county, $postcode, $email, $phone_number, $visitor_type, $home_institution, $host_academic);
             // If the execute function returns true..
             if (mysqli_stmt_execute($stmt)) {
                 // TODO: Confirmation dialogue on success
