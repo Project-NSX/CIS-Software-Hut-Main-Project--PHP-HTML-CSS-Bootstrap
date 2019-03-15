@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             // Bind to: $stmt, value types: "sss", From the sources $_POST['title'] etc
-            mysqli_stmt_bind_param($stmt, "sssssssssss", $title, $f_name, $l_name, $street, $town_city, $county, $postcode, $email, $phone_number, $visitor_type, $home_institution, $host_academic);
+            mysqli_stmt_bind_param($stmt, "ssssssssssss", $title, $f_name, $l_name, $street, $town_city, $county, $postcode, $email, $phone_number, $visitor_type, $home_institution, $host_academic);
             // If the execute function returns true..
             if (mysqli_stmt_execute($stmt)) {
                 // TODO: Confirmation dialogue on success
