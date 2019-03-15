@@ -3,24 +3,20 @@
 <!--HTML HERE-->
 <h2>Create a Visiting Academic</h2>
 <?php require'includes/navbars/nav_picker.php';?>
-<!--
-    TODO: Make this page post to the database
-    FIXME: This form inserts blankvalues into the datase
--->
-
 <?php
 // Initialising the title variable so nothing is displayed if the form hasn't been submitted
-$title = '';
-$f_name = '';
-$l_name = '';
-$street = '';
-$town_city = '';
-$county = '';
-$postcode = '';
-$email = '';
-$phone_number = '';
-$visitor_type = '';
-$home_institution = '';
+// This is for error handling and may not be needed if we just use the html required tag
+// $title = '';
+// $f_name = '';
+// $l_name = '';
+// $street = '';
+// $town_city = '';
+// $county = '';
+// $postcode = '';
+// $email = '';
+// $phone_number = '';
+// $visitor_type = '';
+// $home_institution = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = $_POST['title'];
@@ -41,7 +37,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Sql query using placeholders
         $sql = "INSERT INTO visitingAcademic (title, fName, lName, street, city, county, postcode, email, phoneNumber, visitorType, homeInstitution) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         // Prepare the sql statement for execution using the connection info provided from
-        // the database include
         $stmt = mysqli_prepare($conn, $sql);
 
         // Stmt will return false if there is an error in the mysql.
@@ -60,7 +55,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             mysqli_stmt_bind_param($stmt, "sssssssssss", $title, $f_name, $l_name, $street, $town_city, $county, $postcode, $email, $phone_number, $visitor_type, $home_institution);
             // If the execute function returns true..
             if (mysqli_stmt_execute($stmt)) {
-                //echo "Inserted record with the ID: $id";
+                // TODO: Confirmation dialogue on success
+
+                // Redirect the user to their home page
                 require 'includes/user_redirect.php';
             }
             // Else, return the error that occoured
@@ -73,11 +70,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
 <form method="post">
-
+    <fieldset>
+        <legend>Academic Information</legend>
+        <label for="visitor_typetype">Type of Academic: </label>
+        <select name="visitor_type" id="visitor_type" class="form-control">
+            <option value="undergrad">Undergraduate</option>
+            <option value="phd">PhD student</option>
+            <option value="vaPos">Visiting Academic (Position)</option>
+            <!--TODO: Make "other" display a text box for the user to enter the visitor type manually-->
+            <option value="otherSpecify">Other (Specify)</option>
+        </select>
+        <div class="form-row">
+            <label for="home_institution">Home Institution: </label>
+            <input type="text" class="form-control" name="home_institution" required>
+        </div>
+    </fieldset>
     <fieldset>
         <legend>Name</legend>
         <label for="title">Title: </label>
-        <select name="title" id="title" class="form-control">
+        <select name="title" id="title" class="form-control" required>
             <option value="mr">Mr</option>
             <option value="miss">Miss</option>
             <option value="mrs">Mrs</option>
@@ -133,27 +144,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="form-group col-md-6">
                 <label for="phone_number">Phone Number: </label>
+                <!--TODO: Restrict this to numbers only-->
                 <input type="tel" name="phone_number" class="form-control" minlength="9" maxlength="14">
             </div>
         </div>
     </fieldset>
-
-    <fieldset>
-        <legend>Academic Information</legend>
-        <label for="visitor_typetype">Type of Academic: </label>
-        <select name="visitor_type" id="visitor_type" class="form-control">
-            <option value="undergrad">Undergraduate</option>
-            <option value="phd">PhD student</option>
-            <option value="vaPos">Visiting Academic (Position)</option>
-            <option value="otherSpecify">Other (Specify)</option>
-        </select>
-        <div class="form-row">
-            <label for="home_institution">Home Institution: </label>
-            <input type="text" class="form-control" name="home_institution" required>
-        </div>
-    </fieldset>
-
     <button style="margin:10px 0px" type="submit" class="btn btn-primary btn-lg btn-block">Send</button>
-
 </form>
 <?php require 'includes/footer.php';?>
