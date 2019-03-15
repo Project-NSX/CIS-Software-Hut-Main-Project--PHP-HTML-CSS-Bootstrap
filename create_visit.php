@@ -1,4 +1,5 @@
 <?php require 'includes/header.php';?>
+<?php require 'includes/database.php';?>
 <!--HTML HERE-->
 <h2>Create a Visit</h2>
 <?php require'includes/navbars/nav_picker.php';?>
@@ -9,8 +10,19 @@
     <fieldset>
         <legend>Visitor</legend>
         <label for="Visitor">Visitor: </label>
+        <?php
+
+            $populatingVisitorDropDown = $link->query("SELECT fName, lName from visitingAcademic");
+        ?>
         <select name="visitor" id="visitor" class="form-control">
-            <option value="Select" disabled>Select</option>
+            <?php
+            while($rows = $populatingVisitorDropDown->fetch_assoc()){
+                $fName = $rows['fName'];
+                $lName = $rows['lName'];
+                $fullName = $fName. ' ' . $lName;
+                echo "<option value='$hostAcademic'>$fullName</option>";
+            }
+            ?>
         </select>
     </fieldset>
     <fieldset>
