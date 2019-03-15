@@ -7,15 +7,7 @@ $role="";
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     // Redirect user to welcome page
-    if ($role === "Academic") {
-        header("location: academic_landing.php");
-    } elseif ($role === "College Manager") {
-        header("location: cm_landing.php");
-    } elseif ($role === "Head Of School") {
-        header("location: hos_landing.php");
-    } elseif ($role === "Human Resources") {
-        header("location: hr_landing.php");
-    }
+    require 'includes/user_redirect.php';
     exit;
 }
 require_once'includes/database.php';
@@ -73,16 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $_SESSION["school_id"] = $school_id;
                             $_SESSION["college_id"] = $college_id;
 
-                            // Redirect user to welcome page
-                            if ($role === "Academic") {
-                                header("location: academic_landing.php");
-                            } elseif ($role === "College Manager") {
-                                header("location: cm_landing.php");
-                            } elseif ($role === "Head Of School") {
-                                header("location: hos_landing.php");
-                            } elseif ($role === "Human Resources") {
-                                header("location: hr_landing.php");
-                            }
+                            require 'includes/user_redirect.php';
                         } else {
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was not valid.";
