@@ -14,7 +14,7 @@ $s_date=$_POST['s_date'];
 $e_date=$_POST['e_date'];
 $summary=$_POST['summary'];
 $financialImp=$_POST['financialImp'];
-$inlineRadio1=$_POST['inlineRadio1'];
+$inlineRadio1=$_POST['ipr_issues'];
 // iprFile = form;
 
 $conn = getDB();
