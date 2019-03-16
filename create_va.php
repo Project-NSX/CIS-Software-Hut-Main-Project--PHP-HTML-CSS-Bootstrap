@@ -20,6 +20,7 @@
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = $_POST['title'];
+    $title_ext = $_POST['title_ext'];
     $f_name = $_POST['f_name'];
     $l_name = $_POST['l_name'];
     $street = $_POST['street'];
@@ -29,14 +30,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $phone_number = $_POST['phone_number'];
     $visitor_type = $_POST['visitor_type'];
+    $visitor_type_ext = $_POST['visitor_type_ext'];
     $home_institution = $_POST['home_institution'];
     $host_academic = $_SESSION['username'];
+
 
     if (empty($errors)) {
         //include database connection information
         $conn = getDB();
         // Sql query using placeholders
-        $sql = "INSERT INTO visitingAcademic (title, fName, lName, street, city, county, postcode, email, phoneNumber, visitorType, homeInstitution, hostAcademic) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO visitingAcademic (title, titleExt, fName, lName, street, city, county, postcode, email, phoneNumber, visitorType, visitorTypeExt, homeInstitution, hostAcademic) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         // Prepare the sql statement for execution using the connection info provided from
         $stmt = mysqli_prepare($conn, $sql);
 
@@ -53,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             // Bind to: $stmt, value types: "sss", From the sources $_POST['title'] etc
-            mysqli_stmt_bind_param($stmt, "ssssssssssss", $title, $f_name, $l_name, $street, $town_city, $county, $postcode, $email, $phone_number, $visitor_type, $home_institution, $host_academic);
+            mysqli_stmt_bind_param($stmt, "ssssssssssssss", $title, $title_ext, $f_name, $l_name, $street, $town_city, $county, $postcode, $email, $phone_number, $visitor_type, $visitor_type_ext, $home_institution, $host_academic);
             // If the execute function returns true..
             if (mysqli_stmt_execute($stmt)) {
                 // TODO: Confirmation dialogue on success
@@ -80,10 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <option value="vaPos">Visiting Academic (Position)</option>
             <option value="otherSpecify">Other (Specify)</option>
         </select>
-        <!--TODO: if (visitor_type == "otherSpecify" or visitorType == "vaPos") add required tag to visitor_type_ext-->
-        <!-- FIXME: The below optional box that displays a textbox when "other" or vaPos is selected breaks the form
-                Be advised that the ?'s, S's and values have been removed but the database column remains-->
-        <!-- <input type="text" name="color" id="visitor_type_ext" class="form-control" style='display:none;' /> -->
+        <input type="text" id="visitor_type_ext" name="visitor_type_ext" class="form-control" style='display:none;'/>
         <div class="form-row">
             <label for="home_institution">Home Institution: </label>
             <input type="text" class="form-control" name="home_institution" required>
@@ -101,8 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <option value="prof">Prof</option>
             <option value="other">Other</option>
         </select>
-<!--TODO: This is part of the JS that broke the form, it's intended function is to display a text box when "other" is selected-->
-<!-- <input type="text" name="color" id="TitleSelectionEXT" class="form-control" style='display:none;'  required/> -->
+<input type="text" name="title_ext" id="title_ext" class="form-control" style='display:none;'/>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="f_name">First Name: </label>
