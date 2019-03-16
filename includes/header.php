@@ -42,7 +42,17 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         else
         element.style.display='none';
     }
+
+function CheckIPR(val){
+        var element=document.getElementById('ipr_issues_ext');
+        if(val=='yes')
+        element.style.display='block';
+        else
+        element.style.display='none';
+    }
 </script>
+
+
 
 
 
