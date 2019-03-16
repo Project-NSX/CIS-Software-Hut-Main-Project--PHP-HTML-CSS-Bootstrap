@@ -80,7 +80,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <option value="vaPos">Visiting Academic (Position)</option>
             <option value="otherSpecify">Other (Specify)</option>
         </select>
-        <input type="text" name="color" id="visitor_type_EXT" class="form-control" style='display:none;'  required/>
+        <!--TODO: if (visitor_type == "otherSpecify" or visitorType == "vaPos") add required tag to visitor_type_ext-->
+        <!-- FIXME: The below optional box that displays a textbox when "other" or vaPos is selected breaks the form
+                Be advised that the ?'s, S's and values have been removed but the database column remains-->
+        <!-- <input type="text" name="color" id="visitor_type_ext" class="form-control" style='display:none;' /> -->
         <div class="form-row">
             <label for="home_institution">Home Institution: </label>
             <input type="text" class="form-control" name="home_institution" required>
@@ -98,7 +101,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <option value="prof">Prof</option>
             <option value="other">Other</option>
         </select>
-<input type="text" name="color" id="TitleSelectionEXT" class="form-control" style='display:none;'  required/>
+<!--TODO: This is part of the JS that broke the form, it's intended function is to display a text box when "other" is selected-->
+<!-- <input type="text" name="color" id="TitleSelectionEXT" class="form-control" style='display:none;'  required/> -->
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="f_name">First Name: </label>

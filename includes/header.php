@@ -26,9 +26,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
     function CheckVisitorTypeDropDown(val){
-        var element=document.getElementById('visitor_type_EXT');
+        var element=document.getElementById('visitor_type_ext');
         if(val=='vaPos'||val=='otherSpecify')
         element.style.display='block';
         else
@@ -42,7 +42,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         else
         element.style.display='none';
     }
-</script>
+</script> -->
 
 
 
