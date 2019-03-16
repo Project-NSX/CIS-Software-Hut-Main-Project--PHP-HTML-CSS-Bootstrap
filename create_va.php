@@ -74,13 +74,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <fieldset>
         <legend>Academic Information</legend>
         <label for="visitor_typetype">Type of Academic: </label>
-        <select name="visitor_type" id="visitor_type" class="form-control">
+        <select name="visitor_type" class="form-control" onchange='CheckVisitorTypeDropDown(this.value);' style="margin:0px 0px 10px 0px">
             <option value="undergrad">Undergraduate</option>
             <option value="phd">PhD student</option>
             <option value="vaPos">Visiting Academic (Position)</option>
-            <!--TODO: Make "other" display a text box for the user to enter the visitor type manually-->
             <option value="otherSpecify">Other (Specify)</option>
         </select>
+        <input type="text" name="color" id="visitor_type_EXT" class="form-control" style='display:none;'  required/>
         <div class="form-row">
             <label for="home_institution">Home Institution: </label>
             <input type="text" class="form-control" name="home_institution" required>
@@ -89,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <fieldset>
         <legend>Name</legend>
         <label for="title">Title: </label>
-        <select name="title" id="title" class="form-control" required>
+        <select name="title" id="title" class="form-control" onchange='CheckTitleSelection(this.value);' style="margin:0px 0px 10px 0px" required>
             <option value="mr">Mr</option>
             <option value="miss">Miss</option>
             <option value="mrs">Mrs</option>
@@ -98,6 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <option value="prof">Prof</option>
             <option value="other">Other</option>
         </select>
+<input type="text" name="color" id="TitleSelectionEXT" class="form-control" style='display:none;'  required/>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="f_name">First Name: </label>
