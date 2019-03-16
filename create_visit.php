@@ -49,7 +49,7 @@ else {
                 $fName = $rows['fName'];
                 $lName = $rows['lName'];
                 $fullName = $fName. ' ' . $lName;
-                echo "<option value='$hostAcademic'>$visitorId</option>";
+                echo "<option value='$visitorId'>$visitorId</option>";
             }
             ?>
         </select>
