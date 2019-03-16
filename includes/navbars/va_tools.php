@@ -2,9 +2,6 @@
     <a class="nav-link" href="create_va.php">Create a Visiting Academic</a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="created_vas.php">View My Visitors</a>
-</li>
-<li class="nav-item">
     <a class="nav-link" href="create_visit.php">Create a Visit</a>
 </li>
 <li class="nav-item">
