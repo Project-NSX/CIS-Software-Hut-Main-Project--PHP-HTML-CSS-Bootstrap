@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] =="POST") {
         <legend>Visitor</legend>
         <label for="Visitor">Visitor: </label>
         <?php
-            $populatingVisitorDropDown = $link->query("SELECT visitorId, fName, lName from visitingAcademic");
+            $populatingVisitorDropDown = $link->query("SELECT visitorId, fName, lName from visitingAcademic WHERE hostAcademic='{$_SESSION['username']}'");
         ?>
         <select name="visitor" id="visitor" class="form-control">
             <?php
