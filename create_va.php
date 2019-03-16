@@ -4,19 +4,6 @@
 <h2>Create a Visiting Academic</h2>
 <?php require'includes/navbars/nav_picker.php';?>
 <?php
-// Initialising the title variable so nothing is displayed if the form hasn't been submitted
-// This is for error handling and may not be needed if we just use the html required tag
-// $title = '';
-// $f_name = '';
-// $l_name = '';
-// $street = '';
-// $town_city = '';
-// $county = '';
-// $postcode = '';
-// $email = '';
-// $phone_number = '';
-// $visitor_type = '';
-// $home_institution = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = $_POST['title'];
