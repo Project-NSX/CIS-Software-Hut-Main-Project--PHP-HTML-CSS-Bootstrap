@@ -4,7 +4,7 @@
 <h2>Create a Visiting Academic</h2>
 <?php require'includes/navbars/nav_picker.php';?>
 <?php
-
+// This says "if the user tries to post to the database, assign these $variables from the names of the html5 elements
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = $_POST['title'];
     $title_ext = $_POST['title_ext'];
@@ -26,7 +26,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //include database connection information
         $conn = getDB();
         // Sql query using placeholders
+        // The placeholders are ?'s that are replcaed with the actual values in the form when the form is submitted.
         $sql = "INSERT INTO visitingAcademic (title, titleExt, fName, lName, street, city, county, postcode, email, phoneNumber, visitorType, visitorTypeExt, homeInstitution, hostAcademic) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
         // Prepare the sql statement for execution using the connection info provided from
         $stmt = mysqli_prepare($conn, $sql);
 
@@ -34,6 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // If it returns false, this error will be printed
         if ($stmt === false) {
             echo mysqli_error($conn);
+            // If there are no errors, then it'll check to see if some values are empty and if they are, it'll replace the empty strings with null
         } else {
             if ($phone_number == '') {
                 $phone_number = null;
@@ -41,10 +44,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($email == '') {
                 $email = null;
             }
-
+            // Bind the variables defined above to the MySQL statement.
+            // s - means string. For every variable entered there needs to be a ? above and letter that shows the datatype below.
             // Bind to: $stmt, value types: "sss", From the sources $_POST['title'] etc
             mysqli_stmt_bind_param($stmt, "ssssssssssssss", $title, $title_ext, $f_name, $l_name, $street, $town_city, $county, $postcode, $email, $phone_number, $visitor_type, $visitor_type_ext, $home_institution, $host_academic);
-            // If the execute function returns true..
+            // If the $stmt is able to execute:
             if (mysqli_stmt_execute($stmt)) {
                 // TODO: Confirmation dialogue on success
 
