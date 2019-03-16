@@ -62,7 +62,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-
 ?>
 <form method="post">
     <fieldset>
