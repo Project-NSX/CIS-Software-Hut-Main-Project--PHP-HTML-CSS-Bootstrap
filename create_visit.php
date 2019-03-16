@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] =="POST") {
     <fieldset>
         <legend>Financial Implications</legend>
         <div class="form-group">
-            <!-- <label for="financialImp">Financial Implications</label> -->
+            <!--TODO: Does this textbox need to show all the time???-->
             <textarea class="form-control" id="financialImp" name="financialImp" rows="4" cols="40"
                 placeholder="Please summarise the related financial implications"></textarea>
         </div>
