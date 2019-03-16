@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $host_academic = $_SESSION['username'];
 
 
-    if (empty($errors)) {
+
         //include database connection information
         $conn = getDB();
         // Sql query using placeholders
@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     }
-}
+
 
 ?>
 <form method="post">
