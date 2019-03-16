@@ -5,7 +5,6 @@
 <?php require'includes/navbars/nav_picker.php';?>
 <?php
 // This says "if the user tries to post to the database, assign these $variables from the names of the html5 elements
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = $_POST['title'];
     $title_ext = $_POST['title_ext'];
@@ -21,15 +20,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $visitor_type_ext = $_POST['visitor_type_ext'];
     $home_institution = $_POST['home_institution'];
     $host_academic = $_SESSION['username'];
-    $date_time = date("Y-m-d G:i:s<br>", time());
-    var_dump($date_time);
+
 
 
         //include database connection information
         $conn = getDB();
         // Sql query using placeholders
         // The placeholders are ?'s that are replcaed with the actual values in the form when the form is submitted.
-        $sql = "INSERT INTO visitingAcademic (title, titleExt, fName, lName, street, city, county, postcode, email, phoneNumber, visitorType, visitorTypeExt, homeInstitution, hostAcademic, dateAdded) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO visitingAcademic (title, titleExt, fName, lName, street, city, county, postcode, email, phoneNumber, visitorType, visitorTypeExt, homeInstitution, hostAcademic) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         // Prepare the sql statement for execution using the connection info provided from
         $stmt = mysqli_prepare($conn, $sql);
@@ -49,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Bind the variables defined above to the MySQL statement.
             // s - means string. For every variable entered there needs to be a ? above and letter that shows the datatype below.
             // Bind to: $stmt, value types: "sss", From the sources $_POST['title'] etc
-            mysqli_stmt_bind_param($stmt, "sssssssssssssss", $title, $title_ext, $f_name, $l_name, $street, $town_city, $county, $postcode, $email, $phone_number, $visitor_type, $visitor_type_ext, $home_institution, $host_academic, $date_time);
+            mysqli_stmt_bind_param($stmt, "ssssssssssssss", $title, $title_ext, $f_name, $l_name, $street, $town_city, $county, $postcode, $email, $phone_number, $visitor_type, $visitor_type_ext, $home_institution, $host_academic);
             // If the $stmt is able to execute:
             if (mysqli_stmt_execute($stmt)) {
                 // TODO: Confirmation dialogue on success
