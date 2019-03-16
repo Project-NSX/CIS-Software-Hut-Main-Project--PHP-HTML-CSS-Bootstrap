@@ -3,9 +3,7 @@
 <!--HTML HERE-->
 <h2>Create a Visit</h2>
 <?php require'includes/navbars/nav_picker.php';?>
-<!--
-    FIXME: Labels show up on the wrong line when changing window size
--->
+
 <form method="post">
     <fieldset>
         <legend>Visitor</legend>
