@@ -23,57 +23,59 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-        //include database connection information
-        $conn = getDB();
-        // Sql query using placeholders
-        // The placeholders are ?'s that are replcaed with the actual values in the form when the form is submitted.
-        $sql = "INSERT INTO visitingAcademic (title, titleExt, fName, lName, street, city, county, postcode, email, phoneNumber, visitorType, visitorTypeExt, homeInstitution, hostAcademic) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    //include database connection information
+    $conn = getDB();
+    // Sql query using placeholders
+    // The placeholders are ?'s that are replcaed with the actual values in the form when the form is submitted.
+    $sql = "INSERT INTO visitingAcademic (title, titleExt, fName, lName, street, city, county, postcode, email, phoneNumber, visitorType, visitorTypeExt, homeInstitution, hostAcademic) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        // Prepare the sql statement for execution using the connection info provided from
-        $stmt = mysqli_prepare($conn, $sql);
+    // Prepare the sql statement for execution using the connection info provided from
+    $stmt = mysqli_prepare($conn, $sql);
 
-        // Stmt will return false if there is an error in the mysql.
-        // If it returns false, this error will be printed
-        if ($stmt === false) {
-            echo mysqli_error($conn);
-            // If there are no errors, then it'll check to see if some values are empty and if they are, it'll replace the empty strings with null
-        } else {
-            if ($phone_number == '') {
-                $phone_number = null;
-            }
-            if ($email == '') {
-                $email = null;
-            }
-            // Bind the variables defined above to the MySQL statement.
-            // s - means string. For every variable entered there needs to be a ? above and letter that shows the datatype below.
-            // Bind to: $stmt, value types: "sss", From the sources $_POST['title'] etc
-            mysqli_stmt_bind_param($stmt, "ssssssssssssss", $title, $title_ext, $f_name, $l_name, $street, $town_city, $county, $postcode, $email, $phone_number, $visitor_type, $visitor_type_ext, $home_institution, $host_academic);
-            // If the $stmt is able to execute:
-            if (mysqli_stmt_execute($stmt)) {
-                // TODO: Confirmation dialogue on success
+    // Stmt will return false if there is an error in the mysql.
+    // If it returns false, this error will be printed
+    if ($stmt === false) {
+        echo mysqli_error($conn);
+    // If there are no errors, then it'll check to see if some values are empty and if they are, it'll replace the empty strings with null
+    } else {
+        if ($phone_number == '') {
+            $phone_number = null;
+        }
+        if ($email == '') {
+            $email = null;
+        }
+        // Bind the variables defined above to the MySQL statement.
+        // s - means string. For every variable entered there needs to be a ? above and letter that shows the datatype below.
+        // Bind to: $stmt, value types: "sss", From the sources $_POST['title'] etc
+        mysqli_stmt_bind_param($stmt, "ssssssssssssss", $title, $title_ext, $f_name, $l_name, $street, $town_city, $county, $postcode, $email, $phone_number, $visitor_type, $visitor_type_ext, $home_institution, $host_academic);
+        // If the $stmt is able to execute:
+        if (mysqli_stmt_execute($stmt)) {
+            // TODO: Confirmation dialogue on success
 
-                // Redirect the user to their home page
-                require 'includes/user_redirect.php';
-            }
-            // Else, return the error that occoured
-            else {
-                echo mysqli_stmt_error($stmt);
-            }
+            // Redirect the user to their home page
+            require 'includes/user_redirect.php';
+        }
+        // Else, return the error that occoured
+        else {
+            echo mysqli_stmt_error($stmt);
         }
     }
+}
 
 ?>
 <form method="post">
     <fieldset>
         <legend>Academic Information</legend>
         <label for="visitor_typetype">Type of Academic: </label>
-        <select name="visitor_type" class="form-control" onchange='CheckVisitorTypeDropDown(this.value);' style="margin:0px 0px 10px 0px">
+        <select name="visitor_type" class="form-control" onchange='CheckVisitorTypeDropDown(this.value);'
+            style="margin:0px 0px 10px 0px">
             <option value="undergrad">Undergraduate</option>
             <option value="phd">PhD student</option>
+            <!--TODO: If (visitng Academic (position) or Other (Specify) is selected) add option required to visitor_type_ext-->
             <option value="vaPos">Visiting Academic (Position)</option>
             <option value="otherSpecify">Other (Specify)</option>
         </select>
-        <input type="text" id="visitor_type_ext" name="visitor_type_ext" class="form-control" style='display:none;'/>
+        <input type="text" id="visitor_type_ext" name="visitor_type_ext" class="form-control" style='display:none;' />
         <div class="form-row">
             <label for="home_institution">Home Institution: </label>
             <input type="text" class="form-control" name="home_institution" required>
@@ -82,7 +84,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <fieldset>
         <legend>Name</legend>
         <label for="title">Title: </label>
-        <select name="title" id="title" class="form-control" onchange='CheckTitleSelection(this.value);' style="margin:0px 0px 10px 0px" required>
+        <select name="title" id="title" class="form-control" onchange='CheckTitleSelection(this.value);'
+            style="margin:0px 0px 10px 0px" required>
             <option value="mr">Mr</option>
             <option value="miss">Miss</option>
             <option value="mrs">Mrs</option>
@@ -90,8 +93,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <option value="dr">Dr</option>
             <option value="prof">Prof</option>
             <option value="other">Other</option>
+            <!--TODO: If other is selected. Add option required to title_ext-->
         </select>
-<input type="text" name="title_ext" id="title_ext" class="form-control" style='display:none;'/>
+        <input type="text" name="title_ext" id="title_ext" class="form-control" style='display:none;' />
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="f_name">First Name: </label>
