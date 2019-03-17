@@ -69,11 +69,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="visitor_typetype">Type of Academic: </label>
         <select name="visitor_type" class="form-control" onchange='CheckVisitorTypeDropDown(this.value);'
             style="margin:0px 0px 10px 0px">
-            <option value="undergrad">Undergraduate</option>
-            <option value="phd">PhD student</option>
+            <option value="Undergraduate">Undergraduate</option>
+            <option value="PhD Student">PhD Student</option>
             <!--TODO: If "visitng Academic (position)"" or "Other (Specify)"" is selected, add the "required" option to visitor_type_ext-->
-            <option value="vaPos">Visiting Academic (Position)</option>
-            <option value="otherSpecify">Other (Specify)</option>
+            <option value="Academic">Visiting Academic (Position)</option>
+            <option value="Other">Other (Specify)</option>
         </select>
         <input type="text" id="visitor_type_ext" name="visitor_type_ext" class="form-control" style='display:none;' />
         <div class="form-row">
