@@ -4,6 +4,8 @@ session_start();
 // TODO: Make session get trashed when window is closed or user is afk for an hour
 // Check if the user is logged in, if not then redirect him to login page
 // This might be helpful: https://stackoverflow.com/questions/22317888/destroy-php-sessions-on-browsers-tab-close
+
+// TODO: Restrict the pages the user can visit depending on their role
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: index.php");
     exit;
@@ -53,10 +55,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     }
     </script>
 
-
-
-
-
 </head>
 
 <body>
@@ -65,10 +63,9 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
         Role: <b><?php echo htmlspecialchars($_SESSION["role"]);?></b><br />
 
-        <!--
-    TODO: Make the school and college display correctly.
-    This requires getting the school and college name from the school / college table and binding it to a session variable on the index page
--->
+        <!-- TODO: Make the school and college display correctly.
+            This requires getting the school and college name from the school / college table and binding it to a session variable on the index page
+        -->
         <?php if ($_SESSION["role"] === "Academic" || $_SESSION["role"] === "Head Of School") {
     ?>
         School: <b><?php echo htmlspecialchars($_SESSION["school_id"]); ?></b><br />

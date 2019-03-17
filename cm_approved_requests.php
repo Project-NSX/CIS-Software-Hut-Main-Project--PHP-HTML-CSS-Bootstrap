@@ -46,8 +46,8 @@
 <h2>College Manager - Approved Requests</h2>
 <?php require'includes/navbars/nav_picker.php';?>
 <!--This page should show all requests approved by the CM-->
-<!--TODO:  Make this display table & Add search function -->
-
+<!--TODO:  Make this page display a table of approved requests -->
+<!--TODO: Add the ability to search for an approved request-->
 <?php
 require_once'includes/database.php';
 

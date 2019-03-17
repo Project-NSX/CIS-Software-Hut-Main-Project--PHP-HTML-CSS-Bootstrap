@@ -1,12 +1,11 @@
 <?php
 // Initialize the session
 session_start();
-// TODO: Make the user log out when the page / browser is closed + after a certain time.
-// TODO: Add robot to stop tracking requests
 $role="";
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     // Redirect user to welcome page
+    // TODO: Fix this redirect. When a user is logged in and comes back to the site the redirect shows index as a blank page
     require 'includes/user_redirect.php';
     exit;
 }
@@ -65,6 +64,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $_SESSION["school_id"] = $school_id;
                             $_SESSION["college_id"] = $college_id;
 
+                            if ($_SESSION['role'] == "Academic" || $_SESSION['role'] ==  "Head Of School" || $_SESSION['role'] == "College Manager")
+                            {
+                                //TODO: Insert code to bind college name to $_SESSION["college_name"] here
+                            }
+                            if ($_SESSION['role'] == "Academic" || $_SESSION['role'] ==  "Head Of School")
+                            {
+                                //TODO: Insert code to bind school name to $_SESSION["school_name"] here
+                            }
                             require 'includes/user_redirect.php';
                         } else {
                             // Display an error message if password is not valid
