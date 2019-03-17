@@ -6,8 +6,8 @@
 
 <?php
 require_once'includes/database.php';
+//TODO: get rid of unecessqary columns and variables
 
-$currentAcademic = $_SESSION['username'];
 echo "<h2>Request(s) Approved by HR</h2>";
 $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.hrComment  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.supervisorApproved LIKE '2' AND v.hrApproved LIKE '2'  ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
@@ -44,7 +44,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $hrComment = $row['hrComment'];
         echo "<div class='card' >";
         echo "<div class='card-header' id='$headingId' <button class='btn btn-link collapsed'  data-toggle='collapse' data-target='#$collapseId' aria-expanded='false' aria-controls='$collapseId'</button>";
-        echo "<h7 class='mb-0'>  <span> <b>Name:</b> $fName $lName </span> <span> <b>Home Institution:</b> $homeInt </span> <span> <b>Email:</b> $email </span> <span> <b>Phone Number:</b> $phone </span>  </h7>";
+        echo "<h7 class='mb-0'>  <span> <b>Name:</b> $fName $lName </span> <span> <b>Home Institution:</b> $homeInt </span></h7>";
         echo "</div>";
         echo "<div id='$collapseId' class='collapse' aria-labelledby='$collapseId' data-parent='#accordion'>";
         echo "<div class='card-body'>";
