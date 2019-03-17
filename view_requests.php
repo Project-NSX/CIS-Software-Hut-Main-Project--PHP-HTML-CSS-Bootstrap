@@ -62,7 +62,7 @@ if ($result->num_rows > 0) {
         echo "<h5 class='card-title'>Visitor Type</h5>";
         echo "<p class='card-text'>$visitorType &#8195; $visitorTypeEXT</p>";
         echo "<h5 class='card-title'>Visit Start & End Dates</h5>";
-        echo "<p class='card-text'><b>Start:</b> $visitStart &#8195; <b>End:</b> $visitEnd</p>";
+        echo "<p class='card-text'><b>Start:</b> $visitStart <br> <b>End:</b> $visitEnd</p>";
         echo "<h5 class='card-title'>Date & Time of Initial Submission</h5>";
         echo "<p class='card-text'>$visitAdded </p>";
         echo "</div>";
