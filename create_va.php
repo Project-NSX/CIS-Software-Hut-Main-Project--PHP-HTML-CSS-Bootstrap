@@ -86,16 +86,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="title">Title: </label>
         <select name="title" id="title" class="form-control" onchange='CheckTitleSelection(this.value);'
             style="margin:0px 0px 10px 0px" required>
-            <option value="mr">Mr</option>
-            <option value="miss">Miss</option>
-            <option value="mrs">Mrs</option>
-            <option value="ms">Ms</option>
-            <option value="dr">Dr</option>
-            <option value="prof">Prof</option>
-            <option value="other">Other</option>
+            <option value="Mr">Mr</option>
+            <option value="Miss">Miss</option>
+            <option value="Mrs">Mrs</option>
+            <option value="Ms">Ms</option>
+            <option value="Dr">Dr</option>
+            <option value="Prof">Prof</option>
+            <option value="Other">Other</option>
             <!--TODO: If other is selected. Add "required" option to title_ext-->
         </select>
-        <input type="text" name="title_ext" id="title_ext" class="form-control" style='display:none;' />
+        <input type="text" name="title_ext" id="title_ext" placeholder="Please specify" class="form-control" style='display:none;' />
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="f_name">First Name: </label>

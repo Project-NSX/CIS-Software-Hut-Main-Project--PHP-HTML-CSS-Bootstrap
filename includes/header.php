@@ -40,7 +40,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
     function CheckTitleSelection(val) {
         var element = document.getElementById('title_ext');
-        if (val == 'other')
+        if (val == 'Other')
             element.style.display = 'block';
         else
             element.style.display = 'none';
