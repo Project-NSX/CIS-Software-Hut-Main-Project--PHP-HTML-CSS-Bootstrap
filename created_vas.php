@@ -33,11 +33,19 @@ $visitorTypeShow = $visitorType;
         } else {
             $titleShow = $title;
         }
-        echo "<div class='card' >";
-        echo "<h7 class='mb-0'> <span> <b>Name:</b> $titleShow $fName $lName </span> <span> <b>Visitor Type:</b> $visitorTypeShow <b>Home Institution:</b> $homeInstitution</span></h7>";
-echo "<a href='edit_va.php?id=$id'>Edit Visitor</a>";
+        echo "<div class='row' >";
+        echo "<div class='col-sm-4'><b>Name:</b></div>";
+        echo "<div class='col-sm-4'><b>Visitor Type:</b></div>";
+        echo "<div class='col-sm-4'><b>Home Institution:</b></div>";
         echo "</div>";
-        echo "<br>";
+        echo "<div class='row'>";
+        echo "<div class='col-sm-4'>$titleShow $fName $lName</div>";
+        echo "<div class='col-sm-4'>$visitorTypeShow</div>";
+        echo "<div class='col-sm-4'>$homeInstitution</div>";
+        echo "</div>";
+        echo "<a href='edit_va.php?id=$id'>";
+        echo "<button type='button' class='btn btn-primary btn-sm btn-block' style='margin:5px 0px 25px 0px'>Edit Visitor</button>";
+        echo "</a>";
     }
     echo "</div>";
 } else {
