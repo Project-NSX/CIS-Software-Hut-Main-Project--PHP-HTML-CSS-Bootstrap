@@ -71,7 +71,7 @@ if ($awaitingActionresult->num_rows > 0) {
 }
 
 echo "<h2>Request(s) Approved by Supervisor</h2>";
-$supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.suppervisorApproved, v.supervisorUsername, v.supervisorApprovedDate  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '".$currentAcademic."%' AND v.supervisorApproved LIKE '2' AND v.hrApproved LIKE '0'";
+$supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '".$currentAcademic."%' AND v.supervisorApproved LIKE '2' AND v.hrApproved LIKE '0'";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
     echo "<div id='accordion'>";
@@ -95,7 +95,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $startDisplay = date("d/m/Y", strtotime($visitStart));
         $endDisplay = date("d/m/Y", strtotime($visitEnd));
         $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded));
-        $supervisorApproved = $row["suppervisorApproved"];
+        $supervisorApproved = $row["supervisorApprovedDate"];
         $supervisorUname = $row["supervisorUsername"];
 
         $supervisorApprovedDate = $row["supervisorApprovedDate"];
