@@ -243,7 +243,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         echo "<h5 class='card-title'>Date & Time of Decision</h5>";
         echo "<p class='card-text'>$supervisorApprovedDateDisp </p>";
         echo "<h5 class='card-title'>HR Practitioner Username</h5>";
-        echo "<p class='card-text'>$hrvisorUname </p>";
+        echo "<p class='card-text'>$hrUname </p>";
         echo "<h5 class='card-title'>Date & Time of Decision</h5>";
         echo "<p class='card-text'>$hrApprovedDateDisp </p>";
         echo "</div>";
@@ -324,8 +324,6 @@ if ($supervisorApprovedresult->num_rows > 0) {
 } else {
     echo "0 results";
 }
-
-
 $link->close();
 
 ?>
