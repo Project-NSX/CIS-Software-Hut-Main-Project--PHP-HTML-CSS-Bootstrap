@@ -53,10 +53,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     }
     </script>
 
-
-
-
-
 </head>
 
 <body>
@@ -68,7 +64,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         <!--
     TODO: Make the school and college display correctly.
     This requires getting the school and college name from the school / college table and binding it to a session variable on the index page
--->
+        -->
         <?php if ($_SESSION["role"] === "Academic" || $_SESSION["role"] === "Head Of School") {
     ?>
         School: <b><?php echo htmlspecialchars($_SESSION["school_id"]); ?></b><br />

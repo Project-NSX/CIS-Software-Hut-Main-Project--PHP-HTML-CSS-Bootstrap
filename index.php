@@ -64,10 +64,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $_SESSION["role"] = $role;
                             $_SESSION["school_id"] = $school_id;
                             $_SESSION["college_id"] = $college_id;
-if($_SESSION['role'] == "Academic" || "")
-{
 
-}
+                            if ($_SESSION['role'] == "Academic" || $_SESSION['role'] ==  "Head Of School" || $_SESSION['role'] == "College Manager")
+                            {
+                                //TODO: Insert code to bind college name to $_SESSION["college_name"] here
+                            }
+                            if ($_SESSION['role'] == "Academic" || $_SESSION['role'] ==  "Head Of School")
+                            {
+                                //TODO: Insert code to bind school name to $_SESSION["school_name"] here
+                            }
                             require 'includes/user_redirect.php';
                         } else {
                             // Display an error message if password is not valid
