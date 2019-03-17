@@ -8,8 +8,9 @@
 require_once'includes/database.php';
 
 $currentAcademic = $_SESSION['username'];
-echo "<h2>Request(s) Approved by HR</h2>";
-$supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.hrComment  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.supervisorApproved LIKE '2' AND v.hrApproved LIKE '2'  ORDER BY v.visitAddedDate DESC";
+
+echo "<h2>Request(s) Disapproved by HR</h2>";
+$supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.hrComment  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.supervisorApproved LIKE '2' AND v.hrApproved LIKE '1'  ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
     echo "<div id='accordion'>";
@@ -66,6 +67,8 @@ if ($supervisorApprovedresult->num_rows > 0) {
         echo "<p class='card-text'>$hrUname </p>";
         echo "<h5 class='card-title'>Date & Time of Decision</h5>";
         echo "<p class='card-text'>$hrApprovedDateDisp </p>";
+        echo "<h5 class='card-title'>HR Comment</h5>";
+        echo "<p class='card-text'>$hrComment </p>";
         echo "</div>";
         echo "</div>";
         echo "</div>";

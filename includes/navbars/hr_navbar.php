@@ -12,6 +12,9 @@
                 <a class="nav-link" href="hr_approved_requests.php">HR - Approved Requests</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="hr_disapproved_requests.php">HR - Disapproved Requests</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="hr_pending_approval.php">HR - Requests Pending Approval</a>
             </li>
         </ul>
