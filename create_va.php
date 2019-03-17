@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             style="margin:0px 0px 10px 0px">
             <option value="undergrad">Undergraduate</option>
             <option value="phd">PhD student</option>
-            <!--TODO: If (visitng Academic (position) or Other (Specify) is selected) add option required to visitor_type_ext-->
+            <!--TODO: If "visitng Academic (position)"" or "Other (Specify)"" is selected, add the "required" option to visitor_type_ext-->
             <option value="vaPos">Visiting Academic (Position)</option>
             <option value="otherSpecify">Other (Specify)</option>
         </select>
@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <option value="dr">Dr</option>
             <option value="prof">Prof</option>
             <option value="other">Other</option>
-            <!--TODO: If other is selected. Add option required to title_ext-->
+            <!--TODO: If other is selected. Add "required" option to title_ext-->
         </select>
         <input type="text" name="title_ext" id="title_ext" class="form-control" style='display:none;' />
         <div class="form-row">
