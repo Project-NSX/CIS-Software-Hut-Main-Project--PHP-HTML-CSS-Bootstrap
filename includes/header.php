@@ -32,7 +32,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <script type="text/javascript">
     function CheckVisitorTypeDropDown(val) {
         var element = document.getElementById('visitor_type_ext');
-        if (val == 'vaPos' || val == 'otherSpecify')
+        if (val == 'Academic' || val == 'Other')
             element.style.display = 'block';
         else
             element.style.display = 'none';
