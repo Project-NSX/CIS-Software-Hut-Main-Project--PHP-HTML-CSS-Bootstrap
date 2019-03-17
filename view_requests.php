@@ -22,32 +22,28 @@ require_once'includes/database.php';
 
 $currentAcademic = $_SESSION['username'];
 
+echo "<h2>Request(s) Awaiting Action</h2>";
 $awaitingAction = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '".$currentAcademic."%' AND v.supervisorApproved LIKE '0' AND v.hrApproved LIKE '0'";
-$result = $link->query($awaitingAction);
-
-if ($result->num_rows > 0) {
-    echo "<h2>Request(s) Awaiting Action</h2>";
+$awaitingActionresult = $link->query($awaitingAction);
+if ($awaitingActionresult->num_rows > 0) {
     echo "<div id='accordion'>";
-    while($row = $result->fetch_assoc()) {
+    while($row = $awaitingActionresult->fetch_assoc()) {
         $visitId = $row["visitId"];
         $visitorId = $row["visitorId"];
         $headingId = "heading" . $visitId . $visitorId;
         $collapseId = "collapse" . $visitId . $visitorId;
-
         $fName = $row["fName"];
         $lName = $row["lName"];
         $homeInt = $row["homeInstitution"];
         $email = $row["email"];
         $phone = $row["phoneNumber"];
-
-        $summary = $row["summary"]; //done
+        $summary = $row["summary"];
         $visitAdded = $row["visitAddedDate"];
-        $financialImp = $row["financialImplications"]; //done
-        $visitorType = $row["visitorType"]; //done
-        $visitorTypeEXT = $row["visitorTypeExt"]; //done
-        $visitStart = $row["startDate"]; //done
-        $visitEnd = $row["endDate"]; //done
-
+        $financialImp = $row["financialImplications"];
+        $visitorType = $row["visitorType"];
+        $visitorTypeEXT = $row["visitorTypeExt"];
+        $visitStart = $row["startDate"];
+        $visitEnd = $row["endDate"];
 
         echo "<div class='card' >";
         echo "<div class='card-header' id='$headingId' <button class='btn btn-link collapsed'  data-toggle='collapse' data-target='#$collapseId' aria-expanded='false' aria-controls='$collapseId'</button>";
@@ -74,11 +70,12 @@ if ($result->num_rows > 0) {
 } else {
     echo "0 results";
 }
+$link->close();
 
 echo "<h2>Request(s) Approved by Supervisor</h2>";
 echo "<h2>Request(s) Disapproved by Supervisor</h2>";
 echo "<h2>Request(s) Approved by Supervisor & HR</h2>";
 echo "<h2>Request(s) Disapproved by HR</h2>";
-$link->close();
+
 ?>
 <?php require 'includes/footer.php';?>
