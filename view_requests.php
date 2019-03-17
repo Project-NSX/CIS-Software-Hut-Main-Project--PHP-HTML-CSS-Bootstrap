@@ -47,7 +47,9 @@ if ($result->num_rows > 0) {
         $visitorTypeEXT = $row["visitorTypeExt"]; //done
         $visitStart = $row["startDate"]; //done
         $visitEnd = $row["endDate"]; //done
-
+        $startDisplay = date("d/m/Y", strtotime($visitStart));
+        $endDisplay = date("d/m/Y", strtotime($visitEnd));
+        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded));
 
         echo "<div class='card' >";
         echo "<div class='card-header' id='$headingId' <button class='btn btn-link collapsed'  data-toggle='collapse' data-target='#$collapseId' aria-expanded='false' aria-controls='$collapseId'</button>";
@@ -62,9 +64,9 @@ if ($result->num_rows > 0) {
         echo "<h5 class='card-title'>Visitor Type</h5>";
         echo "<p class='card-text'>$visitorType &#8195; $visitorTypeEXT</p>";
         echo "<h5 class='card-title'>Visit Start & End Dates</h5>";
-        echo "<p class='card-text'><b>Start:</b> $visitStart &#8195; <b>End:</b> $visitEnd</p>";
+        echo "<p class='card-text'><b>Start:</b> $startDisplay &#8195; <b>End:</b> $endDisplay</p>";
         echo "<h5 class='card-title'>Date & Time of Initial Submission</h5>";
-        echo "<p class='card-text'>$visitAdded </p>";
+        echo "<p class='card-text'>$addedDisplay </p>";
         echo "</div>";
         echo "</div>";
         echo "</div>";
