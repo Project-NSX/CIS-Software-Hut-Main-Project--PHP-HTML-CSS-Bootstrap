@@ -62,8 +62,8 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         $uname = $row["username"];
         $passwd = $row["password"];?>
-        <p><strong>Username: </strong><?php echo $uname ?><br><strong>Password:</strong><?php echo $passwd ?></p>
-        <button class='btnG'>Approve Request <?php echo $uname ?></button> <button class='btnR' >Deny Request <?php echo $uname ?></button> <button class='btnA'>Prompt User to Resubmit <?php echo $uname ?> </button><?php
+        <p><strong>Username: </strong><?php $uname ?><br><strong>Password:</strong><?php $passwd ?></p>
+        <button class='btnG'>Approve Request <?php $uname ?></button> <button class='btnR' >Deny Request <?php $uname ?></button> <button class='btnA'>Prompt User to Resubmit <?php $uname ?> </button><?php
     }
     echo "</table>";
 } else {

@@ -32,20 +32,21 @@ $visitorTypeShow = $visitorType;
             $titleShow = $titleExt;
         } else {
             $titleShow = $title;
-        }
-        echo "<div class='row' >";
-        echo "<div class='col-sm-4'><b>Name:</b></div>";
-        echo "<div class='col-sm-4'><b>Visitor Type:</b></div>";
-        echo "<div class='col-sm-4'><b>Home Institution:</b></div>";
-        echo "</div>";
-        echo "<div class='row'>";
-        echo "<div class='col-sm-4'>$titleShow $fName $lName</div>";
-        echo "<div class='col-sm-4'>$visitorTypeShow</div>";
-        echo "<div class='col-sm-4'>$homeInstitution</div>";
-        echo "</div>";
-        echo "<a href='edit_va.php?id=$id'>";
-        echo "<button type='button' class='btn btn-primary btn-sm btn-block' style='margin:5px 0px 25px 0px'>Edit Visitor</button>";
-        echo "</a>";
+        } ?>
+        <div class='row' >
+        <div class='col-sm-4'><b>Name:</b></div>
+        <div class='col-sm-4'><b>Visitor Type:</b></div>
+        <div class='col-sm-4'><b>Home Institution:</b></div>
+        </div>
+        <div class='row'>
+        <div class='col-sm-4'><?php echo $titleShow." ".$fName." ".$lName ?></div>
+        <div class='col-sm-4'><?php echo $visitorTypeShow ?></div>
+        <div class='col-sm-4'><?php echo $homeInstitution ?></div>
+        </div>
+        <a href='edit_va.php?id=$id'>
+        <button type='button' class='btn btn-primary btn-sm btn-block' style='margin:5px 0px 25px 0px'>Edit Visitor</button>
+        </a>
+        <?php
     }
     echo "</div>";
 } else {

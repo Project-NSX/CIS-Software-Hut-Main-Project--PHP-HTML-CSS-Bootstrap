@@ -1,7 +1,7 @@
 <?php require 'includes/header.php';?>
 <!--HTML HERE-->
 <style>
-h7 span{
+h6 span{
     display: inline-block;
     margin-right: 2.5em;
 }
@@ -28,6 +28,7 @@ if ($awaitingActionresult->num_rows > 0) {
         $visitorId = $row["visitorId"];
         $headingId = "heading" . $visitId . $visitorId;
         $collapseId = "collapse" . $visitId . $visitorId;
+        $collapseIdHash = "#collapse" . $visitId . $visitorId;
         $fName = $row["fName"];
         $lName = $row["lName"];
         $homeInt = $row["homeInstitution"];
@@ -42,27 +43,34 @@ if ($awaitingActionresult->num_rows > 0) {
         $visitEnd = $row["endDate"]; //done
         $startDisplay = date("d/m/Y", strtotime($visitStart));
         $endDisplay = date("d/m/Y", strtotime($visitEnd));
-        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded));
-        echo "<div class='card' >";
-        echo "<div class='card-header' id='$headingId' <button class='btn btn-link collapsed'  data-toggle='collapse' data-target='#$collapseId' aria-expanded='false' aria-controls='$collapseId'</button>";
-        echo "<h7 class='mb-0'>  <span> <b>Name:</b> $fName $lName </span> <span> <b>Home Institution:</b> $homeInt </span> <span> <b>Email:</b> $email </span> <span> <b>Phone Number:</b> $phone </span>  </h7>";
-        echo "</div>";
-        echo "<div id='$collapseId' class='collapse' aria-labelledby='$collapseId' data-parent='#accordion'>";
-        echo "<div class='card-body'>";
-        echo "<h5 class='card-title'>Visit Summary</h5>";
-        echo "<p class='card-text'>$summary</p>";
-        echo "<h5 class='card-title'>Financial Implications</h5>";
-        echo "<p class='card-text'>$financialImp</p>";
-        echo "<h5 class='card-title'>Visitor Type</h5>";
-        echo "<p class='card-text'>$visitorType &#8195; $visitorTypeEXT</p>";
-        echo "<h5 class='card-title'>Visit Start & End Dates</h5>";
-        echo "<p class='card-text'><b>Start:</b> $startDisplay &#8195; <b>End:</b> $endDisplay</p>";
-        echo "<h5 class='card-title'>Date & Time of Initial Submission</h5>";
-        echo "<p class='card-text'>$addedDisplay </p>";
-        echo "</div>";
-        echo "</div>";
-        echo "</div>";
-        echo "<br>";
+        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded)); ?>
+        <div class="card">
+        <div class="card-header" id ="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
+        <h6 class="mb-0">
+        <span> <b>Name:</b> <?php echo $fName . " " . $lName ?></span> <span> <b>Home Institution:</b> <?php echo $homeInt ?> </span> <span> <b>Email:</b> <?php echo $email ?> </span> <span> <b>Phone Number:</b> <?php echo $phone ?> </span>
+        </button>
+        </h6>
+        </div>
+        <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
+        <div class="card-body">
+
+
+        <h5 class='card-title'>Visit Summary</h5>
+        <p class='card-text'><?php echo $summary ?></p>
+        <h5 class='card-title'>Financial Implications</h5>
+        <p class='card-text'><?php echo $financialImp ?></p>
+        <h5 class='card-title'>Visitor Type</h5>
+        <p class='card-text'><?php echo $visitorType ?> &#8195; <?php echo $visitorTypeEXT ?></p>
+        <h5 class='card-title'>Visit Start & End Dates</h5>
+        <p class='card-text'><b>Start:</b> <?php echo $startDisplay ?> &#8195; <b>End:</b> <?php echo $endDisplay ?></p>
+        <h5 class='card-title'>Date & Time of Initial Submission</h5>
+        <p class='card-text'><?php echo $addedDisplay ?> </p>
+        </div>
+        </div>
+        </div>
+
+        <br>
+       <?php
     }
     echo "</div>";
 } else {
@@ -79,6 +87,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $visitorId = $row["visitorId"];
         $headingId = "heading" . $visitId . $visitorId;
         $collapseId = "collapse" . $visitId . $visitorId;
+        $collapseIdHash = "#collapse" . $visitId . $visitorId;
         $fName = $row["fName"];
         $lName = $row["lName"];
         $homeInt = $row["homeInstitution"];
@@ -97,31 +106,38 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $supervisorApproved = $row["supervisorApprovedDate"];
         $supervisorUname = $row["supervisorUsername"];
         $supervisorApprovedDate = $row["supervisorApprovedDate"];
-        $supervisorApprovedDateDisp = date("d/m/Y - g:iA", strtotime($supervisorApprovedDate));
-        echo "<div class='card' >";
-        echo "<div class='card-header' id='$headingId' <button class='btn btn-link collapsed'  data-toggle='collapse' data-target='#$collapseId' aria-expanded='false' aria-controls='$collapseId'</button>";
-        echo "<h7 class='mb-0'>  <span> <b>Name:</b> $fName $lName </span> <span> <b>Home Institution:</b> $homeInt </span> <span> <b>Email:</b> $email </span> <span> <b>Phone Number:</b> $phone </span>  </h7>";
-        echo "</div>";
-        echo "<div id='$collapseId' class='collapse' aria-labelledby='$collapseId' data-parent='#accordion'>";
-        echo "<div class='card-body'>";
-        echo "<h5 class='card-title'>Visit Summary</h5>";
-        echo "<p class='card-text'>$summary</p>";
-        echo "<h5 class='card-title'>Financial Implications</h5>";
-        echo "<p class='card-text'>$financialImp</p>";
-        echo "<h5 class='card-title'>Visitor Type</h5>";
-        echo "<p class='card-text'>$visitorType &#8195; $visitorTypeEXT</p>";
-        echo "<h5 class='card-title'>Visit Start & End Dates</h5>";
-        echo "<p class='card-text'><b>Start:</b> $startDisplay &#8195; <b>End:</b> $endDisplay</p>";
-        echo "<h5 class='card-title'>Date & Time of Initial Submission</h5>";
-        echo "<p class='card-text'>$addedDisplay </p>";
-        echo "<h5 class='card-title'>Supervisor Username</h5>";
-        echo "<p class='card-text'>$supervisorUname </p>";
-        echo "<h5 class='card-title'>Date & Time of Decision</h5>";
-        echo "<p class='card-text'>$supervisorApprovedDateDisp </p>";
-        echo "</div>";
-        echo "</div>";
-        echo "</div>";
-        echo "<br>";
+        $supervisorApprovedDateDisp = date("d/m/Y - g:iA", strtotime($supervisorApprovedDate)); ?>
+        <div class="card">
+        <div class="card-header" id ="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
+        <h6 class="mb-0">
+        <span> <b>Name:</b> <?php echo $fName . " " . $lName ?></span> <span> <b>Home Institution:</b> <?php echo $homeInt ?> </span> <span> <b>Email:</b> <?php echo $email ?> </span> <span> <b>Phone Number:</b> <?php echo $phone ?> </span>
+        </button>
+        </h6>
+        </div>
+        <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
+        <div class="card-body">
+
+
+        <h5 class='card-title'>Visit Summary</h5>
+        <p class='card-text'><?php echo $summary ?></p>
+        <h5 class='card-title'>Financial Implications</h5>
+        <p class='card-text'><?php echo $financialImp ?></p>
+        <h5 class='card-title'>Visitor Type</h5>
+        <p class='card-text'><?php echo $visitorType ?> &#8195; <?php echo $visitorTypeEXT ?></p>
+        <h5 class='card-title'>Visit Start & End Dates</h5>
+        <p class='card-text'><b>Start:</b> <?php echo $startDisplay ?> &#8195; <b>End:</b> <?php echo $endDisplay ?></p>
+        <h5 class='card-title'>Date & Time of Initial Submission</h5>
+        <p class='card-text'><?php echo $addedDisplay ?> </p>
+        <h5 class='card-title'>Supervisor Username</h5>
+        <p class='card-text'><?php echo $supervisorUname ?> </p>
+        <h5 class='card-title'>Date & Time of Decision</h5>
+        <p class='card-text'><?php echo $supervisorApprovedDateDisp ?> </p>
+        </div>
+        </div>
+        </div>
+
+        <br>
+       <?php
     }
     echo "</div>";
 } else {
@@ -138,6 +154,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $visitorId = $row["visitorId"];
         $headingId = "heading" . $visitId . $visitorId;
         $collapseId = "collapse" . $visitId . $visitorId;
+        $collapseIdHash = "#collapse" . $visitId . $visitorId;
         $fName = $row["fName"];
         $lName = $row["lName"];
         $homeInt = $row["homeInstitution"];
@@ -157,33 +174,40 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $supervisorUname = $row["supervisorUsername"];
         $supervisorApprovedDate = $row["supervisorApprovedDate"];
         $supervisorApprovedDateDisp = date("d/m/Y - g:iA", strtotime($supervisorApprovedDate));
-        $supervisorComment = $row["supervisorComment"];
-        echo "<div class='card' >";
-        echo "<div class='card-header' id='$headingId' <button class='btn btn-link collapsed'  data-toggle='collapse' data-target='#$collapseId' aria-expanded='false' aria-controls='$collapseId'</button>";
-        echo "<h7 class='mb-0'>  <span> <b>Name:</b> $fName $lName </span> <span> <b>Home Institution:</b> $homeInt </span> <span> <b>Email:</b> $email </span> <span> <b>Phone Number:</b> $phone </span>  </h7>";
-        echo "</div>";
-        echo "<div id='$collapseId' class='collapse' aria-labelledby='$collapseId' data-parent='#accordion'>";
-        echo "<div class='card-body'>";
-        echo "<h5 class='card-title'>Visit Summary</h5>";
-        echo "<p class='card-text'>$summary</p>";
-        echo "<h5 class='card-title'>Financial Implications</h5>";
-        echo "<p class='card-text'>$financialImp</p>";
-        echo "<h5 class='card-title'>Visitor Type</h5>";
-        echo "<p class='card-text'>$visitorType &#8195; $visitorTypeEXT</p>";
-        echo "<h5 class='card-title'>Visit Start & End Dates</h5>";
-        echo "<p class='card-text'><b>Start:</b> $startDisplay &#8195; <b>End:</b> $endDisplay</p>";
-        echo "<h5 class='card-title'>Date & Time of Initial Submission</h5>";
-        echo "<p class='card-text'>$addedDisplay </p>";
-        echo "<h5 class='card-title'>Supervisor Username</h5>";
-        echo "<p class='card-text'>$supervisorUname </p>";
-        echo "<h5 class='card-title'>Supervisor Comment</h5>";
-        echo "<p class='card-text'>$supervisorComment </p>";
-        echo "<h5 class='card-title'>Date & Time of Decision</h5>";
-        echo "<p class='card-text'>$supervisorApprovedDateDisp </p>";
-        echo "</div>";
-        echo "</div>";
-        echo "</div>";
-        echo "<br>";
+        $supervisorComment = $row["supervisorComment"]; ?>
+        <div class="card">
+        <div class="card-header" id ="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
+        <h6 class="mb-0">
+        <span> <b>Name:</b> <?php echo $fName . " " . $lName ?></span> <span> <b>Home Institution:</b> <?php echo $homeInt ?> </span> <span> <b>Email:</b> <?php echo $email ?> </span> <span> <b>Phone Number:</b> <?php echo $phone ?> </span>
+        </button>
+        </h6>
+        </div>
+        <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
+        <div class="card-body">
+
+        <h5 class='card-title'>Visit Summary</h5>
+        <p class='card-text'><?php echo $summary ?></p>
+        <h5 class='card-title'>Financial Implications</h5>
+        <p class='card-text'><?php echo $financialImp ?></p>
+        <h5 class='card-title'>Visitor Type</h5>
+        <p class='card-text'><?php echo $visitorType ?> &#8195; <?php echo $visitorTypeEXT ?></p>
+        <h5 class='card-title'>Visit Start & End Dates</h5>
+        <p class='card-text'><b>Start:</b> <?php echo $startDisplay ?> &#8195; <b>End:</b> <?php echo $endDisplay ?></p>
+        <h5 class='card-title'>Date & Time of Initial Submission</h5>
+        <p class='card-text'><?php echo $addedDisplay ?> </p>
+        <h5 class='card-title'>Supervisor Username</h5>
+        <p class='card-text'><?php echo $supervisorUname ?> </p>
+        <h5 class='card-title'>Supervisor Comment</h5>
+        <p class='card-text'><?php echo $supervisorComment ?> </p>
+        <h5 class='card-title'>Date & Time of Decision</h5>
+        <p class='card-text'><?php echo $supervisorApprovedDateDisp ?> </p>
+        </div>
+        </div>
+        </div>
+
+        <br>
+       <?php
+
     }
     echo "</div>";
 } else {
@@ -199,6 +223,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $visitorId = $row["visitorId"];
         $headingId = "heading" . $visitId . $visitorId;
         $collapseId = "collapse" . $visitId . $visitorId;
+        $collapseIdHash = "#collapse" . $visitId . $visitorId;
         $fName = $row["fName"];
         $lName = $row["lName"];
         $homeInt = $row["homeInstitution"];
@@ -221,35 +246,43 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $hrApproved = $row["hrApprovedDate"];
         $hrUname = $row["hrUsername"];
         $hrApprovedDate = $row["hrApprovedDate"];
-        $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate));
-        echo "<div class='card' >";
-        echo "<div class='card-header' id='$headingId' <button class='btn btn-link collapsed'  data-toggle='collapse' data-target='#$collapseId' aria-expanded='false' aria-controls='$collapseId'</button>";
-        echo "<h7 class='mb-0'>  <span> <b>Name:</b> $fName $lName </span> <span> <b>Home Institution:</b> $homeInt </span> <span> <b>Email:</b> $email </span> <span> <b>Phone Number:</b> $phone </span>  </h7>";
-        echo "</div>";
-        echo "<div id='$collapseId' class='collapse' aria-labelledby='$collapseId' data-parent='#accordion'>";
-        echo "<div class='card-body'>";
-        echo "<h5 class='card-title'>Visit Summary</h5>";
-        echo "<p class='card-text'>$summary</p>";
-        echo "<h5 class='card-title'>Financial Implications</h5>";
-        echo "<p class='card-text'>$financialImp</p>";
-        echo "<h5 class='card-title'>Visitor Type</h5>";
-        echo "<p class='card-text'>$visitorType &#8195; $visitorTypeEXT</p>";
-        echo "<h5 class='card-title'>Visit Start & End Dates</h5>";
-        echo "<p class='card-text'><b>Start:</b> $startDisplay &#8195; <b>End:</b> $endDisplay</p>";
-        echo "<h5 class='card-title'>Date & Time of Initial Submission</h5>";
-        echo "<p class='card-text'>$addedDisplay </p>";
-        echo "<h5 class='card-title'>Supervisor Username</h5>";
-        echo "<p class='card-text'>$supervisorUname </p>";
-        echo "<h5 class='card-title'>Date & Time of Decision</h5>";
-        echo "<p class='card-text'>$supervisorApprovedDateDisp </p>";
-        echo "<h5 class='card-title'>HR Practitioner Username</h5>";
-        echo "<p class='card-text'>$hrUname </p>";
-        echo "<h5 class='card-title'>Date & Time of Decision</h5>";
-        echo "<p class='card-text'>$hrApprovedDateDisp </p>";
-        echo "</div>";
-        echo "</div>";
-        echo "</div>";
-        echo "<br>";
+        $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate)); ?>
+
+        <div class="card">
+        <div class="card-header" id ="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
+        <h6 class="mb-0">
+        <span> <b>Name:</b> <?php echo $fName . " " . $lName ?></span> <span> <b>Home Institution:</b> <?php echo $homeInt ?> </span> <span> <b>Email:</b> <?php echo $email ?> </span> <span> <b>Phone Number:</b> <?php echo $phone ?> </span>
+        </button>
+        </h6>
+        </div>
+        <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
+        <div class="card-body">
+
+
+        <h5 class='card-title'>Visit Summary</h5>
+        <p class='card-text'><?php echo $summary ?></p>
+        <h5 class='card-title'>Financial Implications</h5>
+        <p class='card-text'><?php echo $financialImp ?></p>
+        <h5 class='card-title'>Visitor Type</h5>
+        <p class='card-text'><?php echo $visitorType ?> &#8195; <?php echo $visitorTypeEXT ?></p>
+        <h5 class='card-title'>Visit Start & End Dates</h5>
+        <p class='card-text'><b>Start:</b> <?php echo $startDisplay ?> &#8195; <b>End:</b> <?php echo $endDisplay ?></p>
+        <h5 class='card-title'>Date & Time of Initial Submission</h5>
+        <p class='card-text'><?php echo $addedDisplay ?> </p>
+        <h5 class='card-title'>Supervisor Username</h5>
+        <p class='card-text'><?php echo $supervisorUname ?> </p>
+        <h5 class='card-title'>Date & Time of Decision</h5>
+        <p class='card-text'><?php echo $supervisorApprovedDateDisp ?> </p>
+        <h5 class='card-title'>HR Practitioner Username</h5>
+        <p class='card-text'><?php echo $hrUname ?> </p>
+        <h5 class='card-title'>Date & Time of Decision</h5>
+        <p class='card-text'><?php echo $hrApprovedDateDisp ?> </p>
+        </div>
+        </div>
+        </div>
+
+        <br>
+       <?php
     }
     echo "</div>";
 } else {
@@ -265,6 +298,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $visitorId = $row["visitorId"];
         $headingId = "heading" . $visitId . $visitorId;
         $collapseId = "collapse" . $visitId . $visitorId;
+        $collapseIdHash = "#collapse" . $visitId . $visitorId;
         $fName = $row["fName"];
         $lName = $row["lName"];
         $homeInt = $row["homeInstitution"];
@@ -288,37 +322,44 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $hrUname = $row["hrUsername"];
         $hrApprovedDate = $row["hrApprovedDate"];
         $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate));
-        $hrComment = $row['hrComment'];
-        echo "<div class='card' >";
-        echo "<div class='card-header' id='$headingId' <button class='btn btn-link collapsed'  data-toggle='collapse' data-target='#$collapseId' aria-expanded='false' aria-controls='$collapseId'</button>";
-        echo "<h7 class='mb-0'>  <span> <b>Name:</b> $fName $lName </span> <span> <b>Home Institution:</b> $homeInt </span> <span> <b>Email:</b> $email </span> <span> <b>Phone Number:</b> $phone </span>  </h7>";
-        echo "</div>";
-        echo "<div id='$collapseId' class='collapse' aria-labelledby='$collapseId' data-parent='#accordion'>";
-        echo "<div class='card-body'>";
-        echo "<h5 class='card-title'>Visit Summary</h5>";
-        echo "<p class='card-text'>$summary</p>";
-        echo "<h5 class='card-title'>Financial Implications</h5>";
-        echo "<p class='card-text'>$financialImp</p>";
-        echo "<h5 class='card-title'>Visitor Type</h5>";
-        echo "<p class='card-text'>$visitorType &#8195; $visitorTypeEXT</p>";
-        echo "<h5 class='card-title'>Visit Start & End Dates</h5>";
-        echo "<p class='card-text'><b>Start:</b> $startDisplay &#8195; <b>End:</b> $endDisplay</p>";
-        echo "<h5 class='card-title'>Date & Time of Initial Submission</h5>";
-        echo "<p class='card-text'>$addedDisplay </p>";
-        echo "<h5 class='card-title'>Supervisor Username</h5>";
-        echo "<p class='card-text'>$supervisorUname </p>";
-        echo "<h5 class='card-title'>Date & Time of Decision</h5>";
-        echo "<p class='card-text'>$supervisorApprovedDateDisp </p>";
-        echo "<h5 class='card-title'>HR Practitioner Username</h5>";
-        echo "<p class='card-text'>$hrUname </p>";
-        echo "<h5 class='card-title'>Date & Time of Decision</h5>";
-        echo "<p class='card-text'>$hrApprovedDateDisp </p>";
-        echo "<h5 class='card-title'>HR Comment</h5>";
-        echo "<p class='card-text'>$hrComment </p>";
-        echo "</div>";
-        echo "</div>";
-        echo "</div>";
-        echo "<br>";
+        $hrComment = $row['hrComment']; ?>
+
+        <div class="card">
+        <div class="card-header" id ="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
+        <h6 class="mb-0">
+        <span> <b>Name:</b> <?php echo $fName . " " . $lName ?></span> <span> <b>Home Institution:</b> <?php echo $homeInt ?> </span> <span> <b>Email:</b> <?php echo $email ?> </span> <span> <b>Phone Number:</b> <?php echo $phone ?> </span>
+        </button>
+        </h6>
+        </div>
+        <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
+        <div class="card-body">
+
+        <h5 class='card-title'>Visit Summary</h5>
+        <p class='card-text'><?php echo $summary ?></p>
+        <h5 class='card-title'>Financial Implications</h5>
+        <p class='card-text'><?php echo $financialImp ?></p>
+        <h5 class='card-title'>Visitor Type</h5>
+        <p class='card-text'><?php echo $visitorType ?> &#8195; <?php echo $visitorTypeEXT ?></p>
+        <h5 class='card-title'>Visit Start & End Dates</h5>
+        <p class='card-text'><b>Start:</b> <?php echo $startDisplay ?> &#8195; <b>End:</b> <?php echo $endDisplay ?></p>
+        <h5 class='card-title'>Date & Time of Initial Submission</h5>
+        <p class='card-text'><?php echo $addedDisplay ?> </p>
+        <h5 class='card-title'>Supervisor Username</h5>
+        <p class='card-text'><?php echo $supervisorUname ?> </p>
+        <h5 class='card-title'>Date & Time of Decision</h5>
+        <p class='card-text'><?php echo $supervisorApprovedDateDisp ?> </p>
+        <h5 class='card-title'>HR Practitioner Username</h5>
+        <p class='card-text'><?php echo $hrUname ?> </p>
+        <h5 class='card-title'>Date & Time of Decision</h5>
+        <p class='card-text'><?php echo $hrApprovedDateDisp ?> </p>
+        <h5 class='card-title'>HR Comment</h5>
+        <p class='card-text'><?php echo $hrComment ?> </p>
+        </div>
+        </div>
+        </div>
+
+        <br>
+       <?php
     }
     echo "</div>";
 } else {
