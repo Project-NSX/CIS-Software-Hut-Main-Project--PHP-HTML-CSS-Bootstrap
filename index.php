@@ -5,7 +5,6 @@ $role="";
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     // Redirect user to welcome page
-    // TODO: Fix this redirect. When a user is logged in and comes back to the site the redirect shows index as a blank page
     require 'includes/user_redirect.php';
     exit;
 }
