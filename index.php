@@ -1,3 +1,13 @@
+<script>
+function showHide() {
+  var x = document.getElementById("passwordField");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
 <?php
 // Initialize the session
 session_start();
@@ -109,8 +119,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
             <label>Password</label>
-            <input type="password" name="password" class="form-control">
+            <input type="password" name="password" class="form-control" id="passwordField">
             <span class="help-block"><?php echo $password_err; ?></span>
+        </div>
+        <div class="form-group">
+        <input type="checkbox" onclick="showHide()">Show Password
         </div>
         <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Login">
