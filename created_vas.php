@@ -34,12 +34,12 @@ $visitorTypeShow = $visitorType;
             $titleShow = $title;
         } ?>
         <div class='row' >
-        <div class='col-sm-2'><b>Name:</b></div>
-        <div class='col-sm-2'><?php echo $titleShow." ".$fName." ".$lName ?></div>
-        <div class='col-sm-2'><b>Visitor Type:</b></div>
-        <div class='col-sm-2'><?php echo $visitorTypeShow ?></div>
-        <div class='col-sm-2'><b>Home Institution:</b></div>
-        <div class='col-sm-2'><?php echo $homeInstitution ?></div>
+        <div class='col-2'><b>Name:</b></div>
+        <div class='col-2'><?php echo $titleShow." ".$fName." ".$lName ?></div>
+        <div class='col-2'><b>Visitor Type:</b></div>
+        <div class='col-2'><?php echo $visitorTypeShow ?></div>
+        <div class='col-2'><b>Home Institution:</b></div>
+        <div class='col-2'><?php echo $homeInstitution ?></div>
         </div>
         <a href='edit_va.php?id=$id'>
         <button type='button' class='btn btn-primary btn-sm btn-block' style='margin:5px 0px 25px 0px'>Edit Visitor</button>

@@ -51,12 +51,15 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate));
         $hrComment = $row['hrComment']; ?>
 
-        <div class="card">
+<div class="card">
         <div class="card-header" id ="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
-        <h6 class="mb-0">
-        <span> <b>Name:</b> <?php echo $fName . " " . $lName ?></span> <span> <b>Home Institution:</b> <?php echo $homeInt ?> </span>
-        </button>
-        </h6>
+        <div class="row" >
+        <div class='col'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
+        <div class='col'><b>Home Institution: </b> <?php echo $homeInt ?></div>
+        </div>
+        <div class="row" >
+        <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
+        </div>
         </div>
         <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
         <div class="card-body">
