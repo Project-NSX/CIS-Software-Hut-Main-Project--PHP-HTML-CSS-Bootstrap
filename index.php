@@ -110,7 +110,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="container">
     <h2>Staff Login Page</h2>
-    <p>Please fill in your credentials to login.</p>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
             <label>Username</label>
@@ -123,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <span class="help-block"><?php echo $password_err; ?></span>
         </div>
         <div class="form-group">
-        <input type="checkbox" onclick="showHide()">Show Password
+        <input type="checkbox" onclick="showHide()"> Show Password
         </div>
         <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Login">
