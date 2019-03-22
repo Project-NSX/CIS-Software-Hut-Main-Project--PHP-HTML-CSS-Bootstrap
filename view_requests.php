@@ -1,7 +1,7 @@
 <?php require 'includes/header.php';?>
 <!--HTML HERE-->
 <style>
-h6 span{
+span{
     display: inline-block;
     margin-right: 2.5em;
 }
@@ -47,10 +47,10 @@ if ($awaitingActionresult->num_rows > 0) {
        <div class="card">
         <div class="card-header" id ="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
         <div class="row" >
-        <div class='col'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
-        <div class='col'><b>Home Institution: </b> <?php echo $homeInt ?></div>
-        <div class='col'><b>Email: </b> <?php echo $email ?></div>
-        <div class='col'><b>Phone Number:</b> <?php echo $phone ?></div>
+        <div class='col-sm'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
+        <div class='col-sm'><b>Home Institution: </b> <?php echo $homeInt ?></div>
+        <div class='col-sm'><b>Email: </b> <?php echo $email ?></div>
+        <div class='col-sm'><b>Phone Number:</b> <?php echo $phone ?></div>
         </div>
         <div class="row" >
         <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
@@ -115,10 +115,10 @@ if ($supervisorApprovedresult->num_rows > 0) {
         <div class="card">
         <div class="card-header" id ="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
         <div class="row" >
-        <div class='col'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
-        <div class='col'><b>Home Institution: </b> <?php echo $homeInt ?></div>
-        <div class='col'><b>Email: </b> <?php echo $email ?></div>
-        <div class='col'><b>Phone Number:</b> <?php echo $phone ?></div>
+        <div class='col-sm'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
+        <div class='col-sm'><b>Home Institution: </b> <?php echo $homeInt ?></div>
+        <div class='col-sm'><b>Email: </b> <?php echo $email ?></div>
+        <div class='col-sm'><b>Phone Number:</b> <?php echo $phone ?></div>
         </div>
         <div class="row" >
         <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
@@ -188,10 +188,10 @@ if ($supervisorApprovedresult->num_rows > 0) {
         <div class="card">
         <div class="card-header" id ="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
         <div class="row" >
-        <div class='col'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
-        <div class='col'><b>Home Institution: </b> <?php echo $homeInt ?></div>
-        <div class='col'><b>Email: </b> <?php echo $email ?></div>
-        <div class='col'><b>Phone Number:</b> <?php echo $phone ?></div>
+        <div class='col-sm'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
+        <div class='col-sm'><b>Home Institution: </b> <?php echo $homeInt ?></div>
+        <div class='col-sm'><b>Email: </b> <?php echo $email ?></div>
+        <div class='col-sm'><b>Phone Number:</b> <?php echo $phone ?></div>
         </div>
         <div class="row" >
         <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
@@ -266,10 +266,10 @@ if ($supervisorApprovedresult->num_rows > 0) {
 <div class="card">
         <div class="card-header" id ="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
         <div class="row" >
-        <div class='col'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
-        <div class='col'><b>Home Institution: </b> <?php echo $homeInt ?></div>
-        <div class='col'><b>Email: </b> <?php echo $email ?></div>
-        <div class='col'><b>Phone Number:</b> <?php echo $phone ?></div>
+        <div class='col-sm'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
+        <div class='col-sm'><b>Home Institution: </b> <?php echo $homeInt ?></div>
+        <div class='col-sm'><b>Email: </b> <?php echo $email ?></div>
+        <div class='col-sm'><b>Phone Number:</b> <?php echo $phone ?></div>
         </div>
         <div class="row" >
         <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
@@ -347,10 +347,10 @@ if ($supervisorApprovedresult->num_rows > 0) {
         <div class="card">
         <div class="card-header" id ="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
         <div class="row" >
-        <div class='col'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
-        <div class='col'><b>Home Institution: </b> <?php echo $homeInt ?></div>
-        <div class='col'><b>Email: </b> <?php echo $email ?></div>
-        <div class='col'><b>Phone Number:</b> <?php echo $phone ?></div>
+        <div class='col-sm'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
+        <div class='col-sm'><b>Home Institution: </b> <?php echo $homeInt ?></div>
+        <div class='col-sm'><b>Email: </b> <?php echo $email ?></div>
+        <div class='col-sm'><b>Phone Number:</b> <?php echo $phone ?></div>
         </div>
         <div class="row" >
         <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
