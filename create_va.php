@@ -146,6 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <!--TODO: Restrict this to numbers only-->
                 <input type="tel" name="phone_number" class="form-control" minlength="9" maxlength="14">
             </div>
+
         </div>
     </fieldset>
     <button style="margin:10px 0px" type="submit" class="btn btn-primary btn-lg btn-block">Send</button>
