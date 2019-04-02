@@ -6,7 +6,7 @@ h6 span{
     margin-right: 2.5em;
 }
 </style>
-<h2>College Manager - Requests Pending Approval</h2>
+<h2>College Manager - Denied Requests</h2>
 <?php require'includes/navbars/nav_picker.php';?>
 <!--This page should show all requests approved by the CM-->
 <!--TODO:  Make this page display a table of approved requests -->
@@ -15,8 +15,8 @@ h6 span{
 require_once'includes/database.php';
 //TODO: get rid of unecessqary columns and variables
 
-echo "<h2>College Manager - Requests Pending Approval</h2>";
-$supervisorApproved = "SELECT v.visitId, v.visitorId, v.summary, v.financialImplications, v.startDate, v.endDate, v.visitAddedDate, va.fName, va.lName, va.homeInstitution, va.visitorType, va.visitorTypeExt FROM visit v, user u, school s, visitingAcademic va WHERE v.hostAcademic = u.username AND u.school_id = s.schoolId AND va.visitorId = v.visitorId AND u.college_id = '{$_SESSION['college_id']}' AND u.role = 'Head Of School' AND v.supervisorApproved LIKE '0' ORDER BY v.visitAddedDate DESC";
+echo "<h2>College Manager - Outright Denied Requests</h2>";
+$supervisorApproved = "SELECT v.visitId, v.visitorId, v.summary, v.financialImplications, v.startDate, v.endDate, v.visitAddedDate, v.supervisorApprovedDate, va.fName, va.lName, va.homeInstitution, va.visitorType, va.visitorTypeExt FROM visit v, user u, school s, visitingAcademic va WHERE v.hostAcademic = u.username AND u.school_id = s.schoolId AND va.visitorId = v.visitorId AND u.college_id = '{$_SESSION['college_id']}' AND u.role = 'Head Of School' AND v.supervisorApproved LIKE '1' ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
     echo "<div id='accordion'>";
@@ -40,6 +40,8 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $startDisplay = date("d/m/Y", strtotime($visitStart));
         $endDisplay = date("d/m/Y", strtotime($visitEnd));
         $addedDisplay = date("d/m/Y", strtotime($Dateadded));
+        $supervisorApprovedDate = $row["supervisorApprovedDate"];
+        $suppervisorApproveDisplay = date("d/m/Y", strtotime($supervisorApprovedDate));
         ?>
         <div class="card">
         <div class="card-header" id ="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
@@ -63,6 +65,8 @@ if ($supervisorApprovedresult->num_rows > 0) {
         <p class='card-text'><b>Start:</b> <?php echo $startDisplay ?> &#8195; <b>End:</b> <?php echo $endDisplay ?></p>
         <h5 class='card-title'>Date & Time of Initial Submission</h5>
         <p class='card-text'><?php echo $addedDisplay ?> </p>
+        <h5 class='card-title'>Date & Time of Approval</h5>
+        <p class='card-text'><?php echo $suppervisorApproveDisplay ?> </p>
         </div>
         </div>
         </div>
