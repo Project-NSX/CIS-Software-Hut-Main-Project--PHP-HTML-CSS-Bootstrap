@@ -61,11 +61,11 @@ if ($_SERVER["REQUEST_METHOD"] =="POST") {
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="s_date">Start Date: </label>
-                <input  id="datefield" type="date" name="s_date" class="form-control" min='2019-01-01' max=e_date>
+                <input  id="datefield" type="date" name="s_date" onchange="myFunction()" class="form-control" min='2019-01-01' max=e_date>
             </div>
             <div class="form-group col-md-6">
                 <label for="e_date">End Date: </label>
-                <input type="date" name="e_date" class="form-control" max='2020-12-31'>
+                <input id="dateend" type="date" name="e_date" class="form-control" max='2020-12-31'>
             </div>
         </div>
     </fieldset>
@@ -113,6 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] =="POST") {
     <button style="margin:10px 0px" type="submit" class="btn btn-primary btn-lg btn-block">Send</button>
 
     <script>
+    function myFunction() {
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth()+1; //January is 0!
@@ -125,11 +126,11 @@ if ($_SERVER["REQUEST_METHOD"] =="POST") {
         }
 
     today = yyyy+'-'+mm+'-'+dd;
-    document.getElementById("datefield").setAttribute("min", today)
+    document.getElementById("datefield").setAttribute("min", today);
     var startdate = new Date();
-    startdate = document.getElementById("datefield").value
-    document.getElementById("datestart").setAttribute("min", startdate)
-
+    startdate = document.getElementById("datefield").value;
+    document.getElementById("dateend").setAttribute("min", startdate);
+    }
     </script>
 
     <?php require 'includes/footer.php';?>
