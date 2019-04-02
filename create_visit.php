@@ -18,9 +18,11 @@ if ($_SERVER["REQUEST_METHOD"] =="POST") {
     $inlineRadio1=$_POST['ipr_issues'];
     // iprFile = form;
 
+
     $conn = getDB();
     $sql = "INSERT INTO visit (visitorID, visitAddedDate, hostAcademic, startDate, endDate, summary, financialImplications, iprIssues) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($conn, $sql);
+
     if ($stmt === false) {
         echo mysqli_error($conn);
     }
@@ -59,11 +61,11 @@ if ($_SERVER["REQUEST_METHOD"] =="POST") {
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="s_date">Start Date: </label>
-                <input type="date" name="s_date" class="form-control">
+                <input  id="datefield" type="date" name="s_date" class="form-control" min='2019-01-01' max=e_date>
             </div>
             <div class="form-group col-md-6">
                 <label for="e_date">End Date: </label>
-                <input type="date" name="e_date" class="form-control">
+                <input type="date" name="e_date" class="form-control" max='2020-12-31'>
             </div>
         </div>
     </fieldset>
@@ -109,5 +111,25 @@ if ($_SERVER["REQUEST_METHOD"] =="POST") {
     </fieldset>
 
     <button style="margin:10px 0px" type="submit" class="btn btn-primary btn-lg btn-block">Send</button>
+
+    <script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+    if(dd<10){
+            dd='0'+dd
+        }
+        if(mm<10){
+            mm='0'+mm
+        }
+
+    today = yyyy+'-'+mm+'-'+dd;
+    document.getElementById("datefield").setAttribute("min", today)
+    var startdate = new Date();
+    startdate = document.getElementById("datefield").value
+    document.getElementById("datestart").setAttribute("min", startdate)
+
+    </script>
 
     <?php require 'includes/footer.php';?>
