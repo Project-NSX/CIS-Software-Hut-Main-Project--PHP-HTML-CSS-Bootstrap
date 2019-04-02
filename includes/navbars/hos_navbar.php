@@ -11,11 +11,13 @@
             <?php require 'includes/navbars/va_tools.php';?>
 
             <li class="nav-item">
+                <a class="nav-link" href="hos_requests_pending_approval.php">Head of School - View Requests Pending Approval</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="hos_approved_requests.php">Head of School - View Approved Requests</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="hos_requests_pending_approval.php">Head of School - View Requests Pending
-                    Approval</a>
+                <a class="nav-link" href="hos_denied_requests.php">Head of School - View Denied Requests</a>
             </li>
         </ul>
     </div>

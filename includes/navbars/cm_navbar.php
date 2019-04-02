@@ -10,11 +10,15 @@
             </li>
             <?php require 'includes/navbars/va_tools.php';?>
 
+
+            <li class="nav-item">
+                <a class="nav-link" href="cm_requests_pending_approval.php">College Manager - View Requests Pending Approval</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="cm_approved_requests.php">College Manager - View Approved Requests</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="cm_requests_pending_approval.php">College Manager - View Requests Pending Approval</a>
+                <a class="nav-link" href="cm_denied_requests.php">College Manager - View Denied Requests</a>
             </li>
         </ul>
     </div>
