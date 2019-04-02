@@ -38,13 +38,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             element.style.display = 'none';
     }
 
-    function CheckTitleSelection(val) {
-        var element = document.getElementById('title_ext');
-        if (val == 'Other')
-            element.style.display = 'block';
-        else
-            element.style.display = 'none';
-    }
 
     function CheckIPR(val) {
         var element = document.getElementById('ipr_issues_ext');

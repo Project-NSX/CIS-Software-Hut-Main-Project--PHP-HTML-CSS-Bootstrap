@@ -7,7 +7,6 @@
 // This says "if the user tries to post to the database, assign these $variables from the names of the html5 elements
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = $_POST['title'];
-    $title_ext = $_POST['title_ext'];
     $f_name = $_POST['f_name'];
     $l_name = $_POST['l_name'];
     $street = $_POST['street'];
@@ -27,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn = getDB();
     // Sql query using placeholders
     // The placeholders are ?'s that are replcaed with the actual values in the form when the form is submitted.
-    $sql = "INSERT INTO visitingAcademic (title, titleExt, fName, lName, street, city, county, postcode, email, phoneNumber, visitorType, visitorTypeExt, homeInstitution, hostAcademic) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO visitingAcademic (title, fName, lName, street, city, county, postcode, email, phoneNumber, visitorType, visitorTypeExt, homeInstitution, hostAcademic) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     // Prepare the sql statement for execution using the connection info provided from
     $stmt = mysqli_prepare($conn, $sql);
@@ -47,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Bind the variables defined above to the MySQL statement.
         // s - means string. For every variable entered there needs to be a ? above and letter that shows the datatype below.
         // Bind to: $stmt, value types: "sss", From the sources $_POST['title'] etc
-        mysqli_stmt_bind_param($stmt, "ssssssssssssss", $title, $title_ext, $f_name, $l_name, $street, $town_city, $county, $postcode, $email, $phone_number, $visitor_type, $visitor_type_ext, $home_institution, $host_academic);
+        mysqli_stmt_bind_param($stmt, "sssssssssssss", $title, $f_name, $l_name, $street, $town_city, $county, $postcode, $email, $phone_number, $visitor_type, $visitor_type_ext, $home_institution, $host_academic);
         // If the $stmt is able to execute:
         if (mysqli_stmt_execute($stmt)) {
             // TODO: Confirmation dialogue on success
@@ -87,15 +86,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <select name="title" id="title" class="form-control" onchange='CheckTitleSelection(this.value);'
             style="margin:0px 0px 10px 0px" required>
             <option value="Mr">Mr</option>
-            <option value="Miss">Miss</option>
             <option value="Mrs">Mrs</option>
+            <option value="Miss">Miss</option>
             <option value="Ms">Ms</option>
             <option value="Dr">Dr</option>
-            <option value="Prof">Prof</option>
-            <option value="Other">Other</option>
-            <!--TODO: If other is selected. Add "required" option to title_ext-->
+            <option value="Professor">Professor</option>
+            <option value="Rev">Rev</option>
+            <option value="Sir">Sir</option>
+            <option value="Lady">Lady</option>
+            <option value="Lord">Lord</option>
+            <option value="Captain">Captain</option>
+            <option value="Major">Major</option>
+            <option value="Dame">Dame</option>
+            <option value="Colnel">Colnel</option>
         </select>
-        <input type="text" name="title_ext" id="title_ext" placeholder="Please specify" class="form-control" style='display:none;' />
+
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="f_name">First Name: </label>
