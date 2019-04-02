@@ -9,13 +9,12 @@
 <?php
 require_once'includes/database.php';
 
-$myVisitors = "SELECT visitorId, title, titleExt, fName, lName, visitorType, visitorTypeExt, homeInstitution FROM visitingAcademic WHERE hostAcademic = '{$_SESSION['username']}' ";
+$myVisitors = "SELECT visitorId, title, fName, lName, visitorType, visitorTypeExt, homeInstitution FROM visitingAcademic WHERE hostAcademic = '{$_SESSION['username']}' ";
 $myVisitorsResult = $link->query($myVisitors);
 if ($myVisitorsResult->num_rows > 0) {
     echo "<div id='accordion'>";
     while ($row = $myVisitorsResult->fetch_assoc()) {
         $title = $row['title'];
-        $titleExt = $row['titleExt'];
         $fName = $row["fName"];
         $lName = $row["lName"];
 $homeInstitution =$row["homeInstitution"];
@@ -28,14 +27,10 @@ if($visitorType == "Academic" || $visitorType == "Other")
 else{
 $visitorTypeShow = $visitorType;
 }
-        if ($title == "Other" || $title == "other") {
-            $titleShow = $titleExt;
-        } else {
-            $titleShow = $title;
-        } ?>
+?>
         <div class='row' >
         <div class='col-sm'><b>Name:</b></div>
-        <div class='col-sm'><?php echo $titleShow." ".$fName." ".$lName ?></div>
+        <div class='col-sm'><?php echo $title." ".$fName." ".$lName ?></div>
         <div class='col-sm'><b>Visitor Type:</b></div>
         <div class='col-sm'><?php echo $visitorTypeShow ?></div>
         <div class='col-sm'><b>Home Institution:</b></div>
