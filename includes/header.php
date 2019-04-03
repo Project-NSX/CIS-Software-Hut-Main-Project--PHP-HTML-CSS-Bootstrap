@@ -28,25 +28,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-    <script type="text/javascript">
-    function CheckVisitorTypeDropDown(val) {
-        var element = document.getElementById('visitor_type_ext');
-        if (val == 'Academic' || val == 'Other')
-            element.style.display = 'block';
-        else
-            element.style.display = 'none';
-    }
-
-
-    function CheckIPR(val) {
-        var element = document.getElementById('ipr_issues_ext');
-        if (val == 'yes')
-            element.style.display = 'block';
-        else
-            element.style.display = 'none';
-    }
-    </script>
+    <!-- Custom JavaScript used by the system -->
+    <script src="/js/bangor_va.js" type="text/javascript"></script>
 
 </head>
 
