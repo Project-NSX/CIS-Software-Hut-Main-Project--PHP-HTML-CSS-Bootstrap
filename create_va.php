@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <option value="Academic">Visiting Academic (Position)</option>
             <option value="Other">Other (Specify)</option>
         </select>
-        <input type="text" id="visitor_type_ext" placeholder="Please specify" name="visitor_type_ext" class="form-control"  style='display:none;' />
+        <input type="text" id="visitor_type_ext" placeholder="Please specify the type of academic." name="visitor_type_ext" class="form-control"  style='display:none;' />
         <div class="form-row">
             <label for="home_institution">Home Institution: </label>
             <input type="text" class="form-control" name="home_institution" required>
