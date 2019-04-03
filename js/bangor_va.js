@@ -54,15 +54,16 @@ function getDateString(myDate) {
 }
 
 /**
- * Returns a new Date object that is one year ahead of the
+ * Returns a new Date object that is n years ahead of the
  * date given.
  *
  * @param {Date} myDate the date to use to get the date for next year
+ * @param {number} n the number of years to skip ahead
  */
-function getDateOneYearAhead(myDate) {
-    // Creating new instance of input variable since we don't want to edit the original object
+function getDateNYearsAhead(myDate, n) {
+    // Creating new instance of date variable since we don't want to edit the original object
     var newDate = (myDate instanceof Date) ? new Date(myDate) : new Date();
-    newDate.setFullYear(newDate.getFullYear() + 1);
+    newDate.setFullYear(newDate.getFullYear() + n);
     return newDate;
 }
 
@@ -78,16 +79,16 @@ function updateDateFields() {
 
     // Update start date field's min/max attributes
     var today = new Date(); // Today's date
-    var oneYear = getDateOneYearAhead(today);
-    console.log(today);
-    console.log(oneYear);
+    console.log(today)
+    var maxDate = getDateNYearsAhead(today, 2);
+    console.log(maxDate)
     startField.setAttribute("min", getDateString(today));
-    startField.setAttribute("max", getDateString(oneYear));
+    startField.setAttribute("max", getDateString(maxDate));
 
     // Get start date field value and update the end date field's min/max attributes accordingly
     var startDateVal = startField.value;
     var startDate = (!startDateVal) ? today : new Date(startDateVal);
 
     endField.setAttribute("min", getDateString(startDate));
-    endField.setAttribute("max", getDateString(oneYear));
+    endField.setAttribute("max", getDateString(maxDate));
 }
