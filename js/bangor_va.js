@@ -79,9 +79,9 @@ function updateDateFields() {
 
     // Update start date field's min/max attributes
     var today = new Date(); // Today's date
-    console.log(today)
+    console.log(today);
     var maxDate = getDateNYearsAhead(today, 2);
-    console.log(maxDate)
+    console.log(maxDate);
     startField.setAttribute("min", getDateString(today));
     startField.setAttribute("max", getDateString(maxDate));
 
