@@ -96,4 +96,6 @@ function updateDateFields() {
 
     if (!endField.value)
         endField.setAttribute("value", getDateString(today));
+    else if (endField.value < startField.value)
+        endField.setAttribute("value", getDateString(new Date(startDateVal)));
 }
