@@ -87,7 +87,6 @@ function updateDateFields() {
     // Get start date field value and update the end date field's min/max attributes accordingly
     var startDateVal = startField.value;
     var startDate = (!startDateVal) ? today : new Date(startDateVal);
-    oneYear = getDateOneYearAhead(startDate);
 
     endField.setAttribute("min", getDateString(startDate));
     endField.setAttribute("max", getDateString(oneYear));
