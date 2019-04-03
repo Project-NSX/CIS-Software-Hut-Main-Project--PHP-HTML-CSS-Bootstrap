@@ -1,4 +1,6 @@
 <?php
+//TODO: Add tutorial link for this page, so everyone knows where you got it from.
+
 // Initialize the session
 session_start();
 $role="";
