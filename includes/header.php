@@ -6,6 +6,8 @@ session_start();
 // This might be helpful: https://stackoverflow.com/questions/22317888/destroy-php-sessions-on-browsers-tab-close
 
 // TODO: Restrict the pages the user can visit depending on their role
+
+
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: index.php");
     exit;
