@@ -91,6 +91,9 @@ function updateDateFields() {
     endField.setAttribute("max", getDateString(maxDate));
 
     // Set default values for start and end dates
-    startField.setAttribute("value", getDateString(today));
-    endField.setAttribute("value", getDateString(today));
+    if (!startField.value)
+        startField.setAttribute("value", getDateString(today));
+
+    if (!endField.value)
+        endField.setAttribute("value", getDateString(today));
 }
