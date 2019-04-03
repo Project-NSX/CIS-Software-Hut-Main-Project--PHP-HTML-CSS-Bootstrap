@@ -108,4 +108,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <button style="margin:10px 0px" type="submit" class="btn btn-primary btn-lg btn-block">Send</button>
 
+    <script type="text/javascript">
+        updateDateFields();
+    </script>
+
     <?php require 'includes/footer.php'; ?>
