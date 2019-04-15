@@ -50,7 +50,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate)); ?>
 
 <div class="card">
-        <div class="card-header" id ="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
+        <div class="card-header" id ="<?php echo $headingId ?>" <button id="button1" class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
         <div class="row" >
         <div class='col-sm'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
         <div class='col-sm'><b>Home Institution: </b> <?php echo $homeInt ?></div>

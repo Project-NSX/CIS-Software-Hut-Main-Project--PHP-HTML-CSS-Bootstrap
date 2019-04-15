@@ -106,6 +106,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </fieldset>
 
-    <button style="margin:10px 0px" type="submit" class="btn btn-primary btn-lg btn-block">Send</button>
+    <button id="button1" style="margin:10px 0px" type="submit" class="btn btn-primary btn-lg btn-block">Send</button>
 
     <?php require 'includes/footer.php'; ?>

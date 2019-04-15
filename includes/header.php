@@ -36,8 +36,10 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 </head>
 
 <body>
-    <div align="right"><a href="logout.php" class="btn btn-primary">Sign Out</a></div>
-    <p>Welcome <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b><br />
+    <div id="headerTop">
+    <div id="signout" align="right"><a href="logout.php" class="btn btn-primary">Sign Out</a></div>
+    <div id="welcome">
+    <p>Hello, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>!<br />
 
         Role: <b><?php echo htmlspecialchars($_SESSION["role"]);?></b><br />
 
@@ -54,9 +56,12 @@ if ($_SESSION["role"] === "College Manager") {
         College: <b><?php echo htmlspecialchars($_SESSION["college_id"]);
 }?>
         </b></p>
+        </div>
+        </div>
     <!--Bootstrap Container. Closing tag for this is in the footer, just before the closing body tag-->
     <div class="container">
-        <header>
+        <header id="pageTitle">
+            <img id="logo" src="img/bangor_logo.png" height="100px">
             <h1>Visiting Academic Form</h1>
         </header>
         <main>
