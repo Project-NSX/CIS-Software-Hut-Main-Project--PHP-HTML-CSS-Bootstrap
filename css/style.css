@@ -1,0 +1,72 @@
+footer{
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+}
+
+#top{
+	background-color: blue;
+}
+
+#bottom{
+	background-color: red;
+}
+
+#welcome{
+
+}
+
+#signout{
+	float: right;
+}
+
+
+#headerTop{
+	padding-top: 20px;
+	padding-bottom: 10px;
+	padding-left: 17%;
+	padding-right: 17%;
+	background-color: #CDCDCD;
+	margin-bottom: 20px;
+}
+
+#pageTitle{
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+
+#logo{
+	float: right;
+}
+
+#nav1{
+	margin-top: 20px;
+	margin-bottom: 40px;
+}
+
+h2{
+
+}
+
+#button1{
+	background-color: #B82233;
+	border: 1px solid #B82233;
+
+}
+
+.card-title{
+	
+}
+
+.card-body{
+	padding: 20px;
+}
+
+.card{
+	margin-top: 20px;
+	margin-bottom: 40px;
+}
+
