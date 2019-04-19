@@ -1,4 +1,4 @@
-<?php require 'includes/header.php';?>
+<?php $page ='CVa'; require 'includes/header.php';?>
 <?php require 'includes/database.php';?>
 <!--HTML HERE-->
 <h2>Create a Visiting Academic</h2>

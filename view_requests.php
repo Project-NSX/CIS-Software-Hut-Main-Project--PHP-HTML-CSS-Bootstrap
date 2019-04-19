@@ -1,4 +1,4 @@
-<?php require 'includes/header.php';?>
+<?php $page ='VR'; require 'includes/header.php';?>
 <!--HTML HERE-->
 <style>
 span{

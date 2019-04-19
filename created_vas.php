@@ -1,4 +1,4 @@
-<?php require 'includes/header.php';?>
+<?php $page = 'CVas'; require 'includes/header.php';?>
 <!--HTML HERE-->
 <h2>My Visitors</h2>
 <?php require'includes/navbars/nav_picker.php';?>

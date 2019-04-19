@@ -5,16 +5,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-            <li class="nav-item active">
+            <li class="nav-item <?php if ($page =='home'){echo 'active';}?>">
                 <a class="nav-link" href="hr_landing.php">Home<span class="sr-only"></span></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item <?php if ($page =='HRAR'){echo 'active';}?>">
                 <a class="nav-link" href="hr_approved_requests.php">HR - Approved Requests</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item <?php if ($page =='HRDR'){echo 'active';}?>">
                 <a class="nav-link" href="hr_disapproved_requests.php">HR - Disapproved Requests</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item <?php if ($page =='HRPA'){echo 'active';}?>">
                 <a class="nav-link" href="hr_pending_approval.php">HR - Requests Pending Approval</a>
             </li>
         </ul>

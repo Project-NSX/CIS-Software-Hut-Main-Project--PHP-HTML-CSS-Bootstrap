@@ -5,19 +5,19 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-            <li class="nav-item active">
+            <li class="nav-item <?php if ($page =='home'){echo 'active';}?>">
                 <a class="nav-link" href="cm_landing.php">Home<span class="sr-only"></span></a>
             </li>
             <?php require 'includes/navbars/va_tools.php';?>
 
 
-            <li class="nav-item">
+            <li class="nav-item <?php if ($page =='CMRPA'){echo 'active';}?>">
                 <a class="nav-link" href="cm_requests_pending_approval.php">College Manager - View Requests Pending Approval</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item <?php if ($page =='CMAR'){echo 'active';}?>">
                 <a class="nav-link" href="cm_approved_requests.php">College Manager - View Approved Requests</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item <?php if ($page =='CMDR'){echo 'active';}?>">
                 <a class="nav-link" href="cm_denied_requests.php">College Manager - View Denied Requests</a>
             </li>
         </ul>

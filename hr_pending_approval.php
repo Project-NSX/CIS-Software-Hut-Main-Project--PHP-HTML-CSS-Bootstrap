@@ -1,4 +1,4 @@
-<?php require 'includes/header.php';?>
+<?php $page = 'HRPA'; require 'includes/header.php';?>
 <!--HTML HERE-->
 <style>
 h6 span{

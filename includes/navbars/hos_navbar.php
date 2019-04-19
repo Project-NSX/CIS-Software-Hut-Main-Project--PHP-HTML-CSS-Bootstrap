@@ -5,18 +5,18 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-            <li class="nav-item active">
+            <li class="nav-item <?php if ($page =='home'){echo 'active';}?>">
                 <a class="nav-link" href="hos_landing.php">Home<span class="sr-only"></span></a>
             </li>
             <?php require 'includes/navbars/va_tools.php';?>
 
-            <li class="nav-item">
+            <li class="nav-item <?php if ($page =='HOSRPA'){echo 'active';}?>">
                 <a class="nav-link" href="hos_requests_pending_approval.php">Head of School - View Requests Pending Approval</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item <?php if ($page =='HOSAR'){echo 'active';}?>">
                 <a class="nav-link" href="hos_approved_requests.php">Head of School - View Approved Requests</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item <?php if ($page =='HOSDR'){echo 'active';}?>">
                 <a class="nav-link" href="hos_denied_requests.php">Head of School - View Denied Requests</a>
             </li>
         </ul>

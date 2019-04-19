@@ -1,4 +1,4 @@
-<?php require 'includes/header.php';?>
+<?php $page = 'HRDR'; require 'includes/header.php';?>
 <!--HTML HERE-->
 <style>
 span{
