@@ -65,8 +65,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         <p class='card-text'><?php echo $addedDisplay ?> </p>
         </div>
         </div>
-        </div>
-
+    </div>
         <br>
        <?php
     }
