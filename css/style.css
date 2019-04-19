@@ -58,15 +58,19 @@ h2{
 }
 
 .card-title{
-	
+	color: #B82233;
 }
+
+b, strong {
+	color: #B82233;
+	}
 
 .card-body{
 	padding: 20px;
 }
 
 .card{
-	margin-top: 20px;
-	margin-bottom: 40px;
+	margin-top: 5px;
+	margin-bottom: 10px;
 }
 
