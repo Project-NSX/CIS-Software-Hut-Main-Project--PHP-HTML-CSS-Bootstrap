@@ -13,7 +13,9 @@ footer{
 #bottom{
 	background-color: red;
 }
-
+body {
+	background-color: rgb(233, 233, 233);
+  }
 #welcome{
 
 }
