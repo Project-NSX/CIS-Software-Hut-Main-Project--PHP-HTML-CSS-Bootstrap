@@ -7,10 +7,15 @@
  */
 function CheckVisitorTypeDropDown(val) {
     var element = document.getElementById('visitor_type_ext');
-    if (val == 'Academic' || val == 'Other')
+    if (val == 'Academic' || val == 'Other'){
         element.style.display = 'block';
-    else
+        document.getElementById("visitor_type_ext").required = true;
+    }
+    else{
         element.style.display = 'none';
+        document.getElementById("visitor_type_ext").required = false;
+    }
+
 }
 
 /**
@@ -22,10 +27,15 @@ function CheckVisitorTypeDropDown(val) {
  */
 function CheckIPR(val) {
     var element = document.getElementById('ipr_issues_ext');
-    if (val == 'yes')
+    if (val == 'yes'){
         element.style.display = 'block';
-    else
+        document.getElementById("inputGroupFile01").required = true;
+    }
+    else{
         element.style.display = 'none';
+        document.getElementById("inputGroupFile01   ").required = false;
+    }
+
 }
 
 /**
