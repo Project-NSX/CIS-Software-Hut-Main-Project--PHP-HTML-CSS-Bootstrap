@@ -37,10 +37,8 @@ $visitorTypeShow = $visitorType;
         <div class='col-sm'><?php echo $homeInstitution ?></div>
         </div>
         <a href='edit_va.php?id=$id'>
-        <div class='row' >
-            <button type='button' id="button1" class='btn btn-primary btn-sm col-sm' style='margin:5px 2px 5px 2px'>Edit Visitor</button>
-            <button type='button' id="button2" class='btn btn-primary btn-sm col-sm' style='margin:5px 2px 5px 2px'>Delete Visitor</button>
-</div></a>
+        <button type='button' id="button1" class='btn btn-primary btn-sm btn-block' style='margin:5px 0px 25px 0px'>Edit Visitor</button>
+        </a>
         <?php
     }
     echo "</div>";
