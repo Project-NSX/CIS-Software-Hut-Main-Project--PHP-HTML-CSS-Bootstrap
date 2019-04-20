@@ -109,3 +109,6 @@ function updateDateFields() {
     else if (endField.value < startField.value)
         endField.setAttribute("value", startField.value);
 }
+function updateDataApproval() {
+
+}
