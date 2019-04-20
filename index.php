@@ -1,13 +1,22 @@
 <?php
-//TODO: Add tutorial link for this page, so everyone knows where you got it from.
-
 // Initialize the session
 session_start();
+// TODO: Make the user log out when the page / browser is closed + after a certain time.
+// TODO: Add robot to stop tracking requests
+
 $role="";
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     // Redirect user to welcome page
-    require 'includes/user_redirect.php';
+    if ($role === "aca") {
+        header("location: academic_landing.php");
+    } elseif ($role === "cm") {
+        header("location: cm_landing.php");
+    } elseif ($role === "hos") {
+        header("location: hos_landing.php");
+    } elseif ($role === "hr") {
+        header("location: hr_landing.php");
+    }
     exit;
 }
 require_once'includes/database.php';
@@ -65,15 +74,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $_SESSION["school_id"] = $school_id;
                             $_SESSION["college_id"] = $college_id;
 
-                            if ($_SESSION['role'] == "Academic" || $_SESSION['role'] ==  "Head Of School" || $_SESSION['role'] == "College Manager")
-                            {
-                                //TODO: Insert code to bind college name to $_SESSION["college_name"] here
+                            // Redirect user to welcome page
+                            if ($role === "aca") {
+                                header("location: academic_landing.php");
+                            } elseif ($role === "cm") {
+                                header("location: cm_landing.php");
+                            } elseif ($role === "hos") {
+                                header("location: hos_landing.php");
+                            } elseif ($role === "hr") {
+                                header("location: hr_landing.php");
                             }
-                            if ($_SESSION['role'] == "Academic" || $_SESSION['role'] ==  "Head Of School")
-                            {
-                                //TODO: Insert code to bind school name to $_SESSION["school_name"] here
-                            }
-                            require 'includes/user_redirect.php';
                         } else {
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was not valid.";
@@ -102,6 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="container">
     <h2>Staff Login Page</h2>
+    <p>Please fill in your credentials to login.</p>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
             <label>Username</label>
@@ -110,11 +121,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
             <label>Password</label>
-            <input type="password" name="password" class="form-control" id="passwordField">
+            <input type="password" name="password" class="form-control">
             <span class="help-block"><?php echo $password_err; ?></span>
-        </div>
-        <div class="form-group">
-        <input type="checkbox" onclick="togglePasswordHidden()"> Show Password
         </div>
         <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Login">
