@@ -63,10 +63,11 @@ if ($supervisorApprovedresult->num_rows > 0) {
         <p class='card-text'><b>Start:</b> <?php echo $startDisplay ?> &#8195; <b>End:</b> <?php echo $endDisplay ?></p>
         <h5 class='card-title'>Date & Time of Initial Submission</h5>
         <p class='card-text'><?php echo $addedDisplay ?> </p>
+        <button type="button" onclick="updateDataApproval()" style="background-color:green">Approve</button>
+        <button type="button" onclick="updateDataApproval()" style="background-color:red">Deny</button>
         </div>
         </div>
         </div>
-
         <br>
        <?php
     }
