@@ -112,11 +112,6 @@ function updateDateFields() {
 function updateDataApproval() {
 var approved = document.getElementById("Approve")
 //sql to approve/deny request in database
-//$addedDisplay
-//$startDisplay
-//$visitorTypeEXT
-//$financialImp
-//$summary
 }
 function updateDataDenial() {
 var denied  = document.getElementById("Deny")
