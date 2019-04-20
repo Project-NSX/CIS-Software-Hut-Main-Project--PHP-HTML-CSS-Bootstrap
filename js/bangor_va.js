@@ -110,9 +110,5 @@ function updateDateFields() {
         endField.setAttribute("value", startField.value);
 }
 function updateDataApproval() {
-var approved = document.getElementById("Approve")
 
-}
-function updateDataDenial() {
-var denied  = document.getElementById("Deny")
 }
