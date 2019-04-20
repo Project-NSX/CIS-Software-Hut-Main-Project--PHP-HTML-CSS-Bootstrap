@@ -67,9 +67,6 @@ if ($supervisorApprovedresult->num_rows > 0) {
         <p class='card-text'><?php echo $addedDisplay ?> </p>
         <h5 class='card-title'>Date & Time of Approval</h5>
         <p class='card-text'><?php echo $suppervisorApproveDisplay ?> </p>
-        <h5 class='card-title'>Denied By</h5>
-        <p class='card-text'><?php echo 'eeaees' ?> </p>
-        <!--TODO: Rmake this display who actually denied the request-->
         </div>
         </div>
         </div>
