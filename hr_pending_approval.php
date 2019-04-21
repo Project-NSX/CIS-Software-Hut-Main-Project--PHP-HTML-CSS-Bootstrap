@@ -14,13 +14,30 @@ h6 span{
 //TODO Add functionality to approve and disapprove
 require_once'includes/database.php';
 //TODO: get rid of unecessqary columns and variables
+if(isset($_POST['approve'])){
+    $uName = $_SESSION['username'];
+    $ApproveQuery = "UPDATE visit SET hrApproved = 3, hrUsername = '$uName' WHERE visitId = '$_POST[hidden]'";
+    mysqli_query($link, $ApproveQuery);
+};
 
+if(isset($_POST['deny'])){
+    $uName = $_SESSION['username'];
+    $ApproveQuery = "UPDATE visit SET hrApproved = 1, hrUsername = '$uName' WHERE visitId = '$_POST[hidden]'";
+    mysqli_query($link, $ApproveQuery);
+};
+
+if(isset($_POST['revise'])){
+    $uName = $_SESSION['username'];
+    $ApproveQuery = "UPDATE visit SET hrApproved = 2, hrUsername = '$uName' WHERE visitId = '$_POST[hidden]'";
+    mysqli_query($link, $ApproveQuery);
+};
 echo "<h2>HR Pending Request(s)</h2>";
 $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.hrComment  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '0'  ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
     echo "<div id='accordion'>";
     while($row = $supervisorApprovedresult->fetch_assoc()) {
+        $uName = $_SESSION['username'];
         $visitId = $row["visitId"];
         $visitorId = $row["visitorId"];
         $headingId = "heading" . $visitId . $visitorId;
@@ -60,6 +77,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
         </div>
         </div>
+        <form action=hr_pending_approval.php method=post>
         <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
         <div class="card-body">
         <h5 class='card-title'>Visit Summary</h5>
@@ -79,15 +97,29 @@ if ($supervisorApprovedresult->num_rows > 0) {
         </div>
         </div>
         </div>
+        <input type=hidden name=hidden value=<?php echo $visitId ?>>
+        <div class="container">
+        <div class="row">
+        <div class="col-md-4"><input type=submit name=approve value=Approve class='btn btn-success' style='width:100%; margin-bottom:5px'></div>
+        <div class="col-md-4"><input type=submit name=revise value='Prompt User to Resubmit' class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
+        <div class="col-md-4"><input type=submit name=deny value=Deny class='btn btn-danger' style='width:100%; margin-bottom:5px'></div>
+        </div>
+        </div>
 
+
+
+        </form>
+        <br>
         <br>
        <?php
     }
     echo "</div>";
+
 } else {
     echo "0 results";
 }
-$link->close();
+
+//$link->close();
 
 ?>
 
