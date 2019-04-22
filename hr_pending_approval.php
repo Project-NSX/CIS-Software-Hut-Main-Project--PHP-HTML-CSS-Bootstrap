@@ -27,9 +27,17 @@ if(isset($_POST['deny'])){
 };
 
 if(isset($_POST['revise'])){
-    $uName = $_SESSION['username'];
-    $ApproveQuery = "UPDATE visit SET hrApproved = 2, hrUsername = '$uName' WHERE visitId = '$_POST[hidden]'";
-    mysqli_query($link, $ApproveQuery);
+    if(!empty($_POST['reasoning'])){
+        $uName = $_SESSION['username'];
+        date_default_timezone_set('Europe/London');
+        $publish_date =date("Y-m-d H:i:s");
+        $ApproveQuery = "UPDATE visit SET hrApproved = 2, hrUsername = '$uName', hrApprovedDate = '$publish_date', hrComment = '$_POST[reasoning]' WHERE visitId = '$_POST[hidden]'";
+        mysqli_query($link, $ApproveQuery);
+    }else{
+        echo "<script language='javascript'> alert('message successfully sent'); </script>;";
+        //echo "Please insert";
+    }
+
 };
 echo "<h2>HR Pending Request(s)</h2>";
 $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.hrComment  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '0'  ORDER BY v.visitAddedDate DESC";
@@ -105,8 +113,15 @@ if ($supervisorApprovedresult->num_rows > 0) {
         <div class="col-md-4"><input type=submit name=deny value=Deny class='btn btn-danger' style='width:100%; margin-bottom:5px'></div>
         </div>
         </div>
+        <div class="form-row" style="margin-top:5px">
+            <div class="form-group col-md-2">
+                <label for="reason"><b>Reason to resubmit:</b></label>
 
-
+            </div>
+            <div class="form-group col-md-10">
+            <input type=text name=reasoning style="width:100%">
+            </div>
+        </div>
 
         </form>
         <br>
