@@ -23,13 +23,17 @@ require_once'includes/database.php';
 //TODO: get rid of unecessqary columns and variables
 if(isset($_POST['approve'])){
     $uName = $_SESSION['username'];
-    $ApproveQuery = "UPDATE visit SET hrApproved = 3, hrUsername = '$uName' WHERE visitId = '$_POST[hidden]'";
+    date_default_timezone_set('Europe/London');
+    $publish_date = date("Y-m-d H:i:s");
+    $ApproveQuery = "UPDATE visit SET hrApproved = 3, hrUsername = '$uName', hrApprovedDate = '$publish_date' WHERE visitId = '$_POST[hidden]'";
     mysqli_query($link, $ApproveQuery);
 };
 
 if(isset($_POST['deny'])){
     $uName = $_SESSION['username'];
-    $ApproveQuery = "UPDATE visit SET hrApproved = 1, hrUsername = '$uName' WHERE visitId = '$_POST[hidden]'";
+    date_default_timezone_set('Europe/London');
+    $publish_date = date("Y-m-d H:i:s");
+    $ApproveQuery = "UPDATE visit SET hrApproved = 1, hrUsername = '$uName', hrApprovedDate = '$publish_date' WHERE visitId = '$_POST[hidden]'";
     mysqli_query($link, $ApproveQuery);
 };
 
@@ -37,7 +41,7 @@ if(isset($_POST['revise'])){
     if(!empty($_POST['reasoning'])){
         $uName = $_SESSION['username'];
         date_default_timezone_set('Europe/London');
-        $publish_date =date("Y-m-d H:i:s");
+        $publish_date = date("Y-m-d H:i:s");
         $ApproveQuery = "UPDATE visit SET hrApproved = 2, hrUsername = '$uName', hrApprovedDate = '$publish_date', hrComment = '$_POST[reasoning]' WHERE visitId = '$_POST[hidden]'";
         mysqli_query($link, $ApproveQuery);
         //TODO: add datetime to hrApprovedDate field
