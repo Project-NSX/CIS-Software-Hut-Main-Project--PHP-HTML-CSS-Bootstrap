@@ -1,5 +1,9 @@
 <?php $page = 'CMRPA'; require 'includes/header.php';?>
 <!--HTML HERE-->
+<script type="text/javascript">
+function noenter() {
+  return !(window.event && window.event.keyCode == 13); }
+</script>
 <style>
 h6 span{
     display: inline-block;
@@ -14,6 +18,35 @@ h6 span{
 <?php
 require_once'includes/database.php';
 //TODO: get rid of unecessqary columns and variables
+
+if(isset($_POST['hosapprove'])){
+    $uName = $_SESSION['username'];
+    date_default_timezone_set('Europe/London');
+    $publish_date = date("Y-m-d H:i:s");
+    $ApproveQuery = "UPDATE visit SET supervisorApproved = 3, supervisorUsername = '$uName', supervisorApprovedDate = '$publish_date' WHERE visitId = '$_POST[hidden]'";
+    mysqli_query($link, $ApproveQuery);
+};
+
+if(isset($_POST['hosdeny'])){
+    $uName = $_SESSION['username'];
+    date_default_timezone_set('Europe/London');
+    $publish_date = date("Y-m-d H:i:s");
+    $ApproveQuery = "UPDATE visit SET supervisorApproved = 1, supervisorUsername = '$uName', supervisorApprovedDate = '$publish_date' WHERE visitId = '$_POST[hidden]'";
+    mysqli_query($link, $ApproveQuery);
+};
+
+if(isset($_POST['hosrevise'])){
+    if(!empty($_POST['reasoning'])){
+        $uName = $_SESSION['username'];
+        date_default_timezone_set('Europe/London');
+        $publish_date = date("Y-m-d H:i:s");
+        $ApproveQuery = "UPDATE visit SET supervisorApproved = 2, supervisorUsername = '$uName', supervisorApprovedDate = '$publish_date', supervisorComment = '$_POST[reasoning]' WHERE visitId = '$_POST[hidden]'";
+        mysqli_query($link, $ApproveQuery);
+        //TODO: add datetime to hrApprovedDate field
+    }else{
+        echo "<script language='javascript'> alert('Please provide a reason as to why the user needs to resubmit'); </script>";
+    }
+};
 
 echo "<h2>College Manager - Requests Pending Approval</h2>";
 $supervisorApproved = "SELECT v.visitId, v.visitorId, v.summary, v.financialImplications, v.startDate, v.endDate, v.visitAddedDate, va.fName, va.lName, va.homeInstitution, va.visitorType, va.visitorTypeExt FROM visit v, user u, school s, visitingAcademic va WHERE v.hostAcademic = u.username AND u.school_id = s.schoolId AND va.visitorId = v.visitorId AND u.college_id = '{$_SESSION['college_id']}' AND u.role = 'Head Of School' AND v.supervisorApproved LIKE '0' ORDER BY v.visitAddedDate DESC";
@@ -51,6 +84,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
         </div>
         </div>
+        <form action=cm_requests_pending_approval.php method=post>
         <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
         <div class="card-body">
         <h5 class='card-title'>Visit Summary</h5>
@@ -66,7 +100,30 @@ if ($supervisorApprovedresult->num_rows > 0) {
         </div>
         </div>
         </div>
+        <input type=hidden name=hidden value=<?php echo $visitId ?>>
+        <div class="container">
+        <div class="row">
+        <div class="col-md-4"><input type=submit name=hosapprove value=Approve class='btn btn-success' style='width:100%; margin-bottom:5px'></div>
+        <div class="col-md-4"><input type=submit name=hosrevise value='Prompt User to Resubmit' class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
+        <div class="col-md-4"><input type=submit name=hosdeny value=Deny class='btn btn-danger' style='width:100%; margin-bottom:5px'></div>
+        </div>
+        </div>
+        <div class="form-row" style="margin-top:5px">
+            <div class="form-group col-md-3">
+                <label for="reason"><b>Reason to resubmit:</b></label>
+            </div>
+            <div class="form-group col-md-9" >
+            <input type=text name=reasoning style="width:100%" class="form-control" onkeypress="return noenter()">
+            </div>
+            <div class="form-group col-md-12">
+            <p style="text-align:right; margin-top:-15px; font-size:0.8em">** Required if the visit is prompted for resubmission</p>
+        </div>
+        </div>
 
+
+
+        </form>
+        <br>
         <br>
        <?php
     }
