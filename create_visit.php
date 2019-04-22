@@ -16,17 +16,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $summary = $_POST['summary'];
     $financialImp = $_POST['financialImp'];
     $inlineRadio1 = $_POST['ipr_issues'];
+    $suppervisorVal = 3;
     // iprFile = form;
 
 
     $conn = getDB();
-    $sql = "INSERT INTO visit (visitorID, visitAddedDate, hostAcademic, startDate, endDate, summary, financialImplications, iprIssues) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    if ($_SESSION["role"] === "College Manager"){
+        $sql = "INSERT INTO visit (visitorID, visitAddedDate, hostAcademic, startDate, endDate, summary, financialImplications, iprIssues, supervisorApproved, supervisorUsername, supervisorApprovedDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    }else{
+        $sql = "INSERT INTO visit (visitorID, visitAddedDate, hostAcademic, startDate, endDate, summary, financialImplications, iprIssues) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    }
     $stmt = mysqli_prepare($conn, $sql);
 
     if ($stmt === false) {
         echo mysqli_error($conn);
     }
-    mysqli_stmt_bind_param($stmt, "ssssssss", $visitorId, $visitAddedDate, $hostAcademic, $s_date, $e_date, $summary, $financialImp, $inlineRadio1);
+    if ($_SESSION["role"] === "College Manager"){
+        mysqli_stmt_bind_param($stmt, "sssssssssss", $visitorId, $visitAddedDate, $hostAcademic, $s_date, $e_date, $summary, $financialImp, $inlineRadio1, $suppervisorVal, $hostAcademic, $visitAddedDate);
+    }else{
+        mysqli_stmt_bind_param($stmt, "ssssssss", $visitorId, $visitAddedDate, $hostAcademic, $s_date, $e_date, $summary, $financialImp, $inlineRadio1);
+    }
     if (mysqli_stmt_execute($stmt)) {
         // TODO: Confirmation dialogue on success
         require 'includes/user_redirect.php';
