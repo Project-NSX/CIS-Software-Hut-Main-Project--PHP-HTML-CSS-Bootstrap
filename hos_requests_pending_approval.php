@@ -120,9 +120,6 @@ if ($supervisorApprovedresult->num_rows > 0) {
             <p style="text-align:right; margin-top:-15px; font-size:0.8em">** Required if the visit is prompted for resubmission</p>
         </div>
         </div>
-
-
-
         </form>
         <br>
         <br>
