@@ -19,7 +19,7 @@ h6 span{
 require_once'includes/database.php';
 //TODO: get rid of unecessqary columns and variables
 
-if(isset($_POST['hosapprove'])){
+if(isset($_POST['cmapprove'])){
     $uName = $_SESSION['username'];
     date_default_timezone_set('Europe/London');
     $publish_date = date("Y-m-d H:i:s");
@@ -27,7 +27,7 @@ if(isset($_POST['hosapprove'])){
     mysqli_query($link, $ApproveQuery);
 };
 
-if(isset($_POST['hosdeny'])){
+if(isset($_POST['cmdeny'])){
     $uName = $_SESSION['username'];
     date_default_timezone_set('Europe/London');
     $publish_date = date("Y-m-d H:i:s");
@@ -35,7 +35,7 @@ if(isset($_POST['hosdeny'])){
     mysqli_query($link, $ApproveQuery);
 };
 
-if(isset($_POST['hosrevise'])){
+if(isset($_POST['cmrevise'])){
     if(!empty($_POST['reasoning'])){
         $uName = $_SESSION['username'];
         date_default_timezone_set('Europe/London');
@@ -103,9 +103,9 @@ if ($supervisorApprovedresult->num_rows > 0) {
         <input type=hidden name=hidden value=<?php echo $visitId ?>>
         <div class="container">
         <div class="row">
-        <div class="col-md-4"><input type=submit name=hosapprove value=Approve class='btn btn-success' style='width:100%; margin-bottom:5px'></div>
-        <div class="col-md-4"><input type=submit name=hosrevise value='Prompt User to Resubmit' class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
-        <div class="col-md-4"><input type=submit name=hosdeny value=Deny class='btn btn-danger' style='width:100%; margin-bottom:5px'></div>
+        <div class="col-md-4"><input type=submit name=cmapprove value=Approve class='btn btn-success' style='width:100%; margin-bottom:5px'></div>
+        <div class="col-md-4"><input type=submit name=cmrevise value='Prompt User to Resubmit' class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
+        <div class="col-md-4"><input type=submit name=cmdeny value=Deny class='btn btn-danger' style='width:100%; margin-bottom:5px'></div>
         </div>
         </div>
         <div class="form-row" style="margin-top:5px">
