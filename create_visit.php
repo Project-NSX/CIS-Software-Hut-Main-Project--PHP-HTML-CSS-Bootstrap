@@ -61,11 +61,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="s_date">Start Date: </label>
-                <input id="datefield" type="date" name="s_date" onchange="updateDateFields()" class="form-control" max=e_date>
+                <input id="datefield" type="date" name="s_date" onchange="updateDateFields()" class="form-control" max=e_date required>
             </div>
             <div class="form-group col-md-6">
                 <label for="e_date">End Date: </label>
-                <input id="dateend" type="date" name="e_date" class=" form-control">
+                <input id="dateend" type="date" name="e_date" class=" form-control" required>
             </div>
         </div>
     </fieldset>
@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <fieldset>
         <legend>Financial Implications</legend>
         <div class="form-group">
-            <textarea class="form-control" id="financialImp" name="financialImp" rows="4" cols="40" placeholder="Please summarise the related financial implications"></textarea>
+            <textarea class="form-control" id="financialImp" name="financialImp" rows="4" cols="40" placeholder="Please summarise the related financial implications" required></textarea>
         </div>
     </fieldset>
 
@@ -102,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <legend>Additional Info</legend>
         <div class="form-group">
             <label for="summary">Summary of visit</label>
-            <textarea class="form-control" id="summary" name="summary" rows="4" cols="40" placeholder="Please summarise the purpose of the visit"></textarea>
+            <textarea class="form-control" id="summary" name="summary" rows="4" cols="40" placeholder="Please summarise the purpose of the visit" required></textarea>
         </div>
     </fieldset>
 

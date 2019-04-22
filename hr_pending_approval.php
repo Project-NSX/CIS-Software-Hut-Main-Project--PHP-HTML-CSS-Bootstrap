@@ -1,5 +1,12 @@
 <?php $page = 'HRPA'; require 'includes/header.php';?>
 <!--HTML HERE-->
+
+<!--disables enter on form-->
+<script type="text/javascript">
+function noenter() {
+  return !(window.event && window.event.keyCode == 13); }
+</script>
+
 <style>
 h6 span{
     display: inline-block;
@@ -37,8 +44,8 @@ if(isset($_POST['revise'])){
     }else{
         echo "<script language='javascript'> alert('Please provide a reason as to why the user needs to resubmit'); </script>";
     }
-
 };
+
 echo "<h2>HR Pending Request(s)</h2>";
 $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.hrComment  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '0'  ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
@@ -118,7 +125,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                 <label for="reason"><b>Reason to resubmit:</b></label>
             </div>
             <div class="form-group col-md-9" >
-            <input type=text name=reasoning style="width:100%">
+            <input type=text name=reasoning style="width:100%" class="form-control" onkeypress="return noenter()">
             </div>
             <div class="form-group col-md-12">
             <p style="text-align:right; margin-top:-15px; font-size:0.8em">** Required if the visit is prompted for resubmission</p>
