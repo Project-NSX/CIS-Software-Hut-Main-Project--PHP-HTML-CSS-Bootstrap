@@ -33,9 +33,9 @@ if(isset($_POST['revise'])){
         $publish_date =date("Y-m-d H:i:s");
         $ApproveQuery = "UPDATE visit SET hrApproved = 2, hrUsername = '$uName', hrApprovedDate = '$publish_date', hrComment = '$_POST[reasoning]' WHERE visitId = '$_POST[hidden]'";
         mysqli_query($link, $ApproveQuery);
+        //TODO: add datetime to hrApprovedDate field
     }else{
-        echo "<script language='javascript'> alert('message successfully sent'); </script>;";
-        //echo "Please insert";
+        echo "<script language='javascript'> alert('Please provide a reason as to why the user needs to resubmit'); </script>";
     }
 
 };
@@ -114,14 +114,18 @@ if ($supervisorApprovedresult->num_rows > 0) {
         </div>
         </div>
         <div class="form-row" style="margin-top:5px">
-            <div class="form-group col-md-2">
+            <div class="form-group col-md-3">
                 <label for="reason"><b>Reason to resubmit:</b></label>
-
             </div>
-            <div class="form-group col-md-10">
+            <div class="form-group col-md-9" >
             <input type=text name=reasoning style="width:100%">
             </div>
+            <div class="form-group col-md-12">
+            <p style="text-align:right; margin-top:-15px; font-size:0.8em">** Required if the visit is prompted for resubmission</p>
         </div>
+        </div>
+
+
 
         </form>
         <br>
