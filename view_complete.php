@@ -6,14 +6,14 @@ h6 span{
     margin-right: 2.5em;
 }
 </style>
-<h2>Complete Visits</h2>
+<h2>Completed Visits</h2>
 <?php require'includes/navbars/nav_picker.php';?>
 
 <?php
 require_once'includes/database.php';
 
 $currentAcademic = $_SESSION['username'];
-echo "<h2>Complete Visit(s)</h2>";
+echo "<h2>Completed Visit(s)</h2>";
 
 $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.induction  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '".$currentAcademic."%' AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '3' AND v.induction LIKE '1' ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
