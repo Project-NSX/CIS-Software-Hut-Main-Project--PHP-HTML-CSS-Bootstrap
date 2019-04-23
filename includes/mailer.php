@@ -32,3 +32,21 @@ $mail ->Body = 'This is a test';
 
  $mail ->send();
 ?>
+
+<!-- to get email for hr when college manager makes request -->
+<!-- also used when visit is approved -->
+<?php if ($_SESSION["role"] === "College Manager") {
+$CMsql = "SELECT email FROM user where role = 'Human Resources'";
+}?>
+
+<!-- to get email for cm when hos makes request -->
+<?php if ($_SESSION["role"] === "Head Of School") {
+$hosid = $_SESSION["college_id"];
+$HoSsql = "SELECT email FROM user where college_id = '$hosid' AND role = 'College Manager'";
+}?>
+
+<!-- to get email for hos when academic makes request -->
+<?php if ($_SESSION["role"] === "Academic") {
+$aid = $_SESSION["school_id"];
+$Asql = "SELECT email FROM user where school_id = '$hosid' AND role = 'Head Of School'";
+}?>
