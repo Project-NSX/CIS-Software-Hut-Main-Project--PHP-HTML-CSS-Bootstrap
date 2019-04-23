@@ -1,5 +1,10 @@
 <?php $page = 'CVas'; require 'includes/header.php';?>
 <!--HTML HERE-->
+
+<script type="text/javascript">
+function noenter() {
+  return !(window.event && window.event.keyCode == 13); }
+</script>
 <h2>My Visitors</h2>
 <?php require'includes/navbars/nav_picker.php';?>
 <!--This Page will show all of the VA's created by the logged in user. It will contain the functionality to edit / delete added VA's-->
@@ -10,7 +15,7 @@
 require_once'includes/database.php';
 
 if(isset($_POST['update'])){
-    $UpdateQuery = "UPDATE visitingAcademic SET title = '$_POST[title]', visitorType = '$_POST[visitorType]', visitorTypeExt = '$_POST[visitorTypeExt]', homeInstitution = '$_POST[homeInstitution]', street = '$_POST[street]', city = '$_POST[city]', county = '$_POST[county]', postcode = '$_POST[postcode]', email = '$_POST[email]', phoneNumber = '$_POST[phoneNumber]' WHERE visitorId = '$_POST[hidden]'";
+    $UpdateQuery = "UPDATE visitingAcademic SET title = '$_POST[title]', visitorType = '$_POST[visitorType]', visitorTypeExt = '$_POST[visitorTypeExt]', homeInstitution = '$_POST[homeInstitution]', department = '$_POST[department]', street = '$_POST[street]', city = '$_POST[city]', county = '$_POST[county]', postcode = '$_POST[postcode]', email = '$_POST[email]', phoneNumber = '$_POST[phoneNumber]' WHERE visitorId = '$_POST[hidden]'";
     mysqli_query($link, $UpdateQuery);
 };
 
@@ -32,6 +37,7 @@ if ($myVisitorsResult->num_rows > 0) {
         $visitorType = $row["visitorType"];
         $visitorTypeEXT = $row["visitorTypeExt"];
         $homeInstitution = $row["homeInstitution"];
+        $department = $row["department"];
         $street = $row["street"];
         $city = $row["city"];
         $county = $row["county"];
@@ -68,9 +74,9 @@ if ($myVisitorsResult->num_rows > 0) {
         </select>
         </div>
         <div class='col-sm-2'><b>First Name:</b></div>
-        <div class='col-sm-2'> <input type=text name=fName class="form-control" value="<?php echo $fName?>" readonly></div>
+        <div class='col-sm-2'> <input type=text name=fName class="form-control" value="<?php echo $fName?>" readonly onkeypress="return noenter()"></div>
         <div class='col-sm-2'><b>Last Name:</b></div>
-        <div class='col-sm-2'> <input type=text name=lName class="form-control" value="<?php echo $lName?>" readonly></div>
+        <div class='col-sm-2'> <input type=text name=lName class="form-control" value="<?php echo $lName?>" readonly onkeypress="return noenter()"></div>
         </div>
         </fieldset>
 
@@ -85,7 +91,7 @@ if ($myVisitorsResult->num_rows > 0) {
         <option value="Visiting Academic" <?php if ($visitorType === 'Academic'){echo "selected";}?>>Visiting Academic (position)</option>
         <option value="Other"<?php if ($visitorType === 'Other'){echo "selected";}?>>Other (specify)</option>
         </select></div>
-        <div class='col-sm-5'> <input type=text name=visitorTypeExt class="form-control" value="<?php echo $visitorTypeEXT?>"></div>
+        <div class='col-sm-5'> <input type=text name=visitorTypeExt class="form-control" value="<?php echo $visitorTypeEXT?>" onkeypress="return noenter()"></div>
         </div>
         </fieldset>
 
@@ -93,19 +99,21 @@ if ($myVisitorsResult->num_rows > 0) {
         <legend>Home Institution Details</legend>
         <div class='row'>
         <div class='col-sm-3'><b>Home Institution Name:</b></div>
-        <div class='col-sm-9'> <input type=text name=homeInstitution class="form-control" value="<?php echo $homeInstitution?>" ></div>
+        <div class='col-sm-3'> <input type=text name=homeInstitution class="form-control" value="<?php echo $homeInstitution?>" onkeypress="return noenter()"></div>
+        <div class='col-sm-3'><b>Department Name:</b></div>
+        <div class='col-sm-3'> <input type=text name=department class="form-control" value="<?php echo $department?>" onkeypress="return noenter()"></div>
         </div>
         <div class='row'>
         <div class='col-sm-2'><b>Street:</b></div>
-        <div class='col-sm-4'> <input type=text name=street class="form-control" value="<?php echo $street?>" ></div>
+        <div class='col-sm-4'> <input type=text name=street class="form-control" value="<?php echo $street?>" onkeypress="return noenter()"></div>
         <div class='col-sm-2'><b>City:</b></div>
-        <div class='col-sm-4'> <input type=text name=city class="form-control" value="<?php echo $city?>"></div>
+        <div class='col-sm-4'> <input type=text name=city class="form-control" value="<?php echo $city?>" onkeypress="return noenter()"></div>
         </div>
         <div class='row'>
         <div class='col-sm-2'><b>County:</b></div>
-        <div class='col-sm-4'> <input type=text name=county class="form-control" value="<?php echo $county?>" ></div>
+        <div class='col-sm-4'> <input type=text name=county class="form-control" value="<?php echo $county?>" onkeypress="return noenter()"></div>
         <div class='col-sm-2'><b>Postcode:</b></div>
-        <div class='col-sm-4'> <input type=text name=postcode class="form-control" value="<?php echo $postcode?>"></div>
+        <div class='col-sm-4'> <input type=text name=postcode class="form-control" value="<?php echo $postcode?>" onkeypress="return noenter()"></div>
         </div>
         </fieldset>
 
@@ -113,9 +121,9 @@ if ($myVisitorsResult->num_rows > 0) {
         <legend>Contact Details</legend>
         <div class='row'>
         <div class='col-sm-2'><b>Email Address:</b></div>
-        <div class='col-sm-4'> <input type=text name=email class="form-control" value="<?php echo $email?>" ></div>
+        <div class='col-sm-4'> <input type=text name=email class="form-control" value="<?php echo $email?>" onkeypress="return noenter()"></div>
         <div class='col-sm-2'><b>Phone Number:</b></div>
-        <div class='col-sm-4'> <input type=text name=phoneNumber class="form-control" value="<?php echo $phoneNumber?>"></div>
+        <div class='col-sm-4'> <input type=text name=phoneNumber class="form-control" value="<?php echo $phoneNumber?>" onkeypress="return noenter()"></div>
         </div>
         </fieldset>
         <div class="container" style="margin-top:10px">

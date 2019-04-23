@@ -15,7 +15,7 @@ require_once'includes/database.php';
 //TODO: get rid of unecessqary columns and variables
 
 echo "<h2>Request(s) Approved by HR</h2>";
-$supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.hrComment, v.induction  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '3' AND v.induction LIKE '0' ORDER BY v.visitAddedDate DESC";
+$supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.hrComment, v.induction  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '3' AND v.induction LIKE '0' ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
     echo "<div id='accordion'>";
@@ -29,6 +29,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $fName = $row["fName"];
         $lName = $row["lName"];
         $homeInt = $row["homeInstitution"];
+        $department = $row["department"];
         $email = $row["email"];
         $phone = $row["phoneNumber"];
         $summary = $row["summary"];
@@ -56,6 +57,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         <div class="row" >
         <div class='col-sm'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
         <div class='col-sm'><b>Home Institution: </b> <?php echo $homeInt ?></div>
+        <div class='col-sm'><b>Department: </b> <?php echo $department ?></div>
         </div>
         <div class="row" >
         <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>

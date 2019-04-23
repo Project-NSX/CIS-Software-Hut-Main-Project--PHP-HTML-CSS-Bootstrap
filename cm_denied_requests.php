@@ -16,7 +16,7 @@ require_once'includes/database.php';
 //TODO: get rid of unecessqary columns and variables
 
 echo "<h2>College Manager - Outright Denied Requests</h2>";
-$supervisorApproved = "SELECT v.visitId, v.visitorId, v.summary, v.financialImplications, v.startDate, v.endDate, v.visitAddedDate, v.supervisorApprovedDate, va.fName, va.lName, va.homeInstitution, va.visitorType, va.visitorTypeExt FROM visit v, user u, school s, visitingAcademic va WHERE v.hostAcademic = u.username AND u.school_id = s.schoolId AND va.visitorId = v.visitorId AND u.college_id = '{$_SESSION['college_id']}' AND u.role = 'Head Of School' AND v.supervisorApproved LIKE '1' ORDER BY v.visitAddedDate DESC";
+$supervisorApproved = "SELECT v.visitId, v.visitorId, v.summary, v.financialImplications, v.startDate, v.endDate, v.visitAddedDate, v.supervisorApprovedDate, va.fName, va.lName, va.homeInstitution, va.department, va.visitorType, va.visitorTypeExt FROM visit v, user u, school s, visitingAcademic va WHERE v.hostAcademic = u.username AND u.school_id = s.schoolId AND va.visitorId = v.visitorId AND u.college_id = '{$_SESSION['college_id']}' AND u.role = 'Head Of School' AND v.supervisorApproved LIKE '1' ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
     echo "<div id='accordion'>";
@@ -30,6 +30,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $fName = $row["fName"];
         $lName = $row["lName"];
         $homeInt = $row["homeInstitution"];
+        $department = $row["department"];
         $summary = $row["summary"];
         $financialImp = $row["financialImplications"]; //done
         $visitorType = $row["visitorType"]; //done
@@ -48,6 +49,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         <div class="row" >
         <div class='col-sm'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
         <div class='col-sm'><b>Home Institution: </b> <?php echo $homeInt ?></div>
+        <div class='col-sm'><b>Department: </b> <?php echo $department ?></div>
         </div>
         <div class="row" >
         <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>

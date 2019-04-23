@@ -19,7 +19,7 @@ require_once'includes/database.php';
 $currentAcademic = $_SESSION['username'];
 
 echo "<h2>Request(s) Awaiting Action</h2>";
-$awaitingAction = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '".$currentAcademic."%' AND v.supervisorApproved LIKE '0' AND v.hrApproved LIKE '0'  ORDER BY v.visitAddedDate DESC";
+$awaitingAction = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '".$currentAcademic."%' AND v.supervisorApproved LIKE '0' AND v.hrApproved LIKE '0'  ORDER BY v.visitAddedDate DESC";
 $awaitingActionresult = $link->query($awaitingAction);
 if ($awaitingActionresult->num_rows > 0) {
     echo "<div id='accordion'>";
@@ -32,6 +32,7 @@ if ($awaitingActionresult->num_rows > 0) {
         $fName = $row["fName"];
         $lName = $row["lName"];
         $homeInt = $row["homeInstitution"];
+        $department = $row["department"];
         $email = $row["email"];
         $phone = $row["phoneNumber"];
         $summary = $row["summary"];
@@ -49,6 +50,7 @@ if ($awaitingActionresult->num_rows > 0) {
         <div class="row" >
         <div class='col-sm'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
         <div class='col-sm'><b>Home Institution: </b> <?php echo $homeInt ?></div>
+        <div class='col-sm'><b>Department: </b> <?php echo $department ?></div>
         <div class='col-sm'><b>Email: </b> <?php echo $email ?></div>
         <div class='col-sm'><b>Phone Number:</b> <?php echo $phone ?></div>
         </div>
@@ -83,7 +85,7 @@ if ($awaitingActionresult->num_rows > 0) {
 }
 
 echo "<h2>Request(s) Approved by Supervisor</h2>";
-$supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '".$currentAcademic."%' AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '0'  ORDER BY v.visitAddedDate DESC";
+$supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '".$currentAcademic."%' AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '0'  ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
     echo "<div id='accordion'>";
@@ -96,6 +98,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $fName = $row["fName"];
         $lName = $row["lName"];
         $homeInt = $row["homeInstitution"];
+        $department = $row["department"];
         $email = $row["email"];
         $phone = $row["phoneNumber"];
         $summary = $row["summary"];
@@ -117,6 +120,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         <div class="row" >
         <div class='col-sm'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
         <div class='col-sm'><b>Home Institution: </b> <?php echo $homeInt ?></div>
+        <div class='col-sm'><b>Department: </b> <?php echo $department ?></div>
         <div class='col-sm'><b>Email: </b> <?php echo $email ?></div>
         <div class='col-sm'><b>Phone Number:</b> <?php echo $phone ?></div>
         </div>
@@ -155,7 +159,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
 }
 
 echo "<h2>Request(s) Denied by Supervisor</h2>";
-$supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.supervisorComment FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '".$currentAcademic."%' AND v.supervisorApproved LIKE '1' AND v.hrApproved LIKE '0'  ORDER BY v.visitAddedDate DESC";
+$supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.supervisorComment FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '".$currentAcademic."%' AND v.supervisorApproved LIKE '1' AND v.hrApproved LIKE '0'  ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
     echo "<div id='accordion'>";
@@ -168,6 +172,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $fName = $row["fName"];
         $lName = $row["lName"];
         $homeInt = $row["homeInstitution"];
+        $department = $row["department"];
         $email = $row["email"];
         $phone = $row["phoneNumber"];
         $summary = $row["summary"];
@@ -190,6 +195,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         <div class="row" >
         <div class='col-sm'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
         <div class='col-sm'><b>Home Institution: </b> <?php echo $homeInt ?></div>
+        <div class='col-sm'><b>Department: </b> <?php echo $department ?></div>
         <div class='col-sm'><b>Email: </b> <?php echo $email ?></div>
         <div class='col-sm'><b>Phone Number:</b> <?php echo $phone ?></div>
         </div>
@@ -231,7 +237,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
 
 //TODO: section for ones to be resubmitted
 echo "<h2>Request(s) Approved by Supervisor & HR</h2>";
-$supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '".$currentAcademic."%' AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '3'  ORDER BY v.visitAddedDate DESC";
+$supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '".$currentAcademic."%' AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '3'  ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
     echo "<div id='accordion'>";
@@ -244,6 +250,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $fName = $row["fName"];
         $lName = $row["lName"];
         $homeInt = $row["homeInstitution"];
+        $department = $row["department"];
         $email = $row["email"];
         $phone = $row["phoneNumber"];
         $summary = $row["summary"];
@@ -270,6 +277,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         <div class="row" >
         <div class='col-sm'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
         <div class='col-sm'><b>Home Institution: </b> <?php echo $homeInt ?></div>
+        <div class='col-sm'><b>Department: </b> <?php echo $department ?></div>
         <div class='col-sm'><b>Email: </b> <?php echo $email ?></div>
         <div class='col-sm'><b>Phone Number:</b> <?php echo $phone ?></div>
         </div>
@@ -311,7 +319,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
     echo "0 results";
 }
 echo "<h2>Request(s) Denied by HR</h2>";
-$supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.hrComment  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '".$currentAcademic."%' AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '1'  ORDER BY v.visitAddedDate DESC";
+$supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.hrComment  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '".$currentAcademic."%' AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '1'  ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
     echo "<div id='accordion'>";
@@ -324,6 +332,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $fName = $row["fName"];
         $lName = $row["lName"];
         $homeInt = $row["homeInstitution"];
+        $department = $row["department"];
         $email = $row["email"];
         $phone = $row["phoneNumber"];
         $summary = $row["summary"];
@@ -351,6 +360,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         <div class="row" >
         <div class='col-sm'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
         <div class='col-sm'><b>Home Institution: </b> <?php echo $homeInt ?></div>
+        <div class='col-sm'><b>Department: </b> <?php echo $department ?></div>
         <div class='col-sm'><b>Email: </b> <?php echo $email ?></div>
         <div class='col-sm'><b>Phone Number:</b> <?php echo $phone ?></div>
         </div>

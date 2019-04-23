@@ -19,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $visitor_type_ext = $_POST['visitor_type_ext'];
     $home_institution = $_POST['home_institution'];
     $host_academic = $_SESSION['username'];
+    $department = $_POST['department'];
 
 
 
@@ -26,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn = getDB();
     // Sql query using placeholders
     // The placeholders are ?'s that are replcaed with the actual values in the form when the form is submitted.
-    $sql = "INSERT INTO visitingAcademic (title, fName, lName, street, city, county, postcode, email, phoneNumber, visitorType, visitorTypeExt, homeInstitution, hostAcademic) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO visitingAcademic (title, fName, lName, street, city, county, postcode, email, phoneNumber, visitorType, visitorTypeExt, homeInstitution, hostAcademic, department) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     // Prepare the sql statement for execution using the connection info provided from
     $stmt = mysqli_prepare($conn, $sql);
@@ -46,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Bind the variables defined above to the MySQL statement.
         // s - means string. For every variable entered there needs to be a ? above and letter that shows the datatype below.
         // Bind to: $stmt, value types: "sss", From the sources $_POST['title'] etc
-        mysqli_stmt_bind_param($stmt, "sssssssssssss", $title, $f_name, $l_name, $street, $town_city, $county, $postcode, $email, $phone_number, $visitor_type, $visitor_type_ext, $home_institution, $host_academic);
+        mysqli_stmt_bind_param($stmt, "ssssssssssssss", $title, $f_name, $l_name, $street, $town_city, $county, $postcode, $email, $phone_number, $visitor_type, $visitor_type_ext, $home_institution, $host_academic, $department);
         // If the $stmt is able to execute:
         if (mysqli_stmt_execute($stmt)) {
             // TODO: Confirmation dialogue on success
@@ -76,8 +77,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </select>
         <input type="text" id="visitor_type_ext" placeholder="Please specify the type of academic." name="visitor_type_ext" class="form-control"  style='display:none;' />
         <div class="form-row">
+        <div class="form-group col-md-6">
             <label for="home_institution">Home Institution: </label>
             <input type="text" class="form-control" name="home_institution" required>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="department">Department: </label>
+            <input type="text" class="form-control" name="department" required>
+        </div>
         </div>
     </fieldset>
     <fieldset>
