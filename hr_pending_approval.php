@@ -120,7 +120,6 @@ if ($supervisorApprovedresult->num_rows > 0) {
                         <p class='card-text'><?php echo $supervisorUname ?> </p>
                         <h5 class='card-title'>Date & Time of Decision</h5>
                         <p class='card-text'><?php echo $supervisorApprovedDateDisp ?> </p>
-                        <?php echo "IPR ISSUES: $iprIssues $iprFile"?>
                         <?php if ($iprIssues == 1) {
 
                                 echo "<h5 class='card-title'>IPR Issues File:</h5>";
