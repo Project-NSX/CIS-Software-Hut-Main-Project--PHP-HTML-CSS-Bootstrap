@@ -1,3 +1,6 @@
+<?php
+
+?>
 <?php $page ='CV'; require 'includes/header.php'; ?>
 <?php require 'includes/database.php'; ?>
 <!--HTML HERE-->
@@ -17,14 +20,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $financialImp = $_POST['financialImp'];
     $inlineRadio1 = $_POST['ipr_issues'];
     $suppervisorVal = 3;
-    // iprFile = form;
+
 
 
     $conn = getDB();
+
+    $pathinfo = pathinfo($_FILES['file']['name']);
+
+
+    $base = $pathinfo['filename'];
+    $base = preg_replace('/[^a-zA-Z0-9_-]/', "_", $base);
+    $base = mb_substr($base, 0, 200);
+    $filename = $base . "." . $pathinfo['extension'];
+    $destination = "ipr/$filename";
+
+    $i = 1;
+
+    while(file_exists($destination))
+    {
+        $filename = $base . "-$i." . $pathinfo['extension'];
+        $destination = "ipr/$filename";
+        $i++;
+    }
+
+    if (move_uploaded_file($_FILES['file']['tmp_name'], $destination))
+    {
+        echo 'alert("File uploaded successfully")';
+        $iprBool = 1;
+    }
+    else
+    {
+
+        $iprBool = 0;
+    }
+
     if ($_SESSION["role"] === "College Manager"){
-        $sql = "INSERT INTO visit (visitorID, visitAddedDate, hostAcademic, startDate, endDate, summary, financialImplications, iprIssues, supervisorApproved, supervisorUsername, supervisorApprovedDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO visit (visitorID, visitAddedDate, hostAcademic, startDate, endDate, summary, financialImplications, iprIssues, supervisorApproved, supervisorUsername, supervisorApprovedDate, iprFile) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     }else{
-        $sql = "INSERT INTO visit (visitorID, visitAddedDate, hostAcademic, startDate, endDate, summary, financialImplications, iprIssues) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO visit (visitorID, visitAddedDate, hostAcademic, startDate, endDate, summary, financialImplications, iprIssues, iprFile) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     }
     $stmt = mysqli_prepare($conn, $sql);
 
@@ -32,12 +65,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo mysqli_error($conn);
     }
     if ($_SESSION["role"] === "College Manager"){
-        mysqli_stmt_bind_param($stmt, "sssssssssss", $visitorId, $visitAddedDate, $hostAcademic, $s_date, $e_date, $summary, $financialImp, $inlineRadio1, $suppervisorVal, $hostAcademic, $visitAddedDate);
+        mysqli_stmt_bind_param($stmt, "sssssssissss", $visitorId, $visitAddedDate, $hostAcademic, $s_date, $e_date, $summary, $financialImp, $iprBool, $suppervisorVal, $hostAcademic, $visitAddedDate, $filename);
     }else{
-        mysqli_stmt_bind_param($stmt, "ssssssss", $visitorId, $visitAddedDate, $hostAcademic, $s_date, $e_date, $summary, $financialImp, $inlineRadio1);
+        mysqli_stmt_bind_param($stmt, "sssssssis", $visitorId, $visitAddedDate, $hostAcademic, $s_date, $e_date, $summary, $financialImp, $iprBool, $filename);
     }
     if (mysqli_stmt_execute($stmt)) {
         // TODO: Confirmation dialogue on success
+
         require 'includes/user_redirect.php';
     } else {
         echo mysqli_stmt_error($stmt);
@@ -46,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <fieldset>
         <legend>Visitor</legend>
         <label for="Visitor">Visitor: </label>
@@ -99,8 +133,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
         <div class="custom-file" id="ipr_issues_ext" style='display:none;'>
-            <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
             <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+            <input type="file" class="custom-file-input" id="file" name="file">
+            <!-- <input type="file" class="custom-file-input" id="inputGroupFile01" name="file" aria-describedby="inputGroupFileAddon01"> -->
         </div>
 
         <!-- <input type="text" id="ipr_issues_ext" name="ipr_issues_ext" class="form-control" style='display:none;'/> -->
