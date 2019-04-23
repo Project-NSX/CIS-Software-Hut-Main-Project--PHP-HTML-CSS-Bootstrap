@@ -54,6 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     mysqli_stmt_bind_result($stmt, $role, $school_id, $college_id, $username, $password_db);
                     if (mysqli_stmt_fetch($stmt)) {
                         if ($password_entered == $password_db) {
+                            session_regenerate_id(true);
                             // Password is correct, so start a new session
                             session_start();
 
