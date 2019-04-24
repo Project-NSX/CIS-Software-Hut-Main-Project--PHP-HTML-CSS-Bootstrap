@@ -63,6 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
 
         $iprBool = 0;
+        $filename = null;
     }
 
     if ($_SESSION["role"] === "College Manager") {
