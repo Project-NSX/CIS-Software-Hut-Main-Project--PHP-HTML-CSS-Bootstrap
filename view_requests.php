@@ -45,12 +45,6 @@ if (isset($_POST['VRABSHRCancel'])) {
     $VRABSHRCancelQuery = "UPDATE visit SET supervisorApproved = 4, hrApproved = 4, cancelTime = '$publish_date' WHERE visitId = '$_POST[hiddenVRABSHR]'";
     mysqli_query($link, $VRABSHRCancelQuery);
 };
-if (isset($_POST['VRDBHRCancel'])) {
-    date_default_timezone_set('Europe/London');
-    $publish_date = date("Y-m-d H:i:s");
-    $VRDBHRCancelQuery = "UPDATE visit SET supervisorApproved = 4, hrApproved = 4, cancelTime = '$publish_date' WHERE visitId = '$_POST[hiddenVRDBHR]'";
-    mysqli_query($link, $VRDBHRCancelQuery);
-};
 
 
 $currentAcademic = $_SESSION['username'];
@@ -566,7 +560,6 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $iprFile = $row['iprFile'];
         ?>
 
-        <form action=view_requests.php method=post>
             <div class="card">
                 <div class="card-header" id="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
                     <div class="row">
@@ -614,16 +607,6 @@ if ($supervisorApprovedresult->num_rows > 0) {
                     </div>
                 </div>
             </div>
-            <input type=hidden name=hiddenVRDBHR value=<?php echo $visitId ?>>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md"></div>
-                    <div class="col-md"><input type=submit name=VRDBHRCancel value='Cancel Visit' class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
-                    <div class="col-md"></div>
-                </div>
-            </div>
-        </form>
-
         <br>
     <?php
 }
