@@ -1,4 +1,4 @@
-<?php $page = 'HRPA';
+<?php $page = 'home';
 require 'includes/header.php'; ?>
 <!--HTML HERE-->
 
