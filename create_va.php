@@ -67,8 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <fieldset>
         <legend>Academic Information</legend>
         <label for="visitor_typetype">Type of Academic: </label>
-        <select name="visitor_type" class="form-control" onchange='CheckVisitorTypeDropDown(this.value);'
-            style="margin:0px 0px 10px 0px">
+        <select name="visitor_type" class="form-control" onchange='CheckVisitorTypeDropDown(this.value);' style="margin:0px 0px 10px 0px" required>
             <option value="Undergraduate">Undergraduate</option>
             <option value="PhD Student">PhD Student</option>
             <!--TODO: If "visitng Academic (position)"" or "Other (Specify)"" is selected, add the "required" option to visitor_type_ext-->
@@ -90,8 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <fieldset>
         <legend>Name</legend>
         <label for="title">Title: </label>
-        <select name="title" id="title" class="form-control" onchange='CheckTitleSelection(this.value);'
-            style="margin:0px 0px 10px 0px" required>
+        <select name="title" id="title" class="form-control" style="margin:0px 0px 10px 0px" required>
             <option value="Mr">Mr</option>
             <option value="Mrs">Mrs</option>
             <option value="Miss">Miss</option>

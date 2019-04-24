@@ -55,7 +55,7 @@ if ($myVisitorsResult->num_rows > 0) {
         <legend>Personal Details</legend>
         <div class='row'>
         <div class='col-sm-2'><b>Title:</b></div>
-        <div class='col-sm-2'><select name="title" id="title" class="form-control">'
+        <div class='col-sm-2'><select name="title" id="title" class="form-control" required>'
             style="margin:0px 0px 10px 0px" required>
             <option value="Mr" <?php if ($title === 'Mr'){echo "selected";}?>>Mr</option>
             <option value="Mrs" <?php if ($title === 'Mrs'){echo "selected";}?>>Mrs</option>
@@ -74,9 +74,9 @@ if ($myVisitorsResult->num_rows > 0) {
         </select>
         </div>
         <div class='col-sm-2'><b>First Name:</b></div>
-        <div class='col-sm-2'> <input type=text name=fName class="form-control" value="<?php echo $fName?>" readonly onkeypress="return noenter()"></div>
+        <div class='col-sm-2'> <input type=text name=fName class="form-control" value="<?php echo $fName?>" readonly onkeypress="return noenter()" required></div>
         <div class='col-sm-2'><b>Last Name:</b></div>
-        <div class='col-sm-2'> <input type=text name=lName class="form-control" value="<?php echo $lName?>" readonly onkeypress="return noenter()"></div>
+        <div class='col-sm-2'> <input type=text name=lName class="form-control" value="<?php echo $lName?>" readonly onkeypress="return noenter()" required></div>
         </div>
         </fieldset>
 
@@ -85,7 +85,7 @@ if ($myVisitorsResult->num_rows > 0) {
         <legend>Visitor Details</legend>
         <div class='row'>
         <div class='col-sm-2'><b>Visitor Type:</b></div>
-        <div class='col-sm-5'><select name="visitorType" id="visitor" class="form-control" value="<?php echo $visitorType?>">
+        <div class='col-sm-5'><select name="visitorType" id="visitor" class="form-control"  value="<?php echo $visitorType?>" required>
         <option value="Undergraduate" <?php if ($visitorType === 'Undergraduate'){echo "selected";}?>>Undergraduate</option>
         <option value="PhD Student" <?php if ($visitorType === 'PhD Student'){echo "selected";}?>>PhD Student</option>
         <option value="Visiting Academic" <?php if ($visitorType === 'Academic'){echo "selected";}?>>Visiting Academic (position)</option>
@@ -99,21 +99,21 @@ if ($myVisitorsResult->num_rows > 0) {
         <legend>Home Institution Details</legend>
         <div class='row'>
         <div class='col-sm-3'><b>Home Institution Name:</b></div>
-        <div class='col-sm-3'> <input type=text name=homeInstitution class="form-control" value="<?php echo $homeInstitution?>" onkeypress="return noenter()"></div>
+        <div class='col-sm-3'> <input type=text name=homeInstitution class="form-control" value="<?php echo $homeInstitution?>" onkeypress="return noenter()" required></div>
         <div class='col-sm-3'><b>Department Name:</b></div>
-        <div class='col-sm-3'> <input type=text name=department class="form-control" value="<?php echo $department?>" onkeypress="return noenter()"></div>
+        <div class='col-sm-3'> <input type=text name=department class="form-control" value="<?php echo $department?>" onkeypress="return noenter()" required></div>
         </div>
         <div class='row'>
         <div class='col-sm-2'><b>Street:</b></div>
-        <div class='col-sm-4'> <input type=text name=street class="form-control" value="<?php echo $street?>" onkeypress="return noenter()"></div>
+        <div class='col-sm-4'> <input type=text name=street class="form-control" value="<?php echo $street?>" onkeypress="return noenter()" required></div>
         <div class='col-sm-2'><b>City:</b></div>
-        <div class='col-sm-4'> <input type=text name=city class="form-control" value="<?php echo $city?>" onkeypress="return noenter()"></div>
+        <div class='col-sm-4'> <input type=text name=city class="form-control" value="<?php echo $city?>" onkeypress="return noenter()" required></div>
         </div>
         <div class='row'>
         <div class='col-sm-2'><b>County:</b></div>
-        <div class='col-sm-4'> <input type=text name=county class="form-control" value="<?php echo $county?>" onkeypress="return noenter()"></div>
+        <div class='col-sm-4'> <input type=text name=county class="form-control" value="<?php echo $county?>" onkeypress="return noenter()" required></div>
         <div class='col-sm-2'><b>Postcode:</b></div>
-        <div class='col-sm-4'> <input type=text name=postcode class="form-control" value="<?php echo $postcode?>" onkeypress="return noenter()"></div>
+        <div class='col-sm-4'> <input type=text name=postcode class="form-control" pattern="([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})" title="Please enter a valid UK postcode" value="<?php echo $postcode?>" onkeypress="return noenter()" required></div>
         </div>
         </fieldset>
 
@@ -121,15 +121,30 @@ if ($myVisitorsResult->num_rows > 0) {
         <legend>Contact Details</legend>
         <div class='row'>
         <div class='col-sm-2'><b>Email Address:</b></div>
-        <div class='col-sm-4'> <input type=text name=email class="form-control" value="<?php echo $email?>" onkeypress="return noenter()"></div>
+        <div class='col-sm-4'> <input type=email name=email class="form-control" value="<?php echo $email?>" onkeypress="return noenter()"></div>
         <div class='col-sm-2'><b>Phone Number:</b></div>
-        <div class='col-sm-4'> <input type=text name=phoneNumber class="form-control" value="<?php echo $phoneNumber?>" onkeypress="return noenter()"></div>
+        <div class='col-sm-4'> <input type=tel name=phoneNumber class="form-control" minlength="9" maxlength="14" value="<?php echo $phoneNumber?>" onkeypress="return noenter()"></div>
         </div>
         </fieldset>
         <div class="container" style="margin-top:10px">
         <div class="row">
-        <div class="col-sm"><input type=submit name=update value=Update class='btn btn-success' style='width:100%'></div>
-        <div class="col-sm"><input type=submit name=delete value=Delete class='btn btn-danger' style='width:100%'></div>
+
+        <?php
+        
+
+        $sql = "SELECT count(*) AS 'No' FROM visit WHERE visitorId = '$id' GROUP BY 'visitorId'";
+        $result = $link->query($sql);
+        if ($result->num_rows > 0){
+            echo "<div class='col-sm'><input type=submit name=update value=Update class='btn btn-success' style='width:100%'></div>";
+            echo "<div class='col-sm'><input type=submit name=delete value=Delete class='btn btn-danger' disabled style='width:100%'></div>";
+        }else{
+            echo "<div class='col-sm'><input type=submit name=update value=Update class='btn btn-success' style='width:100%'></div>";
+            echo "<div class='col-sm'><input type=submit name=delete value=Delete class='btn btn-danger' style='width:100%'></div>";
+        }
+
+                
+            ?>
+
         <input type=hidden name=hidden value=<?php echo $id?>>
         </div>
         </div>
