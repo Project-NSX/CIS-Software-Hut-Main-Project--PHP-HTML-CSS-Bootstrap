@@ -56,7 +56,7 @@ if (isset($_POST['VRDBHRCancel'])) {
 $currentAcademic = $_SESSION['username'];
 
 echo "<h2>Request(s) Awaiting Action</h2>";
-$awaitingAction = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '0' AND v.hrApproved LIKE '0'  ORDER BY v.visitAddedDate DESC";
+$awaitingAction = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.iprIssues, v.iprFile  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '0' AND v.hrApproved LIKE '0'  ORDER BY v.visitAddedDate DESC";
 $awaitingActionresult = $link->query($awaitingAction);
 if ($awaitingActionresult->num_rows > 0) {
     echo "<div id='accordion'>";
@@ -81,7 +81,10 @@ if ($awaitingActionresult->num_rows > 0) {
         $visitEnd = $row["endDate"]; //done
         $startDisplay = date("d/m/Y", strtotime($visitStart));
         $endDisplay = date("d/m/Y", strtotime($visitEnd));
-        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded)); ?>
+        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded));
+        $iprIssues = $row['iprIssues'];
+        $iprFile = $row['iprFile'];
+        ?>
         <form action=view_requests.php method=post>
             <div class="card">
                 <div class="card-header" id="<?php echo $headingId ?>" <button id="button1" class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
@@ -110,6 +113,11 @@ if ($awaitingActionresult->num_rows > 0) {
                         <p class='card-text'><b>Start:</b> <?php echo $startDisplay ?> &#8195; <b>End:</b> <?php echo $endDisplay ?></p>
                         <h5 class='card-title'>Date & Time of Initial Submission</h5>
                         <p class='card-text'><?php echo $addedDisplay ?> </p>
+                        <?php if ($iprIssues == 1) {
+                            echo "<h5 class='card-title'>IPR Issues File:</h5>";
+                            echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -131,7 +139,7 @@ echo "</div>";
 }
 
 echo "<h2>Request(s) Approved by Supervisor</h2>";
-$supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '0'  ORDER BY v.visitAddedDate DESC";
+$supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.iprIssues, v.iprFile FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '0'  ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
     echo "<div id='accordion'>";
@@ -160,7 +168,10 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $supervisorApproved = $row["supervisorApprovedDate"];
         $supervisorUname = $row["supervisorUsername"];
         $supervisorApprovedDate = $row["supervisorApprovedDate"];
-        $supervisorApprovedDateDisp = date("d/m/Y - g:iA", strtotime($supervisorApprovedDate)); ?>
+        $supervisorApprovedDateDisp = date("d/m/Y - g:iA", strtotime($supervisorApprovedDate));
+        $iprIssues = $row['iprIssues'];
+        $iprFile = $row['iprFile'];
+        ?>
         <form action=view_requests.php method=post>
             <div class="card">
                 <div class="card-header" id="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
@@ -193,6 +204,11 @@ if ($supervisorApprovedresult->num_rows > 0) {
                         <p class='card-text'><?php echo $supervisorUname ?> </p>
                         <h5 class='card-title'>Date & Time of Decision</h5>
                         <p class='card-text'><?php echo $supervisorApprovedDateDisp ?> </p>
+                        <?php if ($iprIssues == 1) {
+                            echo "<h5 class='card-title'>IPR Issues File:</h5>";
+                            echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -214,7 +230,7 @@ echo "</div>";
 }
 
 echo "<h2>Request(s) Denied by Supervisor</h2>";
-$supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.supervisorComment FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '1' AND v.hrApproved LIKE '0'  ORDER BY v.visitAddedDate DESC";
+$supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.supervisorComment, v.iprIssues, v.iprFile FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '1' AND v.hrApproved LIKE '0'  ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
     echo "<div id='accordion'>";
@@ -244,7 +260,10 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $supervisorUname = $row["supervisorUsername"];
         $supervisorApprovedDate = $row["supervisorApprovedDate"];
         $supervisorApprovedDateDisp = date("d/m/Y - g:iA", strtotime($supervisorApprovedDate));
-        $supervisorComment = $row["supervisorComment"]; ?>
+        $supervisorComment = $row["supervisorComment"];
+        $iprIssues = $row['iprIssues'];
+        $iprFile = $row['iprFile'];
+        ?>
         <form action=view_requests.php method=post>
             <div class="card">
                 <div class="card-header" id="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
@@ -278,6 +297,11 @@ if ($supervisorApprovedresult->num_rows > 0) {
                         <p class='card-text'><?php echo $supervisorComment ?> </p>
                         <h5 class='card-title'>Date & Time of Decision</h5>
                         <p class='card-text'><?php echo $supervisorApprovedDateDisp ?> </p>
+                        <?php if ($iprIssues == 1) {
+                            echo "<h5 class='card-title'>IPR Issues File:</h5>";
+                            echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -301,7 +325,7 @@ echo "</div>";
 
 //TODO: section for ones to be resubmitted
 echo "<h2>Request(s) Approved by Supervisor & HR</h2>";
-$supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '3'  ORDER BY v.visitAddedDate DESC";
+$supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.iprIssues, v.iprFile  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '3'  ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
     echo "<div id='accordion'>";
@@ -334,7 +358,10 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $hrApproved = $row["hrApprovedDate"];
         $hrUname = $row["hrUsername"];
         $hrApprovedDate = $row["hrApprovedDate"];
-        $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate)); ?>
+        $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate));
+        $iprIssues = $row['iprIssues'];
+        $iprFile = $row['iprFile'];
+        ?>
         <form action=view_requests.php method=post>
             <div class="card">
                 <div class="card-header" id="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
@@ -371,6 +398,11 @@ if ($supervisorApprovedresult->num_rows > 0) {
                         <p class='card-text'><?php echo $hrUname ?> </p>
                         <h5 class='card-title'>Date & Time of Decision</h5>
                         <p class='card-text'><?php echo $hrApprovedDateDisp ?> </p>
+                        <?php if ($iprIssues == 1) {
+                            echo "<h5 class='card-title'>IPR Issues File:</h5>";
+                            echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
