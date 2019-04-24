@@ -3,14 +3,14 @@
 
 // Initialize the session
 session_start();
-$role="";
+$role = "";
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     // Redirect user to welcome page
     header("location: view_requests.php");
     exit;
 }
-require_once'includes/database.php';
+require_once 'includes/database.php';
 // Define variables and initialize with empty values
 $username = $password_entered = "";
 $username_err = $password_err = "";
@@ -66,13 +66,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $_SESSION["school_id"] = $school_id;
                             $_SESSION["college_id"] = $college_id;
 
-                            if ($_SESSION['role'] == "Academic" || $_SESSION['role'] ==  "Head Of School" || $_SESSION['role'] == "College Manager")
-                            {
+                            if ($_SESSION['role'] == "Academic" || $_SESSION['role'] ==  "Head Of School" || $_SESSION['role'] == "College Manager") {
                                 //TODO: Insert code to bind college name to $_SESSION["college_name"] here
+                                $sql = "SELECT name FROM college WHERE collegeId = $college_id";
+                                $result = $link->query($sql);
+                                while ($row = $result->fetch_assoc())
+                                {
+                                    $_SESSION["collegeName"] = $row["name"];
+                                }
+
                             }
-                            if ($_SESSION['role'] == "Academic" || $_SESSION['role'] ==  "Head Of School")
-                            {
+                            if ($_SESSION['role'] == "Academic" || $_SESSION['role'] ==  "Head Of School") {
                                 //TODO: Insert code to bind school name to $_SESSION["school_name"] here
+                                $sql = "SELECT name FROM school WHERE schoolId = $school_id";
+                                $result = $link->query($sql);
+                                while ($row = $result->fetch_assoc()) {
+                                    $_SESSION["schoolName"] = $row["name"];
+                                }
                             }
                             header("location: view_requests.php");
                         } else {
@@ -98,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<?php require 'includes/header_index.php';?>
+<?php require 'includes/header_index.php'; ?>
 <!--HTML HERE-->
 
 <div class="container">
@@ -115,7 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <span class="help-block"><?php echo $password_err; ?></span>
         </div>
         <div class="form-group">
-        <input type="checkbox" onclick="togglePasswordHidden()"> Show Password
+            <input type="checkbox" onclick="togglePasswordHidden()"> Show Password
         </div>
         <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Login">
@@ -123,4 +133,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
 </div>
 
-<?php require 'includes/footer.php';?>
+<?php require 'includes/footer.php'; ?>

@@ -38,27 +38,29 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 <body>
     <div id="headerTop">
-    <div id="signout" align="right"><a href="logout.php" class="btn btn-primary">Sign Out</a></div>
-    <div id="welcome">
-    <p>Hello, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>!<br />
+        <div id="signout" align="right"><a href="logout.php" class="btn btn-primary">Sign Out</a></div>
+        <div id="welcome">
+            <p>Hello, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>!<br />
 
-        Role: <b><?php echo htmlspecialchars($_SESSION["role"]);?></b><br />
+                Role: <b><?php echo htmlspecialchars($_SESSION["role"]); ?></b><br />
 
-        <!-- TODO: Make the school and college display correctly.
+                <!-- TODO: Make the school and college display correctly.
             This requires getting the school and college name from the school / college table and binding it to a session variable on the index page
         -->
-        <?php if ($_SESSION["role"] === "Academic" || $_SESSION["role"] === "Head Of School") {
-    ?>
-        School: <b><?php echo htmlspecialchars($_SESSION["school_id"]); ?></b><br />
-        <?php
-}
-if ($_SESSION["role"] === "College Manager") {
-    ?></b>
-        College: <b><?php echo htmlspecialchars($_SESSION["college_id"]);
-}?>
-        </b></p>
+                <?php if ($_SESSION["role"] === "Academic" || $_SESSION["role"] === "Head Of School") {
+
+
+                    ?>
+                    School: <b><?php echo $_SESSION["schoolName"]; ?></b><br />
+                <?php
+            }
+            if ($_SESSION["role"] === "College Manager") {
+                ?></b>
+                    College: <b><?php echo $_SESSION["collegeName"];
+                            } ?>
+                </b></p>
         </div>
-        </div>
+    </div>
     <!--Bootstrap Container. Closing tag for this is in the footer, just before the closing body tag-->
     <div class="container">
         <header id="pageTitle">
