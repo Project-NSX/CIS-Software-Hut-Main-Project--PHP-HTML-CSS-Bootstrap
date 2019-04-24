@@ -6,11 +6,9 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item <?php if ($page =='home'){echo 'active';}?>">
-                <a class="nav-link" href="cm_landing.php">Home<span class="sr-only"></span></a>
+                <a class="nav-link" href="view_requests.php">Home<span class="sr-only"></span></a>
             </li>
             <?php require 'includes/navbars/va_tools.php';?>
-
-
             <li class="nav-item <?php if ($page =='CMRPA'){echo 'active';}?>">
                 <a class="nav-link" href="cm_requests_pending_approval.php">College Manager - View Requests Pending Approval</a>
             </li>

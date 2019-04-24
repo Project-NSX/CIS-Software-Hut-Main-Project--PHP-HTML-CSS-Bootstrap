@@ -14,5 +14,3 @@ if ($_SESSION["role"] === "Human Resources")
 {
     require 'includes/navbars/hr_navbar.php';
 }
-// TODO: Make Current page get highlighted in navbar
-// TODO: Make the nav bar selected only once

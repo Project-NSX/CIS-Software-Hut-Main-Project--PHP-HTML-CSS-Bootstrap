@@ -6,7 +6,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item <?php if ($page =='AL'){echo 'active';}?>">
-                <a class="nav-link" href="academic_landing.php">Home<span class="sr-only"></span></a>
+                <a class="nav-link" href="view_requests.php">Home<span class="sr-only"></span></a>
             </li>
             <?php require 'includes/navbars/va_tools.php';?>
         </ul>

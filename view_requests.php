@@ -1,4 +1,4 @@
-<?php $page = 'VR';
+<?php $page = 'home';
 require 'includes/header.php'; ?>
 <!--HTML HERE-->
 <script type="text/javascript">

@@ -6,7 +6,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item <?php if ($page =='home'){echo 'active';}?>">
-                <a class="nav-link" href="hr_landing.php">Home<span class="sr-only"></span></a>
+                <a class="nav-link" href="view_requests.php">Home<span class="sr-only"></span></a>
             </li>
             <li class="nav-item <?php if ($page =='HRAR'){echo 'active';}?>">
                 <a class="nav-link" href="hr_approved_requests.php">HR - Approved Requests</a>

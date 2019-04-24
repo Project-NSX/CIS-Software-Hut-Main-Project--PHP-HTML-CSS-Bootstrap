@@ -7,7 +7,7 @@ $role="";
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     // Redirect user to welcome page
-    require 'includes/user_redirect.php';
+    header("location: view_requests.php");
     exit;
 }
 require_once'includes/database.php';
@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             {
                                 //TODO: Insert code to bind school name to $_SESSION["school_name"] here
                             }
-                            require 'includes/user_redirect.php';
+                            header("location: view_requests.php");
                         } else {
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was not valid.";
