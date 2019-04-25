@@ -10,10 +10,11 @@ require 'includes/header.php'; ?>
 <?php
 require_once 'includes/database.php';
 
-echo "<h2>Head of School - Approved Requests</h2>";
 $supervisorApproved = "SELECT v.visitId, v.visitorId, v.summary, v.financialImplications, v.startDate, v.endDate, v.visitAddedDate, v.supervisorApprovedDate, va.fName, va.lName, va.homeInstitution, va.department, va.visitorType, va.visitorTypeExt, v.iprIssues, v.iprFile FROM visit v, user u, school s, visitingAcademic va WHERE v.hostAcademic = u.username AND u.school_id = s.schoolId AND va.visitorId = v.visitorId AND u.school_id = '{$_SESSION['school_id']}' AND v.supervisorApproved LIKE '3' AND v.hostAcademic NOT LIKE '{$_SESSION['username']}' ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
+echo "<h2>Head of School - Approved Requests</h2>";
+
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
         $visitId = $row["visitId"];
@@ -79,7 +80,6 @@ if ($supervisorApprovedresult->num_rows > 0) {
 }
 echo "</div>";
 } else {
-    echo "0 results";
 }
 $link->close();
 

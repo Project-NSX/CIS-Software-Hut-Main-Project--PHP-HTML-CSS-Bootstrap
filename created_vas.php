@@ -27,6 +27,7 @@ if(isset($_POST['delete'])){
 $myVisitors = "SELECT * FROM visitingAcademic WHERE hostAcademic = '{$_SESSION['username']}' ";
 $myVisitorsResult = $link->query($myVisitors);
 if ($myVisitorsResult->num_rows > 0) {
+    $num = 1;
     echo "<div id='accordion'>";
     while ($row = $myVisitorsResult->fetch_assoc()) {
         $id = $row['visitorId']; //no need to be displayed
@@ -51,6 +52,11 @@ if ($myVisitorsResult->num_rows > 0) {
             $visitorTypeShow = $visitorType;}
             ?>
         <form action=created_vas.php method=post>
+        <?php
+        echo "<h2><b>Visiting Academic $num:</b> $title $fName $lName</h2>";
+        $num ++;
+        ?>
+
         <fieldset>
         <legend>Personal Details</legend>
         <div class='row'>

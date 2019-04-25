@@ -20,6 +20,7 @@ require 'includes/header.php'; ?>
 -->
 
 <?php
+//TODO: check sql statements and button clicks
 require_once 'includes/database.php';
 if (isset($_POST['VRAACancel'])) {
     date_default_timezone_set('Europe/London');
@@ -71,10 +72,12 @@ if (isset($_POST['RPFRBSSend'])) {
 
 $currentAcademic = $_SESSION['username'];
 
-echo "<h2>Request(s) Awaiting Action</h2>";
 $awaitingAction = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.iprIssues, v.iprFile  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '0' AND v.hrApproved LIKE '0'  ORDER BY v.visitAddedDate DESC";
 $awaitingActionresult = $link->query($awaitingAction);
 if ($awaitingActionresult->num_rows > 0) {
+    echo "<h2>Request(s) Awaiting Action</h2>";
+
+
     echo "<div id='accordion'>";
     while ($row = $awaitingActionresult->fetch_assoc()) {
         $visitId = $row["visitId"];
@@ -151,13 +154,12 @@ if ($awaitingActionresult->num_rows > 0) {
 }
 echo "</div>";
 } else {
-    echo "0 results";
 }
 
-echo "<h2>Request(s) Approved by Supervisor</h2>";
 $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.iprIssues, v.iprFile FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '0'  ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
+    echo "<h2>Request(s) Approved by Supervisor</h2>";
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
         $visitId = $row["visitId"];
@@ -242,13 +244,12 @@ if ($supervisorApprovedresult->num_rows > 0) {
 }
 echo "</div>";
 } else {
-    echo "0 results";
 }
 
-echo "<h2>Request(s) Denied by Supervisor</h2>";
 $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.supervisorComment, v.iprIssues, v.iprFile FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '1' AND v.hrApproved LIKE '0'  ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
+echo "<h2>Request(s) Denied by Supervisor</h2>";
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
         $visitId = $row["visitId"];
@@ -336,15 +337,15 @@ if ($supervisorApprovedresult->num_rows > 0) {
 }
 echo "</div>";
 } else {
-    echo "0 results";
 }
 
 //TODO: section for ones to be resubmitted
-echo "<h2>Request(s) Approved by Supervisor & HR</h2>";
 $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.iprIssues, v.iprFile  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '3'  ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
-    echo "<div id='accordion'>";
+echo "<h2>Request(s) Approved by Supervisor & HR</h2>";
+
+echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
         $visitId = $row["visitId"];
         $visitorId = $row["visitorId"];
@@ -436,12 +437,12 @@ if ($supervisorApprovedresult->num_rows > 0) {
 }
 echo "</div>";
 } else {
-    echo "0 results";
 }
-echo "<h2>Request(s) Denied by HR</h2>";
 $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.hrComment, v.iprIssues, v.iprFile  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '1'  ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
+echo "<h2>Request(s) Denied by HR</h2>";
+
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
         $visitId = $row["visitId"];
@@ -537,13 +538,13 @@ if ($supervisorApprovedresult->num_rows > 0) {
 }
 echo "</div>";
 } else {
-    echo "0 results";
 }
 
-echo "<h2>Request(s) Prompted for Resubmission by HR </h2>";
 $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.hrComment, v.iprIssues, v.iprFile, va.title, va.street, va.city, va.county, va.postcode  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '2'  ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
+echo "<h2>Request(s) Prompted for Resubmission by HR </h2>";
+
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
         $visitId = $row["visitId"];
@@ -724,14 +725,14 @@ if ($supervisorApprovedresult->num_rows > 0) {
 }
 echo "</div>";
 } else {
-    echo "0 results";
 }
 
 
-echo "<h2>Request(s) Prompted for Resubmission by Supervisor </h2>";
 $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.supervisorComment, v.iprIssues, v.iprFile, va.title, va.street, va.city, va.county, va.postcode  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '2' ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
+echo "<h2>Request(s) Prompted for Resubmission by Supervisor </h2>";
+
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
         $visitId = $row["visitId"];
@@ -899,7 +900,6 @@ if ($supervisorApprovedresult->num_rows > 0) {
 }
 echo "</div>";
 } else {
-    echo "0 results";
 }
 
 
