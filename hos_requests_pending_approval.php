@@ -28,6 +28,18 @@ if (isset($_POST['hosapprove'])) {
     $publish_date = date("Y-m-d H:i:s");
     $ApproveQuery = "UPDATE visit SET supervisorApproved = 3, supervisorUsername = '$uName', supervisorApprovedDate = '$publish_date' WHERE visitId = '$_POST[hidden]'";
     mysqli_query($link, $ApproveQuery);
+
+
+    $mail->Subject = 'Your visit requests has been approved!';
+    $mail->Body = "Your visit request has been approved by the Head Of School: {$uName}";
+
+    $sql = "SELECT u.email FROM user u, visit v where u.username = v.hostAcademic AND v.visitId = '$_POST[hidden]'";
+    $result = $link->query($sql);
+    while ($row = $result->fetch_assoc()) {
+        $email = $row["email"];
+        $mail->addAddress("$email");
+    }
+    $mail->send();
 };
 
 if (isset($_POST['hosdeny'])) {
@@ -36,6 +48,17 @@ if (isset($_POST['hosdeny'])) {
     $publish_date = date("Y-m-d H:i:s");
     $ApproveQuery = "UPDATE visit SET supervisorApproved = 1, supervisorUsername = '$uName', supervisorApprovedDate = '$publish_date' WHERE visitId = '$_POST[hidden]'";
     mysqli_query($link, $ApproveQuery);
+
+    $mail->Subject = 'Your visit requests has been denied!';
+    $mail->Body = "Your visit request has been denied by the Head of School: {$uName}";
+
+    $sql = "SELECT u.email FROM user u, visit v where u.username = v.hostAcademic AND v.visitId = '$_POST[hidden]'";
+    $result = $link->query($sql);
+    while ($row = $result->fetch_assoc()) {
+        $email = $row["email"];
+        $mail->addAddress("$email");
+    }
+    $mail->send();
 };
 
 if (isset($_POST['hosrevise'])) {
@@ -46,6 +69,17 @@ if (isset($_POST['hosrevise'])) {
         $ApproveQuery = "UPDATE visit SET supervisorApproved = 2, supervisorUsername = '$uName', supervisorApprovedDate = '$publish_date', supervisorComment = '$_POST[reasoning]' WHERE visitId = '$_POST[hidden]'";
         mysqli_query($link, $ApproveQuery);
         //TODO: add datetime to hrApprovedDate field
+
+        $mail->Subject = 'Your visit requests requires additional information!';
+        $mail->Body = "Your visit request requires additional information. Please log in to see the information requested by the Head of School: {$uName}";
+
+        $sql = "SELECT u.email FROM user u, visit v where u.username = v.hostAcademic AND v.visitId = '$_POST[hidden]'";
+        $result = $link->query($sql);
+        while ($row = $result->fetch_assoc()) {
+            $email = $row["email"];
+            $mail->addAddress("$email");
+        }
+        $mail->send();
     } else {
         echo "<script language='javascript'> alert('Please provide a reason as to why the user needs to resubmit'); </script>";
     }
@@ -105,9 +139,9 @@ if ($supervisorApprovedresult->num_rows > 0) {
                         <h5 class='card-title'>Date & Time of Initial Submission</h5>
                         <p class='card-text'><?php echo $addedDisplay ?> </p>
                         <?php if ($iprIssues == 1) {
-                                echo "<h5 class='card-title'>IPR Issues File:</h5>";
-                                echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
-                            }
+                            echo "<h5 class='card-title'>IPR Issues File:</h5>";
+                            echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
+                        }
                         ?>
                     </div>
                 </div>

@@ -28,8 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $financialImp = $_POST['financialImp'];
     $inlineRadio1 = $_POST['ipr_issues'];
     $suppervisorVal = 3;
-    $mail = new PHPMailer(true);
 
+    $mail = new PHPMailer(true);
     $mail->isSMTP();
     $mail->Host = 'smtp.hostinger.com';
     $mail->SMTPAuth = true;
@@ -40,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail->setFrom('support@nwsd.online', 'Visitng Academic Form');
     $mail->Subject = 'New visit request that requires your attention';
     $mail->Body = "A visit request has been made by the user: {$hostAcademic}. Please sign into the visiting academic form to respond to this.";
+
     $conn = getDB();
 
     $pathinfo = pathinfo($_FILES['file']['name']);
@@ -94,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $mail->addAddress("$email");
             }
 
-            $mail->addAddress("{$email}");
+
 
         }
 
@@ -109,7 +110,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $mail->addAddress("$email");
             }
 
-            $mail->addAddress("{$email}");
         }
 
         // to get email for hos when academic makes request
@@ -123,7 +123,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $mail->addAddress("$email");
             }
 
-            $mail->addAddress("{$email}");
         }
 
         $mail->send();

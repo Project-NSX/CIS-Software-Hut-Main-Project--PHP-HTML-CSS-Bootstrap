@@ -1,6 +1,15 @@
 <?php $page = 'CMRPA';
-require 'includes/header.php'; ?>
-<!--HTML HERE-->
+require 'includes/header.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'vendor/PHPMailer/src/Exception.php';
+require 'vendor/PHPMailer/src/PHPMailer.php';
+require 'vendor/PHPMailer/src/SMTP.php';
+
+
+
+?>
 <script type="text/javascript">
     function noenter() {
         return !(window.event && window.event.keyCode == 13);
@@ -19,6 +28,16 @@ require 'includes/header.php'; ?>
 <!--TODO: Add the ability to search for an approved request-->
 <?php
 require_once 'includes/database.php';
+$mail = new PHPMailer(true);
+$mail->isSMTP();
+$mail->Host = 'smtp.hostinger.com';
+$mail->SMTPAuth = true;
+$mail->Username = 'support@nwsd.online';
+$mail->Password = 'twNqxeX4okGE';
+$mail->SMTPSecure = 'tls';
+$mail->Port = 587;
+$mail->setFrom('support@nwsd.online', 'Visitng Academic Form');
+
 //TODO: get rid of unecessqary columns and variables
 
 if (isset($_POST['cmapprove'])) {
@@ -27,6 +46,17 @@ if (isset($_POST['cmapprove'])) {
     $publish_date = date("Y-m-d H:i:s");
     $ApproveQuery = "UPDATE visit SET supervisorApproved = 3, supervisorUsername = '$uName', supervisorApprovedDate = '$publish_date' WHERE visitId = '$_POST[hidden]'";
     mysqli_query($link, $ApproveQuery);
+
+    $mail->Subject = 'Your visit requests has been approved!';
+    $mail->Body = "Your visit request has been approved by the College Manager: {$uName}";
+
+    $sql = "SELECT u.email FROM user u, visit v where u.username = v.hostAcademic AND v.visitId = '$_POST[hidden]'";
+    $result = $link->query($sql);
+    while ($row = $result->fetch_assoc()) {
+            $email = $row["email"];
+            $mail->addAddress("$email");
+        }
+        $mail->send();
 };
 
 if (isset($_POST['cmdeny'])) {
@@ -34,7 +64,17 @@ if (isset($_POST['cmdeny'])) {
     date_default_timezone_set('Europe/London');
     $publish_date = date("Y-m-d H:i:s");
     $ApproveQuery = "UPDATE visit SET supervisorApproved = 1, supervisorUsername = '$uName', supervisorApprovedDate = '$publish_date' WHERE visitId = '$_POST[hidden]'";
-    mysqli_query($link, $ApproveQuery);
+
+    $mail->Subject = 'Your visit requests has been approved!';
+    $mail->Body = "Your visit request has been denied by the College Manager: {$uName}";
+
+    $sql = "SELECT u.email FROM user u, visit v where u.username = v.hostAcademic AND v.visitId = '$_POST[hidden]'";
+    $result = $link->query($sql);
+    while ($row = $result->fetch_assoc()) {
+            $email = $row["email"];
+            $mail->addAddress("$email");
+        }
+        $mail->send();
 };
 
 if (isset($_POST['cmrevise'])) {
@@ -45,6 +85,18 @@ if (isset($_POST['cmrevise'])) {
         $ApproveQuery = "UPDATE visit SET supervisorApproved = 2, supervisorUsername = '$uName', supervisorApprovedDate = '$publish_date', supervisorComment = '$_POST[reasoning]' WHERE visitId = '$_POST[hidden]'";
         mysqli_query($link, $ApproveQuery);
         //TODO: add datetime to hrApprovedDate field
+
+        $mail->Subject = 'Your visit requests has been approved!';
+        $mail->Body = "Your visit request requires additional information to be approved. Information is requested by the College Manager: {$uName}. Please log in to see what further information is requested";
+
+        $sql = "SELECT u.email FROM user u, visit v where u.username = v.hostAcademic AND v.visitId = '$_POST[hidden]'";
+        $result = $link->query($sql);
+        while ($row = $result->fetch_assoc()) {
+                $email = $row["email"];
+                $mail->addAddress("$email");
+            }
+            $mail->send();
+
     } else {
         echo "<script language='javascript'> alert('Please provide a reason as to why the user needs to resubmit'); </script>";
     }
