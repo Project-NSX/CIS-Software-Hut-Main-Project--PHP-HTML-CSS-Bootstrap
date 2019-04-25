@@ -1,26 +1,20 @@
+<!-- Variable used to highlight the appropriate button on the navbar -->
 <?php $page = 'HOSRPA';
 require 'includes/header.php'; ?>
-<!--HTML HERE-->
+
+<!--Javascript to stop the form being entered when enter key is pressed-->
 <script type="text/javascript">
     function noenter() {
         return !(window.event && window.event.keyCode == 13);
     }
 </script>
 
-<style>
-    h6 span {
-        display: inline-block;
-        margin-right: 2.5em;
-    }
-</style>
 <h2>Head of School - Pending Requests</h2>
 <?php require 'includes/navbars/nav_picker.php'; ?>
 <!--This page needs to show application pending approval from HR-->
 
 <?php
-//TODO Add functionality to approve and disapprove
 require_once 'includes/database.php';
-//TODO: get rid of unecessqary columns and variables
 
 if (isset($_POST['hosapprove'])) {
     $uName = $_SESSION['username'];
@@ -45,7 +39,6 @@ if (isset($_POST['hosrevise'])) {
         $publish_date = date("Y-m-d H:i:s");
         $ApproveQuery = "UPDATE visit SET supervisorApproved = 2, supervisorUsername = '$uName', supervisorApprovedDate = '$publish_date', supervisorComment = '$_POST[reasoning]' WHERE visitId = '$_POST[hidden]'";
         mysqli_query($link, $ApproveQuery);
-        //TODO: add datetime to hrApprovedDate field
     } else {
         echo "<script language='javascript'> alert('Please provide a reason as to why the user needs to resubmit'); </script>";
     }
@@ -57,7 +50,6 @@ $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
-        //name, home inst, visit summary, financial imp, visitor type, start & end date
         $visitId = $row["visitId"];
         $visitorId = $row["visitorId"];
         $headingId = "heading" . $visitId . $visitorId;

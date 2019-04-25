@@ -1,25 +1,19 @@
+<!-- Variable used to highlight the appropriate button on the navbar -->
 <?php $page = 'CMRPA';
 require 'includes/header.php'; ?>
-<!--HTML HERE-->
+
+<!--Javascript to stop the form being entered when enter key is pressed-->
 <script type="text/javascript">
     function noenter() {
         return !(window.event && window.event.keyCode == 13);
     }
 </script>
-<style>
-    h6 span {
-        display: inline-block;
-        margin-right: 2.5em;
-    }
-</style>
+
 <h2>College Manager - Requests Pending Approval</h2>
 <?php require 'includes/navbars/nav_picker.php'; ?>
-<!--This page should show all requests approved by the CM-->
-<!--TODO:  Make this page display a table of approved requests -->
 <!--TODO: Add the ability to search for an approved request-->
 <?php
 require_once 'includes/database.php';
-//TODO: get rid of unecessqary columns and variables
 
 if (isset($_POST['cmapprove'])) {
     $uName = $_SESSION['username'];
@@ -44,7 +38,6 @@ if (isset($_POST['cmrevise'])) {
         $publish_date = date("Y-m-d H:i:s");
         $ApproveQuery = "UPDATE visit SET supervisorApproved = 2, supervisorUsername = '$uName', supervisorApprovedDate = '$publish_date', supervisorComment = '$_POST[reasoning]' WHERE visitId = '$_POST[hidden]'";
         mysqli_query($link, $ApproveQuery);
-        //TODO: add datetime to hrApprovedDate field
     } else {
         echo "<script language='javascript'> alert('Please provide a reason as to why the user needs to resubmit'); </script>";
     }

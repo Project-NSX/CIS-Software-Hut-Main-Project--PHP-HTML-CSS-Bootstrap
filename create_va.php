@@ -1,3 +1,4 @@
+<!-- Variable used to highlight the appropriate button on the navbar -->
 <?php $page ='CVa'; require 'includes/header.php';?>
 <?php require 'includes/database.php';?>
 <!--HTML HERE-->
@@ -70,7 +71,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <select name="visitor_type" class="form-control" onchange='CheckVisitorTypeDropDown(this.value);' style="margin:0px 0px 10px 0px" required>
             <option value="Undergraduate">Undergraduate</option>
             <option value="PhD Student">PhD Student</option>
-            <!--TODO: If "visitng Academic (position)"" or "Other (Specify)"" is selected, add the "required" option to visitor_type_ext-->
             <option value="Academic">Visiting Academic (Position)</option>
             <option value="Other">Other (Specify)</option>
         </select>

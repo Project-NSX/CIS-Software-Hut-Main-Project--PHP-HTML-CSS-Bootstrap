@@ -1,3 +1,4 @@
+<!-- Variable used to highlight the appropriate button on the navbar -->
 <?php $page = 'CV';
 require 'includes/header.php'; ?>
 <?php require 'includes/database.php'; ?>
@@ -192,11 +193,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="custom-file" id="ipr_issues_ext" style='display:none;'>
             <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
             <input type="file" class="custom-file-input" id="file" name="file">
-            <!-- <input type="file" class="custom-file-input" id="inputGroupFile01" name="file" aria-describedby="inputGroupFileAddon01"> -->
         </div>
-
-        <!-- <input type="text" id="ipr_issues_ext" name="ipr_issues_ext" class="form-control" style='display:none;'/> -->
-        <!--TODO: Make attachment icon and message show if "yes" is selected above-->
     </fieldset>
 
     <fieldset>

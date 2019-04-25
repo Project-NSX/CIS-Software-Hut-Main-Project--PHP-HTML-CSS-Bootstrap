@@ -1,28 +1,19 @@
+<!-- Variable used to highlight the appropriate button on the navbar -->
 <?php $page = 'home';
 require 'includes/header.php'; ?>
-<!--HTML HERE-->
 
-<!--disables enter on form-->
+<!--Javascript to stop the form being entered when enter key is pressed-->
 <script type="text/javascript">
     function noenter() {
         return !(window.event && window.event.keyCode == 13);
     }
 </script>
 
-<style>
-    h6 span {
-        display: inline-block;
-        margin-right: 2.5em;
-    }
-</style>
 <h2>Human Resources - Applications Pending Approval</h2>
 <?php require 'includes/navbars/nav_picker.php'; ?>
-<!--This page needs to show application pending approval from HR-->
 
 <?php
-//TODO Add functionality to approve and disapprove
 require_once 'includes/database.php';
-//TODO: get rid of unecessqary columns and variables
 if (isset($_POST['approve'])) {
     $uName = $_SESSION['username'];
     date_default_timezone_set('Europe/London');
@@ -46,7 +37,6 @@ if (isset($_POST['revise'])) {
         $publish_date = date("Y-m-d H:i:s");
         $ApproveQuery = "UPDATE visit SET hrApproved = 2, hrUsername = '$uName', hrApprovedDate = '$publish_date', hrComment = '$_POST[reasoning]' WHERE visitId = '$_POST[hidden]'";
         mysqli_query($link, $ApproveQuery);
-        //TODO: add datetime to hrApprovedDate field
     } else {
         echo "<script language='javascript'> alert('Please provide a reason as to why the user needs to resubmit'); </script>";
     }

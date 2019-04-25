@@ -1,12 +1,8 @@
+<!-- Variable used to highlight the appropriate button on the navbar -->
 <?php $page = 'VC';
 require 'includes/header.php'; ?>
 <!--HTML HERE-->
-<style>
-    h6 span {
-        display: inline-block;
-        margin-right: 2.5em;
-    }
-</style>
+
 <h2>Completed Visits</h2>
 <?php require 'includes/navbars/nav_picker.php'; ?>
 
