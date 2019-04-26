@@ -1,6 +1,8 @@
 <!-- Variable to be used to highlight appropriate button in navbar -->
 <?php $page = 'home';
-require 'includes/header.php'; ?>
+require 'includes/header.php';
+require 'includes/deny_hr_role.php' // Redirects users with the "Human Resources" role to prevent access to this page
+?>
 <!--Javascript to disable Enter key from submitting-->
 <script type="text/javascript">
     function noenter() {
@@ -75,14 +77,12 @@ if (isset($_POST['RPFRBHRSend'])) {
         if (move_uploaded_file($_FILES['file']['tmp_name'], $destination)) {
             $iprBool = 1;
             $RPFRBHRSendQuery = "UPDATE visit SET visitAddedDate = '$publish_date', startDate = '$s_date', endDate = '$e_date', summary = '$summary', financialImplications = '$financialImp', iprIssues = '$iprBool', iprFile = '$filename', supervisorApproved = 0, supervisorUsername = NULL, supervisorApprovedDate = NULL, supervisorCOmment = NULL, hrApproved = 0, hrUsername = NULL, hrApprovedDate = NULL, hrComment = NULL WHERE visitId = '$_POST[hiddenRPFRBHR]'";
-
         }
     }
-    if($iprBool != 1){
+    if ($iprBool != 1) {
 
         $iprBool = 0;
         $RPFRBHRSendQuery = "UPDATE visit SET visitAddedDate = '$publish_date', startDate = '$s_date', endDate = '$e_date', summary = '$summary', financialImplications = '$financialImp', iprIssues = '$iprBool', iprFile = NULL, supervisorApproved = 0, supervisorUsername = NULL, supervisorApprovedDate = NULL, supervisorCOmment = NULL, hrApproved = 0, hrUsername = NULL, hrApprovedDate = NULL, hrComment = NULL WHERE visitId = '$_POST[hiddenRPFRBHR]'";
-
     }
     mysqli_query($link, $RPFRBHRSendQuery);
 };
@@ -114,10 +114,7 @@ if (isset($_POST['RPFRBSSend'])) {
         if (move_uploaded_file($_FILES['file']['tmp_name'], $destination)) {
             $iprBool = 1;
         }
-
-
-    }
-    else{
+    } else {
         $iprBool = 0;
         $filename = null;
     }
@@ -268,25 +265,29 @@ if ($supervisorApprovedresult->num_rows > 0) {
 
                 <p>Are there IPR issues with the visit? <b>NOTICE:</b> File must be uploaded again!</p>
                 <?php if ($iprIssues == 1) {
-                echo "<p class='card-title'><b>Current File:</b> <a href='ipr/$iprFile' download>$iprFile</a></p>";
-                }?>
+                    echo "<p class='card-title'><b>Current File:</b> <a href='ipr/$iprFile' download>$iprFile</a></p>";
+                } ?>
 
                 <div class="form-check-inline">
-                <label class="form-check-label" for="radio1">
-                <input type="radio" class="form-check-input" id="radio1" name="ipr_issues" value="yes" onchange='CheckIPR(this.value);' <?php if($iprIssues == 1){echo "checked";}?>>Yes
-                </label>
+                    <label class="form-check-label" for="radio1">
+                        <input type="radio" class="form-check-input" id="radio1" name="ipr_issues" value="yes" onchange='CheckIPR(this.value);' <?php if ($iprIssues == 1) {
+                                                                                                                                                    echo "checked";
+                                                                                                                                                } ?>>Yes
+                    </label>
                 </div>
                 <div class="form-check-inline">
-                <label class="form-check-label" for="radio2">
-                <input type="radio" class="form-check-input" id="radio1" name="ipr_issues" value="no" onchange='CheckIPR(this.value);' <?php if($iprIssues != 1){echo "checked";}?>>No
-                </label>
+                    <label class="form-check-label" for="radio2">
+                        <input type="radio" class="form-check-input" id="radio1" name="ipr_issues" value="no" onchange='CheckIPR(this.value);' <?php if ($iprIssues != 1) {
+                                                                                                                                                    echo "checked";
+                                                                                                                                                } ?>>No
+                    </label>
                 </div>
 
 
 
 
                 <div class="custom-file" id="ipr_issues_ext" <?php ?>>
-                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
 
                     <input type="file" class="custom-file-input" id="file" name="file">
 
@@ -447,7 +448,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
 
                 <p>Are there IPR issues with the visit? <b>NOTICE:</b> File must be uploaded again!</p>
                 <?php if ($iprIssues == 1) {
-                 echo "<p class='card-title'><b>Current File:</b> <a href='ipr/$iprFile' download>$iprFile</a></p>";
+                    echo "<p class='card-title'><b>Current File:</b> <a href='ipr/$iprFile' download>$iprFile</a></p>";
                 }
 
                 ?>
@@ -462,9 +463,8 @@ if ($supervisorApprovedresult->num_rows > 0) {
                     <label class="form-check-label" for="inlineRadio1">No</label>
                 </div>
 
-                <div class="custom-file" id="ipr_issues_ext" <? php
-                                                                ?>>
-                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                <div class="custom-file" id="ipr_issues_ext" <? php ?>>
+                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
 
                     <input type="file" class="custom-file-input" id="file" name="file">
 
