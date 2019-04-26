@@ -78,7 +78,7 @@ if (isset($_POST['hosrevise'])) {
         $uName = $_SESSION['username'];
         date_default_timezone_set('Europe/London');
         $publish_date = date("Y-m-d H:i:s");
-        $ApproveQuery = "UPDATE visit SET supervisorApproved = 2, supervisorUsername = '$uName', supervisorApprovedDate = '$publish_date', supervisorComment = '$_POST[reasoning]' WHERE visitId = '$_POST[hidden]'";
+        $ApproveQuery = "UPDATE visit SET supervisorApproved = 2, supervisorUsername = '$uName', supervisorApprovedDate = '$publish_date', supervisorComment = 'htmlspecialchars($_POST[reasoning])' WHERE visitId = '$_POST[hidden]'";
         mysqli_query($link, $ApproveQuery);
         //TODO: add datetime to hrApprovedDate field
 
@@ -110,14 +110,14 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $headingId = "heading" . $visitId . $visitorId;
         $collapseId = "collapse" . $visitId . $visitorId;
         $collapseIdHash = "#collapse" . $visitId . $visitorId;
-        $fName = $row["fName"];
-        $lName = $row["lName"];
-        $homeInt = $row["homeInstitution"];
-        $department = $row["department"];
-        $summary = $row["summary"];
-        $financialImp = $row["financialImplications"]; //done
+        $fName = htmlspecialchars($row["fName"]);
+        $lName = htmlspecialchars($row["lName"]);
+        $homeInt = htmlspecialchars($row["homeInstitution"]);
+        $department = htmlspecialchars($row["department"]);
+        $summary = htmlspecialchars($row["summary"]);
+        $financialImp = htmlspecialchars($row["financialImplications"]); //done
         $visitorType = $row["visitorType"]; //done
-        $visitorTypeEXT = $row["visitorTypeExt"]; //done
+        $visitorTypeEXT = htmlspecialchars($row["visitorTypeExt"]); //done
         $visitStart = $row["startDate"]; //done
         $visitEnd = $row["endDate"]; //done
         $Dateadded = $row["visitAddedDate"];

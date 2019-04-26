@@ -26,9 +26,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hostAcademic = $_SESSION['username'];
     $s_date = $_POST['s_date'];
     $e_date = $_POST['e_date'];
-    $summary = $_POST['summary'];
-    $financialImp = $_POST['financialImp'];
-    $inlineRadio1 = $_POST['ipr_issues'];
+    $summary = htmlspecialchars($_POST['summary']);
+    $financialImp = htmlspecialchars($_POST['financialImp']);
+    $inlineRadio1 = htmlspecialchars($_POST['ipr_issues']);
     $suppervisorVal = 3;
 
     $mail = new PHPMailer(true);
@@ -139,8 +139,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php
             while ($rows = $populatingVisitorDropDown->fetch_assoc()) {
                 $visitorId = $rows['visitorId'];
-                $fName = $rows['fName'];
-                $lName = $rows['lName'];
+                $fName = htmlspecialchars($rows['fName']);
+                $lName = htmlspecialchars($rows['lName']);
                 $fullName = $fName . ' ' . $lName;
                 echo "<option value='$visitorId'>$visitorId $fullName</option>";
             }
