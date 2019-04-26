@@ -1,0 +1,12 @@
+Problem with the alternator could be a failed diode (failed closed).
+If it is replacting the alternator rectifier will fix it, if not it could be a problem with the regulator. Not sure though, testing it will give a better answer than my guess.
+Just hoping that if a diode has failed closed it hasn't recked the battery, but again testing it will say more than me guessing.
+
+- Alternator Rectifier
+- Alternator Regulator
+
+- Engine Ground wire
+- Battery terminal wires
+- Fuse
+- ELD
+- 
