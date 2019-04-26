@@ -1,10 +1,8 @@
 <!-- Variable used to highlight the appropriate button on the navbar -->
 <?php $page = 'CMDR';
-
-require 'includes/header.php';
 require 'includes/verify_cm_role.php'; // Redirect if the user is not logged in as a college manager.
-?>
-
+require 'includes/header.php'; ?>
+<!--HTML HERE-->
 
 <h2>College Manager - Denied Requests</h2>
 <?php require 'includes/navbars/nav_picker.php'; ?>
