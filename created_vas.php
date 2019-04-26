@@ -1,15 +1,15 @@
-<?php $page = 'CVas'; require 'includes/header.php';?>
-<!--HTML HERE-->
+<!-- Variable used to highlight the appropriate button on the navbar -->
+<?php $page = 'CVas';
+require 'includes/header.php';?>
 
+<!--Javascript to stop the form being entered when enter key is pressed-->
 <script type="text/javascript">
 function noenter() {
   return !(window.event && window.event.keyCode == 13); }
 </script>
+
 <h2>My Visitors</h2>
 <?php require'includes/navbars/nav_picker.php';?>
-<!--This Page will show all of the VA's created by the logged in user. It will contain the functionality to edit / delete added VA's-->
-<!--TODO: Format the rows-->
-<!--TODO: Make each Visitor editable using the link below, this should pass the Visitor ID (possibly in the URL) to get the details of the visitor-->
 
 <?php
 require_once'includes/database.php';
@@ -27,6 +27,7 @@ if(isset($_POST['delete'])){
 $myVisitors = "SELECT * FROM visitingAcademic WHERE hostAcademic = '{$_SESSION['username']}' ";
 $myVisitorsResult = $link->query($myVisitors);
 if ($myVisitorsResult->num_rows > 0) {
+    $num = 1;
     echo "<div id='accordion'>";
     while ($row = $myVisitorsResult->fetch_assoc()) {
         $id = $row['visitorId']; //no need to be displayed
@@ -51,6 +52,11 @@ if ($myVisitorsResult->num_rows > 0) {
             $visitorTypeShow = $visitorType;}
             ?>
         <form action=created_vas.php method=post>
+        <?php
+        echo "<h2><b>Visiting Academic $num:</b> $title $fName $lName</h2>";
+        $num ++;
+        ?>
+
         <fieldset>
         <legend>Personal Details</legend>
         <div class='row'>
@@ -73,10 +79,22 @@ if ($myVisitorsResult->num_rows > 0) {
             <option value="Colonel" <?php if ($title === 'Colonel'){echo "selected";}?>>Colonel</option>
         </select>
         </div>
-        <div class='col-sm-2'><b>First Name:</b></div>
-        <div class='col-sm-2'> <input type=text name=fName class="form-control" value="<?php echo $fName?>" readonly onkeypress="return noenter()" required></div>
-        <div class='col-sm-2'><b>Last Name:</b></div>
-        <div class='col-sm-2'> <input type=text name=lName class="form-control" value="<?php echo $lName?>" readonly onkeypress="return noenter()" required></div>
+        <?php
+        $sql = "SELECT count(*) AS 'No' FROM visit WHERE visitorId = '$id' GROUP BY 'visitorId'";
+        $result = $link->query($sql);
+        if ($result->num_rows > 0){
+            echo "<div class='col-sm-2'><b>First Name:</b></div>";
+            echo "<div class='col-sm-2'> <input type=text name=fName class='form-control' value='$fName' disabled onkeypress='return noenter()' required></div>";
+            echo "<div class='col-sm-2'><b>Last Name:</b></div>";
+            echo "<div class='col-sm-2'> <input type=text name=lName class='form-control' value='$lName' disabled onkeypress='return noenter()' required></div>";
+        }else{
+            echo "<div class='col-sm-2'><b>First Name:</b></div>";
+            echo "<div class='col-sm-2'> <input type=text name=fName class='form-control' value='$fName'  onkeypress='return noenter()' required></div>";
+            echo "<div class='col-sm-2'><b>Last Name:</b></div>";
+            echo "<div class='col-sm-2'> <input type=text name=lName class='form-control' value='$lName' onkeypress='return noenter()' required></div>";
+        }
+        ?>
+
         </div>
         </fieldset>
 
@@ -130,7 +148,7 @@ if ($myVisitorsResult->num_rows > 0) {
         <div class="row">
 
         <?php
-        
+
 
         $sql = "SELECT count(*) AS 'No' FROM visit WHERE visitorId = '$id' GROUP BY 'visitorId'";
         $result = $link->query($sql);
@@ -142,7 +160,7 @@ if ($myVisitorsResult->num_rows > 0) {
             echo "<div class='col-sm'><input type=submit name=delete value=Delete class='btn btn-danger' style='width:100%'></div>";
         }
 
-                
+
             ?>
 
         <input type=hidden name=hidden value=<?php echo $id?>>
@@ -161,4 +179,3 @@ if ($myVisitorsResult->num_rows > 0) {
 }
 ?>
 <?php require 'includes/footer.php';?>
-<!--TODO: Disable delete if the va is used in a viist-->

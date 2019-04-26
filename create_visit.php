@@ -1,3 +1,4 @@
+<!-- Variable used to highlight the appropriate button on the navbar -->
 <?php $page = 'CV';
 require 'includes/header.php'; ?>
 <?php require 'includes/database.php'; ?>
@@ -11,7 +12,6 @@ require 'vendor/PHPMailer/src/SMTP.php';
 
 ?>
 
-<!--HTML HERE-->
 <h2>Create a Visit</h2>
 <?php require 'includes/navbars/nav_picker.php'; ?>
 
@@ -59,7 +59,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (move_uploaded_file($_FILES['file']['tmp_name'], $destination)) {
-        echo 'alert("File uploaded successfully")';
         $iprBool = 1;
     } else {
 
@@ -191,11 +190,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="custom-file" id="ipr_issues_ext" style='display:none;'>
             <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
             <input type="file" class="custom-file-input" id="file" name="file">
-            <!-- <input type="file" class="custom-file-input" id="inputGroupFile01" name="file" aria-describedby="inputGroupFileAddon01"> -->
         </div>
-
-        <!-- <input type="text" id="ipr_issues_ext" name="ipr_issues_ext" class="form-control" style='display:none;'/> -->
-        <!--TODO: Make attachment icon and message show if "yes" is selected above-->
     </fieldset>
 
     <fieldset>

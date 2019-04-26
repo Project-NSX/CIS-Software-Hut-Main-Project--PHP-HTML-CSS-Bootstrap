@@ -1,27 +1,38 @@
+<!-- Variable used to highlight the appropriate button on the navbar -->
 <?php $page = 'HOSRPA';
 require 'includes/verify_hos_role.php'; // Redirect if the user is not logged in as a head of school.
 require 'includes/header.php'; ?>
-<!--HTML HERE-->
+
+<!--Javascript to stop the form being entered when enter key is pressed-->
 <script type="text/javascript">
     function noenter() {
         return !(window.event && window.event.keyCode == 13);
     }
 </script>
 
-<style>
-    h6 span {
-        display: inline-block;
-        margin-right: 2.5em;
-    }
-</style>
 <h2>Head of School - Pending Requests</h2>
 <?php require 'includes/navbars/nav_picker.php'; ?>
 <!--This page needs to show application pending approval from HR-->
 
 <?php
-//TODO Add functionality to approve and disapprove
 require_once 'includes/database.php';
-//TODO: get rid of unecessqary columns and variables
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'vendor/PHPMailer/src/Exception.php';
+require 'vendor/PHPMailer/src/PHPMailer.php';
+require 'vendor/PHPMailer/src/SMTP.php';
+
+$mail = new PHPMailer(true);
+$mail->isSMTP();
+$mail->Host = 'smtp.hostinger.com';
+$mail->SMTPAuth = true;
+$mail->Username = 'support@nwsd.online';
+$mail->Password = 'twNqxeX4okGE';
+$mail->SMTPSecure = 'tls';
+$mail->Port = 587;
+$mail->setFrom('support@nwsd.online', 'Visitng Academic Form');
+
 
 if (isset($_POST['hosapprove'])) {
     $uName = $_SESSION['username'];
@@ -29,7 +40,6 @@ if (isset($_POST['hosapprove'])) {
     $publish_date = date("Y-m-d H:i:s");
     $ApproveQuery = "UPDATE visit SET supervisorApproved = 3, supervisorUsername = '$uName', supervisorApprovedDate = '$publish_date' WHERE visitId = '$_POST[hidden]'";
     mysqli_query($link, $ApproveQuery);
-
 
     $mail->Subject = 'Your visit requests has been approved!';
     $mail->Body = "Your visit request has been approved by the Head Of School: {$uName}";
@@ -71,6 +81,7 @@ if (isset($_POST['hosrevise'])) {
         mysqli_query($link, $ApproveQuery);
         //TODO: add datetime to hrApprovedDate field
 
+
         $mail->Subject = 'Your visit requests requires additional information!';
         $mail->Body = "Your visit request requires additional information. Please log in to see the information requested by the Head of School: {$uName}";
 
@@ -86,13 +97,13 @@ if (isset($_POST['hosrevise'])) {
     }
 };
 
-echo "<h2>Head of School - Pending Requests</h2>";
 $supervisorApproved = "SELECT v.visitId, v.visitorId, v.summary, v.financialImplications, v.startDate, v.endDate, v.visitAddedDate, va.fName, va.lName, va.homeInstitution, va.department, va.visitorType, va.visitorTypeExt, v.iprIssues, v.iprFile FROM visit v, user u, school s, visitingAcademic va WHERE v.hostAcademic = u.username AND u.school_id = s.schoolId AND va.visitorId = v.visitorId AND u.school_id = '{$_SESSION['school_id']}' AND v.supervisorApproved LIKE '0' AND v.hostAcademic NOT LIKE '{$_SESSION['username']}' ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
+echo "<h2>Head of School - Pending Requests</h2>";
+
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
-        //name, home inst, visit summary, financial imp, visitor type, start & end date
         $visitId = $row["visitId"];
         $visitorId = $row["visitorId"];
         $headingId = "heading" . $visitId . $visitorId;
@@ -173,7 +184,6 @@ if ($supervisorApprovedresult->num_rows > 0) {
 }
 echo "</div>";
 } else {
-    echo "0 results";
 }
 $link->close();
 
