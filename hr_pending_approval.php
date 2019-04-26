@@ -1,7 +1,9 @@
 <!-- Variable used to highlight the appropriate button on the navbar -->
 <?php $page = 'home';
-require 'includes/verify_hr_role.php'; // Redirect if the user is not logged in as a HR user.
+
 require 'includes/header.php';
+require 'includes/verify_hr_role.php'; // Redirect if the user is not logged in as a HR user.
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
