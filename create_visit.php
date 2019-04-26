@@ -29,9 +29,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hostAcademic = $_SESSION['username'];
     $s_date = $_POST['s_date'];
     $e_date = $_POST['e_date'];
-    $summary = $_POST['summary'];
-    $financialImp = $_POST['financialImp'];
-    $inlineRadio1 = $_POST['ipr_issues'];
+    $summary = htmlspecialchars($_POST['summary']);
+    $financialImp = htmlspecialchars($_POST['financialImp']);
+    $inlineRadio1 = htmlspecialchars($_POST['ipr_issues']);
     $suppervisorVal = 3;
 
     //initialise phpMailer to send emails
@@ -91,42 +91,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // If Statement executes properly.
     if (mysqli_stmt_execute($stmt)) {
 
-            if ($_SESSION["role"] === "College Manager") {
-                $sql = "SELECT email FROM user where role = 'Human Resources'";
-                $result = $link->query($sql);
-                while ($row = $result->fetch_assoc()) {
-                        $email = $row["email"];
-                        $mail->addAddress("$email");
-                    }
+        if ($_SESSION["role"] === "College Manager") {
+            $sql = "SELECT email FROM user where role = 'Human Resources'";
+            $result = $link->query($sql);
+            while ($row = $result->fetch_assoc()) {
+                $email = $row["email"];
+                $mail->addAddress("$email");
             }
+        }
 
-            // to get email for cm when hos makes request
-            if ($_SESSION["role"] === "Head Of School") {
-                $hosid = $_SESSION["college_id"];
-                $sql = "SELECT email FROM user where college_id = '$hosid' AND role = 'College Manager'";
-                $result = $link->query($sql);
-                while ($row = $result->fetch_assoc()) {
-                        $email = $row["email"];
-                        $mail->addAddress("$email");
-                    }
+        // to get email for cm when hos makes request
+        if ($_SESSION["role"] === "Head Of School") {
+            $hosid = $_SESSION["college_id"];
+            $sql = "SELECT email FROM user where college_id = '$hosid' AND role = 'College Manager'";
+            $result = $link->query($sql);
+            while ($row = $result->fetch_assoc()) {
+                $email = $row["email"];
+                $mail->addAddress("$email");
             }
+        }
 
-            // to get email for hos when academic makes request
-            if ($_SESSION["role"] === "Academic") {
-                $aid = $_SESSION["school_id"];
-                $sql = "SELECT email FROM user where school_id = '$aid' AND role = 'Head Of School'";
-                $result = $link->query($sql);
-                while ($row = $result->fetch_assoc()) {
-                        $email = $row["email"];
-                        $mail->addAddress("$email");
-                    }
+        // to get email for hos when academic makes request
+        if ($_SESSION["role"] === "Academic") {
+            $aid = $_SESSION["school_id"];
+            $sql = "SELECT email FROM user where school_id = '$aid' AND role = 'Head Of School'";
+            $result = $link->query($sql);
+            while ($row = $result->fetch_assoc()) {
+                $email = $row["email"];
+                $mail->addAddress("$email");
             }
+        }
 
-            $mail->send();
+        $mail->send();
 
 
-            require 'includes/user_redirect.php';
-        } else {
+        require 'includes/user_redirect.php';
+    } else {
         echo mysqli_stmt_error($stmt);
     }
 }
@@ -144,8 +144,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php
             while ($rows = $populatingVisitorDropDown->fetch_assoc()) {
                 $visitorId = $rows['visitorId'];
-                $fName = $rows['fName'];
-                $lName = $rows['lName'];
+                $fName = htmlspecialchars($rows['fName']);
+                $lName = htmlspecialchars($rows['lName']);
                 $fullName = $fName . ' ' . $lName;
                 echo "<option value='$visitorId'>$visitorId $fullName</option>";
             }

@@ -1,7 +1,8 @@
 <!-- Variable used to highlight the appropriate button on the navbar -->
 <?php $page = 'HOSDR';
 require 'includes/header.php';
-require 'includes/verify_hos_role.php'; // Redirect if the user is not logged in as a head of school. ?>
+require 'includes/verify_hos_role.php';
+?>
 <!--HTML HERE-->
 
 <h2>Head of School - Denied Requests</h2>
@@ -85,8 +86,7 @@ echo "<h2>Head of School - Outright Denied Requests</h2>";
     <?php
 }
 echo "</div>";
-} else {
-}
+} else { }
 $link->close();
 
 ?>

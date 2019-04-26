@@ -27,13 +27,13 @@ if ($supervisorDeniedresult->num_rows > 0) {
         $headingId = "heading" . $visitId . $visitorId;
         $collapseId = "collapse" . $visitId . $visitorId;
         $collapseIdHash = "#collapse" . $visitId . $visitorId;
-        $fName = $row["fName"];
-        $lName = $row["lName"];
-        $homeInt = $row["homeInstitution"];
-        $department = $row["department"];
-        $email = $row["email"];
-        $phone = $row["phoneNumber"];
-        $summary = $row["summary"];
+        $fName = htmlspecialchars($row["fName"]);
+        $lName = htmlspecialchars($row["lName"]);
+        $homeInt = htmlspecialchars($row["homeInstitution"]);
+        $department = htmlspecialchars($row["department"]);
+        $email = htmlspecialchars($row["email"]);
+        $phone = htmlspecialchars($row["phoneNumber"]);
+        $summary = htmlspecialchars($row["summary"]);
         $visitAdded = $row["visitAddedDate"];
         $financialImp = $row["financialImplications"];
         $visitorType = $row["visitorType"];
@@ -51,8 +51,8 @@ if ($supervisorDeniedresult->num_rows > 0) {
         $hrApproved = $row["hrApprovedDate"];
         $hrUname = $row["hrUsername"];
         $hrApprovedDate = $row["hrApprovedDate"];
-        $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate)); //Convert date to how we need it to be displayed
-        $hrComment = $row['hrComment'];
+        $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate));//Convert date to how we need it to be displayed
+        $hrComment = htmlspecialchars($row['hrComment']);
         $iprIssues = $row['iprIssues'];
         $iprFile = $row['iprFile'];
         ?>

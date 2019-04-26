@@ -136,9 +136,9 @@ if ($supervisorApprovedresult->num_rows > 0) {
         <div class="card">
             <div class="card-header" id="<?php echo $headingId ?>" <button id="button1" class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
                 <div class="row">
-                    <div class='col-sm'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
-                    <div class='col-sm'><b>Home Institution: </b> <?php echo $homeInt ?></div>
-                    <div class='col-sm'><b>Home Department: </b> <?php echo $department ?></div>
+                    <div class='col-sm'><b>Name: </b> <?php echo htmlspecialchars($fName) . " " . htmlspecialchars($lName) ?></div>
+                    <div class='col-sm'><b>Home Institution: </b> <?php echo htmlspecialchars($homeInt) ?></div>
+                    <div class='col-sm'><b>Home Department: </b> <?php echo htmlspecialchars($department) ?></div>
                 </div>
                 <div class="row">
                     <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
@@ -148,16 +148,16 @@ if ($supervisorApprovedresult->num_rows > 0) {
                 <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
                     <div class="card-body">
                         <h5 class='card-title'>Visit Summary</h5>
-                        <p class='card-text'><?php echo $summary ?></p>
+                        <p class='card-text'><?php echo htmlspecialchars($summary) ?></p>
                         <h5 class='card-title'>Financial Implications</h5>
-                        <p class='card-text'><?php echo $financialImp ?></p>
+                        <p class='card-text'><?php echo htmlspecialchars($financialImp) ?></p>
                         <h5 class='card-title'>Visitor Type</h5>
-                        <p class='card-text'><?php echo $visitorType ?> &#8195; <?php echo $visitorTypeEXT ?></p>
+                        <p class='card-text'><?php echo $visitorType ?> &#8195; <?php echo htmlspecialchars($visitorTypeEXT) ?></p>
                         <h5 class='card-title'>Visit Start & End Dates</h5>
                         <p class='card-text'><b>Start:</b> <?php echo $startDisplay ?> &#8195; <b>End:</b> <?php echo $endDisplay ?></p>
                         <h5 class='card-title'>Date & Time of Initial Submission</h5>
                         <p class='card-text'><?php echo $addedDisplay ?> </p>
-                    <!-- if there is a ipr issue in the database, display the file by allowing the user to download it -->
+                        <!-- if there is a ipr issue in the database, display the file by allowing the user to download it -->
                         <?php if ($iprIssues == 1) {
                             echo "<h5 class='card-title'>IPR Issues File:</h5>";
                             echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";

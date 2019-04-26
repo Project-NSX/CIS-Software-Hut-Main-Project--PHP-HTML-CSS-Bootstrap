@@ -89,7 +89,7 @@ if (isset($_POST['RPFRBHRSend'])) {
             $RPFRBHRSendQuery = "UPDATE visit SET visitAddedDate = '$publish_date', startDate = '$s_date', endDate = '$e_date', summary = '$summary', financialImplications = '$financialImp', iprIssues = '$iprBool', iprFile = '$filename', supervisorApproved = 0, supervisorUsername = NULL, supervisorApprovedDate = NULL, supervisorCOmment = NULL, hrApproved = 0, hrUsername = NULL, hrApprovedDate = NULL, hrComment = NULL WHERE visitId = '$_POST[hiddenRPFRBHR]'";
         }
     }
-    if($iprBool != 1){
+    if ($iprBool != 1) {
         $iprBool = 0;
         $RPFRBHRSendQuery = "UPDATE visit SET visitAddedDate = '$publish_date', startDate = '$s_date', endDate = '$e_date', summary = '$summary', financialImplications = '$financialImp', iprIssues = '$iprBool', iprFile = NULL, supervisorApproved = 0, supervisorUsername = NULL, supervisorApprovedDate = NULL, supervisorCOmment = NULL, hrApproved = 0, hrUsername = NULL, hrApprovedDate = NULL, hrComment = NULL WHERE visitId = '$_POST[hiddenRPFRBHR]'";
     }
@@ -101,7 +101,7 @@ if (isset($_POST['RPFRBSSend'])) {
     $publish_date = date("Y-m-d H:i:s");
     $s_date = $_POST['s_date'];
     $e_date = $_POST['e_date'];
-    $summary = $_POST['summary'];
+    $summary = htmlspecialchars($_POST['summary']);
     $financialImp = $_POST['financialImp'];
 
     if (!empty($_FILES['file']['name'])) {
@@ -138,24 +138,24 @@ if ($supervisorApprovedresult->num_rows > 0) {
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
         $visitId = $row["visitId"];
         $visitorId = $row["visitorId"];
-        $fName = $row["fName"]; //
-        $lName = $row["lName"]; //
+        $fName = htmlspecialchars($row["fName"]); //
+        $lName = htmlspecialchars($row["lName"]); //
         $title = $row["title"]; //
-        $homeInstitution = $row["homeInstitution"]; //
-        $department = $row["department"]; //
-        $street = $row["street"]; //
-        $city = $row["city"]; //
-        $county = $row["county"]; //
-        $postcode = $row["postcode"]; //
-        $email = $row["email"]; //
-        $phoneNumber = $row["phoneNumber"]; //
+        $homeInstitution = htmlspecialchars($row["homeInstitution"]); //
+        $department = htmlspecialchars($row["department"]); //
+        $street = htmlspecialchars($row["street"]); //
+        $city = htmlspecialchars($row["city"]); //
+        $county = htmlspecialchars($row["county"]); //
+        $postcode = htmlspecialchars($row["postcode"]); //
+        $email = htmlspecialchars($row["email"]); //
+        $phoneNumber = htmlspecialchars($row["phoneNumber"]); //
         $visitAdded = $row["visitAddedDate"]; //
-        $financialImp = $row["financialImplications"];
+        $financialImp = htmlspecialchars($row["financialImplications"]);
         $visitorType = $row["visitorType"]; //
-        $visitorTypeEXT = $row["visitorTypeExt"]; //
+        $visitorTypeEXT = htmlspecialchars($row["visitorTypeExt"]); //
         $visitStart = $row["startDate"]; //
         $visitEnd = $row["endDate"]; //
-        $summary = $row["summary"];
+        $summary = htmlspecialchars($row["summary"]);
         $startDisplay = date("d/m/Y", strtotime($visitStart));
         $startDisplayDateDisp = date("Y-m-d", strtotime($visitStart));
         $endDisplay = date("d/m/Y", strtotime($visitEnd));
@@ -169,7 +169,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $hrUname = $row["hrUsername"];
         $hrApprovedDate = $row["hrApprovedDate"]; //
         $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate));
-        $hrComment = $row['hrComment'];
+        $hrComment = htmlspecialchars($row['hrComment']);
         $iprIssues = $row['iprIssues'];
         $iprFile = $row['iprFile'];
         ?>
@@ -333,21 +333,21 @@ if ($supervisorApprovedresult->num_rows > 0) {
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
         $visitId = $row["visitId"];
         $visitorId = $row["visitorId"];
-        $fName = $row["fName"]; //
-        $lName = $row["lName"]; //
+        $fName = htmlspecialchars($row["fName"]); //
+        $lName = htmlspecialchars($row["lName"]); //
         $title = $row["title"]; //
-        $homeInstitution = $row["homeInstitution"]; //
-        $department = $row["department"]; //
-        $street = $row["street"]; //
-        $city = $row["city"]; //
-        $county = $row["county"]; //
-        $postcode = $row["postcode"]; //
-        $email = $row["email"]; //
-        $phoneNumber = $row["phoneNumber"]; //
-        $visitAdded = $row["visitAddedDate"]; //
-        $financialImp = $row["financialImplications"];
+        $homeInstitution = htmlspecialchars($row["homeInstitution"]); //
+        $department = htmlspecialchars($row["department"]); //
+        $street = htmlspecialchars($row["street"]); //
+        $city = htmlspecialchars($row["city"]); //
+        $county = htmlspecialchars($row["county"]); //
+        $postcode = htmlspecialchars($row["postcode"]); //
+        $email = htmlspecialchars($row["email"]); //
+        $phoneNumber = htmlspecialchars($row["phoneNumber"]); //
+        $visitAdded = htmlspecialchars($row["visitAddedDate"]); //
+        $financialImp = htmlspecialchars($row["financialImplications"]);
         $visitorType = $row["visitorType"]; //
-        $visitorTypeEXT = $row["visitorTypeExt"]; //
+        $visitorTypeEXT = htmlspecialchars($row["visitorTypeExt"]); //
         $visitStart = $row["startDate"]; //
         $visitEnd = $row["endDate"]; //
         $summary = $row["summary"];
@@ -362,7 +362,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $supervisorApprovedDateDisp = date("d/m/Y - g:iA", strtotime($supervisorApprovedDate));
         $iprIssues = $row['iprIssues'];
         $iprFile = $row['iprFile'];
-        $supervisorComment = $row['supervisorComment'];
+        $supervisorComment = htmlspecialchars($row['supervisorComment']);
 
         ?>
         <form action=view_requests.php method=post enctype="multipart/form-data">
@@ -513,17 +513,17 @@ if ($awaitingActionresult->num_rows > 0) {
         $headingId = "heading" . $visitId . $visitorId;
         $collapseId = "collapse" . $visitId . $visitorId;
         $collapseIdHash = "#collapse" . $visitId . $visitorId;
-        $fName = $row["fName"];
-        $lName = $row["lName"];
-        $homeInt = $row["homeInstitution"];
-        $department = $row["department"];
-        $email = $row["email"];
-        $phone = $row["phoneNumber"];
-        $summary = $row["summary"];
+        $fName = htmlspecialchars($row["fName"]);
+        $lName = htmlspecialchars($row["lName"]);
+        $homeInt = htmlspecialchars($row["homeInstitution"]);
+        $department = htmlspecialchars($row["department"]);
+        $email = htmlspecialchars($row["email"]);
+        $phone = htmlspecialchars($row["phoneNumber"]);
+        $summary = htmlspecialchars($row["summary"]);
         $visitAdded = $row["visitAddedDate"];
-        $financialImp = $row["financialImplications"]; //done
+        $financialImp = htmlspecialchars($row["financialImplications"]); //done
         $visitorType = $row["visitorType"]; //done
-        $visitorTypeEXT = $row["visitorTypeExt"]; //done
+        $visitorTypeEXT = htmlspecialchars($row["visitorTypeExt"]); //done
         $visitStart = $row["startDate"]; //done
         $visitEnd = $row["endDate"]; //done
         $startDisplay = date("d/m/Y", strtotime($visitStart));

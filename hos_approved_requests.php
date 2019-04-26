@@ -25,14 +25,14 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $headingId = "heading" . $visitId . $visitorId;
         $collapseId = "collapse" . $visitId . $visitorId;
         $collapseIdHash = "#collapse" . $visitId . $visitorId;
-        $fName = $row["fName"];
-        $lName = $row["lName"];
-        $homeInt = $row["homeInstitution"];
-        $department = $row["department"];
-        $summary = $row["summary"];
-        $financialImp = $row["financialImplications"]; //done
-        $visitorType = $row["visitorType"]; //done
-        $visitorTypeEXT = $row["visitorTypeExt"]; //done
+        $fName = htmlspecialchars($row["fName"]);
+        $lName = htmlspecialchars($row["lName"]);
+        $homeInt = htmlspecialchars($row["homeInstitution"]);
+        $department = htmlspecialchars($row["department"]);
+        $summary = htmlspecialchars($row["summary"]);
+        $financialImp = htmlspecialchars($row["financialImplications"]); //done
+        $visitorType = htmlspecialchars($row["visitorType"]); //done
+        $visitorTypeEXT = htmlspecialchars($row["visitorTypeExt"]); //done
         $visitStart = $row["startDate"]; //done
         $visitEnd = $row["endDate"]; //done
         $Dateadded = $row["visitAddedDate"];
@@ -59,7 +59,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
             </div>
             <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
                 <!-- More detail about the visit -->
-            <div class="card-body">
+                <div class="card-body">
                     <h5 class='card-title'>Visit Summary</h5>
                     <p class='card-text'><?php echo $summary ?></p>
                     <h5 class='card-title'>Financial Implications</h5>
@@ -85,9 +85,8 @@ if ($supervisorApprovedresult->num_rows > 0) {
     <?php
 }
 echo "</div>";
-//doesn't print anything if nothing's returned
-} else {
-}
+    //doesn't print anything if nothing's returned
+} else { }
 $link->close();
 
 ?>
