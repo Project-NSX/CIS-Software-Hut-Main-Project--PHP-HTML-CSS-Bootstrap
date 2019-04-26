@@ -15,6 +15,23 @@ require 'includes/header.php'; ?>
 
 <?php
 require_once 'includes/database.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'vendor/PHPMailer/src/Exception.php';
+require 'vendor/PHPMailer/src/PHPMailer.php';
+require 'vendor/PHPMailer/src/SMTP.php';
+
+$mail = new PHPMailer(true);
+$mail->isSMTP();
+$mail->Host = 'smtp.hostinger.com';
+$mail->SMTPAuth = true;
+$mail->Username = 'support@nwsd.online';
+$mail->Password = 'twNqxeX4okGE';
+$mail->SMTPSecure = 'tls';
+$mail->Port = 587;
+$mail->setFrom('support@nwsd.online', 'Visitng Academic Form');
+
 
 if (isset($_POST['hosapprove'])) {
     $uName = $_SESSION['username'];
@@ -22,7 +39,6 @@ if (isset($_POST['hosapprove'])) {
     $publish_date = date("Y-m-d H:i:s");
     $ApproveQuery = "UPDATE visit SET supervisorApproved = 3, supervisorUsername = '$uName', supervisorApprovedDate = '$publish_date' WHERE visitId = '$_POST[hidden]'";
     mysqli_query($link, $ApproveQuery);
-
 
     $mail->Subject = 'Your visit requests has been approved!';
     $mail->Body = "Your visit request has been approved by the Head Of School: {$uName}";
@@ -63,6 +79,7 @@ if (isset($_POST['hosrevise'])) {
         $ApproveQuery = "UPDATE visit SET supervisorApproved = 2, supervisorUsername = '$uName', supervisorApprovedDate = '$publish_date', supervisorComment = '$_POST[reasoning]' WHERE visitId = '$_POST[hidden]'";
         mysqli_query($link, $ApproveQuery);
         //TODO: add datetime to hrApprovedDate field
+
 
         $mail->Subject = 'Your visit requests requires additional information!';
         $mail->Body = "Your visit request requires additional information. Please log in to see the information requested by the Head of School: {$uName}";
