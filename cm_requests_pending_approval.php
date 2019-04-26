@@ -1,4 +1,5 @@
 <?php $page = 'CMRPA';
+require 'includes/verify_cm_role.php';
 require 'includes/header.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -53,10 +54,10 @@ if (isset($_POST['cmapprove'])) {
     $sql = "SELECT u.email FROM user u, visit v where u.username = v.hostAcademic AND v.visitId = '$_POST[hidden]'";
     $result = $link->query($sql);
     while ($row = $result->fetch_assoc()) {
-            $email = $row["email"];
-            $mail->addAddress("$email");
-        }
-        $mail->send();
+        $email = $row["email"];
+        $mail->addAddress("$email");
+    }
+    $mail->send();
 };
 
 if (isset($_POST['cmdeny'])) {
@@ -71,10 +72,10 @@ if (isset($_POST['cmdeny'])) {
     $sql = "SELECT u.email FROM user u, visit v where u.username = v.hostAcademic AND v.visitId = '$_POST[hidden]'";
     $result = $link->query($sql);
     while ($row = $result->fetch_assoc()) {
-            $email = $row["email"];
-            $mail->addAddress("$email");
-        }
-        $mail->send();
+        $email = $row["email"];
+        $mail->addAddress("$email");
+    }
+    $mail->send();
 };
 
 if (isset($_POST['cmrevise'])) {
@@ -92,11 +93,10 @@ if (isset($_POST['cmrevise'])) {
         $sql = "SELECT u.email FROM user u, visit v where u.username = v.hostAcademic AND v.visitId = '$_POST[hidden]'";
         $result = $link->query($sql);
         while ($row = $result->fetch_assoc()) {
-                $email = $row["email"];
-                $mail->addAddress("$email");
-            }
-            $mail->send();
-
+            $email = $row["email"];
+            $mail->addAddress("$email");
+        }
+        $mail->send();
     } else {
         echo "<script language='javascript'> alert('Please provide a reason as to why the user needs to resubmit'); </script>";
     }

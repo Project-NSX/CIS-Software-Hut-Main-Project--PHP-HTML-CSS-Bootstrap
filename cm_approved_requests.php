@@ -1,4 +1,5 @@
 <?php $page = 'CMAR';
+require 'includes/verify_cm_role.php';
 require 'includes/header.php'; ?>
 <!--HTML HERE-->
 <style>
