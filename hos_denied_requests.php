@@ -1,4 +1,5 @@
 <?php $page = 'HOSDR';
+require 'includes/verify_hos_role.php'; // Redirect if the user is not logged in as a head of school.
 require 'includes/header.php'; ?>
 <!--HTML HERE-->
 <style>
@@ -73,9 +74,9 @@ if ($supervisorApprovedresult->num_rows > 0) {
                     <h5 class='card-title'>Date & Time of Approval</h5>
                     <p class='card-text'><?php echo $suppervisorApproveDisplay ?> </p>
                     <?php if ($iprIssues == 1) {
-                            echo "<h5 class='card-title'>IPR Issues File:</h5>";
-                            echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
-                        }
+                        echo "<h5 class='card-title'>IPR Issues File:</h5>";
+                        echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
+                    }
                     ?>
                 </div>
             </div>

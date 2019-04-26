@@ -1,4 +1,5 @@
 <?php $page = 'HRDR';
+require 'includes/verify_hr_role.php'; // Redirect if the user is not logged in as a HR user.
 require 'includes/header.php'; ?>
 <!--HTML HERE-->
 <style>
