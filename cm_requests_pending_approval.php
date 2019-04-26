@@ -1,5 +1,5 @@
 <?php $page = 'CMRPA';
-require 'includes/verify_cm_role.php';
+require 'includes/verify_cm_role.php'; // Redirect if the user is not logged in as a college manager.
 require 'includes/header.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
