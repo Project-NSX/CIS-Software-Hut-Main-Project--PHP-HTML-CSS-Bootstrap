@@ -2,6 +2,7 @@
 <?php $page = 'CMRPA';
 require 'includes/header.php';
 //import phpmailer to send emails
+require 'includes/verify_cm_role.php'; // Redirect if the user is not logged in as a college manager.
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -47,10 +48,10 @@ if (isset($_POST['cmapprove'])) {
     $sql = "SELECT u.email FROM user u, visit v where u.username = v.hostAcademic AND v.visitId = '$_POST[hidden]'";
     $result = $link->query($sql);
     while ($row = $result->fetch_assoc()) {
-            $email = $row["email"];
-            $mail->addAddress("$email");
-        }
-        $mail->send();
+        $email = $row["email"];
+        $mail->addAddress("$email");
+    }
+    $mail->send();
 };
 
 //script behind the button the College Manager uses to deny a request which updates the database and emails the host academic to let them know that the request has been denied
@@ -67,10 +68,10 @@ if (isset($_POST['cmdeny'])) {
     $sql = "SELECT u.email FROM user u, visit v where u.username = v.hostAcademic AND v.visitId = '$_POST[hidden]'";
     $result = $link->query($sql);
     while ($row = $result->fetch_assoc()) {
-            $email = $row["email"];
-            $mail->addAddress("$email");
-        }
-        $mail->send();
+        $email = $row["email"];
+        $mail->addAddress("$email");
+    }
+    $mail->send();
 };
 
 //script behind the button the College Manager uses to send the visit request back to the host academic to be resubmited after editing
@@ -89,11 +90,10 @@ if (isset($_POST['cmrevise'])) {
         $sql = "SELECT u.email FROM user u, visit v where u.username = v.hostAcademic AND v.visitId = '$_POST[hidden]'";
         $result = $link->query($sql);
         while ($row = $result->fetch_assoc()) {
-                $email = $row["email"];
-                $mail->addAddress("$email");
-            }
-            $mail->send();
-
+            $email = $row["email"];
+            $mail->addAddress("$email");
+        }
+        $mail->send();
     } else {
         //displays a message if a reason for resubmission isn't entered
         echo "<script language='javascript'> alert('Please provide a reason as to why the user needs to resubmit'); </script>";
@@ -104,7 +104,7 @@ if (isset($_POST['cmrevise'])) {
 $supervisorApproved = "SELECT v.visitId, v.visitorId, v.summary, v.financialImplications, v.startDate, v.endDate, v.visitAddedDate, va.fName, va.lName, va.homeInstitution, va.department, va.visitorType, va.visitorTypeExt, v.iprIssues, v.iprFile FROM visit v, user u, school s, visitingAcademic va WHERE v.hostAcademic = u.username AND u.school_id = s.schoolId AND va.visitorId = v.visitorId AND u.college_id = '{$_SESSION['college_id']}' AND u.role = 'Head Of School' AND v.supervisorApproved LIKE '0' ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
-echo "<h2>College Manager - Requests Pending Approval</h2>";
+    echo "<h2>College Manager - Requests Pending Approval</h2>";
 
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
@@ -196,8 +196,7 @@ echo "<h2>College Manager - Requests Pending Approval</h2>";
     <?php
 }
 echo "</div>";
-} else {
-}
+} else { }
 $link->close();
 
 ?>

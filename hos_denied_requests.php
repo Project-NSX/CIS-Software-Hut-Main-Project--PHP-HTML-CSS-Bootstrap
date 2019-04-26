@@ -1,6 +1,7 @@
 <!-- Variable used to highlight the appropriate button on the navbar -->
 <?php $page = 'HOSDR';
-require 'includes/header.php'; ?>
+require 'includes/header.php';
+require 'includes/verify_hos_role.php'; // Redirect if the user is not logged in as a head of school. ?>
 <!--HTML HERE-->
 
 <h2>Head of School - Denied Requests</h2>
@@ -67,9 +68,9 @@ echo "<h2>Head of School - Outright Denied Requests</h2>";
                     <h5 class='card-title'>Date & Time of Approval</h5>
                     <p class='card-text'><?php echo $suppervisorApproveDisplay ?> </p>
                     <?php if ($iprIssues == 1) {
-                            echo "<h5 class='card-title'>IPR Issues File:</h5>";
-                            echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
-                        }
+                        echo "<h5 class='card-title'>IPR Issues File:</h5>";
+                        echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
+                    }
                     ?>
                 </div>
             </div>

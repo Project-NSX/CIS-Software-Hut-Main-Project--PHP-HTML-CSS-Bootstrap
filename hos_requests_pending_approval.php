@@ -1,6 +1,8 @@
 <!-- Variable used to highlight the appropriate button on the navbar -->
 <?php $page = 'HOSRPA';
-require 'includes/header.php'; ?>
+require 'includes/header.php';
+require 'includes/verify_hos_role.php'; // Redirect if the user is not logged in as a head of school.
+?>
 
 <!--Javascript to stop the form being entered when enter key is pressed-->
 <script type="text/javascript">
@@ -100,7 +102,7 @@ if (isset($_POST['hosrevise'])) {
 $supervisorApproved = "SELECT v.visitId, v.visitorId, v.summary, v.financialImplications, v.startDate, v.endDate, v.visitAddedDate, va.fName, va.lName, va.homeInstitution, va.department, va.visitorType, va.visitorTypeExt, v.iprIssues, v.iprFile FROM visit v, user u, school s, visitingAcademic va WHERE v.hostAcademic = u.username AND u.school_id = s.schoolId AND va.visitorId = v.visitorId AND u.school_id = '{$_SESSION['school_id']}' AND v.supervisorApproved LIKE '0' AND v.hostAcademic NOT LIKE '{$_SESSION['username']}' ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
-echo "<h2>Head of School - Pending Requests</h2>";
+    echo "<h2>Head of School - Pending Requests</h2>";
 
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
@@ -183,8 +185,7 @@ echo "<h2>Head of School - Pending Requests</h2>";
     <?php
 }
 echo "</div>";
-} else {
-}
+} else { }
 $link->close();
 
 ?>

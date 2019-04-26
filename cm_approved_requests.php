@@ -1,6 +1,8 @@
 <!-- Variable to be used to highlight appropriate button in navbar -->
 <?php $page = 'CMAR';
-require 'includes/header.php'; ?>
+require 'includes/header.php';
+require 'includes/verify_cm_role.php'; // Redirect if the user is not logged in as a college manager.
+?>
 <!--HTML HERE-->
 
 <h2>College Manager - Approved Requests</h2>
@@ -70,9 +72,9 @@ echo "<h2>College Manager - Approved Requests</h2>";
                     <p class='card-text'><?php echo $suppervisorApproveDisplay ?> </p>
                     <!-- if there is a ipr issue in the database, display the file by allowing the user to download it -->
                     <?php if ($iprIssues == 1) {
-                            echo "<h5 class='card-title'>IPR Issues File:</h5>";
-                            echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
-                        }
+                        echo "<h5 class='card-title'>IPR Issues File:</h5>";
+                        echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
+                    }
                     ?>
                 </div>
             </div>
@@ -82,8 +84,7 @@ echo "<h2>College Manager - Approved Requests</h2>";
     <?php
 }
 echo "</div>";
-} else {
-}
+} else { }
 $link->close();
 
 ?>
