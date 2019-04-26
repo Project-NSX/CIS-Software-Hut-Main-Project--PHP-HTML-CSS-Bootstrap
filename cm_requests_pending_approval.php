@@ -59,6 +59,7 @@ if (isset($_POST['cmdeny'])) {
     date_default_timezone_set('Europe/London');
     $publish_date = date("Y-m-d H:i:s");
     $ApproveQuery = "UPDATE visit SET supervisorApproved = 1, supervisorUsername = '$uName', supervisorApprovedDate = '$publish_date' WHERE visitId = '$_POST[hidden]'";
+    mysqli_query($link, $ApproveQuery);
 
     $mail->Subject = 'Your visit requests has been approved!';
     $mail->Body = "Your visit request has been denied by the College Manager: {$uName}";
@@ -97,10 +98,11 @@ if (isset($_POST['cmrevise'])) {
     }
 };
 
-echo "<h2>College Manager - Requests Pending Approval</h2>";
 $supervisorApproved = "SELECT v.visitId, v.visitorId, v.summary, v.financialImplications, v.startDate, v.endDate, v.visitAddedDate, va.fName, va.lName, va.homeInstitution, va.department, va.visitorType, va.visitorTypeExt, v.iprIssues, v.iprFile FROM visit v, user u, school s, visitingAcademic va WHERE v.hostAcademic = u.username AND u.school_id = s.schoolId AND va.visitorId = v.visitorId AND u.college_id = '{$_SESSION['college_id']}' AND u.role = 'Head Of School' AND v.supervisorApproved LIKE '0' ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
+echo "<h2>College Manager - Requests Pending Approval</h2>";
+
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
         //name, home inst, visit summary, financial imp, visitor type, start & end date
@@ -188,7 +190,6 @@ if ($supervisorApprovedresult->num_rows > 0) {
 }
 echo "</div>";
 } else {
-    echo "0 results";
 }
 $link->close();
 

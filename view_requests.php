@@ -130,6 +130,375 @@ if (isset($_POST['RPFRBSSend'])) {
 
 $currentAcademic = $_SESSION['username'];
 
+$supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.hrComment, v.iprIssues, v.iprFile, va.title, va.street, va.city, va.county, va.postcode  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '2'  ORDER BY v.visitAddedDate DESC";
+$supervisorApprovedresult = $link->query($supervisorApproved);
+if ($supervisorApprovedresult->num_rows > 0) {
+    echo "<h2>Request(s) Prompted for Resubmission by HR </h2>";
+
+    echo "<div id='accordion'>";
+    while ($row = $supervisorApprovedresult->fetch_assoc()) {
+        $visitId = $row["visitId"];
+        $visitorId = $row["visitorId"];
+        $fName = $row["fName"]; //
+        $lName = $row["lName"]; //
+        $title = $row["title"]; //
+        $homeInstitution = $row["homeInstitution"]; //
+        $department = $row["department"]; //
+        $street = $row["street"]; //
+        $city = $row["city"]; //
+        $county = $row["county"]; //
+        $postcode = $row["postcode"]; //
+        $email = $row["email"]; //
+        $phoneNumber = $row["phoneNumber"]; //
+        $visitAdded = $row["visitAddedDate"]; //
+        $financialImp = $row["financialImplications"];
+        $visitorType = $row["visitorType"]; //
+        $visitorTypeEXT = $row["visitorTypeExt"]; //
+        $visitStart = $row["startDate"]; //
+        $visitEnd = $row["endDate"]; //
+        $summary = $row["summary"];
+        $startDisplay = date("d/m/Y", strtotime($visitStart));
+        $startDisplayDateDisp = date("Y-m-d", strtotime($visitStart));
+        $endDisplay = date("d/m/Y", strtotime($visitEnd));
+        $endDisplayDateDisp = date("Y-m-d", strtotime($visitEnd));
+        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded));
+        $supervisorApproved = $row["supervisorApprovedDate"];
+        $supervisorUname = $row["supervisorUsername"];
+        $supervisorApprovedDate = $row["supervisorApprovedDate"]; //
+        $supervisorApprovedDateDisp = date("d/m/Y - g:iA", strtotime($supervisorApprovedDate));
+        $hrApproved = $row["hrApprovedDate"];
+        $hrUname = $row["hrUsername"];
+        $hrApprovedDate = $row["hrApprovedDate"]; //
+        $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate));
+        $hrComment = $row['hrComment'];
+        $iprIssues = $row['iprIssues'];
+        $iprFile = $row['iprFile'];
+
+        ?>
+        <form action=view_requests.php method=post enctype="multipart/form-data">
+            <fieldset>
+                <legend>Supervisor Decision Details </legend>
+                <div class='row'>
+                    <div class='col-sm-3'><b>Supervisor Username:</b></div>
+                    <div class='col-sm-3'><?php echo $supervisorUname ?></div>
+                    <div class='col-sm-3'><b>Date Action Taken:</b></div>
+                    <div class='col-sm-3'><?php echo $supervisorApprovedDateDisp ?></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>HR Decision Details</legend>
+                <div class='row'>
+                    <div class='col-sm-3'><b>HR Practitioner Username:</b></div>
+                    <div class='col-sm-3'><?php echo $hrUname ?></div>
+                    <div class='col-sm-3'><b>Date Action Taken:</b></div>
+                    <div class='col-sm-3'><?php echo $hrApprovedDateDisp ?></div>
+                </div>
+                <div class='row'>
+                    <div class='col-sm-3'><b>Comment:</b></div>
+                    <div class='col-sm-9'><?php echo $hrComment ?></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Personal Details</legend>
+                <div class='row'>
+                    <div class='col-sm'><b>Title:</b></div>
+                    <div class='col-sm'><?php echo $title ?></div>
+                    <div class='col-sm'><b>First Name:</b></div>
+                    <div class='col-sm'><?php echo $fName ?></div>
+                    <div class='col-sm'><b>Last Name:</b></div>
+                    <div class='col-sm'><?php echo $lName ?></div>
+                </div>
+                <div class='row'>
+                    <div class='col-sm'><b>Email Address:</b></div>
+                    <div class='col-sm'><?php echo $email ?></div>
+                    <div class='col-sm'><b>Phone Number:</b></div>
+                    <div class='col-sm'><?php echo $phoneNumber ?></div>
+                    <div class='col-sm'><b>Visitor Type:</b></div>
+                    <div class='col-sm'><?php echo $visitorType . " " . $visitorTypeEXT ?></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Home Institution Details</legend>
+                <div class='row'>
+                    <div class='col-sm'><b>Home Institution Name:</b></div>
+                    <div class='col-sm'><?php echo $homeInstitution ?></div>
+                    <div class='col-sm'><b>Department Name:</b></div>
+                    <div class='col-sm'><?php echo $department ?></div>
+                </div>
+                <div class='row'>
+                    <div class='col-sm'><b>Street:</b></div>
+                    <div class='col-sm'><?php echo $street ?></div>
+                    <div class='col-sm'><b>City:</b></div>
+                    <div class='col-sm'><?php echo $city ?></div>
+                    <div class='col-sm'><b>County:</b></div>
+                    <div class='col-sm'><?php echo $county ?></div>
+                    <div class='col-sm'><b>Postcode:</b></div>
+                    <div class='col-sm'><?php echo $postcode ?></div>
+
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Visitor Details</legend>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="s_date"><b>Visit Start Date:</b> </label>
+                        <input id="datefield" type="date" name="s_date" value="<?php echo $startDisplayDateDisp ?>" onchange="updateDateFields()" class="form-control" max=e_date required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="e_date"><b>Visit End Date:</b> </label>
+                        <input id="dateend" type="date" name="e_date" value="<?php echo $endDisplayDateDisp ?>" class="form-control" required>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <div class="form-group">
+                    <label for="financialImp"><b>Financial Implications:</b> </label>
+                    <textarea class="form-control" id="financialImp" name="financialImp" rows="4" cols="40" placeholder="Please summarise the related financial implications" required> <?php echo $financialImp ?> </textarea>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <label for="ipr_issues"><b>IPR Issues:</b> </label>
+
+                <p>Are there IPR issues with the visit? <b>NOTICE:</b> File must be uploaded again!</p>
+                <?php if ($iprIssues == 1) {
+                echo "<p class='card-title'><b>Current File:</b> <a href='ipr/$iprFile' download>$iprFile</a></p>";
+                }?>
+
+                <div class="form-check-inline">
+                <label class="form-check-label" for="radio1">
+                <input type="radio" class="form-check-input" id="radio1" name="ipr_issues" value="yes" onchange='CheckIPR(this.value);' <?php if($iprIssues == 1){echo "checked";}?>>Yes
+                </label>
+                </div>
+                <div class="form-check-inline">
+                <label class="form-check-label" for="radio2">
+                <input type="radio" class="form-check-input" id="radio1" name="ipr_issues" value="no" onchange='CheckIPR(this.value);' <?php if($iprIssues != 1){echo "checked";}?>>No
+                </label>
+                </div>
+
+
+
+
+                <div class="custom-file" id="ipr_issues_ext" <?php ?>>
+                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+
+                    <input type="file" class="custom-file-input" id="file" name="file">
+
+                    <br>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <div class="form-group">
+                    <label for="summary"><b>Summary of visit</b></label>
+                    <textarea class="form-control" id="summary" name="summary" rows="4" cols="40" placeholder="Please summarise the purpose of the visit" required><?php echo $summary ?></textarea>
+                </div>
+            </fieldset>
+            <input type=hidden name=hiddenRPFRBHR value=<?php echo $visitId ?>>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md"></div>
+                    <div class="col-md"><input type=submit name=RPFRBHRSend value='Resubmit Visit Request' class='btn btn-secondary' style='width:100%; margin-bottom:5px'></div>
+                    <div class="col-md"></div>
+                </div>
+            </div>
+        </form>
+
+
+        <script type="text/javascript">
+            updateDateFields();
+        </script>
+        </form>
+
+    <?php
+}
+echo "</div>";
+} else { }
+
+
+$supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.supervisorComment, v.iprIssues, v.iprFile, va.title, va.street, va.city, va.county, va.postcode  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '2' ORDER BY v.visitAddedDate DESC";
+$supervisorApprovedresult = $link->query($supervisorApproved);
+if ($supervisorApprovedresult->num_rows > 0) {
+    echo "<h2>Request(s) Prompted for Resubmission by Supervisor </h2>";
+
+    echo "<div id='accordion'>";
+    while ($row = $supervisorApprovedresult->fetch_assoc()) {
+        $visitId = $row["visitId"];
+        $visitorId = $row["visitorId"];
+        $fName = $row["fName"]; //
+        $lName = $row["lName"]; //
+        $title = $row["title"]; //
+        $homeInstitution = $row["homeInstitution"]; //
+        $department = $row["department"]; //
+        $street = $row["street"]; //
+        $city = $row["city"]; //
+        $county = $row["county"]; //
+        $postcode = $row["postcode"]; //
+        $email = $row["email"]; //
+        $phoneNumber = $row["phoneNumber"]; //
+        $visitAdded = $row["visitAddedDate"]; //
+        $financialImp = $row["financialImplications"];
+        $visitorType = $row["visitorType"]; //
+        $visitorTypeEXT = $row["visitorTypeExt"]; //
+        $visitStart = $row["startDate"]; //
+        $visitEnd = $row["endDate"]; //
+        $summary = $row["summary"];
+        $startDisplay = date("d/m/Y", strtotime($visitStart));
+        $startDisplayDateDisp = date("Y-m-d", strtotime($visitStart));
+        $endDisplay = date("d/m/Y", strtotime($visitEnd));
+        $endDisplayDateDisp = date("Y-m-d", strtotime($visitEnd));
+        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded));
+        $supervisorApproved = $row["supervisorApprovedDate"];
+        $supervisorUname = $row["supervisorUsername"];
+        $supervisorApprovedDate = $row["supervisorApprovedDate"]; //
+        $supervisorApprovedDateDisp = date("d/m/Y - g:iA", strtotime($supervisorApprovedDate));
+        $iprIssues = $row['iprIssues'];
+        $iprFile = $row['iprFile'];
+        $supervisorComment = $row['supervisorComment'];
+
+        ?>
+        <form action=view_requests.php method=post enctype="multipart/form-data">
+            <fieldset>
+                <legend>Supervisor Decision Details </legend>
+                <div class='row'>
+                    <div class='col-sm-3'><b>Supervisor Username:</b></div>
+                    <div class='col-sm-3'><?php echo $supervisorUname ?></div>
+                    <div class='col-sm-3'><b>Date Action Taken:</b></div>
+                    <div class='col-sm-3'><?php echo $supervisorApprovedDateDisp ?></div>
+                </div>
+                <div class='row'>
+                    <div class='col-sm-3'><b>Comment:</b></div>
+                    <div class='col-sm-9'><?php echo $supervisorComment ?></div>
+                </div>
+            </fieldset>
+
+
+            <fieldset>
+                <legend>Personal Details</legend>
+                <div class='row'>
+                    <div class='col-sm'><b>Title:</b></div>
+                    <div class='col-sm'><?php echo $title ?></div>
+                    <div class='col-sm'><b>First Name:</b></div>
+                    <div class='col-sm'><?php echo $fName ?></div>
+                    <div class='col-sm'><b>Last Name:</b></div>
+                    <div class='col-sm'><?php echo $lName ?></div>
+                </div>
+                <div class='row'>
+                    <div class='col-sm'><b>Email Address:</b></div>
+                    <div class='col-sm'><?php echo $email ?></div>
+                    <div class='col-sm'><b>Phone Number:</b></div>
+                    <div class='col-sm'><?php echo $phoneNumber ?></div>
+                    <div class='col-sm'><b>Visitor Type:</b></div>
+                    <div class='col-sm'><?php echo $visitorType . " " . $visitorTypeEXT ?></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Home Institution Details</legend>
+                <div class='row'>
+                    <div class='col-sm'><b>Home Institution Name:</b></div>
+                    <div class='col-sm'><?php echo $homeInstitution ?></div>
+                    <div class='col-sm'><b>Department Name:</b></div>
+                    <div class='col-sm'><?php echo $department ?></div>
+                </div>
+                <div class='row'>
+                    <div class='col-sm'><b>Street:</b></div>
+                    <div class='col-sm'><?php echo $street ?></div>
+                    <div class='col-sm'><b>City:</b></div>
+                    <div class='col-sm'><?php echo $city ?></div>
+                    <div class='col-sm'><b>County:</b></div>
+                    <div class='col-sm'><?php echo $county ?></div>
+                    <div class='col-sm'><b>Postcode:</b></div>
+                    <div class='col-sm'><?php echo $postcode ?></div>
+
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Visitor Details</legend>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="s_date"><b>Visit Start Date:</b> </label>
+                        <input id="datefield" type="date" name="s_date" value="<?php echo $startDisplayDateDisp ?>" onchange="updateDateFields()" class="form-control" max=e_date required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="e_date"><b>Visit End Date:</b> </label>
+                        <input id="dateend" type="date" name="e_date" value="<?php echo $endDisplayDateDisp ?>" class="form-control" required>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <div class="form-group">
+                    <label for="financialImp"><b>Financial Implications:</b> </label>
+                    <textarea class="form-control" id="financialImp" name="financialImp" rows="4" cols="40" placeholder="Please summarise the related financial implications" required> <?php echo $financialImp ?> </textarea>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <label for="ipr_issues"><b>IPR Issues:</b> </label>
+
+                <p>Are there IPR issues with the visit? <b>NOTICE:</b> File must be uploaded again!</p>
+                <?php if ($iprIssues == 1) {
+                 echo "<p class='card-title'><b>Current File:</b> <a href='ipr/$iprFile' download>$iprFile</a></p>";
+                }
+
+                ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ipr_issues" id="inlineRadio1" value="yes" onchange='CheckIPR(this.value);' <?php
+                                                                                                                                                    ?>>
+                    <label class="form-check-label" for="inlineRadio1">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ipr_issues" id="inlineRadio1" value="no" onchange='CheckIPR(this.value);' <?php
+                                                                                                                                                    ?>>
+                    <label class="form-check-label" for="inlineRadio1">No</label>
+                </div>
+
+                <div class="custom-file" id="ipr_issues_ext" <? php
+                                                                ?>>
+                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+
+                    <input type="file" class="custom-file-input" id="file" name="file">
+
+                    <br>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <div class="form-group">
+                    <label for="summary"><b>Summary of visit</b></label>
+                    <textarea class="form-control" id="summary" name="summary" rows="4" cols="40" placeholder="Please summarise the purpose of the visit" required><?php echo $summary ?></textarea>
+                </div>
+            </fieldset>
+            <input type=hidden name=hiddenRPFRBS value=<?php echo $visitId ?>>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md"></div>
+                    <div class="col-md"><input type=submit name=RPFRBSSend value='Resubmit Visit Request' class='btn btn-secondary' style='width:100%; margin-bottom:5px'></div>
+                    <div class="col-md"></div>
+                </div>
+            </div>
+        </form>
+
+
+        <script type="text/javascript">
+            updateDateFields();
+        </script>
+        </form>
+
+    <?php
+}
+echo "</div>";
+} else { }
+
 $awaitingAction = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.iprIssues, v.iprFile  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '0' AND v.hrApproved LIKE '0'  ORDER BY v.visitAddedDate DESC";
 $awaitingActionresult = $link->query($awaitingAction);
 if ($awaitingActionresult->num_rows > 0) {
@@ -592,377 +961,6 @@ if ($supervisorApprovedresult->num_rows > 0) {
 }
 echo "</div>";
 } else { }
-
-$supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.hrComment, v.iprIssues, v.iprFile, va.title, va.street, va.city, va.county, va.postcode  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '2'  ORDER BY v.visitAddedDate DESC";
-$supervisorApprovedresult = $link->query($supervisorApproved);
-if ($supervisorApprovedresult->num_rows > 0) {
-    echo "<h2>Request(s) Prompted for Resubmission by HR </h2>";
-
-    echo "<div id='accordion'>";
-    while ($row = $supervisorApprovedresult->fetch_assoc()) {
-        $visitId = $row["visitId"];
-        $visitorId = $row["visitorId"];
-        $fName = $row["fName"]; //
-        $lName = $row["lName"]; //
-        $title = $row["title"]; //
-        $homeInstitution = $row["homeInstitution"]; //
-        $department = $row["department"]; //
-        $street = $row["street"]; //
-        $city = $row["city"]; //
-        $county = $row["county"]; //
-        $postcode = $row["postcode"]; //
-        $email = $row["email"]; //
-        $phoneNumber = $row["phoneNumber"]; //
-        $visitAdded = $row["visitAddedDate"]; //
-        $financialImp = $row["financialImplications"];
-        $visitorType = $row["visitorType"]; //
-        $visitorTypeEXT = $row["visitorTypeExt"]; //
-        $visitStart = $row["startDate"]; //
-        $visitEnd = $row["endDate"]; //
-        $summary = $row["summary"];
-        $startDisplay = date("d/m/Y", strtotime($visitStart));
-        $startDisplayDateDisp = date("Y-m-d", strtotime($visitStart));
-        $endDisplay = date("d/m/Y", strtotime($visitEnd));
-        $endDisplayDateDisp = date("Y-m-d", strtotime($visitEnd));
-        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded));
-        $supervisorApproved = $row["supervisorApprovedDate"];
-        $supervisorUname = $row["supervisorUsername"];
-        $supervisorApprovedDate = $row["supervisorApprovedDate"]; //
-        $supervisorApprovedDateDisp = date("d/m/Y - g:iA", strtotime($supervisorApprovedDate));
-        $hrApproved = $row["hrApprovedDate"];
-        $hrUname = $row["hrUsername"];
-        $hrApprovedDate = $row["hrApprovedDate"]; //
-        $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate));
-        $hrComment = $row['hrComment'];
-        $iprIssues = $row['iprIssues'];
-        $iprFile = $row['iprFile'];
-
-        ?>
-        <form action=view_requests.php method=post enctype="multipart/form-data">
-            <fieldset>
-                <legend>Supervisor Decision Details </legend>
-                <div class='row'>
-                    <div class='col-sm-3'><b>Supervisor Username:</b></div>
-                    <div class='col-sm-3'><?php echo $supervisorUname ?></div>
-                    <div class='col-sm-3'><b>Date Action Taken:</b></div>
-                    <div class='col-sm-3'><?php echo $supervisorApprovedDateDisp ?></div>
-                </div>
-            </fieldset>
-
-            <fieldset>
-                <legend>HR Decision Details</legend>
-                <div class='row'>
-                    <div class='col-sm-3'><b>HR Practitioner Username:</b></div>
-                    <div class='col-sm-3'><?php echo $hrUname ?></div>
-                    <div class='col-sm-3'><b>Date Action Taken:</b></div>
-                    <div class='col-sm-3'><?php echo $hrApprovedDateDisp ?></div>
-                </div>
-                <div class='row'>
-                    <div class='col-sm-3'><b>Comment:</b></div>
-                    <div class='col-sm-9'><?php echo $hrComment ?></div>
-                </div>
-            </fieldset>
-
-            <fieldset>
-                <legend>Personal Details</legend>
-                <div class='row'>
-                    <div class='col-sm'><b>Title:</b></div>
-                    <div class='col-sm'><?php echo $title ?></div>
-                    <div class='col-sm'><b>First Name:</b></div>
-                    <div class='col-sm'><?php echo $fName ?></div>
-                    <div class='col-sm'><b>Last Name:</b></div>
-                    <div class='col-sm'><?php echo $lName ?></div>
-                </div>
-                <div class='row'>
-                    <div class='col-sm'><b>Email Address:</b></div>
-                    <div class='col-sm'><?php echo $email ?></div>
-                    <div class='col-sm'><b>Phone Number:</b></div>
-                    <div class='col-sm'><?php echo $phoneNumber ?></div>
-                    <div class='col-sm'><b>Visitor Type:</b></div>
-                    <div class='col-sm'><?php echo $visitorType . " " . $visitorTypeEXT ?></div>
-                </div>
-            </fieldset>
-
-            <fieldset>
-                <legend>Home Institution Details</legend>
-                <div class='row'>
-                    <div class='col-sm'><b>Home Institution Name:</b></div>
-                    <div class='col-sm'><?php echo $homeInstitution ?></div>
-                    <div class='col-sm'><b>Department Name:</b></div>
-                    <div class='col-sm'><?php echo $department ?></div>
-                </div>
-                <div class='row'>
-                    <div class='col-sm'><b>Street:</b></div>
-                    <div class='col-sm'><?php echo $street ?></div>
-                    <div class='col-sm'><b>City:</b></div>
-                    <div class='col-sm'><?php echo $city ?></div>
-                    <div class='col-sm'><b>County:</b></div>
-                    <div class='col-sm'><?php echo $county ?></div>
-                    <div class='col-sm'><b>Postcode:</b></div>
-                    <div class='col-sm'><?php echo $postcode ?></div>
-
-                </div>
-            </fieldset>
-
-            <fieldset>
-                <legend>Visitor Details</legend>
-
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="s_date"><b>Visit Start Date:</b> </label>
-                        <input id="datefield" type="date" name="s_date" value="<?php echo $startDisplayDateDisp ?>" onchange="updateDateFields()" class="form-control" max=e_date required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="e_date"><b>Visit End Date:</b> </label>
-                        <input id="dateend" type="date" name="e_date" value="<?php echo $endDisplayDateDisp ?>" class="form-control" required>
-                    </div>
-                </div>
-            </fieldset>
-
-            <fieldset>
-                <div class="form-group">
-                    <label for="financialImp"><b>Financial Implications:</b> </label>
-                    <textarea class="form-control" id="financialImp" name="financialImp" rows="4" cols="40" placeholder="Please summarise the related financial implications" required> <?php echo $financialImp ?> </textarea>
-                </div>
-            </fieldset>
-
-            <fieldset>
-                <label for="ipr_issues"><b>IPR Issues:</b> </label>
-
-                <p>Are there IPR issues with the visit? <b>NOTICE:</b> File must be uploaded again!</p>
-                <?php if ($iprIssues == 1) {
-                echo "<p class='card-title'><b>Current File:</b> <a href='ipr/$iprFile' download>$iprFile</a></p>";
-                }?>
-
-                <div class="form-check-inline">
-                <label class="form-check-label" for="radio1">
-                <input type="radio" class="form-check-input" id="radio1" name="ipr_issues" value="yes" onchange='CheckIPR(this.value);' <?php if($iprIssues == 1){echo "checked";}?>>Yes
-                </label>
-                </div>
-                <div class="form-check-inline">
-                <label class="form-check-label" for="radio2">
-                <input type="radio" class="form-check-input" id="radio1" name="ipr_issues" value="no" onchange='CheckIPR(this.value);' <?php if($iprIssues != 1){echo "checked";}?>>No
-                </label>
-                </div>
-
-
-
-
-                <div class="custom-file" id="ipr_issues_ext" <?php ?>>
-                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-
-                    <input type="file" class="custom-file-input" id="file" name="file">
-
-                    <br>
-                </div>
-            </fieldset>
-
-            <fieldset>
-                <div class="form-group">
-                    <label for="summary"><b>Summary of visit</b></label>
-                    <textarea class="form-control" id="summary" name="summary" rows="4" cols="40" placeholder="Please summarise the purpose of the visit" required><?php echo $summary ?></textarea>
-                </div>
-            </fieldset>
-            <input type=hidden name=hiddenRPFRBHR value=<?php echo $visitId ?>>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md"></div>
-                    <div class="col-md"><input type=submit name=RPFRBHRSend value='Resubmit Visit Request' class='btn btn-secondary' style='width:100%; margin-bottom:5px'></div>
-                    <div class="col-md"></div>
-                </div>
-            </div>
-        </form>
-
-
-        <script type="text/javascript">
-            updateDateFields();
-        </script>
-        </form>
-
-    <?php
-}
-echo "</div>";
-} else { }
-
-
-$supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.supervisorComment, v.iprIssues, v.iprFile, va.title, va.street, va.city, va.county, va.postcode  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '2' ORDER BY v.visitAddedDate DESC";
-$supervisorApprovedresult = $link->query($supervisorApproved);
-if ($supervisorApprovedresult->num_rows > 0) {
-    echo "<h2>Request(s) Prompted for Resubmission by Supervisor </h2>";
-
-    echo "<div id='accordion'>";
-    while ($row = $supervisorApprovedresult->fetch_assoc()) {
-        $visitId = $row["visitId"];
-        $visitorId = $row["visitorId"];
-        $fName = $row["fName"]; //
-        $lName = $row["lName"]; //
-        $title = $row["title"]; //
-        $homeInstitution = $row["homeInstitution"]; //
-        $department = $row["department"]; //
-        $street = $row["street"]; //
-        $city = $row["city"]; //
-        $county = $row["county"]; //
-        $postcode = $row["postcode"]; //
-        $email = $row["email"]; //
-        $phoneNumber = $row["phoneNumber"]; //
-        $visitAdded = $row["visitAddedDate"]; //
-        $financialImp = $row["financialImplications"];
-        $visitorType = $row["visitorType"]; //
-        $visitorTypeEXT = $row["visitorTypeExt"]; //
-        $visitStart = $row["startDate"]; //
-        $visitEnd = $row["endDate"]; //
-        $summary = $row["summary"];
-        $startDisplay = date("d/m/Y", strtotime($visitStart));
-        $startDisplayDateDisp = date("Y-m-d", strtotime($visitStart));
-        $endDisplay = date("d/m/Y", strtotime($visitEnd));
-        $endDisplayDateDisp = date("Y-m-d", strtotime($visitEnd));
-        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded));
-        $supervisorApproved = $row["supervisorApprovedDate"];
-        $supervisorUname = $row["supervisorUsername"];
-        $supervisorApprovedDate = $row["supervisorApprovedDate"]; //
-        $supervisorApprovedDateDisp = date("d/m/Y - g:iA", strtotime($supervisorApprovedDate));
-        $iprIssues = $row['iprIssues'];
-        $iprFile = $row['iprFile'];
-        $supervisorComment = $row['supervisorComment'];
-
-        ?>
-        <form action=view_requests.php method=post enctype="multipart/form-data">
-            <fieldset>
-                <legend>Supervisor Decision Details </legend>
-                <div class='row'>
-                    <div class='col-sm-3'><b>Supervisor Username:</b></div>
-                    <div class='col-sm-3'><?php echo $supervisorUname ?></div>
-                    <div class='col-sm-3'><b>Date Action Taken:</b></div>
-                    <div class='col-sm-3'><?php echo $supervisorApprovedDateDisp ?></div>
-                </div>
-                <div class='row'>
-                    <div class='col-sm-3'><b>Comment:</b></div>
-                    <div class='col-sm-9'><?php echo $supervisorComment ?></div>
-                </div>
-            </fieldset>
-
-
-            <fieldset>
-                <legend>Personal Details</legend>
-                <div class='row'>
-                    <div class='col-sm'><b>Title:</b></div>
-                    <div class='col-sm'><?php echo $title ?></div>
-                    <div class='col-sm'><b>First Name:</b></div>
-                    <div class='col-sm'><?php echo $fName ?></div>
-                    <div class='col-sm'><b>Last Name:</b></div>
-                    <div class='col-sm'><?php echo $lName ?></div>
-                </div>
-                <div class='row'>
-                    <div class='col-sm'><b>Email Address:</b></div>
-                    <div class='col-sm'><?php echo $email ?></div>
-                    <div class='col-sm'><b>Phone Number:</b></div>
-                    <div class='col-sm'><?php echo $phoneNumber ?></div>
-                    <div class='col-sm'><b>Visitor Type:</b></div>
-                    <div class='col-sm'><?php echo $visitorType . " " . $visitorTypeEXT ?></div>
-                </div>
-            </fieldset>
-
-            <fieldset>
-                <legend>Home Institution Details</legend>
-                <div class='row'>
-                    <div class='col-sm'><b>Home Institution Name:</b></div>
-                    <div class='col-sm'><?php echo $homeInstitution ?></div>
-                    <div class='col-sm'><b>Department Name:</b></div>
-                    <div class='col-sm'><?php echo $department ?></div>
-                </div>
-                <div class='row'>
-                    <div class='col-sm'><b>Street:</b></div>
-                    <div class='col-sm'><?php echo $street ?></div>
-                    <div class='col-sm'><b>City:</b></div>
-                    <div class='col-sm'><?php echo $city ?></div>
-                    <div class='col-sm'><b>County:</b></div>
-                    <div class='col-sm'><?php echo $county ?></div>
-                    <div class='col-sm'><b>Postcode:</b></div>
-                    <div class='col-sm'><?php echo $postcode ?></div>
-
-                </div>
-            </fieldset>
-
-            <fieldset>
-                <legend>Visitor Details</legend>
-
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="s_date"><b>Visit Start Date:</b> </label>
-                        <input id="datefield" type="date" name="s_date" value="<?php echo $startDisplayDateDisp ?>" onchange="updateDateFields()" class="form-control" max=e_date required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="e_date"><b>Visit End Date:</b> </label>
-                        <input id="dateend" type="date" name="e_date" value="<?php echo $endDisplayDateDisp ?>" class="form-control" required>
-                    </div>
-                </div>
-            </fieldset>
-
-            <fieldset>
-                <div class="form-group">
-                    <label for="financialImp"><b>Financial Implications:</b> </label>
-                    <textarea class="form-control" id="financialImp" name="financialImp" rows="4" cols="40" placeholder="Please summarise the related financial implications" required> <?php echo $financialImp ?> </textarea>
-                </div>
-            </fieldset>
-
-            <fieldset>
-                <label for="ipr_issues"><b>IPR Issues:</b> </label>
-
-                <p>Are there IPR issues with the visit? <b>NOTICE:</b> File must be uploaded again!</p>
-                <?php if ($iprIssues == 1) {
-                 echo "<p class='card-title'><b>Current File:</b> <a href='ipr/$iprFile' download>$iprFile</a></p>";
-                }
-
-                ?>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="ipr_issues" id="inlineRadio1" value="yes" onchange='CheckIPR(this.value);' <?php
-                                                                                                                                                    ?>>
-                    <label class="form-check-label" for="inlineRadio1">Yes</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="ipr_issues" id="inlineRadio1" value="no" onchange='CheckIPR(this.value);' <?php
-                                                                                                                                                    ?>>
-                    <label class="form-check-label" for="inlineRadio1">No</label>
-                </div>
-
-                <div class="custom-file" id="ipr_issues_ext" <? php
-                                                                ?>>
-                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-
-                    <input type="file" class="custom-file-input" id="file" name="file">
-
-                    <br>
-                </div>
-            </fieldset>
-
-            <fieldset>
-                <div class="form-group">
-                    <label for="summary"><b>Summary of visit</b></label>
-                    <textarea class="form-control" id="summary" name="summary" rows="4" cols="40" placeholder="Please summarise the purpose of the visit" required><?php echo $summary ?></textarea>
-                </div>
-            </fieldset>
-            <input type=hidden name=hiddenRPFRBS value=<?php echo $visitId ?>>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md"></div>
-                    <div class="col-md"><input type=submit name=RPFRBSSend value='Resubmit Visit Request' class='btn btn-secondary' style='width:100%; margin-bottom:5px'></div>
-                    <div class="col-md"></div>
-                </div>
-            </div>
-        </form>
-
-
-        <script type="text/javascript">
-            updateDateFields();
-        </script>
-        </form>
-
-    <?php
-}
-echo "</div>";
-} else { }
-
-
 
 
 
