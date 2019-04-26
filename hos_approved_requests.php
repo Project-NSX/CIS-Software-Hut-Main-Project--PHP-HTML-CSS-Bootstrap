@@ -30,11 +30,11 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $homeInt = htmlspecialchars($row["homeInstitution"]);
         $department = htmlspecialchars($row["department"]);
         $summary = htmlspecialchars($row["summary"]);
-        $financialImp = htmlspecialchars($row["financialImplications"]); //done
-        $visitorType = htmlspecialchars($row["visitorType"]); //done
-        $visitorTypeEXT = htmlspecialchars($row["visitorTypeExt"]); //done
-        $visitStart = $row["startDate"]; //done
-        $visitEnd = $row["endDate"]; //done
+        $financialImp = htmlspecialchars($row["financialImplications"]);
+        $visitorType = htmlspecialchars($row["visitorType"]);
+        $visitorTypeEXT = htmlspecialchars($row["visitorTypeExt"]);
+        $visitStart = $row["startDate"];
+        $visitEnd = $row["endDate"];
         $Dateadded = $row["visitAddedDate"];
         $startDisplay = date("d/m/Y", strtotime($visitStart));
         $endDisplay = date("d/m/Y", strtotime($visitEnd));

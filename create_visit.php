@@ -5,7 +5,7 @@ require 'includes/deny_hr_role.php' // Redirects users with the "Human Resources
 ?>
 <?php require 'includes/database.php'; ?>
 <?php
-//imports phpMailer to send emails
+//import phpMailer to send emails
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -73,9 +73,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $filename = null;
     }
 
+    //Since the College Manager's request doesn't need approval by a supervisor there is a different SQL statement which appends values which then sends the visit straight to HR
     if ($_SESSION["role"] === "College Manager") {
+        //SQL statement which will make the visit request bypass the supervisor stage for College Managers
         $sql = "INSERT INTO visit (visitorID, visitAddedDate, hostAcademic, startDate, endDate, summary, financialImplications, iprIssues, supervisorApproved, supervisorUsername, supervisorApprovedDate, iprFile) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     } else {
+        //SQL statement which will make the request firs to go the supervisor for approval
         $sql = "INSERT INTO visit (visitorID, visitAddedDate, hostAcademic, startDate, endDate, summary, financialImplications, iprIssues, iprFile) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     }
     $stmt = mysqli_prepare($conn, $sql);
@@ -90,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     // If Statement executes properly.
     if (mysqli_stmt_execute($stmt)) {
-
+        //Gets HR email if the request user logged in is a College Manager because it bypasses the supervisor stage
         if ($_SESSION["role"] === "College Manager") {
             $sql = "SELECT email FROM user where role = 'Human Resources'";
             $result = $link->query($sql);
@@ -122,10 +125,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        $mail->send();
+        $mail->send(); //send email
 
 
-        require 'includes/user_redirect.php';
+        require 'includes/user_redirect.php'; //redirects afterwards
     } else {
         echo mysqli_stmt_error($stmt);
     }

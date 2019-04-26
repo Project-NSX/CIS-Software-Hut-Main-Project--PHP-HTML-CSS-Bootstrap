@@ -17,11 +17,13 @@ require 'includes/deny_hr_role.php' // Redirects users with the "Human Resources
 <?php
 require_once 'includes/database.php';
 
+//Detects if the Update button has been pressed, if so updates the current record with teh values of the text boxes
 if (isset($_POST['update'])) {
     $UpdateQuery = "UPDATE visitingAcademic SET title = '$_POST[title]', visitorType = '$_POST[visitorType]', visitorTypeExt = '$_POST[visitorTypeExt]', homeInstitution = '$_POST[homeInstitution]', department = '$_POST[department]', street = '$_POST[street]', city = '$_POST[city]', county = '$_POST[county]', postcode = '$_POST[postcode]', email = '$_POST[email]', phoneNumber = '$_POST[phoneNumber]' WHERE visitorId = '$_POST[hidden]'";
     mysqli_query($link, $UpdateQuery);
 };
 
+//Detects if the Delete button has been pressed and deletes the record which the button appears on
 if (isset($_POST['delete'])) {
     $DeleteQuery = "DELETE FROM visitingAcademic WHERE visitorId = '$_POST[hidden]'";
     mysqli_query($link, $DeleteQuery);
@@ -34,11 +36,12 @@ if ($myVisitorsResult->num_rows > 0) {
     $num = 1;
     echo "<div id='accordion'>";
     while ($row = $myVisitorsResult->fetch_assoc()) {
-        $id = $row['visitorId']; //no need to be displayed
-        $hostAcademic = $row['hostAcademic']; //not allowed to change
+        //saves column value of row in variables
+        $id = $row['visitorId'];
+        $hostAcademic = $row['hostAcademic'];
         $title = $row['title'];
-        $fName = htmlspecialchars($row["fName"]); //not allowed to change
-        $lName = htmlspecialchars($row["lName"]); //not allowed to change
+        $fName = htmlspecialchars($row["fName"]);
+        $lName = htmlspecialchars($row["lName"]);
         $visitorType = $row["visitorType"];
         $visitorTypeEXT = htmlspecialchars($row["visitorTypeExt"]);
         $homeInstitution = htmlspecialchars($row["homeInstitution"]);
@@ -66,6 +69,7 @@ if ($myVisitorsResult->num_rows > 0) {
                 <legend>Personal Details</legend>
                 <div class='row'>
                     <div class='col-sm-2'><b>Title:</b></div>
+                    <!-- Dropdown for title -->
                     <div class='col-sm-2'><select name="title" id="title" class="form-control" required>'
                             style="margin:0px 0px 10px 0px" required>
                             <option value="Mr" <?php if ($title === 'Mr') {
@@ -113,30 +117,32 @@ if ($myVisitorsResult->num_rows > 0) {
                         </select>
                     </div>
                     <?php
+                    //Check if the visitorId is in the table Visits
                     $sql = "SELECT count(*) AS 'No' FROM visit WHERE visitorId = '$id' GROUP BY 'visitorId'";
                     $result = $link->query($sql);
                     if ($result->num_rows > 0) {
+                        //If the count is returned that means that there is a visit for that user, therefore the name can't be changed
                         echo "<div class='col-sm-2'><b>First Name:</b></div>";
                         echo "<div class='col-sm-2'> <input type=text name=fName class='form-control' value='$fName' disabled onkeypress='return noenter()' required></div>";
                         echo "<div class='col-sm-2'><b>Last Name:</b></div>";
                         echo "<div class='col-sm-2'> <input type=text name=lName class='form-control' value='$lName' disabled onkeypress='return noenter()' required></div>";
                     } else {
+                        //If nothing gets returned that means that there is not a visit for that user, therefore the name can be changed
                         echo "<div class='col-sm-2'><b>First Name:</b></div>";
                         echo "<div class='col-sm-2'> <input type=text name=fName class='form-control' value='$fName'  onkeypress='return noenter()' required></div>";
                         echo "<div class='col-sm-2'><b>Last Name:</b></div>";
                         echo "<div class='col-sm-2'> <input type=text name=lName class='form-control' value='$lName' onkeypress='return noenter()' required></div>";
                     }
                     ?>
-
                 </div>
             </fieldset>
-
 
             <fieldset>
                 <legend>Visitor Details</legend>
                 <div class='row'>
                     <div class='col-sm-2'><b>Visitor Type:</b></div>
                     <div class='col-sm-5'><select name="visitorType" id="visitor" class="form-control" value="<?php echo $visitorType ?>" required>
+                    <!-- If the visitorType from the database matches the option, it makes the option selected -->
                             <option value="Undergraduate" <?php if ($visitorType === 'Undergraduate') {
                                                                 echo "selected";
                                                             } ?>>Undergraduate</option>
@@ -194,14 +200,14 @@ if ($myVisitorsResult->num_rows > 0) {
                     $sql = "SELECT count(*) AS 'No' FROM visit WHERE visitorId = '$id' GROUP BY 'visitorId'";
                     $result = $link->query($sql);
                     if ($result->num_rows > 0) {
+                        //If the count is returned that means that there is a visit for that user, therefore the user can't be deleted
                         echo "<div class='col-sm'><input type=submit name=update value=Update class='btn btn-success' style='width:100%'></div>";
                         echo "<div class='col-sm'><input type=submit name=delete value=Delete class='btn btn-danger' disabled style='width:100%'></div>";
                     } else {
+                        //If nothing is returned that means that there is not a visit for that user, therefore the user can be deleted
                         echo "<div class='col-sm'><input type=submit name=update value=Update class='btn btn-success' style='width:100%'></div>";
                         echo "<div class='col-sm'><input type=submit name=delete value=Delete class='btn btn-danger' style='width:100%'></div>";
                     }
-
-
                     ?>
 
                     <input type=hidden name=hidden value=<?php echo $id ?>>

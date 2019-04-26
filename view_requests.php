@@ -61,7 +61,7 @@ if (isset($_POST['VRDBHRCancel'])) {
     mysqli_query($link, $VRDBHRCancelQuery);
 };
 
-//Cancel Action for section Visit(s) Prompted for Resubmission by HR </h2>";
+//Cancel Action for section Visit(s) Prompted for Resubmission by HR
 if (isset($_POST['RPFRBHRSend'])) {
     date_default_timezone_set('Europe/London');
     $publish_date = date("Y-m-d H:i:s");
@@ -95,7 +95,7 @@ if (isset($_POST['RPFRBHRSend'])) {
     }
     mysqli_query($link, $RPFRBHRSendQuery);
 };
-//Cancel Action for section Visit(s) Prompted for Resubmission by Supervisor </h2>";
+//Cancel Action for section Visit(s) Prompted for Resubmission by Supervisor
 if (isset($_POST['RPFRBSSend'])) {
     date_default_timezone_set('Europe/London');
     $publish_date = date("Y-m-d H:i:s");
@@ -130,6 +130,7 @@ if (isset($_POST['RPFRBSSend'])) {
 };
 
 $currentAcademic = $_SESSION['username'];
+//SQL statement to retrieve all the required columns from the visit and visitingAcademic tables in the database
 $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.hrComment, v.iprIssues, v.iprFile, va.title, va.street, va.city, va.county, va.postcode  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '2'  ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
@@ -138,37 +139,37 @@ if ($supervisorApprovedresult->num_rows > 0) {
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
         $visitId = $row["visitId"];
         $visitorId = $row["visitorId"];
-        $fName = htmlspecialchars($row["fName"]); //
-        $lName = htmlspecialchars($row["lName"]); //
-        $title = $row["title"]; //
-        $homeInstitution = htmlspecialchars($row["homeInstitution"]); //
-        $department = htmlspecialchars($row["department"]); //
-        $street = htmlspecialchars($row["street"]); //
-        $city = htmlspecialchars($row["city"]); //
-        $county = htmlspecialchars($row["county"]); //
-        $postcode = htmlspecialchars($row["postcode"]); //
-        $email = htmlspecialchars($row["email"]); //
-        $phoneNumber = htmlspecialchars($row["phoneNumber"]); //
-        $visitAdded = $row["visitAddedDate"]; //
+        $fName = htmlspecialchars($row["fName"]);
+        $lName = htmlspecialchars($row["lName"]);
+        $title = $row["title"];
+        $homeInstitution = htmlspecialchars($row["homeInstitution"]);
+        $department = htmlspecialchars($row["department"]);
+        $street = htmlspecialchars($row["street"]);
+        $city = htmlspecialchars($row["city"]);
+        $county = htmlspecialchars($row["county"]);
+        $postcode = htmlspecialchars($row["postcode"]);
+        $email = htmlspecialchars($row["email"]);
+        $phoneNumber = htmlspecialchars($row["phoneNumber"]);
+        $visitAdded = $row["visitAddedDate"];
         $financialImp = htmlspecialchars($row["financialImplications"]);
-        $visitorType = $row["visitorType"]; //
-        $visitorTypeEXT = htmlspecialchars($row["visitorTypeExt"]); //
-        $visitStart = $row["startDate"]; //
-        $visitEnd = $row["endDate"]; //
+        $visitorType = $row["visitorType"];
+        $visitorTypeEXT = htmlspecialchars($row["visitorTypeExt"]);
+        $visitStart = $row["startDate"];
+        $visitEnd = $row["endDate"];
         $summary = htmlspecialchars($row["summary"]);
-        $startDisplay = date("d/m/Y", strtotime($visitStart));
-        $startDisplayDateDisp = date("Y-m-d", strtotime($visitStart));
-        $endDisplay = date("d/m/Y", strtotime($visitEnd));
-        $endDisplayDateDisp = date("Y-m-d", strtotime($visitEnd));
-        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded));
+        $startDisplay = date("d/m/Y", strtotime($visitStart)); //format the date to be displayed in a clear and concise way
+        $startDisplayDateDisp = date("Y-m-d", strtotime($visitStart)); //format the date to be used as input for the date pickers
+        $endDisplay = date("d/m/Y", strtotime($visitEnd)); //format the date to be displayed in a clear and concise way
+        $endDisplayDateDisp = date("Y-m-d", strtotime($visitEnd)); //format the date to be used as input for the date pickers
+        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded)); //format the date to be displayed in a clear and concise way
         $supervisorApproved = $row["supervisorApprovedDate"];
         $supervisorUname = $row["supervisorUsername"];
-        $supervisorApprovedDate = $row["supervisorApprovedDate"]; //
-        $supervisorApprovedDateDisp = date("d/m/Y - g:iA", strtotime($supervisorApprovedDate));
+        $supervisorApprovedDate = $row["supervisorApprovedDate"];
+        $supervisorApprovedDateDisp = date("d/m/Y - g:iA", strtotime($supervisorApprovedDate)); //format the date to be displayed in a clear and concise way
         $hrApproved = $row["hrApprovedDate"];
         $hrUname = $row["hrUsername"];
-        $hrApprovedDate = $row["hrApprovedDate"]; //
-        $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate));
+        $hrApprovedDate = $row["hrApprovedDate"];
+        $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate)); //format the date to be displayed in a clear and concise way
         $hrComment = htmlspecialchars($row['hrComment']);
         $iprIssues = $row['iprIssues'];
         $iprFile = $row['iprFile'];
@@ -245,10 +246,12 @@ if ($supervisorApprovedresult->num_rows > 0) {
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="s_date"><b>Visit Start Date:</b> </label>
+                        <!-- Appends the date from the database to the datefield -->
                         <input id="datefield" type="date" name="s_date" value="<?php echo $startDisplayDateDisp ?>" onchange="updateDateFields()" class="form-control" max=e_date required>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="e_date"><b>Visit End Date:</b> </label>
+                        <!-- Appends the date from the database to the datefield -->
                         <input id="dateend" type="date" name="e_date" value="<?php echo $endDisplayDateDisp ?>" class="form-control" required>
                     </div>
                 </div>
@@ -306,6 +309,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
             <div class="container">
                 <div class="row">
                     <div class="col-md"></div>
+                    <!-- Button Resubmit request(s) Prompted for Resubmission by HR-->
                     <div class="col-md"><input type=submit name=RPFRBHRSend value='Resubmit Visit Request' class='btn btn-secondary' style='width:100%; margin-bottom:5px'></div>
                     <div class="col-md"></div>
                 </div>
@@ -323,7 +327,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
 echo "</div>";
 } else { }
 
-
+//SQL statement to retrieve all the required columns from the visit and visitingAcademic tables in the database
 $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.supervisorComment, v.iprIssues, v.iprFile, va.title, va.street, va.city, va.county, va.postcode  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '2' ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
@@ -333,33 +337,33 @@ if ($supervisorApprovedresult->num_rows > 0) {
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
         $visitId = $row["visitId"];
         $visitorId = $row["visitorId"];
-        $fName = htmlspecialchars($row["fName"]); //
-        $lName = htmlspecialchars($row["lName"]); //
-        $title = $row["title"]; //
-        $homeInstitution = htmlspecialchars($row["homeInstitution"]); //
-        $department = htmlspecialchars($row["department"]); //
-        $street = htmlspecialchars($row["street"]); //
-        $city = htmlspecialchars($row["city"]); //
-        $county = htmlspecialchars($row["county"]); //
-        $postcode = htmlspecialchars($row["postcode"]); //
-        $email = htmlspecialchars($row["email"]); //
-        $phoneNumber = htmlspecialchars($row["phoneNumber"]); //
-        $visitAdded = htmlspecialchars($row["visitAddedDate"]); //
+        $fName = htmlspecialchars($row["fName"]);
+        $lName = htmlspecialchars($row["lName"]);
+        $title = $row["title"];
+        $homeInstitution = htmlspecialchars($row["homeInstitution"]);
+        $department = htmlspecialchars($row["department"]);
+        $street = htmlspecialchars($row["street"]);
+        $city = htmlspecialchars($row["city"]);
+        $county = htmlspecialchars($row["county"]);
+        $postcode = htmlspecialchars($row["postcode"]);
+        $email = htmlspecialchars($row["email"]);
+        $phoneNumber = htmlspecialchars($row["phoneNumber"]);
+        $visitAdded = htmlspecialchars($row["visitAddedDate"]);
         $financialImp = htmlspecialchars($row["financialImplications"]);
-        $visitorType = $row["visitorType"]; //
-        $visitorTypeEXT = htmlspecialchars($row["visitorTypeExt"]); //
-        $visitStart = $row["startDate"]; //
-        $visitEnd = $row["endDate"]; //
+        $visitorType = $row["visitorType"];
+        $visitorTypeEXT = htmlspecialchars($row["visitorTypeExt"]);
+        $visitStart = $row["startDate"];
+        $visitEnd = $row["endDate"];
         $summary = $row["summary"];
-        $startDisplay = date("d/m/Y", strtotime($visitStart));
-        $startDisplayDateDisp = date("Y-m-d", strtotime($visitStart));
-        $endDisplay = date("d/m/Y", strtotime($visitEnd));
-        $endDisplayDateDisp = date("Y-m-d", strtotime($visitEnd));
-        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded));
+        $startDisplay = date("d/m/Y", strtotime($visitStart)); //format the date to be displayed in a clear and concise way
+        $startDisplayDateDisp = date("Y-m-d", strtotime($visitStart)); //format the date to be used as input for the date pickers
+        $endDisplay = date("d/m/Y", strtotime($visitEnd)); //format the date to be displayed in a clear and concise way
+        $endDisplayDateDisp = date("Y-m-d", strtotime($visitEnd)); //format the date to be used as input for the date pickers
+        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded)); //format the date to be displayed in a clear and concise way
         $supervisorApproved = $row["supervisorApprovedDate"];
         $supervisorUname = $row["supervisorUsername"];
-        $supervisorApprovedDate = $row["supervisorApprovedDate"]; //
-        $supervisorApprovedDateDisp = date("d/m/Y - g:iA", strtotime($supervisorApprovedDate));
+        $supervisorApprovedDate = $row["supervisorApprovedDate"];
+        $supervisorApprovedDateDisp = date("d/m/Y - g:iA", strtotime($supervisorApprovedDate)); //format the date to be displayed in a clear and concise way
         $iprIssues = $row['iprIssues'];
         $iprFile = $row['iprFile'];
         $supervisorComment = htmlspecialchars($row['supervisorComment']);
@@ -428,10 +432,12 @@ if ($supervisorApprovedresult->num_rows > 0) {
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="s_date"><b>Visit Start Date:</b> </label>
+                        <!-- Appends the date from the database to the datefield -->
                         <input id="datefield" type="date" name="s_date" value="<?php echo $startDisplayDateDisp ?>" onchange="updateDateFields()" class="form-control" max=e_date required>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="e_date"><b>Visit End Date:</b> </label>
+                        <!-- Appends the date from the database to the datefield -->
                         <input id="dateend" type="date" name="e_date" value="<?php echo $endDisplayDateDisp ?>" class="form-control" required>
                     </div>
                 </div>
@@ -483,6 +489,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
             <div class="container">
                 <div class="row">
                     <div class="col-md"></div>
+                    <!-- Button Resubmit request(s) Prompted for Resubmission by Supervisor-->
                     <div class="col-md"><input type=submit name=RPFRBSSend value='Resubmit Visit Request' class='btn btn-secondary' style='width:100%; margin-bottom:5px'></div>
                     <div class="col-md"></div>
                 </div>
@@ -500,6 +507,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
 echo "</div>";
 } else { }
 
+//SQL statement to retrieve all the required columns from the visit and visitingAcademic tables in the database
 $awaitingAction = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.iprIssues, v.iprFile  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '0' AND v.hrApproved LIKE '0'  ORDER BY v.visitAddedDate DESC";
 $awaitingActionresult = $link->query($awaitingAction);
 if ($awaitingActionresult->num_rows > 0) {
@@ -521,18 +529,19 @@ if ($awaitingActionresult->num_rows > 0) {
         $phone = htmlspecialchars($row["phoneNumber"]);
         $summary = htmlspecialchars($row["summary"]);
         $visitAdded = $row["visitAddedDate"];
-        $financialImp = htmlspecialchars($row["financialImplications"]); //done
-        $visitorType = $row["visitorType"]; //done
-        $visitorTypeEXT = htmlspecialchars($row["visitorTypeExt"]); //done
-        $visitStart = $row["startDate"]; //done
-        $visitEnd = $row["endDate"]; //done
-        $startDisplay = date("d/m/Y", strtotime($visitStart));
-        $endDisplay = date("d/m/Y", strtotime($visitEnd));
-        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded));
+        $financialImp = htmlspecialchars($row["financialImplications"]);
+        $visitorType = $row["visitorType"];
+        $visitorTypeEXT = htmlspecialchars($row["visitorTypeExt"]);
+        $visitStart = $row["startDate"];
+        $visitEnd = $row["endDate"];
+        $startDisplay = date("d/m/Y", strtotime($visitStart)); //format the date to be displayed in a clear and concise way
+        $endDisplay = date("d/m/Y", strtotime($visitEnd)); //format the date to be displayed in a clear and concise way
+        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded)); //format the date to be displayed in a clear and concise way
         $iprIssues = $row['iprIssues'];
         $iprFile = $row['iprFile'];
         ?>
         <form action=view_requests.php method=post>
+<!-- Display Visits which require action and therefore pending -->
             <div class="card">
                 <div class="card-header" id="<?php echo $headingId ?>" <button id="button1" class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
                     <div class="row">
@@ -571,6 +580,7 @@ if ($awaitingActionresult->num_rows > 0) {
             <input type=hidden name=hiddenVRAA value=<?php echo $visitId ?>>
             <div class="container">
                 <div class="row">
+                    <!-- Button to cancel visit -->
                     <div class="col-md"></div>
                     <div class="col-md"><input type=submit name=VRAACancel value='Cancel Visit' class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
                     <div class="col-md"></div>
@@ -583,6 +593,7 @@ if ($awaitingActionresult->num_rows > 0) {
 echo "</div>";
 } else { }
 
+//SQL statement to retrieve all the required columns from the visit and visitingAcademic tables in the database
 $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.iprIssues, v.iprFile FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '0'  ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
@@ -602,22 +613,24 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $phone = $row["phoneNumber"];
         $summary = $row["summary"];
         $visitAdded = $row["visitAddedDate"];
-        $financialImp = $row["financialImplications"]; //done
-        $visitorType = $row["visitorType"]; //done
-        $visitorTypeEXT = $row["visitorTypeExt"]; //done
-        $visitStart = $row["startDate"]; //done
-        $visitEnd = $row["endDate"]; //done
-        $startDisplay = date("d/m/Y", strtotime($visitStart));
-        $endDisplay = date("d/m/Y", strtotime($visitEnd));
-        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded));
+        $financialImp = $row["financialImplications"];
+        $visitorType = $row["visitorType"];
+        $visitorTypeEXT = $row["visitorTypeExt"];
+        $visitStart = $row["startDate"];
+        $visitEnd = $row["endDate"];
+        $startDisplay = date("d/m/Y", strtotime($visitStart)); //format the date to be displayed in a clear and concise way
+        $endDisplay = date("d/m/Y", strtotime($visitEnd)); //format the date to be displayed in a clear and concise way
+        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded)); //format the date to be displayed in a clear and concise way
         $supervisorApproved = $row["supervisorApprovedDate"];
         $supervisorUname = $row["supervisorUsername"];
         $supervisorApprovedDate = $row["supervisorApprovedDate"];
-        $supervisorApprovedDateDisp = date("d/m/Y - g:iA", strtotime($supervisorApprovedDate));
+        $supervisorApprovedDateDisp = date("d/m/Y - g:iA", strtotime($supervisorApprovedDate)); //format the date to be displayed in a clear and concise way
         $iprIssues = $row['iprIssues'];
         $iprFile = $row['iprFile'];
         ?>
         <form action=view_requests.php method=post>
+<!-- Display Visits which have been approved by the Supervisor -->
+
             <div class="card">
                 <div class="card-header" id="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
                     <div class="row">
@@ -660,6 +673,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
             <input type=hidden name=hiddenVRABS value=<?php echo $visitId ?>>
             <div class="container">
                 <div class="row">
+                    <!-- Button to cancel visit -->
                     <div class="col-md"></div>
                     <div class="col-md"><input type=submit name=VRABSCancel value='Cancel Visit' class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
                     <div class="col-md"></div>
@@ -672,6 +686,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
 echo "</div>";
 } else { }
 
+//SQL statement to retrieve all the required columns from the visit and visitingAcademic tables in the database
 $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.supervisorComment, v.iprIssues, v.iprFile FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '1' AND v.hrApproved LIKE '0'  ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
@@ -691,23 +706,24 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $phone = $row["phoneNumber"];
         $summary = $row["summary"];
         $visitAdded = $row["visitAddedDate"];
-        $financialImp = $row["financialImplications"]; //done
-        $visitorType = $row["visitorType"]; //done
-        $visitorTypeEXT = $row["visitorTypeExt"]; //done
-        $visitStart = $row["startDate"]; //done
-        $visitEnd = $row["endDate"]; //done
-        $startDisplay = date("d/m/Y", strtotime($visitStart));
-        $endDisplay = date("d/m/Y", strtotime($visitEnd));
-        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded));
+        $financialImp = $row["financialImplications"];
+        $visitorType = $row["visitorType"];
+        $visitorTypeEXT = $row["visitorTypeExt"];
+        $visitStart = $row["startDate"];
+        $visitEnd = $row["endDate"];
+        $startDisplay = date("d/m/Y", strtotime($visitStart)); //format the date to be displayed in a clear and concise way
+        $endDisplay = date("d/m/Y", strtotime($visitEnd)); //format the date to be displayed in a clear and concise way
+        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded)); //format the date to be displayed in a clear and concise way
         $supervisorApproved = $row["supervisorApprovedDate"];
         $supervisorUname = $row["supervisorUsername"];
         $supervisorApprovedDate = $row["supervisorApprovedDate"];
-        $supervisorApprovedDateDisp = date("d/m/Y - g:iA", strtotime($supervisorApprovedDate));
+        $supervisorApprovedDateDisp = date("d/m/Y - g:iA", strtotime($supervisorApprovedDate)); //format the date to be displayed in a clear and concise way
         $supervisorComment = $row["supervisorComment"];
         $iprIssues = $row['iprIssues'];
         $iprFile = $row['iprFile'];
         ?>
         <form action=view_requests.php method=post>
+<!-- Display Visits which have been denied by the Supervisor -->
             <div class="card">
                 <div class="card-header" id="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
                     <div class="row">
@@ -751,6 +767,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
             <input type=hidden name=hiddenVRDBS value=<?php echo $visitId ?>>
             <div class="container">
                 <div class="row">
+                    <!-- Button to cancel visit -->
                     <div class="col-md"></div>
                     <div class="col-md"><input type=submit name=VRDBSCancel value='Cancel Visit' class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
                     <div class="col-md"></div>
@@ -764,7 +781,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
 echo "</div>";
 } else { }
 
-//TODO: section for ones to be resubmitted
+//SQL statement to retrieve all the required columns from the visit and visitingAcademic tables in the database
 $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.iprIssues, v.iprFile  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '3'  ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
@@ -785,18 +802,18 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $phone = $row["phoneNumber"];
         $summary = $row["summary"];
         $visitAdded = $row["visitAddedDate"];
-        $financialImp = $row["financialImplications"]; //done
-        $visitorType = $row["visitorType"]; //done
-        $visitorTypeEXT = $row["visitorTypeExt"]; //done
-        $visitStart = $row["startDate"]; //done
-        $visitEnd = $row["endDate"]; //done
-        $startDisplay = date("d/m/Y", strtotime($visitStart));
-        $endDisplay = date("d/m/Y", strtotime($visitEnd));
-        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded));
+        $financialImp = $row["financialImplications"];
+        $visitorType = $row["visitorType"];
+        $visitorTypeEXT = $row["visitorTypeExt"];
+        $visitStart = $row["startDate"];
+        $visitEnd = $row["endDate"];
+        $startDisplay = date("d/m/Y", strtotime($visitStart)); //format the date to be displayed in a clear and concise way
+        $endDisplay = date("d/m/Y", strtotime($visitEnd)); //format the date to be displayed in a clear and concise way
+        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded)); //format the date to be displayed in a clear and concise way
         $supervisorApproved = $row["supervisorApprovedDate"];
         $supervisorUname = $row["supervisorUsername"];
         $supervisorApprovedDate = $row["supervisorApprovedDate"];
-        $supervisorApprovedDateDisp = date("d/m/Y - g:iA", strtotime($supervisorApprovedDate));
+        $supervisorApprovedDateDisp = date("d/m/Y - g:iA", strtotime($supervisorApprovedDate)); //format the date to be displayed in a clear and concise way
         $hrApproved = $row["hrApprovedDate"];
         $hrUname = $row["hrUsername"];
         $hrApprovedDate = $row["hrApprovedDate"];
@@ -805,6 +822,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $iprFile = $row['iprFile'];
         ?>
         <form action=view_requests.php method=post>
+<!-- Display Visits which have been approved by the Supervisor and HR -->
             <div class="card">
                 <div class="card-header" id="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
                     <div class="row">
@@ -851,6 +869,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
             <input type=hidden name=hiddenVRABSHR value=<?php echo $visitId ?>>
             <div class="container">
                 <div class="row">
+                    <!-- Button to cancel visit -->
                     <div class="col-md"></div>
                     <div class="col-md"><input type=submit name=VRABSHRCancel value='Cancel Visit' class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
                     <div class="col-md"></div>
@@ -862,6 +881,8 @@ if ($supervisorApprovedresult->num_rows > 0) {
 }
 echo "</div>";
 } else { }
+
+//SQL statement to retrieve all the required columns from the visit and visitingAcademic tables in the database
 $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.hrComment, v.iprIssues, v.iprFile  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '1'  ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
@@ -882,27 +903,29 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $phone = $row["phoneNumber"];
         $summary = $row["summary"];
         $visitAdded = $row["visitAddedDate"];
-        $financialImp = $row["financialImplications"]; //done
-        $visitorType = $row["visitorType"]; //done
-        $visitorTypeEXT = $row["visitorTypeExt"]; //done
-        $visitStart = $row["startDate"]; //done
-        $visitEnd = $row["endDate"]; //done
-        $startDisplay = date("d/m/Y", strtotime($visitStart));
-        $endDisplay = date("d/m/Y", strtotime($visitEnd));
-        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded));
+        $financialImp = $row["financialImplications"];
+        $visitorType = $row["visitorType"];
+        $visitorTypeEXT = $row["visitorTypeExt"];
+        $visitStart = $row["startDate"];
+        $visitEnd = $row["endDate"];
+        $startDisplay = date("d/m/Y", strtotime($visitStart)); //format the date to be displayed in a clear and concise way
+        $endDisplay = date("d/m/Y", strtotime($visitEnd)); //format the date to be displayed in a clear and concise way
+        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded)); //format the date to be displayed in a clear and concise way
         $supervisorApproved = $row["supervisorApprovedDate"];
         $supervisorUname = $row["supervisorUsername"];
         $supervisorApprovedDate = $row["supervisorApprovedDate"];
-        $supervisorApprovedDateDisp = date("d/m/Y - g:iA", strtotime($supervisorApprovedDate));
+        $supervisorApprovedDateDisp = date("d/m/Y - g:iA", strtotime($supervisorApprovedDate)); //format the date to be displayed in a clear and concise way
         $hrApproved = $row["hrApprovedDate"];
         $hrUname = $row["hrUsername"];
         $hrApprovedDate = $row["hrApprovedDate"];
-        $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate));
+        $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate)); //format the date to be displayed in a clear and concise way
         $hrComment = $row['hrComment'];
         $iprIssues = $row['iprIssues'];
         $iprFile = $row['iprFile'];
         ?>
         <form action=view_requests.php method=post>
+<!-- Display Visits which have been approved by the Supervisor and denied by HR -->
+
             <div class="card">
                 <div class="card-header" id="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
                     <div class="row">
@@ -950,6 +973,8 @@ if ($supervisorApprovedresult->num_rows > 0) {
             <input type=hidden name=hiddenVRDBHR value=<?php echo $visitId ?>>
             <div class="container">
                 <div class="row">
+                    <!-- Button to cancel visit -->
+
                     <div class="col-md"></div>
                     <div class="col-md"><input type=submit name=VRDBHRCancel value='Cancel Visit' class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
                     <div class="col-md"></div>
@@ -966,7 +991,6 @@ echo "</div>";
 
 
 
-//TODO: section for resubmitted ones
 $link->close();
 
 ?>
