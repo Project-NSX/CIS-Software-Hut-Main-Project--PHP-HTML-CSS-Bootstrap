@@ -1,80 +1,73 @@
-footer{
-	position: fixed;
-	left: 0;
-	bottom: 0;
-	width: 100%;
-	text-align: center;
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
 }
 
-#top{
-	background-color: blue;
+#top {
+    background-color: blue;
 }
 
-#bottom{
-	background-color: red;
+#bottom {
+    background-color: red;
 }
+
 body {
-	background-color: rgb(233, 233, 233);
-  }
-#welcome{
-
+    background-color: rgb(233, 233, 233);
 }
 
-#signout{
-	float: right;
+#welcome {}
+
+#signout {
+    float: right;
 }
 
-
-#headerTop{
-	padding-top: 20px;
-	padding-bottom: 10px;
-	padding-left: 17%;
-	padding-right: 17%;
-	background-color: #CDCDCD;
-	margin-bottom: 20px;
+#headerTop {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    padding-left: 17%;
+    padding-right: 17%;
+    background-color: #CDCDCD;
+    margin-bottom: 20px;
 }
 
-#pageTitle{
-	margin-top: 10px;
-	margin-bottom: 20px;
+#pageTitle {
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
-
-#logo{
-	float: right;
+#logo {
+    float: right;
 }
 
-#nav1{
-	margin-top: 20px;
-	margin-bottom: 40px;
+#nav1 {
+    margin-top: 20px;
+    margin-bottom: 40px;
 }
 
-h2{
+h2 {}
 
+#button1 {
+    background-color: #B82233;
+    border: 1px solid #B82233;
 }
 
-#button1{
-	background-color: #B82233;
-	border: 1px solid #B82233;
+.card-title {
+    color: #B82233;
 }
 
-.card-title{
-	color: #B82233;
+b,
+strong {
+    color: #B82233;
 }
 
-b, strong {
-	color: #B82233;
-	}
-
-.card-body{
-	padding: 20px;
+.card-body {
+    padding: 20px;
 }
 
-.card{
-	margin-top: 5px;
-	margin-bottom: 10px;
-}
-
+<<<<<<< HEAD
 .button {
 	background: #ccc;
 	color: #333;
@@ -130,3 +123,9 @@ width: 100%;
 	  text-shadow: 0 -1px 0 rgba(0,0,0,0.35);
   }
 
+=======
+.card {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+>>>>>>> 90c096b829f65b7c1ea3ef637380ab092cf9409e

@@ -1,7 +1,8 @@
 <!-- Variable used to highlight the appropriate button on the navbar -->
 <?php $page = 'HRAR';
-require 'includes/verify_hr_role.php'; // Redirect if the user is not logged in as a HR user.
-require 'includes/header.php'; ?>
+require 'includes/header.php';
+require 'includes/verify_hr_role.php';
+?>
 <!--HTML HERE-->
 
 <h2>Human Resources - Approved Requests</h2>
@@ -10,44 +11,47 @@ require 'includes/header.php'; ?>
 <?php
 require_once 'includes/database.php';
 
+//SQL statement to retrieve columns from database table
 $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.hrComment, v.induction, v.iprIssues, v.iprFile  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '3' AND v.induction LIKE '0' ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
-echo "<h2>Request(s) Approved by HR</h2>";
+//if there is a record, the following code is executed
+    echo "<h2>Request(s) Approved by HR</h2>";
 
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
+        //save the column values as variables
         $visitId = $row["visitId"];
         $visitorId = $row["visitorId"];
         $headingId = "heading" . $visitId . $visitorId;
         $collapseId = "collapse" . $visitId . $visitorId;
         $collapseIdHash = "#collapse" . $visitId . $visitorId;
 
-        $fName = $row["fName"];
-        $lName = $row["lName"];
-        $homeInt = $row["homeInstitution"];
-        $department = $row["department"];
-        $email = $row["email"];
-        $phone = $row["phoneNumber"];
-        $summary = $row["summary"];
-        $visitAdded = $row["visitAddedDate"];
+        $fName = htmlspecialchars($row["fName"]);
+        $lName = htmlspecialchars($row["lName"]);
+        $homeInt = htmlspecialchars($row["homeInstitution"]);
+        $department = htmlspecialchars($row["department"]);
+        $email = htmlspecialchars($row["email"]);
+        $phone = htmlspecialchars($row["phoneNumber"]);
+        $summary = htmlspecialchars($row["summary"]);
+        $visitAdded = htmlspecialchars($row["visitAddedDate"]);
         $financialImp = $row["financialImplications"]; //done
         $visitorType = $row["visitorType"]; //done
-        $visitorTypeEXT = $row["visitorTypeExt"]; //done
+        $visitorTypeEXT = htmlspecialchars($row["visitorTypeExt"]); //done
         $visitStart = $row["startDate"]; //done
         $visitEnd = $row["endDate"]; //done
-        $startDisplay = date("d/m/Y", strtotime($visitStart));
-        $endDisplay = date("d/m/Y", strtotime($visitEnd));
-        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded));
+        $startDisplay = date("d/m/Y", strtotime($visitStart)); //format the date to be displayed
+        $endDisplay = date("d/m/Y", strtotime($visitEnd)); //format the date to be displayed
+        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded)); //format the date to be displayed
         $supervisorApproved = $row["supervisorApprovedDate"];
         $supervisorUname = $row["supervisorUsername"];
         $supervisorApprovedDate = $row["supervisorApprovedDate"];
-        $supervisorApprovedDateDisp = date("d/m/Y - g:iA", strtotime($supervisorApprovedDate));
+        $supervisorApprovedDateDisp = date("d/m/Y - g:iA", strtotime($supervisorApprovedDate)); //format the date to be displayed
         $hrApproved = $row["hrApprovedDate"];
         $hrUname = $row["hrUsername"];
         $hrApprovedDate = $row["hrApprovedDate"];
-        $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate));
-        $hrComment = $row['hrComment'];
+        $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate)); //format the date to be displayed
+        $hrComment = htmlspecialchars($row['hrComment']);
         $iprIssues = $row['iprIssues'];
         $iprFile = $row['iprFile'];
         ?>
@@ -84,6 +88,7 @@ echo "<h2>Request(s) Approved by HR</h2>";
                     <p class='card-text'><?php echo $hrUname ?> </p>
                     <h5 class='card-title'>Date & Time of Decision</h5>
                     <p class='card-text'><?php echo $hrApprovedDateDisp ?> </p>
+                    <!-- if the iprIssues variable is 1,  display a link to the ipr file, otherwise don't-->
                     <?php if ($iprIssues == 1) {
                         echo "<h5 class='card-title'>IPR Issues File:</h5>";
                         echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
@@ -97,8 +102,8 @@ echo "<h2>Request(s) Approved by HR</h2>";
     <?php
 }
 echo "</div>";
-} else {
-}
+} //if no records are returned, do nothing and therefore print nothing
+else { }
 
 $link->close();
 ?>

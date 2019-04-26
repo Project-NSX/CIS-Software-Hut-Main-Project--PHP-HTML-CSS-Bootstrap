@@ -1,7 +1,8 @@
 <!-- Variable used to highlight the appropriate button on the navbar -->
 <?php $page = 'CMDR';
+require 'includes/header.php';
 require 'includes/verify_cm_role.php'; // Redirect if the user is not logged in as a college manager.
-require 'includes/header.php'; ?>
+?>
 <!--HTML HERE-->
 
 <h2>College Manager - Denied Requests</h2>
@@ -9,14 +10,15 @@ require 'includes/header.php'; ?>
 <!--TODO: Add the ability to search for an approved request-->
 <?php
 require_once 'includes/database.php';
-
+//SQL Statement to retrieve the appropriate cells from the tables
 $supervisorApproved = "SELECT v.visitId, v.visitorId, v.summary, v.financialImplications, v.startDate, v.endDate, v.visitAddedDate, v.supervisorApprovedDate, va.fName, va.lName, va.homeInstitution, va.department, va.visitorType, va.visitorTypeExt, v.iprIssues, v.iprFile FROM visit v, user u, school s, visitingAcademic va WHERE v.hostAcademic = u.username AND u.school_id = s.schoolId AND va.visitorId = v.visitorId AND u.college_id = '{$_SESSION['college_id']}' AND u.role = 'Head Of School' AND v.supervisorApproved LIKE '1' ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
-echo "<h2>College Manager - Outright Denied Requests</h2>";
+    echo "<h2>College Manager - Outright Denied Requests</h2>";
 
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
+        //assigning returned columns to variables - made it easier to reference at a later stage
         $visitId = $row["visitId"];
         $visitorId = $row["visitorId"];
         $headingId = "heading" . $visitId . $visitorId;
@@ -27,11 +29,11 @@ echo "<h2>College Manager - Outright Denied Requests</h2>";
         $homeInt = $row["homeInstitution"];
         $department = $row["department"];
         $summary = $row["summary"];
-        $financialImp = $row["financialImplications"]; //done
-        $visitorType = $row["visitorType"]; //done
-        $visitorTypeEXT = $row["visitorTypeExt"]; //done
-        $visitStart = $row["startDate"]; //done
-        $visitEnd = $row["endDate"]; //done
+        $financialImp = $row["financialImplications"];
+        $visitorType = $row["visitorType"];
+        $visitorTypeEXT = $row["visitorTypeExt"];
+        $visitStart = $row["startDate"];
+        $visitEnd = $row["endDate"];
         $Dateadded = $row["visitAddedDate"];
         $startDisplay = date("d/m/Y", strtotime($visitStart));
         $endDisplay = date("d/m/Y", strtotime($visitEnd));
@@ -41,12 +43,13 @@ echo "<h2>College Manager - Outright Denied Requests</h2>";
         $iprIssues = $row['iprIssues'];
         $iprFile = $row['iprFile'];
         ?>
+        <!-- Used a card to make something similar to an accordion which was used to display data with brief into in header and detail in the collapsable section-->
         <div class="card">
             <div class="card-header" id="<?php echo $headingId ?>" <button id="button1" class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
                 <div class="row">
-                    <div class='col-sm'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
-                    <div class='col-sm'><b>Home Institution: </b> <?php echo $homeInt ?></div>
-                    <div class='col-sm'><b>Department: </b> <?php echo $department ?></div>
+                    <div class='col-sm'><b>Name: </b> <?php echo htmlspecialchars($fName) . " " . htmlspecialchars($lName) ?></div>
+                    <div class='col-sm'><b>Home Institution: </b> <?php echo htmlspecialchars($homeInt) ?></div>
+                    <div class='col-sm'><b>Department: </b> <?php echo htmlspecialchars($department) ?></div>
                 </div>
                 <div class="row">
                     <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
@@ -55,11 +58,11 @@ echo "<h2>College Manager - Outright Denied Requests</h2>";
             <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
                 <div class="card-body">
                     <h5 class='card-title'>Visit Summary</h5>
-                    <p class='card-text'><?php echo $summary ?></p>
+                    <p class='card-text'><?php echo htmlspecialchars($summary) ?></p>
                     <h5 class='card-title'>Financial Implications</h5>
-                    <p class='card-text'><?php echo $financialImp ?></p>
+                    <p class='card-text'><?php echo htmlspecialchars($financialImp) ?></p>
                     <h5 class='card-title'>Visitor Type</h5>
-                    <p class='card-text'><?php echo $visitorType ?> &#8195; <?php echo $visitorTypeEXT ?></p>
+                    <p class='card-text'><?php echo $visitorType ?> &#8195; <?php echo htmlspecialchars($visitorTypeEXT) ?></p>
                     <h5 class='card-title'>Visit Start & End Dates</h5>
                     <p class='card-text'><b>Start:</b> <?php echo $startDisplay ?> &#8195; <b>End:</b> <?php echo $endDisplay ?></p>
                     <h5 class='card-title'>Date & Time of Initial Submission</h5>
@@ -68,7 +71,7 @@ echo "<h2>College Manager - Outright Denied Requests</h2>";
                     <p class='card-text'><?php echo $suppervisorApproveDisplay ?> </p>
                     <?php if ($iprIssues == 1) {
                         echo "<h5 class='card-title'>IPR Issues File:</h5>";
-                        echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
+                        echo "<p class='card-text'><a href='ipr/$iprFile' download>htmlspecialchars($iprFile)</a>";
                     }
                     ?>
                 </div>
@@ -79,8 +82,7 @@ echo "<h2>College Manager - Outright Denied Requests</h2>";
     <?php
 }
 echo "</div>";
-} else {
-}
+} else { }
 $link->close();
 
 ?>
