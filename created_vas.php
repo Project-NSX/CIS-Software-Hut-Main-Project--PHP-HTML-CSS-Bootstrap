@@ -27,6 +27,7 @@ if (isset($_POST['delete'])) {
     mysqli_query($link, $DeleteQuery);
 };
 
+//SQL statement to retrieve columns from database table
 $myVisitors = "SELECT * FROM visitingAcademic WHERE hostAcademic = '{$_SESSION['username']}' ";
 $myVisitorsResult = $link->query($myVisitors);
 if ($myVisitorsResult->num_rows > 0) {

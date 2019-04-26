@@ -25,31 +25,43 @@ require 'includes/deny_hr_role.php' // Redirects users with the "Human Resources
 <?php
 //TODO: check sql statements and button clicks
 require_once 'includes/database.php';
+//Cancel Action for section Visit Requests awaiting action
 if (isset($_POST['VRAACancel'])) {
     date_default_timezone_set('Europe/London');
     $publish_date = date("Y-m-d H:i:s");
     $VRAACancelQuery = "UPDATE visit SET supervisorApproved = 4, hrApproved = 4, cancelTime = '$publish_date' WHERE visitId = '$_POST[hiddenVRAA]'";
     mysqli_query($link, $VRAACancelQuery);
 };
+//Cancel Action for section Visit Requests approved by Supervisor
 if (isset($_POST['VRABSCancel'])) {
     date_default_timezone_set('Europe/London');
     $publish_date = date("Y-m-d H:i:s");
     $VRABSCancelQuery = "UPDATE visit SET supervisorApproved = 4, hrApproved = 4, cancelTime = '$publish_date' WHERE visitId = '$_POST[hiddenVRABS]'";
     mysqli_query($link, $VRABSCancelQuery);
 };
+//Cancel Action for section Visit Requests denied by Supervisor
 if (isset($_POST['VRDBSCancel'])) {
     date_default_timezone_set('Europe/London');
     $publish_date = date("Y-m-d H:i:s");
     $VRDBSCancelQuery = "UPDATE visit SET supervisorApproved = 4, hrApproved = 4, cancelTime = '$publish_date' WHERE visitId = '$_POST[hiddenVRDBS]'";
     mysqli_query($link, $VRDBSCancelQuery);
 };
+//Cancel Action for section Visit Requests Approved by Supervisor & HR
 if (isset($_POST['VRABSHRCancel'])) {
     date_default_timezone_set('Europe/London');
     $publish_date = date("Y-m-d H:i:s");
     $VRABSHRCancelQuery = "UPDATE visit SET supervisorApproved = 4, hrApproved = 4, cancelTime = '$publish_date' WHERE visitId = '$_POST[hiddenVRABSHR]'";
     mysqli_query($link, $VRABSHRCancelQuery);
 };
-//TODO: Please Mike will you sort the ipr thing for the db
+//Cancel Action for section Visit Requests denied by HR
+if (isset($_POST['VRDBHRCancel'])) {
+    date_default_timezone_set('Europe/London');
+    $publish_date = date("Y-m-d H:i:s");
+    $VRDBHRCancelQuery = "UPDATE visit SET supervisorApproved = 4, hrApproved = 4, cancelTime = '$publish_date' WHERE visitId = '$_POST[hiddenVRDBHR]'";
+    mysqli_query($link, $VRDBHRCancelQuery);
+};
+
+//Cancel Action for section Visit(s) Prompted for Resubmission by HR </h2>";
 if (isset($_POST['RPFRBHRSend'])) {
     date_default_timezone_set('Europe/London');
     $publish_date = date("Y-m-d H:i:s");
@@ -65,7 +77,6 @@ if (isset($_POST['RPFRBHRSend'])) {
         $base = mb_substr($base, 0, 200);
         $filename = $base . "." . $pathinfo['extension'];
         $destination = "ipr/$filename";
-
         $i = 1;
 
         while (file_exists($destination)) {
@@ -73,20 +84,18 @@ if (isset($_POST['RPFRBHRSend'])) {
             $destination = "ipr/$filename";
             $i++;
         }
-
         if (move_uploaded_file($_FILES['file']['tmp_name'], $destination)) {
             $iprBool = 1;
             $RPFRBHRSendQuery = "UPDATE visit SET visitAddedDate = '$publish_date', startDate = '$s_date', endDate = '$e_date', summary = '$summary', financialImplications = '$financialImp', iprIssues = '$iprBool', iprFile = '$filename', supervisorApproved = 0, supervisorUsername = NULL, supervisorApprovedDate = NULL, supervisorCOmment = NULL, hrApproved = 0, hrUsername = NULL, hrApprovedDate = NULL, hrComment = NULL WHERE visitId = '$_POST[hiddenRPFRBHR]'";
         }
     }
-    if ($iprBool != 1) {
-
+    if($iprBool != 1){
         $iprBool = 0;
         $RPFRBHRSendQuery = "UPDATE visit SET visitAddedDate = '$publish_date', startDate = '$s_date', endDate = '$e_date', summary = '$summary', financialImplications = '$financialImp', iprIssues = '$iprBool', iprFile = NULL, supervisorApproved = 0, supervisorUsername = NULL, supervisorApprovedDate = NULL, supervisorCOmment = NULL, hrApproved = 0, hrUsername = NULL, hrApprovedDate = NULL, hrComment = NULL WHERE visitId = '$_POST[hiddenRPFRBHR]'";
     }
     mysqli_query($link, $RPFRBHRSendQuery);
 };
-//TODO: Please Mike will you sort the ipr thing for the db
+//Cancel Action for section Visit(s) Prompted for Resubmission by Supervisor </h2>";
 if (isset($_POST['RPFRBSSend'])) {
     date_default_timezone_set('Europe/London');
     $publish_date = date("Y-m-d H:i:s");
@@ -102,7 +111,6 @@ if (isset($_POST['RPFRBSSend'])) {
         $base = mb_substr($base, 0, 200);
         $filename = $base . "." . $pathinfo['extension'];
         $destination = "ipr/$filename";
-
         $i = 1;
 
         while (file_exists($destination)) {
@@ -110,7 +118,6 @@ if (isset($_POST['RPFRBSSend'])) {
             $destination = "ipr/$filename";
             $i++;
         }
-
         if (move_uploaded_file($_FILES['file']['tmp_name'], $destination)) {
             $iprBool = 1;
         }
@@ -118,20 +125,15 @@ if (isset($_POST['RPFRBSSend'])) {
         $iprBool = 0;
         $filename = null;
     }
-
-
     $RPFRBSSendQuery = "UPDATE visit SET visitAddedDate = '$publish_date', startDate = '$s_date', endDate = '$e_date', summary = '$summary', financialImplications = '$financialImp', iprIssues = '$iprBool', iprFile = '$filename', supervisorApproved = 0, supervisorUsername = NULL, supervisorApprovedDate = NULL, supervisorCOmment = NULL, hrApproved = 0, hrUsername = NULL, hrApprovedDate = NULL, hrComment = NULL WHERE visitId = '$_POST[hiddenRPFRBS]'";
     mysqli_query($link, $RPFRBSSendQuery);
 };
 
-
 $currentAcademic = $_SESSION['username'];
-
 $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.hrComment, v.iprIssues, v.iprFile, va.title, va.street, va.city, va.county, va.postcode  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '2'  ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
     echo "<h2>Request(s) Prompted for Resubmission by HR </h2>";
-
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
         $visitId = $row["visitId"];
@@ -170,7 +172,6 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $hrComment = htmlspecialchars($row['hrComment']);
         $iprIssues = $row['iprIssues'];
         $iprFile = $row['iprFile'];
-
         ?>
         <form action=view_requests.php method=post enctype="multipart/form-data">
             <fieldset>
