@@ -55,8 +55,34 @@ if (isset($_POST['RPFRBHRSend'])) {
     $e_date = $_POST['e_date'];
     $summary = $_POST['summary'];
     $financialImp = $_POST['financialImp'];
-    $RPFRBHRSendQuery = "UPDATE visit SET visitAddedDate = '$publish_date', startDate = '$s_date', endDate = '$e_date', summary = '$summary', financialImplications = '$financialImp', iprIssues = **, iprFile = **, supervisorApproved = 0, supervisorUsername = NULL, supervisorApprovedDate = NULL, supervisorCOmment = NULL, hrApproved = 0, hrUsername = NULL, hrApprovedDate = NULL, hrComment = NULL WHERE visitId = '$_POST[hiddenRPFRBHR]'";
+    $conn = getDB();
+    $pathinfo = pathinfo($_FILES['file']['name']);
+    $base = $pathinfo['filename'];
+    $base = preg_replace('/[^a-zA-Z0-9_-]/', "_", $base);
+    $base = mb_substr($base, 0, 200);
+    $filename = $base . "." . $pathinfo['extension'];
+    $destination = "ipr/$filename";
+
+    $i = 1;
+
+    while (file_exists($destination)) {
+        $filename = $base . "-$i." . $pathinfo['extension'];
+        $destination = "ipr/$filename";
+        $i++;
+    }
+
+    if (move_uploaded_file($_FILES['file']['tmp_name'], $destination)) {
+
+        $iprBool = 1;
+    } else {
+
+        $iprBool = 0;
+        $filename = null;
+    }
+    $RPFRBHRSendQuery = "UPDATE visit SET visitAddedDate = '$publish_date', startDate = '$s_date', endDate = '$e_date', summary = '$summary', financialImplications = '$financialImp', iprIssues = '$iprBool', iprFile = '$filename', supervisorApproved = 0, supervisorUsername = NULL, supervisorApprovedDate = NULL, supervisorCOmment = NULL, hrApproved = 0, hrUsername = NULL, hrApprovedDate = NULL, hrComment = NULL WHERE visitId = '$_POST[hiddenRPFRBHR]'";
     mysqli_query($link, $RPFRBHRSendQuery);
+
+
 };
 //TODO: Please Mike will you sort the ipr thing for the db
 if (isset($_POST['RPFRBSSend'])) {
@@ -66,7 +92,33 @@ if (isset($_POST['RPFRBSSend'])) {
     $e_date = $_POST['e_date'];
     $summary = $_POST['summary'];
     $financialImp = $_POST['financialImp'];
-    $RPFRBSSendQuery = "UPDATE visit SET visitAddedDate = '$publish_date', startDate = '$s_date', endDate = '$e_date', summary = '$summary', financialImplications = '$financialImp', iprIssues = **, iprFile = **, supervisorApproved = 0, supervisorUsername = NULL, supervisorApprovedDate = NULL, supervisorCOmment = NULL, hrApproved = 0, hrUsername = NULL, hrApprovedDate = NULL, hrComment = NULL WHERE visitId = '$_POST[hiddenRPFRBS]'";
+
+    $conn = getDB();
+    $pathinfo = pathinfo($_FILES['file']['name']);
+    $base = $pathinfo['filename'];
+    $base = preg_replace('/[^a-zA-Z0-9_-]/', "_", $base);
+    $base = mb_substr($base, 0, 200);
+    $filename = $base . "." . $pathinfo['extension'];
+    $destination = "ipr/$filename";
+
+    $i = 1;
+
+    while (file_exists($destination)) {
+        $filename = $base . "-$i." . $pathinfo['extension'];
+        $destination = "ipr/$filename";
+        $i++;
+    }
+
+    if (move_uploaded_file($_FILES['file']['tmp_name'], $destination)) {
+
+        $iprBool = 1;
+    } else {
+
+        $iprBool = 0;
+        $filename = null;
+    }
+
+    $RPFRBSSendQuery = "UPDATE visit SET visitAddedDate = '$publish_date', startDate = '$s_date', endDate = '$e_date', summary = '$summary', financialImplications = '$financialImp', iprIssues = '$iprBool', iprFile = '$filename', supervisorApproved = 0, supervisorUsername = NULL, supervisorApprovedDate = NULL, supervisorCOmment = NULL, hrApproved = 0, hrUsername = NULL, hrApprovedDate = NULL, hrComment = NULL WHERE visitId = '$_POST[hiddenRPFRBS]'";
     mysqli_query($link, $RPFRBSSendQuery);
 };
 
@@ -586,7 +638,7 @@ echo "<h2>Request(s) Prompted for Resubmission by HR </h2>";
         $iprFile = $row['iprFile'];
 
         ?>
-        <form action=view_requests.php method=post>
+        <form action=view_requests.php method=post  enctype="multipart/form-data">
         <fieldset>
         <legend>Supervisor Decision Details </legend>
         <div class='row'>
@@ -674,13 +726,13 @@ echo "<h2>Request(s) Prompted for Resubmission by HR </h2>";
         </div>
     </fieldset>
 
-    <fieldset>
+    <!-- <fieldset>
         <label for="ipr_issues"><b>IPR Issues:</b> </label>
 
         <p>Are there IPR issues with the visit? <b>NOTICE:</b> File must be uploaded again!</p>
-        <?php if ($iprIssues == 1) {
-                            echo "<p class='card-title'><b>Current File:</b> <a href='ipr/$iprFile' download>$iprFile</a></p>";
-                        }
+        <?php //if ($iprIssues == 1) {
+                            //echo "<p class='card-title'><b>Current File:</b> <a href='ipr/$iprFile' download>$iprFile</a></p>";
+                        //}
                     ?>
         <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="ipr_issues" id="inlineRadio1" value="yes" onchange='CheckIPR(this.value);' <?php if ($iprIssues == 1) {echo "checked";}?>>
@@ -691,12 +743,29 @@ echo "<h2>Request(s) Prompted for Resubmission by HR </h2>";
             <label class="form-check-label" for="inlineRadio1">No</label>
         </div>
 
-        <div class="custom-file" id="ipr_issues_ext" <?php if ($iprIssues == 0) {echo "style='display:none;'";}else {echo "style='display:block;'";}?>>
+        <div class="custom-file" id="ipr_issues_ext" <?php //if ($iprIssues == 0) {echo "style='display:none;'";}else {echo "style='display:block;'";}?>>
         <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
 
             <input type="file" class="custom-file-input" id="file" name="file">
 
             <br>
+        </div>
+    </fieldset> -->
+    <fieldset>
+        <legend>IPR Issues</legend>
+        <p>Are there IPR issues with the visit?</p>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="ipr_issues" id="inlineRadio1" value="yes" onchange='CheckIPR(this.value);'>
+            <label class="form-check-label" for="inlineRadio1">Yes</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="ipr_issues" id="inlineRadio1" value="no" onchange='CheckIPR(this.value);' checked>
+            <label class="form-check-label" for="inlineRadio1">No</label>
+        </div>
+
+        <div class="custom-file" id="ipr_issues_ext" style='display:none;'>
+            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+            <input type="file" class="custom-file-input" id="file" name="file">
         </div>
     </fieldset>
 
@@ -770,7 +839,7 @@ echo "<h2>Request(s) Prompted for Resubmission by Supervisor </h2>";
         $supervisorComment = $row['supervisorComment'];
 
         ?>
-        <form action=view_requests.php method=post>
+        <form action=view_requests.php method=post enctype="multipart/form-data">
         <fieldset>
         <legend>Supervisor Decision Details </legend>
         <div class='row'>
@@ -849,29 +918,46 @@ echo "<h2>Request(s) Prompted for Resubmission by Supervisor </h2>";
         </div>
     </fieldset>
 
-    <fieldset>
+    <!-- <fieldset>
         <label for="ipr_issues"><b>IPR Issues:</b> </label>
 
         <p>Are there IPR issues with the visit? <b>NOTICE:</b> File must be uploaded again!</p>
-        <?php if ($iprIssues == 1) {
-                            echo "<p class='card-title'><b>Current File:</b> <a href='ipr/$iprFile' download>$iprFile</a></p>";
-                        }
+        <?php //if ($iprIssues == 1) {
+                           // echo "<p class='card-title'><b>Current File:</b> <a href='ipr/$iprFile' download>$iprFile</a></p>";
+                        //}
                     ?>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="ipr_issues" id="inlineRadio1" value="yes" onchange='CheckIPR(this.value);' <?php if ($iprIssues == 1) {echo "checked";}?>>
+            <input class="form-check-input" type="radio" name="ipr_issues" id="inlineRadio1" value="yes" onchange='CheckIPR(this.value);' <?php //if ($iprIssues == 1) {echo "checked";}?>>
             <label class="form-check-label" for="inlineRadio1">Yes</label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="ipr_issues" id="inlineRadio1" value="no" onchange='CheckIPR(this.value);' <?php if ($iprIssues == 0) {echo "checked";}?>>
+            <input class="form-check-input" type="radio" name="ipr_issues" id="inlineRadio1" value="no" onchange='CheckIPR(this.value);' <?php //if ($iprIssues == 0) {echo "checked";}?>>
             <label class="form-check-label" for="inlineRadio1">No</label>
         </div>
 
-        <div class="custom-file" id="ipr_issues_ext" <?php if ($iprIssues == 0) {echo "style='display:none;'";}else {echo "style='display:block;'";}?>>
+        <div class="custom-file" id="ipr_issues_ext" <?php// if ($iprIssues == 0) {echo "style='display:none;'";}else {echo "style='display:block;'";}?>>
         <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
 
             <input type="file" class="custom-file-input" id="file" name="file">
 
             <br>
+        </div>
+    </fieldset> -->
+    <fieldset>
+        <legend>IPR Issues</legend>
+        <p>Are there IPR issues with the visit?</p>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="ipr_issues" id="inlineRadio1" value="yes" onchange='CheckIPR(this.value);'>
+            <label class="form-check-label" for="inlineRadio1">Yes</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="ipr_issues" id="inlineRadio1" value="no" onchange='CheckIPR(this.value);' checked>
+            <label class="form-check-label" for="inlineRadio1">No</label>
+        </div>
+
+        <div class="custom-file" id="ipr_issues_ext" style='display:none;'>
+            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+            <input type="file" class="custom-file-input" id="file" name="file">
         </div>
     </fieldset>
 

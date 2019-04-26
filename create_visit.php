@@ -12,7 +12,6 @@ require 'vendor/PHPMailer/src/SMTP.php';
 
 ?>
 
-<!--HTML HERE-->
 <h2>Create a Visit</h2>
 <?php require 'includes/navbars/nav_picker.php'; ?>
 
@@ -60,7 +59,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (move_uploaded_file($_FILES['file']['tmp_name'], $destination)) {
-        echo 'alert("File uploaded successfully")';
         $iprBool = 1;
     } else {
 
