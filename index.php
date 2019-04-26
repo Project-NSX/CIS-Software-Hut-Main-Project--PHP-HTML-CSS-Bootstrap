@@ -1,4 +1,12 @@
 <?php
+if (isset($_GET['accept-cookies'])) {
+setcookie('accept-cookies', 'true', time() + 31556925);
+header('Location: ./');
+}
+?>
+
+
+<?php
 //TODO: Add tutorial link for this page, so everyone knows where you got it from.
 
 // Initialize the session
@@ -132,5 +140,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </form>
 </div>
+
+
+
+
+
+<?php
+if (! isset($_COOKIE['accept-cookies'])) {
+?>
+<div class="cookie-banner">
+    <div class="container1"
+    <p>We use cookies on this website. By using this website, we'll assume you consent to <a href="/cookies"> the cookies we set</a> </p>
+    <a href="?accept-cookies" class="button">Ok, contine</a>
+    </div>
+</div>
+<?php
+}
+?>
+
+
+<script src="bangor_va.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <?php require 'includes/footer.php'; ?>
