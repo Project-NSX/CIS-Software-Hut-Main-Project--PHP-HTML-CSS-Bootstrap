@@ -1,8 +1,7 @@
 <!-- Variable used to highlight the appropriate button on the navbar -->
 <?php $page = 'CMDR';
-require 'includes/header.php';
 require 'includes/verify_cm_role.php'; // Redirect if the user is not logged in as a college manager.
-?>
+require 'includes/header.php'; ?>
 <!--HTML HERE-->
 
 <h2>College Manager - Denied Requests</h2>
@@ -14,7 +13,7 @@ require_once 'includes/database.php';
 $supervisorApproved = "SELECT v.visitId, v.visitorId, v.summary, v.financialImplications, v.startDate, v.endDate, v.visitAddedDate, v.supervisorApprovedDate, va.fName, va.lName, va.homeInstitution, va.department, va.visitorType, va.visitorTypeExt, v.iprIssues, v.iprFile FROM visit v, user u, school s, visitingAcademic va WHERE v.hostAcademic = u.username AND u.school_id = s.schoolId AND va.visitorId = v.visitorId AND u.college_id = '{$_SESSION['college_id']}' AND u.role = 'Head Of School' AND v.supervisorApproved LIKE '1' ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
-    echo "<h2>College Manager - Outright Denied Requests</h2>";
+echo "<h2>College Manager - Outright Denied Requests</h2>";
 
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
@@ -80,7 +79,8 @@ if ($supervisorApprovedresult->num_rows > 0) {
     <?php
 }
 echo "</div>";
-} else { }
+} else {
+}
 $link->close();
 
 ?>

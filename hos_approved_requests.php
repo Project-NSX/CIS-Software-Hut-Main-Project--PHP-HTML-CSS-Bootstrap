@@ -1,8 +1,7 @@
 <!-- Variable used to highlight the appropriate button on the navbar -->
 <?php $page = 'HOSAR';
-require 'includes/header.php';
 require 'includes/verify_hos_role.php'; // Redirect if the user is not logged in as a head of school.
-?>
+require 'includes/header.php'; ?>
 <!--HTML HERE-->
 
 <h2>Head of School - Approved Requests</h2>
@@ -15,7 +14,7 @@ require_once 'includes/database.php';
 $supervisorApproved = "SELECT v.visitId, v.visitorId, v.summary, v.financialImplications, v.startDate, v.endDate, v.visitAddedDate, v.supervisorApprovedDate, va.fName, va.lName, va.homeInstitution, va.department, va.visitorType, va.visitorTypeExt, v.iprIssues, v.iprFile FROM visit v, user u, school s, visitingAcademic va WHERE v.hostAcademic = u.username AND u.school_id = s.schoolId AND va.visitorId = v.visitorId AND u.school_id = '{$_SESSION['school_id']}' AND v.supervisorApproved LIKE '3' AND v.hostAcademic NOT LIKE '{$_SESSION['username']}' ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
-    echo "<h2>Head of School - Approved Requests</h2>";
+echo "<h2>Head of School - Approved Requests</h2>";
 
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
@@ -81,7 +80,8 @@ if ($supervisorApprovedresult->num_rows > 0) {
     <?php
 }
 echo "</div>";
-} else { }
+} else {
+}
 $link->close();
 
 ?>

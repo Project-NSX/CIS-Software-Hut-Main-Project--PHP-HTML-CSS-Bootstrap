@@ -1,8 +1,6 @@
 <!-- Variable used to highlight the appropriate button on the navbar -->
 <?php $page = 'VC';
-require 'includes/header.php';
-require 'includes/deny_hr_role.php' // Redirects users with the "Human Resources" role to prevent access to this page
-?>
+require 'includes/header.php'; ?>
 <!--HTML HERE-->
 
 <h2>Completed Visits</h2>

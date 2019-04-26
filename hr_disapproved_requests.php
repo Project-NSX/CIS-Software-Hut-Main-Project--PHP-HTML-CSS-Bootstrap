@@ -1,8 +1,7 @@
 <!-- Variable used to highlight the appropriate button on the navbar -->
 <?php $page = 'HRDR';
-require 'includes/header.php';
-require 'includes/verify_hr_role.php';
-?>
+require 'includes/verify_hr_role.php'; // Redirect if the user is not logged in as a HR user.
+require 'includes/header.php'; ?>
 <!--HTML HERE-->
 
 <h2>Human Resources - Denied Requests</h2>
@@ -15,7 +14,7 @@ require_once 'includes/database.php';
 $supervisorDenied = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.hrComment, v.iprIssues, v.iprFile  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '1'  ORDER BY v.visitAddedDate DESC";
 $supervisorDeniedresult = $link->query($supervisorDenied);
 if ($supervisorDeniedresult->num_rows > 0) {
-    echo "<h2>Request(s) Denied by HR</h2>";
+echo "<h2>Request(s) Denied by HR</h2>";
 
     echo "<div id='accordion'>";
     while ($row = $supervisorDeniedresult->fetch_assoc()) {
@@ -105,7 +104,8 @@ if ($supervisorDeniedresult->num_rows > 0) {
 
 }
 echo "</div>";
-} else { }
+} else {
+}
 
 $link->close();
 ?>

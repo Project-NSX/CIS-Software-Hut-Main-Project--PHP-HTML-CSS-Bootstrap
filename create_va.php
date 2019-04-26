@@ -1,12 +1,9 @@
 <!-- Variable used to highlight the appropriate button on the navbar -->
-<?php $page = 'CVa';
-require 'includes/header.php';
-require 'includes/deny_hr_role.php' // Redirects users with the "Human Resources" role to prevent access to this page
-?>
-<?php require 'includes/database.php'; ?>
+<?php $page ='CVa'; require 'includes/header.php';?>
+<?php require 'includes/database.php';?>
 <!--HTML HERE-->
 <h2>Create a Visiting Academic</h2>
-<?php require 'includes/navbars/nav_picker.php'; ?>
+<?php require'includes/navbars/nav_picker.php';?>
 <?php
 // This says "if the user tries to post to the database, assign these $variables from the names of the html5 elements
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -40,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // If it returns false, this error will be printed
     if ($stmt === false) {
         echo mysqli_error($conn);
-        // If there are no errors, then it'll check to see if some values are empty and if they are, it'll replace the empty strings with null
+    // If there are no errors, then it'll check to see if some values are empty and if they are, it'll replace the empty strings with null
     } else {
         if ($phone_number == '') {
             $phone_number = null;
@@ -77,16 +74,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <option value="Academic">Visiting Academic (Position)</option>
             <option value="Other">Other (Specify)</option>
         </select>
-        <input type="text" id="visitor_type_ext" placeholder="Please specify the type of academic." name="visitor_type_ext" class="form-control" style='display:none;' />
+        <input type="text" id="visitor_type_ext" placeholder="Please specify the type of academic." name="visitor_type_ext" class="form-control"  style='display:none;' />
         <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="home_institution">Home Institution: </label>
-                <input type="text" class="form-control" name="home_institution" required>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="department">Department: </label>
-                <input type="text" class="form-control" name="department" required>
-            </div>
+        <div class="form-group col-md-6">
+            <label for="home_institution">Home Institution: </label>
+            <input type="text" class="form-control" name="home_institution" required>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="department">Department: </label>
+            <input type="text" class="form-control" name="department" required>
+        </div>
         </div>
     </fieldset>
     <fieldset>
@@ -140,7 +137,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="form-group col-md-6">
                 <label for="postcode">Postcode: </label>
-                <input type="text" name="postcode" pattern="([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})" title="Please enter a valid UK postcode" class="form-control" required>
+                <input type="text" name="postcode"
+                    pattern="([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})"
+                    title="Please enter a valid UK postcode" class="form-control" required>
             </div>
         </div>
     </fieldset>
@@ -162,4 +161,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </fieldset>
     <button id="button1" style="margin:10px 0px" type="submit" class="btn btn-primary btn-lg btn-block">Send</button>
 </form>
-<?php require 'includes/footer.php'; ?>
+<?php require 'includes/footer.php';?>
