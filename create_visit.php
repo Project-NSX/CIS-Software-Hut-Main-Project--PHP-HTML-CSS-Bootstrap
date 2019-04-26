@@ -1,6 +1,8 @@
 <!-- Variable used to highlight the appropriate button on the navbar -->
 <?php $page = 'CV';
-require 'includes/header.php'; ?>
+require 'includes/header.php';
+require 'includes/deny_hr_role.php' // Redirects users with the "Human Resources" role to prevent access to this page
+?>
 <?php require 'includes/database.php'; ?>
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
@@ -82,53 +84,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mysqli_stmt_bind_param($stmt, "sssssssis", $visitorId, $visitAddedDate, $hostAcademic, $s_date, $e_date, $summary, $financialImp, $iprBool, $filename);
     }
     // If Statement executes properly.
-    if (mysqli_stmt_execute($stmt))
-    {
+    if (mysqli_stmt_execute($stmt)) {
 
-        if ($_SESSION["role"] === "College Manager") {
-            $sql = "SELECT email FROM user where role = 'Human Resources'";
-            $result = $link->query($sql);
-            while ($row = $result->fetch_assoc())
-            {
-                $email = $row["email"];
-                $mail->addAddress("$email");
+            if ($_SESSION["role"] === "College Manager") {
+                $sql = "SELECT email FROM user where role = 'Human Resources'";
+                $result = $link->query($sql);
+                while ($row = $result->fetch_assoc()) {
+                        $email = $row["email"];
+                        $mail->addAddress("$email");
+                    }
             }
 
-
-
-        }
-
-        // to get email for cm when hos makes request
-        if ($_SESSION["role"] === "Head Of School") {
-            $hosid = $_SESSION["college_id"];
-            $sql = "SELECT email FROM user where college_id = '$hosid' AND role = 'College Manager'";
-            $result = $link->query($sql);
-            while ($row = $result->fetch_assoc())
-            {
-                $email = $row["email"];
-                $mail->addAddress("$email");
+            // to get email for cm when hos makes request
+            if ($_SESSION["role"] === "Head Of School") {
+                $hosid = $_SESSION["college_id"];
+                $sql = "SELECT email FROM user where college_id = '$hosid' AND role = 'College Manager'";
+                $result = $link->query($sql);
+                while ($row = $result->fetch_assoc()) {
+                        $email = $row["email"];
+                        $mail->addAddress("$email");
+                    }
             }
 
-        }
-
-        // to get email for hos when academic makes request
-        if ($_SESSION["role"] === "Academic") {
-            $aid = $_SESSION["school_id"];
-            $sql = "SELECT email FROM user where school_id = '$aid' AND role = 'Head Of School'";
-            $result = $link->query($sql);
-            while ($row = $result->fetch_assoc())
-            {
-                $email = $row["email"];
-                $mail->addAddress("$email");
+            // to get email for hos when academic makes request
+            if ($_SESSION["role"] === "Academic") {
+                $aid = $_SESSION["school_id"];
+                $sql = "SELECT email FROM user where school_id = '$aid' AND role = 'Head Of School'";
+                $result = $link->query($sql);
+                while ($row = $result->fetch_assoc()) {
+                        $email = $row["email"];
+                        $mail->addAddress("$email");
+                    }
             }
 
-        }
-
-        $mail->send();
+            $mail->send();
 
 
-        require 'includes/user_redirect.php';
-    } else {
+            require 'includes/user_redirect.php';
+        } else {
         echo mysqli_stmt_error($stmt);
     }
 }
