@@ -157,7 +157,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                         <p class='card-text'><b>Start:</b> <?php echo $startDisplay ?> &#8195; <b>End:</b> <?php echo $endDisplay ?></p>
                         <h5 class='card-title'>Date & Time of Initial Submission</h5>
                         <p class='card-text'><?php echo $addedDisplay ?> </p>
-                    <!-- if there is a ipr issue in the database, display the file by allowing the user to download it -->
+                        <!-- if there is a ipr issue in the database, display the file by allowing the user to download it -->
                         <?php if ($iprIssues == 1) {
                             echo "<h5 class='card-title'>IPR Issues File:</h5>";
                             echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";

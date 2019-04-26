@@ -17,7 +17,7 @@ $currentAcademic = $_SESSION['username'];
 $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.induction, v.iprIssues, v.iprFile  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '3' AND v.induction LIKE '1' ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
-echo "<h2>Completed Visit(s)</h2>";
+    echo "<h2>Completed Visit(s)</h2>";
 
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
@@ -103,13 +103,12 @@ echo "<h2>Completed Visit(s)</h2>";
 
 }
 echo "</div>";
-} else {
-}
+} else { }
 
 $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.hrComment, v.cancelTime, v.iprIssues, v.iprFile  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '4' AND v.hrApproved LIKE '4'  ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
-echo "<h2>Cancelled Request(s)</h2>";
+    echo "<h2>Cancelled Request(s)</h2>";
 
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
@@ -149,59 +148,58 @@ echo "<h2>Cancelled Request(s)</h2>";
         $iprFile = $row['iprFile'];
         ?>
 
-            <div class="card">
-                <div class="card-header" id="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
-                    <div class="row">
-                        <div class='col-sm'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
-                        <div class='col-sm'><b>Home Institution: </b> <?php echo $homeInt ?></div>
-                        <div class='col-sm'><b>Department: </b> <?php echo $department ?></div>
-                        <div class='col-sm'><b>Cancelled Date: </b> <?php echo $cancelTimeDisplay ?></div>
-                    </div>
-                    <div class="row">
-                        <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
-                    </div>
+        <div class="card">
+            <div class="card-header" id="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
+                <div class="row">
+                    <div class='col-sm'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
+                    <div class='col-sm'><b>Home Institution: </b> <?php echo $homeInt ?></div>
+                    <div class='col-sm'><b>Department: </b> <?php echo $department ?></div>
+                    <div class='col-sm'><b>Cancelled Date: </b> <?php echo $cancelTimeDisplay ?></div>
                 </div>
-                <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
-                    <div class="card-body">
-
-                        <h5 class='card-title'>Email</h5>
-                        <p class='card-text'><?php echo $email ?></p>
-                        <h5 class='card-title'>Phone Number</h5>
-                        <p class='card-text'><?php echo $phone ?></p>
-                        <h5 class='card-title'>Visit Summary</h5>
-                        <p class='card-text'><?php echo $summary ?></p>
-                        <h5 class='card-title'>Financial Implications</h5>
-                        <p class='card-text'><?php echo $financialImp ?></p>
-                        <h5 class='card-title'>Visitor Type</h5>
-                        <p class='card-text'><?php echo $visitorType ?> &#8195; <?php echo $visitorTypeEXT ?></p>
-                        <h5 class='card-title'>Visit Start & End Dates</h5>
-                        <p class='card-text'><b>Start:</b> <?php echo $startDisplay ?> &#8195; <b>End:</b> <?php echo $endDisplay ?></p>
-                        <h5 class='card-title'>Date & Time of Initial Submission</h5>
-                        <p class='card-text'><?php echo $addedDisplay ?> </p>
-                        <h5 class='card-title'>Supervisor Username</h5>
-                        <p class='card-text'><?php echo $supervisorUname ?> </p>
-                        <h5 class='card-title'>Date & Time of Decision</h5>
-                        <p class='card-text'><?php echo $supervisorApprovedDateDisp ?> </p>
-                        <h5 class='card-title'>HR Practitioner Username</h5>
-                        <p class='card-text'><?php echo $hrUname ?> </p>
-                        <h5 class='card-title'>Date & Time of Decision</h5>
-                        <p class='card-text'><?php echo $hrApprovedDateDisp ?> </p>
-                        <h5 class='card-title'>HR Comment</h5>
-                        <p class='card-text'><?php echo $hrComment ?> </p>
-                        <?php if ($iprIssues == 1) {
-                            echo "<h5 class='card-title'>IPR Issues File:</h5>";
-                            echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
-                        }
-                        ?>
-                    </div>
+                <div class="row">
+                    <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
                 </div>
             </div>
+            <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
+                <div class="card-body">
+
+                    <h5 class='card-title'>Email</h5>
+                    <p class='card-text'><?php echo $email ?></p>
+                    <h5 class='card-title'>Phone Number</h5>
+                    <p class='card-text'><?php echo $phone ?></p>
+                    <h5 class='card-title'>Visit Summary</h5>
+                    <p class='card-text'><?php echo $summary ?></p>
+                    <h5 class='card-title'>Financial Implications</h5>
+                    <p class='card-text'><?php echo $financialImp ?></p>
+                    <h5 class='card-title'>Visitor Type</h5>
+                    <p class='card-text'><?php echo $visitorType ?> &#8195; <?php echo $visitorTypeEXT ?></p>
+                    <h5 class='card-title'>Visit Start & End Dates</h5>
+                    <p class='card-text'><b>Start:</b> <?php echo $startDisplay ?> &#8195; <b>End:</b> <?php echo $endDisplay ?></p>
+                    <h5 class='card-title'>Date & Time of Initial Submission</h5>
+                    <p class='card-text'><?php echo $addedDisplay ?> </p>
+                    <h5 class='card-title'>Supervisor Username</h5>
+                    <p class='card-text'><?php echo $supervisorUname ?> </p>
+                    <h5 class='card-title'>Date & Time of Decision</h5>
+                    <p class='card-text'><?php echo $supervisorApprovedDateDisp ?> </p>
+                    <h5 class='card-title'>HR Practitioner Username</h5>
+                    <p class='card-text'><?php echo $hrUname ?> </p>
+                    <h5 class='card-title'>Date & Time of Decision</h5>
+                    <p class='card-text'><?php echo $hrApprovedDateDisp ?> </p>
+                    <h5 class='card-title'>HR Comment</h5>
+                    <p class='card-text'><?php echo $hrComment ?> </p>
+                    <?php if ($iprIssues == 1) {
+                        echo "<h5 class='card-title'>IPR Issues File:</h5>";
+                        echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
         <br>
     <?php
 }
 echo "</div>";
-} else {
-}
+} else { }
 $link->close();
 ?>
 <?php require 'includes/footer.php'; ?>

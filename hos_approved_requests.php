@@ -59,7 +59,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
             </div>
             <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
                 <!-- More detail about the visit -->
-            <div class="card-body">
+                <div class="card-body">
                     <h5 class='card-title'>Visit Summary</h5>
                     <p class='card-text'><?php echo $summary ?></p>
                     <h5 class='card-title'>Financial Implications</h5>
@@ -85,9 +85,8 @@ if ($supervisorApprovedresult->num_rows > 0) {
     <?php
 }
 echo "</div>";
-//doesn't print anything if nothing's returned
-} else {
-}
+    //doesn't print anything if nothing's returned
+} else { }
 $link->close();
 
 ?>

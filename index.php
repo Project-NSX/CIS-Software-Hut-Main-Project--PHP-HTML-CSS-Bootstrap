@@ -70,11 +70,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 //TODO: Insert code to bind college name to $_SESSION["college_name"] here
                                 $sql = "SELECT name FROM college WHERE collegeId = $college_id";
                                 $result = $link->query($sql);
-                                while ($row = $result->fetch_assoc())
-                                {
-                                    $_SESSION["collegeName"] = $row["name"];
-                                }
-
+                                while ($row = $result->fetch_assoc()) {
+                                        $_SESSION["collegeName"] = $row["name"];
+                                    }
                             }
                             if ($_SESSION['role'] == "Academic" || $_SESSION['role'] ==  "Head Of School") {
                                 //TODO: Insert code to bind school name to $_SESSION["school_name"] here
