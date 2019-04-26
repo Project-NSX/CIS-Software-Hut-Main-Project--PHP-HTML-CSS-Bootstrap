@@ -132,11 +132,11 @@ echo "<h2>Cancelled Request(s)</h2>";
         $phone = $row["phoneNumber"];
         $summary = $row["summary"];
         $visitAdded = $row["visitAddedDate"];
-        $financialImp = $row["financialImplications"]; //done
-        $visitorType = $row["visitorType"]; //done
-        $visitorTypeEXT = $row["visitorTypeExt"]; //done
-        $visitStart = $row["startDate"]; //done
-        $visitEnd = $row["endDate"]; //done
+        $financialImp = $row["financialImplications"];
+        $visitorType = $row["visitorType"];
+        $visitorTypeEXT = $row["visitorTypeExt"];
+        $visitStart = $row["startDate"];
+        $visitEnd = $row["endDate"];
         $startDisplay = date("d/m/Y", strtotime($visitStart));
         $endDisplay = date("d/m/Y", strtotime($visitEnd));
         $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded));
