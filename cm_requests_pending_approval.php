@@ -1,6 +1,7 @@
 <!-- Variable used to highlight the appropriate button on the navbar -->
 <?php $page = 'CMRPA';
 require 'includes/header.php';
+//import phpmailer to send emails
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -8,10 +9,8 @@ use PHPMailer\PHPMailer\Exception;
 require 'vendor/PHPMailer/src/Exception.php';
 require 'vendor/PHPMailer/src/PHPMailer.php';
 require 'vendor/PHPMailer/src/SMTP.php';
-
-
-
 ?>
+<!-- Javascript to disable the enter key from submitting the forms -->
 <script type="text/javascript">
     function noenter() {
         return !(window.event && window.event.keyCode == 13);
@@ -23,6 +22,7 @@ require 'vendor/PHPMailer/src/SMTP.php';
 <!--TODO: Add the ability to search for an approved request-->
 <?php
 require_once 'includes/database.php';
+//initialize phpmailer to send emails
 $mail = new PHPMailer(true);
 $mail->isSMTP();
 $mail->Host = 'smtp.hostinger.com';
@@ -33,8 +33,7 @@ $mail->SMTPSecure = 'tls';
 $mail->Port = 587;
 $mail->setFrom('support@nwsd.online', 'Visitng Academic Form');
 
-//TODO: get rid of unecessqary columns and variables
-
+//script behind the button the College Manager uses to approve a request which updates the database and emails HR since that's the next step in the procedure
 if (isset($_POST['cmapprove'])) {
     $uName = $_SESSION['username'];
     date_default_timezone_set('Europe/London');
@@ -54,6 +53,7 @@ if (isset($_POST['cmapprove'])) {
         $mail->send();
 };
 
+//script behind the button the College Manager uses to deny a request which updates the database and emails the host academic to let them know that the request has been denied
 if (isset($_POST['cmdeny'])) {
     $uName = $_SESSION['username'];
     date_default_timezone_set('Europe/London');
@@ -73,6 +73,7 @@ if (isset($_POST['cmdeny'])) {
         $mail->send();
 };
 
+//script behind the button the College Manager uses to send the visit request back to the host academic to be resubmited after editing
 if (isset($_POST['cmrevise'])) {
     if (!empty($_POST['reasoning'])) {
         $uName = $_SESSION['username'];
@@ -80,8 +81,8 @@ if (isset($_POST['cmrevise'])) {
         $publish_date = date("Y-m-d H:i:s");
         $ApproveQuery = "UPDATE visit SET supervisorApproved = 2, supervisorUsername = '$uName', supervisorApprovedDate = '$publish_date', supervisorComment = '$_POST[reasoning]' WHERE visitId = '$_POST[hidden]'";
         mysqli_query($link, $ApproveQuery);
-        //TODO: add datetime to hrApprovedDate field
 
+        //configuring the email to be sent to the host academic
         $mail->Subject = 'Your visit requests has been approved!';
         $mail->Body = "Your visit request requires additional information to be approved. Information is requested by the College Manager: {$uName}. Please log in to see what further information is requested";
 
@@ -94,10 +95,12 @@ if (isset($_POST['cmrevise'])) {
             $mail->send();
 
     } else {
+        //displays a message if a reason for resubmission isn't entered
         echo "<script language='javascript'> alert('Please provide a reason as to why the user needs to resubmit'); </script>";
     }
 };
 
+//SQL Statement to retrieve the appropriate cells from the tables
 $supervisorApproved = "SELECT v.visitId, v.visitorId, v.summary, v.financialImplications, v.startDate, v.endDate, v.visitAddedDate, va.fName, va.lName, va.homeInstitution, va.department, va.visitorType, va.visitorTypeExt, v.iprIssues, v.iprFile FROM visit v, user u, school s, visitingAcademic va WHERE v.hostAcademic = u.username AND u.school_id = s.schoolId AND va.visitorId = v.visitorId AND u.college_id = '{$_SESSION['college_id']}' AND u.role = 'Head Of School' AND v.supervisorApproved LIKE '0' ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
@@ -105,7 +108,7 @@ echo "<h2>College Manager - Requests Pending Approval</h2>";
 
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
-        //name, home inst, visit summary, financial imp, visitor type, start & end date
+        //assigning returned columns to variables - made it easier to reference at a later stage
         $visitId = $row["visitId"];
         $visitorId = $row["visitorId"];
         $headingId = "heading" . $visitId . $visitorId;
@@ -116,18 +119,20 @@ echo "<h2>College Manager - Requests Pending Approval</h2>";
         $homeInt = $row["homeInstitution"];
         $department = $row["department"];
         $summary = $row["summary"];
-        $financialImp = $row["financialImplications"]; //done
-        $visitorType = $row["visitorType"]; //done
-        $visitorTypeEXT = $row["visitorTypeExt"]; //done
-        $visitStart = $row["startDate"]; //done
-        $visitEnd = $row["endDate"]; //done
+        $financialImp = $row["financialImplications"];
+        $visitorType = $row["visitorType"];
+        $visitorTypeEXT = $row["visitorTypeExt"];
+        $visitStart = $row["startDate"];
+        $visitEnd = $row["endDate"];
         $Dateadded = $row["visitAddedDate"];
+        //Convert Dates to how we want them displayed
         $startDisplay = date("d/m/Y", strtotime($visitStart));
         $endDisplay = date("d/m/Y", strtotime($visitEnd));
         $addedDisplay = date("d/m/Y", strtotime($Dateadded));
         $iprIssues = $row['iprIssues'];
         $iprFile = $row['iprFile'];
         ?>
+        <!-- Used a card to make something similar to an accordion which was used to display data with brief into in header and detail in the collapsable section-->
         <div class="card">
             <div class="card-header" id="<?php echo $headingId ?>" <button id="button1" class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
                 <div class="row">
@@ -152,7 +157,7 @@ echo "<h2>College Manager - Requests Pending Approval</h2>";
                         <p class='card-text'><b>Start:</b> <?php echo $startDisplay ?> &#8195; <b>End:</b> <?php echo $endDisplay ?></p>
                         <h5 class='card-title'>Date & Time of Initial Submission</h5>
                         <p class='card-text'><?php echo $addedDisplay ?> </p>
-
+                    <!-- if there is a ipr issue in the database, display the file by allowing the user to download it -->
                         <?php if ($iprIssues == 1) {
                             echo "<h5 class='card-title'>IPR Issues File:</h5>";
                             echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
@@ -164,11 +169,13 @@ echo "<h2>College Manager - Requests Pending Approval</h2>";
         <input type=hidden name=hidden value=<?php echo $visitId ?>>
         <div class="container">
             <div class="row">
+                <!-- three buttons for the College Manager to use to decide on a request -->
                 <div class="col-md-4"><input type=submit name=cmapprove value=Approve class='btn btn-success' style='width:100%; margin-bottom:5px'></div>
                 <div class="col-md-4"><input type=submit name=cmrevise value='Prompt User to Resubmit' class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
                 <div class="col-md-4"><input type=submit name=cmdeny value=Deny class='btn btn-danger' style='width:100%; margin-bottom:5px'></div>
             </div>
         </div>
+        <!-- Field to provide a reason why the request must be resubmitted -->
         <div class="form-row" style="margin-top:5px">
             <div class="form-group col-md-3">
                 <label for="reason"><b>Reason to resubmit:</b></label>
