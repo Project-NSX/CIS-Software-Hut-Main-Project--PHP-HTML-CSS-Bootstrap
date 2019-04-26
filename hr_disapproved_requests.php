@@ -20,6 +20,7 @@ if ($supervisorDeniedresult->num_rows > 0) {
     echo "<h2>Request(s) Denied by HR</h2>";
 
     echo "<div id='accordion'>";
+    //store column value in variables - easier to refer to
     while ($row = $supervisorDeniedresult->fetch_assoc()) {
         $visitId = $row["visitId"];
         $visitorId = $row["visitorId"];
@@ -34,28 +35,31 @@ if ($supervisorDeniedresult->num_rows > 0) {
         $phone = $row["phoneNumber"];
         $summary = $row["summary"];
         $visitAdded = $row["visitAddedDate"];
-        $financialImp = $row["financialImplications"]; //done
-        $visitorType = $row["visitorType"]; //done
-        $visitorTypeEXT = $row["visitorTypeExt"]; //done
-        $visitStart = $row["startDate"]; //done
-        $visitEnd = $row["endDate"]; //done
-        $startDisplay = date("d/m/Y", strtotime($visitStart));
-        $endDisplay = date("d/m/Y", strtotime($visitEnd));
-        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded));
+        $financialImp = $row["financialImplications"];
+        $visitorType = $row["visitorType"];
+        $visitorTypeEXT = $row["visitorTypeExt"];
+        $visitStart = $row["startDate"];
+        $visitEnd = $row["endDate"];
+        
+        $startDisplay = date("d/m/Y", strtotime($visitStart)); //Convert date to how we need it to be displayed
+        $endDisplay = date("d/m/Y", strtotime($visitEnd)); //Convert date to how we need it to be displayed
+        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded)); //Convert date to how we need it to be displayed
         $supervisorApproved = $row["supervisorApprovedDate"];
         $supervisorUname = $row["supervisorUsername"];
         $supervisorApprovedDate = $row["supervisorApprovedDate"];
-        $supervisorApprovedDateDisp = date("d/m/Y - g:iA", strtotime($supervisorApprovedDate));
+        $supervisorApprovedDateDisp = date("d/m/Y - g:iA", strtotime($supervisorApprovedDate)); //Convert date to how we need it to be displayed
         $hrApproved = $row["hrApprovedDate"];
         $hrUname = $row["hrUsername"];
         $hrApprovedDate = $row["hrApprovedDate"];
-        $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate));
+        $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate)); //Convert date to how we need it to be displayed
         $hrComment = $row['hrComment'];
         $iprIssues = $row['iprIssues'];
         $iprFile = $row['iprFile'];
         ?>
-
+<!-- Used card as an accordion to display information in a compressed manner -->
         <div class="card">
+            <!-- Due to it being in a loop  the id's and data controls must be unique otherwise when one is clicked all of them would expand-->
+            <!-- This was achieved by passing a created php variable (made from multiple exisiting php variables) to be unique for each record -->
             <div class="card-header" id="<?php echo $headingId ?>" <button id="button1" class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
                 <div class="row">
                     <div class='col-sm'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
