@@ -1,3 +1,4 @@
+<!-- Variable to be used to highlight appropriate button in navbar -->
 <?php $page = 'CMAR';
 require 'includes/header.php'; ?>
 <!--HTML HERE-->

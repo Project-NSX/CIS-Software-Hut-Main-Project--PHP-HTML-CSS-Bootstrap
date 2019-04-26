@@ -1,8 +1,5 @@
 <!-- Variable used to highlight the appropriate button on the navbar -->
 <?php $page = 'home';
-require 'includes/header.php'; ?>
-
-<!--Javascript to stop the form being entered when enter key is pressed-->
 require 'includes/header.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;

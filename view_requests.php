@@ -1,6 +1,7 @@
+<!-- Variable to be used to highlight appropriate button in navbar -->
 <?php $page = 'home';
 require 'includes/header.php'; ?>
-<!--HTML HERE-->
+<!--Javascript to disable Enter key from submitting-->
 <script type="text/javascript">
     function noenter() {
         return !(window.event && window.event.keyCode == 13);
