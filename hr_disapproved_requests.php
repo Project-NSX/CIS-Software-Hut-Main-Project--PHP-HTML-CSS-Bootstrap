@@ -35,17 +35,6 @@ if ($supervisorDeniedresult->num_rows > 0) {
         $phone = $row["phoneNumber"];
         $summary = $row["summary"];
         $visitAdded = $row["visitAddedDate"];
-<<<<<<< HEAD
-        $financialImp = $row["financialImplications"];
-        $visitorType = $row["visitorType"];
-        $visitorTypeEXT = $row["visitorTypeExt"];
-        $visitStart = $row["startDate"];
-        $visitEnd = $row["endDate"];
-        
-        $startDisplay = date("d/m/Y", strtotime($visitStart)); //Convert date to how we need it to be displayed
-        $endDisplay = date("d/m/Y", strtotime($visitEnd)); //Convert date to how we need it to be displayed
-        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded)); //Convert date to how we need it to be displayed
-=======
         $financialImp = $row["financialImplications"]; //done
         $visitorType = $row["visitorType"]; //done
         $visitorTypeEXT = $row["visitorTypeExt"]; //done
@@ -54,7 +43,6 @@ if ($supervisorDeniedresult->num_rows > 0) {
         $startDisplay = date("d/m/Y", strtotime($visitStart));
         $endDisplay = date("d/m/Y", strtotime($visitEnd));
         $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded));
->>>>>>> parent of 8eeea4a... Wrapped most user entered text in htmlspecialchars()
         $supervisorApproved = $row["supervisorApprovedDate"];
         $supervisorUname = $row["supervisorUsername"];
         $supervisorApprovedDate = $row["supervisorApprovedDate"];
@@ -62,13 +50,8 @@ if ($supervisorDeniedresult->num_rows > 0) {
         $hrApproved = $row["hrApprovedDate"];
         $hrUname = $row["hrUsername"];
         $hrApprovedDate = $row["hrApprovedDate"];
-<<<<<<< HEAD
-        $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate));//Convert date to how we need it to be displayed
-        $hrComment = htmlspecialchars($row['hrComment']);
-=======
         $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate));
         $hrComment = $row['hrComment'];
->>>>>>> parent of 8eeea4a... Wrapped most user entered text in htmlspecialchars()
         $iprIssues = $row['iprIssues'];
         $iprFile = $row['iprFile'];
         ?>

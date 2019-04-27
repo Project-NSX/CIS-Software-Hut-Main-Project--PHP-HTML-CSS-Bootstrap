@@ -40,13 +40,8 @@ if ($myVisitorsResult->num_rows > 0) {
         $id = $row['visitorId'];
         $hostAcademic = $row['hostAcademic'];
         $title = $row['title'];
-<<<<<<< HEAD
-        $fName = htmlspecialchars($row["fName"]);
-        $lName = htmlspecialchars($row["lName"]);
-=======
         $fName = $row["fName"]; //not allowed to change
         $lName = $row["lName"]; //not allowed to change
->>>>>>> parent of 8eeea4a... Wrapped most user entered text in htmlspecialchars()
         $visitorType = $row["visitorType"];
         $visitorTypeEXT = $row["visitorTypeExt"];
         $homeInstitution = $row["homeInstitution"];

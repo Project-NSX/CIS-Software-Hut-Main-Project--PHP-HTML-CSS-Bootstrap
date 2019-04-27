@@ -50,13 +50,8 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $hrApproved = $row["hrApprovedDate"];
         $hrUname = $row["hrUsername"];
         $hrApprovedDate = $row["hrApprovedDate"];
-<<<<<<< HEAD
-        $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate)); //format the date to be displayed
-        $hrComment = htmlspecialchars($row['hrComment']);
-=======
         $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate));
         $hrComment = $row['hrComment'];
->>>>>>> parent of 8eeea4a... Wrapped most user entered text in htmlspecialchars()
         $iprIssues = $row['iprIssues'];
         $iprFile = $row['iprFile'];
         ?>

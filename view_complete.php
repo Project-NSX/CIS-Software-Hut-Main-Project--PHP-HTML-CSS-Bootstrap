@@ -36,15 +36,9 @@ echo "<h2>Completed Visit(s)</h2>";
         $phone = $row["phoneNumber"];
         $summary = $row["summary"];
         $visitAdded = $row["visitAddedDate"];
-<<<<<<< HEAD
-        $financialImp = htmlspecialchars($row["financialImplications"]);
-        $visitorType = $row["visitorType"]; //done
-        $visitorTypeEXT = htmlspecialchars($row["visitorTypeExt"]);
-=======
         $financialImp = $row["financialImplications"]; //done
         $visitorType = $row["visitorType"]; //done
         $visitorTypeEXT = $row["visitorTypeExt"]; //done
->>>>>>> parent of 8eeea4a... Wrapped most user entered text in htmlspecialchars()
         $visitStart = $row["startDate"]; //done
         $visitEnd = $row["endDate"]; //done
         $startDisplay = date("d/m/Y", strtotime($visitStart)); //convert date format to a user friendly manner
