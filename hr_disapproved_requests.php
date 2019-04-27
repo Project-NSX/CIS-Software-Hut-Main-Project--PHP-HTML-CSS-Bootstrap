@@ -40,7 +40,7 @@ if ($supervisorDeniedresult->num_rows > 0) {
         $visitorTypeEXT = $row["visitorTypeExt"];
         $visitStart = $row["startDate"];
         $visitEnd = $row["endDate"];
-        
+
         $startDisplay = date("d/m/Y", strtotime($visitStart)); //Convert date to how we need it to be displayed
         $endDisplay = date("d/m/Y", strtotime($visitEnd)); //Convert date to how we need it to be displayed
         $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded)); //Convert date to how we need it to be displayed
