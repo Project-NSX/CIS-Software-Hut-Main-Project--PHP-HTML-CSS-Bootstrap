@@ -75,11 +75,11 @@ echo "<h2>Completed Visit(s)</h2>";
                 <div class="card-body">
 
                     <h5 class='card-title'>Visit Summary</h5>
-                    <p class='card-text'><?php echo $summary ?></p>
+                    <p class='card-text'><?php echo htmlspecialchars($summary) ?></p>
                     <h5 class='card-title'>Financial Implications</h5>
-                    <p class='card-text'><?php echo $financialImp ?></p>
+                    <p class='card-text'><?php echo htmlspecialchars($financialImp) ?></p>
                     <h5 class='card-title'>Visitor Type</h5>
-                    <p class='card-text'><?php echo $visitorType ?> &#8195; <?php echo $visitorTypeEXT ?></p>
+                    <p class='card-text'><?php echo $visitorType ?> &#8195; <?php echo htmlspecialchars($visitorTypeEXT) ?></p>
                     <h5 class='card-title'>Visit Start & End Dates</h5>
                     <p class='card-text'><b>Start:</b> <?php echo $startDisplay ?> &#8195; <b>End:</b> <?php echo $endDisplay ?></p>
                     <h5 class='card-title'>Date & Time of Initial Submission</h5>
@@ -124,17 +124,17 @@ echo "<h2>Cancelled Request(s)</h2>";
         $headingId = "heading" . $visitId . $visitorId;
         $collapseId = "collapse" . $visitId . $visitorId;
         $collapseIdHash = "#collapse" . $visitId . $visitorId;
-        $fName = $row["fName"];
-        $lName = $row["lName"];
-        $homeInt = $row["homeInstitution"];
-        $department = $row["department"];
-        $email = $row["email"];
-        $phone = $row["phoneNumber"];
-        $summary = $row["summary"];
-        $visitAdded = $row["visitAddedDate"];
-        $financialImp = $row["financialImplications"];
-        $visitorType = $row["visitorType"];
-        $visitorTypeEXT = $row["visitorTypeExt"];
+        $fName = htmlspecialchars($row["fName"]);
+        $lName = htmlspecialchars($row["lName"]);
+        $homeInt = htmlspecialchars($row["homeInstitution"]);
+        $department = htmlspecialchars($row["department"]);
+        $email = htmlspecialchars($row["email"]);
+        $phone = htmlspecialchars($row["phoneNumber"]);
+        $summary = htmlspecialchars($row["summary"]);
+        $visitAdded = htmlspecialchars($row["visitAddedDate"]);
+        $financialImp = htmlspecialchars($row["financialImplications"]);
+        $visitorType = htmlspecialchars($row["visitorType"]);
+        $visitorTypeEXT = htmlspecialchars($row["visitorTypeExt"]);
         $visitStart = $row["startDate"];
         $visitEnd = $row["endDate"];
         $startDisplay = date("d/m/Y", strtotime($visitStart));
@@ -148,7 +148,7 @@ echo "<h2>Cancelled Request(s)</h2>";
         $hrUname = $row["hrUsername"];
         $hrApprovedDate = $row["hrApprovedDate"];
         $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate));
-        $hrComment = $row['hrComment'];
+        $hrComment = htmlspecialchars($row['hrComment']);
         $cancelTime = $row['cancelTime'];
         $cancelTimeDisplay = date("d/m/Y - g:iA", strtotime($cancelTime));
         $iprIssues = $row['iprIssues'];
@@ -160,9 +160,9 @@ echo "<h2>Cancelled Request(s)</h2>";
             <!-- Unique id and data target provided by database field which is unique, this is done so only one card expands on click rather than all of them -->
                 <div class="card-header" id="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
                     <div class="row">
-                        <div class='col-sm'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
-                        <div class='col-sm'><b>Home Institution: </b> <?php echo $homeInt ?></div>
-                        <div class='col-sm'><b>Department: </b> <?php echo $department ?></div>
+                        <div class='col-sm'><b>Name: </b> <?php echo htmlspecialchars($fName) . " " . htmlspecialchars($lName) ?></div>
+                        <div class='col-sm'><b>Home Institution: </b> <?php echo htmlspecialchars($homeInt) ?></div>
+                        <div class='col-sm'><b>Department: </b> <?php echo htmlspecialchars($department) ?></div>
                         <div class='col-sm'><b>Cancelled Date: </b> <?php echo $cancelTimeDisplay ?></div>
                     </div>
                     <div class="row">
@@ -174,15 +174,15 @@ echo "<h2>Cancelled Request(s)</h2>";
                 <div class="card-body">
 
                     <h5 class='card-title'>Email</h5>
-                    <p class='card-text'><?php echo $email ?></p>
+                    <p class='card-text'><?php echo htmlspecialchars($email) ?></p>
                     <h5 class='card-title'>Phone Number</h5>
-                    <p class='card-text'><?php echo $phone ?></p>
+                    <p class='card-text'><?php echo htmlspecialchars($phone) ?></p>
                     <h5 class='card-title'>Visit Summary</h5>
-                    <p class='card-text'><?php echo $summary ?></p>
+                    <p class='card-text'><?php echo htmlspecialchars($summary) ?></p>
                     <h5 class='card-title'>Financial Implications</h5>
-                    <p class='card-text'><?php echo $financialImp ?></p>
+                    <p class='card-text'><?php echo htmlspecialchars($financialImp) ?></p>
                     <h5 class='card-title'>Visitor Type</h5>
-                    <p class='card-text'><?php echo $visitorType ?> &#8195; <?php echo $visitorTypeEXT ?></p>
+                    <p class='card-text'><?php echo $visitorType ?> &#8195; <?php echo htmlspecialchars($visitorTypeEXT) ?></p>
                     <h5 class='card-title'>Visit Start & End Dates</h5>
                     <p class='card-text'><b>Start:</b> <?php echo $startDisplay ?> &#8195; <b>End:</b> <?php echo $endDisplay ?></p>
                     <h5 class='card-title'>Date & Time of Initial Submission</h5>
@@ -196,7 +196,7 @@ echo "<h2>Cancelled Request(s)</h2>";
                     <h5 class='card-title'>Date & Time of Decision</h5>
                     <p class='card-text'><?php echo $hrApprovedDateDisp ?> </p>
                     <h5 class='card-title'>HR Comment</h5>
-                    <p class='card-text'><?php echo $hrComment ?> </p>
+                    <p class='card-text'><?php echo htmlspecialchars($hrComment) ?> </p>
                                             <!-- if there is an IPR issue (field value = 1)display file, otherwise don't -->
 
                     <?php if ($iprIssues == 1) {
