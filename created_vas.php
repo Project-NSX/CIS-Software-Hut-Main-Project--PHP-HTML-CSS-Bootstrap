@@ -40,21 +40,26 @@ if ($myVisitorsResult->num_rows > 0) {
         $id = $row['visitorId'];
         $hostAcademic = $row['hostAcademic'];
         $title = $row['title'];
+<<<<<<< HEAD
         $fName = htmlspecialchars($row["fName"]);
         $lName = htmlspecialchars($row["lName"]);
+=======
+        $fName = $row["fName"]; //not allowed to change
+        $lName = $row["lName"]; //not allowed to change
+>>>>>>> parent of 8eeea4a... Wrapped most user entered text in htmlspecialchars()
         $visitorType = $row["visitorType"];
-        $visitorTypeEXT = htmlspecialchars($row["visitorTypeExt"]);
-        $homeInstitution = htmlspecialchars($row["homeInstitution"]);
-        $department = htmlspecialchars($row["department"]);
-        $street = htmlspecialchars($row["street"]);
-        $city = htmlspecialchars($row["city"]);
-        $county = htmlspecialchars($row["county"]);
-        $postcode = htmlspecialchars($row["postcode"]);
-        $email = htmlspecialchars($row["email"]);
-        $phoneNumber = htmlspecialchars($row["phoneNumber"]);
+        $visitorTypeEXT = $row["visitorTypeExt"];
+        $homeInstitution = $row["homeInstitution"];
+        $department = $row["department"];
+        $street = $row["street"];
+        $city = $row["city"];
+        $county = $row["county"];
+        $postcode = $row["postcode"];
+        $email = $row["email"];
+        $phoneNumber = $row["phoneNumber"];
 
         if ($visitorType == "Academic" || $visitorType == "Other") {
-            $visitorTypeShow = $visitorType . ": " .  htmlspecialchars($visitorTypeEXT);
+            $visitorTypeShow = $visitorType . ": " .  $visitorTypeEXT;
         } else {
             $visitorTypeShow = $visitorType;
         }

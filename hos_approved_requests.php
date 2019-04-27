@@ -25,6 +25,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $headingId = "heading" . $visitId . $visitorId;
         $collapseId = "collapse" . $visitId . $visitorId;
         $collapseIdHash = "#collapse" . $visitId . $visitorId;
+<<<<<<< HEAD
         $fName = htmlspecialchars($row["fName"]);
         $lName = htmlspecialchars($row["lName"]);
         $homeInt = htmlspecialchars($row["homeInstitution"]);
@@ -35,6 +36,18 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $visitorTypeEXT = htmlspecialchars($row["visitorTypeExt"]);
         $visitStart = $row["startDate"];
         $visitEnd = $row["endDate"];
+=======
+        $fName = $row["fName"];
+        $lName = $row["lName"];
+        $homeInt = $row["homeInstitution"];
+        $department = $row["department"];
+        $summary = $row["summary"];
+        $financialImp = $row["financialImplications"]; //done
+        $visitorType = $row["visitorType"]; //done
+        $visitorTypeEXT = $row["visitorTypeExt"]; //done
+        $visitStart = $row["startDate"]; //done
+        $visitEnd = $row["endDate"]; //done
+>>>>>>> parent of 8eeea4a... Wrapped most user entered text in htmlspecialchars()
         $Dateadded = $row["visitAddedDate"];
         $startDisplay = date("d/m/Y", strtotime($visitStart));
         $endDisplay = date("d/m/Y", strtotime($visitEnd));

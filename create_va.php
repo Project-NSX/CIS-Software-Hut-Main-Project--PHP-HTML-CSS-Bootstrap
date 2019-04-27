@@ -10,20 +10,22 @@ require 'includes/deny_hr_role.php' // Redirects users with the "Human Resources
 <?php
 // This says "if the user tries to post to the database, assign these $variables from the names of the html5 elements
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $title = htmlspecialchars($_POST['title']);
-    $f_name = htmlspecialchars($_POST['f_name']);
-    $l_name = htmlspecialchars($_POST['l_name']);
-    $street = htmlspecialchars($_POST['street']);
-    $town_city = htmlspecialchars($_POST['town_city']);
-    $county = htmlspecialchars($_POST['county']);
-    $postcode = htmlspecialchars($_POST['postcode']);
-    $email = htmlspecialchars($_POST['email']);
-    $phone_number = htmlspecialchars($_POST['phone_number']);
-    $visitor_type = htmlspecialchars($_POST['visitor_type']);
-    $visitor_type_ext = htmlspecialchars($_POST['visitor_type_ext']);
-    $home_institution = htmlspecialchars($_POST['home_institution']);
-    $host_academic = htmlspecialchars($_SESSION['username']);
-    $department = htmlspecialchars($_POST['department']);
+    $title = $_POST['title'];
+    $f_name = $_POST['f_name'];
+    $l_name = $_POST['l_name'];
+    $street = $_POST['street'];
+    $town_city = $_POST['town_city'];
+    $county = $_POST['county'];
+    $postcode = $_POST['postcode'];
+    $email = $_POST['email'];
+    $phone_number = $_POST['phone_number'];
+    $visitor_type = $_POST['visitor_type'];
+    $visitor_type_ext = $_POST['visitor_type_ext'];
+    $home_institution = $_POST['home_institution'];
+    $host_academic = $_SESSION['username'];
+    $department = $_POST['department'];
+
+
 
     //include database connection information
     $conn = getDB();

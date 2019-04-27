@@ -28,17 +28,23 @@ echo "<h2>Completed Visit(s)</h2>";
         $headingId = "heading" . $visitId . $visitorId;
         $collapseId = "collapse" . $visitId . $visitorId;
         $collapseIdHash = "#collapse" . $visitId . $visitorId;
-        $fName = htmlspecialchars($row["fName"]);
-        $lName = htmlspecialchars($row["lName"]);
-        $homeInt = htmlspecialchars($row["homeInstitution"]);
-        $department = htmlspecialchars($row["department"]);
-        $email = htmlspecialchars($row["email"]);
-        $phone = htmlspecialchars($row["phoneNumber"]);
-        $summary = htmlspecialchars($row["summary"]);
+        $fName = $row["fName"];
+        $lName = $row["lName"];
+        $homeInt = $row["homeInstitution"];
+        $department = $row["department"];
+        $email = $row["email"];
+        $phone = $row["phoneNumber"];
+        $summary = $row["summary"];
         $visitAdded = $row["visitAddedDate"];
+<<<<<<< HEAD
         $financialImp = htmlspecialchars($row["financialImplications"]);
         $visitorType = $row["visitorType"]; //done
         $visitorTypeEXT = htmlspecialchars($row["visitorTypeExt"]);
+=======
+        $financialImp = $row["financialImplications"]; //done
+        $visitorType = $row["visitorType"]; //done
+        $visitorTypeEXT = $row["visitorTypeExt"]; //done
+>>>>>>> parent of 8eeea4a... Wrapped most user entered text in htmlspecialchars()
         $visitStart = $row["startDate"]; //done
         $visitEnd = $row["endDate"]; //done
         $startDisplay = date("d/m/Y", strtotime($visitStart)); //convert date format to a user friendly manner

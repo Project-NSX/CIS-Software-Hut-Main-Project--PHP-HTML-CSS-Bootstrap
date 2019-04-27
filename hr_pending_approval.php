@@ -121,17 +121,17 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $headingId = "heading" . $visitId . $visitorId;
         $collapseId = "collapse" . $visitId . $visitorId;
         $collapseIdHash = "#collapse" . $visitId . $visitorId;
-        $fName = htmlspecialchars($row["fName"]);
-        $lName = htmlspecialchars($row["lName"]);
-        $homeInt = htmlspecialchars($row["homeInstitution"]);
-        $department = htmlspecialchars($row["department"]);
-        $email = htmlspecialchars($row["email"]);
-        $phone = htmlspecialchars($row["phoneNumber"]);
-        $summary = htmlspecialchars($row["summary"]);
+        $fName = $row["fName"];
+        $lName = $row["lName"];
+        $homeInt = $row["homeInstitution"];
+        $department = $row["department"];
+        $email = $row["email"];
+        $phone = $row["phoneNumber"];
+        $summary = $row["summary"];
         $visitAdded = $row["visitAddedDate"];
-        $financialImp = htmlspecialchars($row["financialImplications"]); //done
+        $financialImp = $row["financialImplications"]; //done
         $visitorType = $row["visitorType"]; //done
-        $visitorTypeEXT = htmlspecialchars($row["visitorTypeExt"]); //done
+        $visitorTypeEXT = $row["visitorTypeExt"]; //done
         $visitStart = $row["startDate"]; //done
         $visitEnd = $row["endDate"]; //done
         $startDisplay = date("d/m/Y", strtotime($visitStart)); //Format date in user friendly manner
@@ -144,8 +144,13 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $hrApproved = $row["hrApprovedDate"];
         $hrUname = $row["hrUsername"];
         $hrApprovedDate = $row["hrApprovedDate"];
+<<<<<<< HEAD
         $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate)); //Format date in user friendly manner
         $hrComment = htmlspecialchars($row['hrComment']);
+=======
+        $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate));
+        $hrComment = $row['hrComment'];
+>>>>>>> parent of 8eeea4a... Wrapped most user entered text in htmlspecialchars()
         $iprIssues = $row['iprIssues'];
         $iprFile = $row['iprFile'];
         ?>

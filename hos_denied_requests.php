@@ -31,11 +31,19 @@ echo "<h2>Head of School - Outright Denied Requests</h2>";
         $homeInt = $row["homeInstitution"];
         $department = $row["department"];
         $summary = $row["summary"];
+<<<<<<< HEAD
         $financialImp = $row["financialImplications"];
         $visitorType = $row["visitorType"];
         $visitorTypeEXT = $row["visitorTypeExt"];
         $visitStart = $row["startDate"];
         $visitEnd = $row["endDate"];
+=======
+        $financialImp = $row["financialImplications"]; //done
+        $visitorType = $row["visitorType"]; //done
+        $visitorTypeEXT = $row["visitorTypeExt"]; //done
+        $visitStart = $row["startDate"]; //done
+        $visitEnd = $row["endDate"]; //done
+>>>>>>> parent of 8eeea4a... Wrapped most user entered text in htmlspecialchars()
         $Dateadded = $row["visitAddedDate"];
         $startDisplay = date("d/m/Y", strtotime($visitStart)); //formats the data as we want it to be displayed
         $endDisplay = date("d/m/Y", strtotime($visitEnd)); //formats the data as we want it to be displayed
