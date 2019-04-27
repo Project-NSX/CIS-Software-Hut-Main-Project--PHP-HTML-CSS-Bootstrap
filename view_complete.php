@@ -171,37 +171,36 @@ echo "<h2>Cancelled Request(s)</h2>";
                 <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
                     <div class="card-body">
 
-                    <h5 class='card-title'>Email</h5>
-                    <p class='card-text'><?php echo htmlspecialchars($email) ?></p>
-                    <h5 class='card-title'>Phone Number</h5>
-                    <p class='card-text'><?php echo htmlspecialchars($phone) ?></p>
-                    <h5 class='card-title'>Visit Summary</h5>
-                    <p class='card-text'><?php echo htmlspecialchars($summary) ?></p>
-                    <h5 class='card-title'>Financial Implications</h5>
-                    <p class='card-text'><?php echo htmlspecialchars($financialImp) ?></p>
-                    <h5 class='card-title'>Visitor Type</h5>
-                    <p class='card-text'><?php echo $visitorType ?> &#8195; <?php echo htmlspecialchars($visitorTypeEXT) ?></p>
-                    <h5 class='card-title'>Visit Start & End Dates</h5>
-                    <p class='card-text'><b>Start:</b> <?php echo $startDisplay ?> &#8195; <b>End:</b> <?php echo $endDisplay ?></p>
-                    <h5 class='card-title'>Date & Time of Initial Submission</h5>
-                    <p class='card-text'><?php echo $addedDisplay ?> </p>
-                    <h5 class='card-title'>Supervisor Username</h5>
-                    <p class='card-text'><?php echo $supervisorUname ?> </p>
-                    <h5 class='card-title'>Date & Time of Decision</h5>
-                    <p class='card-text'><?php echo $supervisorApprovedDateDisp ?> </p>
-                    <h5 class='card-title'>HR Practitioner Username</h5>
-                    <p class='card-text'><?php echo $hrUname ?> </p>
-                    <h5 class='card-title'>Date & Time of Decision</h5>
-                    <p class='card-text'><?php echo $hrApprovedDateDisp ?> </p>
-                    <h5 class='card-title'>HR Comment</h5>
-                    <p class='card-text'><?php echo htmlspecialchars($hrComment) ?> </p>
-                                            <!-- if there is an IPR issue (field value = 1)display file, otherwise don't -->
-
-                    <?php if ($iprIssues == 1) {
-                        echo "<h5 class='card-title'>IPR Issues File:</h5>";
-                        echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
-                    }
-                    ?>
+                        <h5 class='card-title'>Email</h5>
+                        <p class='card-text'><?php echo $email ?></p>
+                        <h5 class='card-title'>Phone Number</h5>
+                        <p class='card-text'><?php echo $phone ?></p>
+                        <h5 class='card-title'>Visit Summary</h5>
+                        <p class='card-text'><?php echo $summary ?></p>
+                        <h5 class='card-title'>Financial Implications</h5>
+                        <p class='card-text'><?php echo $financialImp ?></p>
+                        <h5 class='card-title'>Visitor Type</h5>
+                        <p class='card-text'><?php echo $visitorType ?> &#8195; <?php echo $visitorTypeEXT ?></p>
+                        <h5 class='card-title'>Visit Start & End Dates</h5>
+                        <p class='card-text'><b>Start:</b> <?php echo $startDisplay ?> &#8195; <b>End:</b> <?php echo $endDisplay ?></p>
+                        <h5 class='card-title'>Date & Time of Initial Submission</h5>
+                        <p class='card-text'><?php echo $addedDisplay ?> </p>
+                        <h5 class='card-title'>Supervisor Username</h5>
+                        <p class='card-text'><?php echo $supervisorUname ?> </p>
+                        <h5 class='card-title'>Date & Time of Decision</h5>
+                        <p class='card-text'><?php echo $supervisorApprovedDateDisp ?> </p>
+                        <h5 class='card-title'>HR Practitioner Username</h5>
+                        <p class='card-text'><?php echo $hrUname ?> </p>
+                        <h5 class='card-title'>Date & Time of Decision</h5>
+                        <p class='card-text'><?php echo $hrApprovedDateDisp ?> </p>
+                        <h5 class='card-title'>HR Comment</h5>
+                        <p class='card-text'><?php echo $hrComment ?> </p>
+                        <?php if ($iprIssues == 1) {
+                            echo "<h5 class='card-title'>IPR Issues File:</h5>";
+                            echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
+                        }
+                        ?>
+                    </div>
                 </div>
             </div>
 
