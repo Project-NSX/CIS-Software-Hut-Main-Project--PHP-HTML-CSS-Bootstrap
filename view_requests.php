@@ -101,7 +101,7 @@ if (isset($_POST['RPFRBSSend'])) {
     $publish_date = date("Y-m-d H:i:s");
     $s_date = $_POST['s_date'];
     $e_date = $_POST['e_date'];
-    $summary = $_POST['summary'];
+    $summary = htmlspecialchars($_POST['summary']);
     $financialImp = $_POST['financialImp'];
 
     if (!empty($_FILES['file']['name'])) {
@@ -139,6 +139,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
         $visitId = $row["visitId"];
         $visitorId = $row["visitorId"];
+<<<<<<< HEAD
         $fName = $row["fName"]; //
         $lName = $row["lName"]; //
         $title = $row["title"]; //
@@ -162,15 +163,46 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $endDisplay = date("d/m/Y", strtotime($visitEnd));
         $endDisplayDateDisp = date("Y-m-d", strtotime($visitEnd));
         $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded));
+=======
+        $fName = htmlspecialchars($row["fName"]);
+        $lName = htmlspecialchars($row["lName"]);
+        $title = $row["title"];
+        $homeInstitution = htmlspecialchars($row["homeInstitution"]);
+        $department = htmlspecialchars($row["department"]);
+        $street = htmlspecialchars($row["street"]);
+        $city = htmlspecialchars($row["city"]);
+        $county = htmlspecialchars($row["county"]);
+        $postcode = htmlspecialchars($row["postcode"]);
+        $email = htmlspecialchars($row["email"]);
+        $phoneNumber = htmlspecialchars($row["phoneNumber"]);
+        $visitAdded = $row["visitAddedDate"];
+        $financialImp = htmlspecialchars($row["financialImplications"]);
+        $visitorType = $row["visitorType"];
+        $visitorTypeEXT = htmlspecialchars($row["visitorTypeExt"]);
+        $visitStart = $row["startDate"];
+        $visitEnd = $row["endDate"];
+        $summary = htmlspecialchars($row["summary"]);
+        $startDisplay = date("d/m/Y", strtotime($visitStart)); //format the date to be displayed in a clear and concise way
+        $startDisplayDateDisp = date("Y-m-d", strtotime($visitStart)); //format the date to be used as input for the date pickers
+        $endDisplay = date("d/m/Y", strtotime($visitEnd)); //format the date to be displayed in a clear and concise way
+        $endDisplayDateDisp = date("Y-m-d", strtotime($visitEnd)); //format the date to be used as input for the date pickers
+        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded)); //format the date to be displayed in a clear and concise way
+>>>>>>> parent of 11f47a1... Reverted htmlspecialchars commit
         $supervisorApproved = $row["supervisorApprovedDate"];
         $supervisorUname = $row["supervisorUsername"];
         $supervisorApprovedDate = $row["supervisorApprovedDate"];
         $supervisorApprovedDateDisp = date("d/m/Y - g:iA", strtotime($supervisorApprovedDate)); //format the date to be displayed in a clear and concise way
         $hrApproved = $row["hrApprovedDate"];
         $hrUname = $row["hrUsername"];
+<<<<<<< HEAD
         $hrApprovedDate = $row["hrApprovedDate"]; //
         $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate));
         $hrComment = $row['hrComment'];
+=======
+        $hrApprovedDate = $row["hrApprovedDate"];
+        $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate)); //format the date to be displayed in a clear and concise way
+        $hrComment = htmlspecialchars($row['hrComment']);
+>>>>>>> parent of 11f47a1... Reverted htmlspecialchars commit
         $iprIssues = $row['iprIssues'];
         $iprFile = $row['iprFile'];
         ?>
@@ -337,6 +369,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
         $visitId = $row["visitId"];
         $visitorId = $row["visitorId"];
+<<<<<<< HEAD
         $fName = $row["fName"]; //
         $lName = $row["lName"]; //
         $title = $row["title"]; //
@@ -354,6 +387,25 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $visitorTypeEXT = $row["visitorTypeExt"]; //
         $visitStart = $row["startDate"]; //
         $visitEnd = $row["endDate"]; //
+=======
+        $fName = htmlspecialchars($row["fName"]);
+        $lName = htmlspecialchars($row["lName"]);
+        $title = $row["title"];
+        $homeInstitution = htmlspecialchars($row["homeInstitution"]);
+        $department = htmlspecialchars($row["department"]);
+        $street = htmlspecialchars($row["street"]);
+        $city = htmlspecialchars($row["city"]);
+        $county = htmlspecialchars($row["county"]);
+        $postcode = htmlspecialchars($row["postcode"]);
+        $email = htmlspecialchars($row["email"]);
+        $phoneNumber = htmlspecialchars($row["phoneNumber"]);
+        $visitAdded = htmlspecialchars($row["visitAddedDate"]);
+        $financialImp = htmlspecialchars($row["financialImplications"]);
+        $visitorType = $row["visitorType"];
+        $visitorTypeEXT = htmlspecialchars($row["visitorTypeExt"]);
+        $visitStart = $row["startDate"];
+        $visitEnd = $row["endDate"];
+>>>>>>> parent of 11f47a1... Reverted htmlspecialchars commit
         $summary = $row["summary"];
         $startDisplay = date("d/m/Y", strtotime($visitStart)); //format the date to be displayed in a clear and concise way
         $startDisplayDateDisp = date("Y-m-d", strtotime($visitStart)); //format the date to be used as input for the date pickers
@@ -366,7 +418,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $supervisorApprovedDateDisp = date("d/m/Y - g:iA", strtotime($supervisorApprovedDate)); //format the date to be displayed in a clear and concise way
         $iprIssues = $row['iprIssues'];
         $iprFile = $row['iprFile'];
-        $supervisorComment = $row['supervisorComment'];
+        $supervisorComment = htmlspecialchars($row['supervisorComment']);
 
         ?>
         <form action=view_requests.php method=post enctype="multipart/form-data">
@@ -521,14 +573,15 @@ if ($awaitingActionresult->num_rows > 0) {
         $headingId = "heading" . $visitId . $visitorId;
         $collapseId = "collapse" . $visitId . $visitorId;
         $collapseIdHash = "#collapse" . $visitId . $visitorId;
-        $fName = $row["fName"];
-        $lName = $row["lName"];
-        $homeInt = $row["homeInstitution"];
-        $department = $row["department"];
-        $email = $row["email"];
-        $phone = $row["phoneNumber"];
-        $summary = $row["summary"];
+        $fName = htmlspecialchars($row["fName"]);
+        $lName = htmlspecialchars($row["lName"]);
+        $homeInt = htmlspecialchars($row["homeInstitution"]);
+        $department = htmlspecialchars($row["department"]);
+        $email = htmlspecialchars($row["email"]);
+        $phone = htmlspecialchars($row["phoneNumber"]);
+        $summary = htmlspecialchars($row["summary"]);
         $visitAdded = $row["visitAddedDate"];
+<<<<<<< HEAD
         $financialImp = $row["financialImplications"]; //done
         $visitorType = $row["visitorType"]; //done
         $visitorTypeEXT = $row["visitorTypeExt"]; //done
@@ -537,6 +590,16 @@ if ($awaitingActionresult->num_rows > 0) {
         $startDisplay = date("d/m/Y", strtotime($visitStart));
         $endDisplay = date("d/m/Y", strtotime($visitEnd));
         $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded));
+=======
+        $financialImp = htmlspecialchars($row["financialImplications"]);
+        $visitorType = $row["visitorType"];
+        $visitorTypeEXT = htmlspecialchars($row["visitorTypeExt"]);
+        $visitStart = $row["startDate"];
+        $visitEnd = $row["endDate"];
+        $startDisplay = date("d/m/Y", strtotime($visitStart)); //format the date to be displayed in a clear and concise way
+        $endDisplay = date("d/m/Y", strtotime($visitEnd)); //format the date to be displayed in a clear and concise way
+        $addedDisplay = date("d/m/Y - g:iA", strtotime($visitAdded)); //format the date to be displayed in a clear and concise way
+>>>>>>> parent of 11f47a1... Reverted htmlspecialchars commit
         $iprIssues = $row['iprIssues'];
         $iprFile = $row['iprFile'];
         ?>

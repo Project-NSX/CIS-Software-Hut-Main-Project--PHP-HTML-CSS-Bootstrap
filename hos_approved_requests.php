@@ -25,6 +25,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $headingId = "heading" . $visitId . $visitorId;
         $collapseId = "collapse" . $visitId . $visitorId;
         $collapseIdHash = "#collapse" . $visitId . $visitorId;
+<<<<<<< HEAD
         $fName = $row["fName"];
         $lName = $row["lName"];
         $homeInt = $row["homeInstitution"];
@@ -35,6 +36,18 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $visitorTypeEXT = $row["visitorTypeExt"]; //done
         $visitStart = $row["startDate"]; //done
         $visitEnd = $row["endDate"]; //done
+=======
+        $fName = htmlspecialchars($row["fName"]);
+        $lName = htmlspecialchars($row["lName"]);
+        $homeInt = htmlspecialchars($row["homeInstitution"]);
+        $department = htmlspecialchars($row["department"]);
+        $summary = htmlspecialchars($row["summary"]);
+        $financialImp = htmlspecialchars($row["financialImplications"]);
+        $visitorType = htmlspecialchars($row["visitorType"]);
+        $visitorTypeEXT = htmlspecialchars($row["visitorTypeExt"]);
+        $visitStart = $row["startDate"];
+        $visitEnd = $row["endDate"];
+>>>>>>> parent of 11f47a1... Reverted htmlspecialchars commit
         $Dateadded = $row["visitAddedDate"];
         $startDisplay = date("d/m/Y", strtotime($visitStart));
         $endDisplay = date("d/m/Y", strtotime($visitEnd));

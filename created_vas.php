@@ -40,21 +40,26 @@ if ($myVisitorsResult->num_rows > 0) {
         $id = $row['visitorId'];
         $hostAcademic = $row['hostAcademic'];
         $title = $row['title'];
+<<<<<<< HEAD
         $fName = $row["fName"]; //not allowed to change
         $lName = $row["lName"]; //not allowed to change
+=======
+        $fName = htmlspecialchars($row["fName"]);
+        $lName = htmlspecialchars($row["lName"]);
+>>>>>>> parent of 11f47a1... Reverted htmlspecialchars commit
         $visitorType = $row["visitorType"];
-        $visitorTypeEXT = $row["visitorTypeExt"];
-        $homeInstitution = $row["homeInstitution"];
-        $department = $row["department"];
-        $street = $row["street"];
-        $city = $row["city"];
-        $county = $row["county"];
-        $postcode = $row["postcode"];
-        $email = $row["email"];
-        $phoneNumber = $row["phoneNumber"];
+        $visitorTypeEXT = htmlspecialchars($row["visitorTypeExt"]);
+        $homeInstitution = htmlspecialchars($row["homeInstitution"]);
+        $department = htmlspecialchars($row["department"]);
+        $street = htmlspecialchars($row["street"]);
+        $city = htmlspecialchars($row["city"]);
+        $county = htmlspecialchars($row["county"]);
+        $postcode = htmlspecialchars($row["postcode"]);
+        $email = htmlspecialchars($row["email"]);
+        $phoneNumber = htmlspecialchars($row["phoneNumber"]);
 
         if ($visitorType == "Academic" || $visitorType == "Other") {
-            $visitorTypeShow = $visitorType . ": " .  $visitorTypeEXT;
+            $visitorTypeShow = $visitorType . ": " .  htmlspecialchars($visitorTypeEXT);
         } else {
             $visitorTypeShow = $visitorType;
         }
