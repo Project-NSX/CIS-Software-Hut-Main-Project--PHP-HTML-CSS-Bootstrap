@@ -144,13 +144,8 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $hrApproved = $row["hrApprovedDate"];
         $hrUname = $row["hrUsername"];
         $hrApprovedDate = $row["hrApprovedDate"];
-<<<<<<< HEAD
-        $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate));
-        $hrComment = $row['hrComment'];
-=======
         $hrApprovedDateDisp = date("d/m/Y - g:iA", strtotime($hrApprovedDate)); //Format date in user friendly manner
         $hrComment = htmlspecialchars($row['hrComment']);
->>>>>>> parent of 11f47a1... Reverted htmlspecialchars commit
         $iprIssues = $row['iprIssues'];
         $iprFile = $row['iprFile'];
         ?>

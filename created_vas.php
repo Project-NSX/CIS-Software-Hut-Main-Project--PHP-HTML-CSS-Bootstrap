@@ -40,13 +40,8 @@ if ($myVisitorsResult->num_rows > 0) {
         $id = $row['visitorId'];
         $hostAcademic = $row['hostAcademic'];
         $title = $row['title'];
-<<<<<<< HEAD
-        $fName = $row["fName"]; //not allowed to change
-        $lName = $row["lName"]; //not allowed to change
-=======
         $fName = htmlspecialchars($row["fName"]);
         $lName = htmlspecialchars($row["lName"]);
->>>>>>> parent of 11f47a1... Reverted htmlspecialchars commit
         $visitorType = $row["visitorType"];
         $visitorTypeEXT = htmlspecialchars($row["visitorTypeExt"]);
         $homeInstitution = htmlspecialchars($row["homeInstitution"]);

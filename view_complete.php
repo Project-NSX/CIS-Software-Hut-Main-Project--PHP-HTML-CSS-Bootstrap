@@ -36,15 +36,9 @@ echo "<h2>Completed Visit(s)</h2>";
         $phone = htmlspecialchars($row["phoneNumber"]);
         $summary = htmlspecialchars($row["summary"]);
         $visitAdded = $row["visitAddedDate"];
-<<<<<<< HEAD
-        $financialImp = $row["financialImplications"]; //done
-        $visitorType = $row["visitorType"]; //done
-        $visitorTypeEXT = $row["visitorTypeExt"]; //done
-=======
         $financialImp = htmlspecialchars($row["financialImplications"]);
         $visitorType = $row["visitorType"]; //done
         $visitorTypeEXT = htmlspecialchars($row["visitorTypeExt"]);
->>>>>>> parent of 11f47a1... Reverted htmlspecialchars commit
         $visitStart = $row["startDate"]; //done
         $visitEnd = $row["endDate"]; //done
         $startDisplay = date("d/m/Y", strtotime($visitStart)); //convert date format to a user friendly manner
