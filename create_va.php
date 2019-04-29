@@ -5,7 +5,7 @@ require 'includes/deny_hr_role.php' // Redirects users with the "Human Resources
 ?>
 <?php require 'includes/database.php'; ?>
 <!--HTML HERE-->
-<h2>Create a Visiting Academic</h2>
+<h2><?php echo $lang['Create a Visiting Academic'] ?></h2>
 <?php require 'includes/navbars/nav_picker.php'; ?>
 <?php
 // This says "if the user tries to post to the database, assign these $variables from the names of the html5 elements
@@ -67,29 +67,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <form method="post">
     <fieldset>
-        <legend>Academic Information</legend>
-        <label for="visitor_typetype">Type of Academic: </label>
+        <legend><?php echo $lang['Academic Information'] ?></legend>
+        <label for="visitor_typetype"><?php echo $lang['Type of Academic'] ?>: </label>
         <select name="visitor_type" class="form-control" onchange='CheckVisitorTypeDropDown(this.value);' style="margin:0px 0px 10px 0px" required>
-            <option value="Undergraduate">Undergraduate</option>
-            <option value="PhD Student">PhD Student</option>
-            <option value="Academic">Visiting Academic (Position)</option>
-            <option value="Other">Other (Specify)</option>
+            <option value="Undergraduate"><?php echo $lang['Undergraduate'] ?></option>
+            <option value="PhD Student"><?php echo $lang['PhD Student'] ?></option>
+            <option value="Academic"><?php echo $lang['Visiting Academic (Position)'] ?></option>
+            <option value="Other"><?php echo $lang['Other (Specify)'] ?></option>
         </select>
-        <input type="text" id="visitor_type_ext" placeholder="Please specify the type of academic." name="visitor_type_ext" class="form-control" style='display:none;' />
+        <input type="text" id="visitor_type_ext" placeholder="<?php echo $lang['Please specify the type of academic.'] ?>"" name="visitor_type_ext" class="form-control" style='display:none;' />
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="home_institution">Home Institution: </label>
+                <label for="home_institution"><?php echo $lang['Home Institution'] ?>: </label>
                 <input type="text" class="form-control" name="home_institution" required>
             </div>
             <div class="form-group col-md-6">
-                <label for="department">Department: </label>
+                <label for="department"><?php echo $lang['Department'] ?>: </label>
                 <input type="text" class="form-control" name="department" required>
             </div>
         </div>
     </fieldset>
     <fieldset>
-        <legend>Name</legend>
-        <label for="title">Title: </label>
+        <legend><?php echo $lang['Name'] ?></legend>
+        <label for="title"><?php echo $lang['Title'] ?>: </label>
         <select name="title" id="title" class="form-control" style="margin:0px 0px 10px 0px" required>
             <option value="Mr">Mr</option>
             <option value="Mrs">Mrs</option>
@@ -109,55 +109,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="f_name">First Name: </label>
+                <label for="f_name"><?php echo $lang['First Name'] ?>: </label>
                 <input type="text" class="form-control" name="f_name" required>
             </div>
             <div class="form-group col-md-6">
-                <label for="l_name">Last Name: </label>
+                <label for="l_name"><?php echo $lang['Last Name'] ?>: </label>
                 <input type="text" class="form-control" name="l_name" required>
             </div>
         </div>
     </fieldset>
 
     <fieldset>
-        <legend>Address</legend>
+        <legend><?php echo $lang['Address'] ?></legend>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="street">Street: </label>
+                <label for="street"><?php echo $lang['Street'] ?>: </label>
                 <input type="text" class="form-control" name="street" required>
             </div>
             <div class="form-group col-md-6">
-                <label for="town_city">Town / City: </label>
+                <label for="town_city"><?php echo $lang['Town / City'] ?>: </label>
                 <input type="text" class="form-control" name="town_city" required>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="county">County: </label>
+                <label for="county"><?php echo $lang['County'] ?>: </label>
                 <input type="text" class="form-control" name="county" required>
             </div>
             <div class="form-group col-md-6">
-                <label for="postcode">Postcode: </label>
+                <label for="postcode"><?php echo $lang['Postcode'] ?>: </label>
                 <input type="text" name="postcode" pattern="([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})" title="Please enter a valid UK postcode" class="form-control" required>
             </div>
         </div>
     </fieldset>
 
     <fieldset>
-        <legend>Contact Information</legend>
+        <legend><?php echo $lang['Contact Information'] ?></legend>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="email">Email: </label>
+                <label for="email"><?php echo $lang['Email'] ?>: </label>
                 <input type="email" class="form-control" name="email">
             </div>
             <div class="form-group col-md-6">
-                <label for="phone_number">Phone Number: </label>
+                <label for="phone_number"><?php echo $lang['Phone Number'] ?>: </label>
                 <!--TODO: Restrict this to numbers only-->
                 <input type="tel" name="phone_number" class="form-control" minlength="9" maxlength="14">
             </div>
 
         </div>
     </fieldset>
-    <button id="button1" style="margin:10px 0px" type="submit" class="btn btn-primary btn-lg btn-block">Send</button>
+    <button id="button1" style="margin:10px 0px" type="submit" class="btn btn-primary btn-lg btn-block"><?php echo $lang['Send'] ?></button>
 </form>
 <?php require 'includes/footer.php'; ?>

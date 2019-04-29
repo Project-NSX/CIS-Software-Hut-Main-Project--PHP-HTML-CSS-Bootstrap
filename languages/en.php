@@ -39,6 +39,27 @@
 		"View My Visitors" => "View My Visitors",
 		"Create a Visit" => "Create a Visit",
 		"View My Complete Requests" => "View My Complete Requests",
+		"Create a Visiting Academic" => "Create a Visiting Academic",
+		"Academic Information" => "Academic Information",
+		"Type of Academic" => "Type Of Academic",
+		"Undergraduate" => "Undergraduate",
+		"PhD Student" => "PhD Student",
+		"Visiting Academic (Position)" => "Visiting Academic (Position)",
+		"Other (Specify)" => "Other (Specify)",
+		"Please specify the type of academic." => "Please specify the type of academic...",
+		"Title" => "Title",
+		"First Name" => "First Name",
+		"Last Name" => "Last Name",
+		"Address" => "Address",
+		"Street" => "Street",
+		"Town / City" => "Town / City",
+		"County" => "County",
+		"Postcode" => "Postcode",
+		"Contact Information" => "Contact Information",
+		"Email" => "Email",
+		"Phone Number" => "Phone Number",
+		"Send" => "Send",
+
 
 
 

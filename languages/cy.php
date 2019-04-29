@@ -39,6 +39,27 @@
 		"View My Visitors" => "Gweld Fy Ymwelwyr",
 		"Create a Visit" => "Creu Ymweliad",
 		"View My Complete Requests" => "Gweld Fy Ngheisiadau Sydd Wedi'u Cwblhau",
+		"Create a Visiting Academic" => "Creu Ymwelydd Academaidd",
+		"Academic Information" => "Gwybodaeth Academaidd",
+		"Type of Academic" => "Academaidd",
+		"Undergraduate" => "Israddedig",
+		"PhD Student" => "Myfyriwr Doethuriaeth",
+		"Visiting Academic (Position)" => "Ymwelydd Academaidd (Safle)",
+		"Other (Specify)" => "Arall (Nodwch)",
+		"Please specify the type of academic." => "Nodwch y math o ymwelydd plîs...",
+		"Title" => "Teilt",
+		"First Name" => "Enw Cyntaf",
+		"Last Name" => "Cyfenw",
+		"Address" => "Cyfeiriad",
+		"Street" => "Stryd",
+		"Town / City" => "Tref / Dinas",
+		"County" => "Sir",
+		"Postcode" => "Côd Post",
+		"Contact Information" => "Manylion Cyswllt",
+		"Email" => "Ebost",
+		"Phone Number" => "Rhif Ffôn",
+		"Send" => "Cwblhau",
+
 
 
 
