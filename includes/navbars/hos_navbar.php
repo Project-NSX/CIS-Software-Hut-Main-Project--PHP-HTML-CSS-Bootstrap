@@ -13,17 +13,17 @@
             <li class="nav-item <?php if ($page == 'HOSRPA') {
                                     echo 'active';
                                 } ?>">
-                <a class="nav-link" href="hos_requests_pending_approval.php">Head of School - View Requests Pending Approval</a>
+                <a class="nav-link" href="hos_requests_pending_approval.php"><?php echo $lang['Head of School - View Requests Pending Approval'] ?></a>
             </li>
             <li class="nav-item <?php if ($page == 'HOSAR') {
                                     echo 'active';
                                 } ?>">
-                <a class="nav-link" href="hos_approved_requests.php">Head of School - View Approved Requests</a>
+                <a class="nav-link" href="hos_approved_requests.php"><?php echo $lang['Head of School - View Approved Requests'] ?></a>
             </li>
             <li class="nav-item <?php if ($page == 'HOSDR') {
                                     echo 'active';
                                 } ?>">
-                <a class="nav-link" href="hos_denied_requests.php">Head of School - View Denied Requests</a>
+                <a class="nav-link" href="hos_denied_requests.php"><?php echo $lang['Head of School - View Denied Requests'] ?></a>
             </li>
         </ul>
     </div>
