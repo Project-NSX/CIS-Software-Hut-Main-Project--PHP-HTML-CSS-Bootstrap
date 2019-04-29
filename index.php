@@ -1,4 +1,5 @@
 <?php
+include "config.php";
 if (isset($_GET['accept-cookies'])) {
 setcookie('accept-cookies', 'true', time() + 31556925);
 header('Location: ./');
@@ -10,7 +11,7 @@ header('Location: ./');
 //TODO: Add tutorial link for this page, so everyone knows where you got it from.
 
 // Initialize the session
-session_start();
+
 $role = "";
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
@@ -118,23 +119,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!--HTML HERE-->
 
 <div class="container">
-    <h2>Staff Login Page</h2>
+    <h2><?php echo $lang['Staff Login Page'] ?></h2>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-            <label>Username</label>
+            <label><?php echo $lang['Username'] ?></label>
             <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
             <span class="help-block"><?php echo $username_err; ?></span>
         </div>
         <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-            <label>Password</label>
+            <label><?php echo $lang['Password'] ?></label>
             <input type="password" name="password" class="form-control" id="passwordField">
             <span class="help-block"><?php echo $password_err; ?></span>
         </div>
         <div class="form-group">
-            <input type="checkbox" onclick="togglePasswordHidden()"> Show Password
+            <input type="checkbox" onclick="togglePasswordHidden()"> <?php echo $lang['Show Password'] ?>
         </div>
         <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Login">
+            <input type="submit" class="btn btn-primary" value="<?php echo $lang['Show Password'] ?>">
         </div>
     </form>
 </div>

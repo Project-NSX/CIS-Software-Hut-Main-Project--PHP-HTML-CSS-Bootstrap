@@ -1,15 +1,30 @@
 footer {
+    margin-top: 50px;
+    padding-top: 20px;
+    padding-bottom: 10px;
     left: 0;
     bottom: 0;
     width: 100%;
-    text-align: center;
     background: grey;
+    border-top: solid;
+    border-color: #B82233;
 }
 
-#footerInfo{
-    padding-top: 20px;
-    padding-bottom: 20px;
+#footerLeft{
     color: white;
+    text-align: left;
+}
+
+#footerRight{
+    color: white;
+    text-align: right;
+}
+
+.footerContent{
+    width: 65%;
+    text-align: center;
+    margin: auto;
+
 }
 
 #top {
@@ -30,13 +45,19 @@ body {
     float: right;
 }
 
+.headerSection{
+    background-color: grey;
+
+
+}
+
 #headerTop {
     padding-top: 20px;
-    padding-bottom: 10px;
-    padding-left: 17%;
-    padding-right: 17%;
+    padding-bottom: 20px;
+    width: 65%;
+    margin: auto;
     background-color: #CDCDCD;
-    margin-bottom: 20px;
+    
 }
 
 #pageTitle {

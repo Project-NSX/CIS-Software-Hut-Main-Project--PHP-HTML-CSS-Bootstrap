@@ -1,6 +1,7 @@
 <?php
+include "config.php";
 // Initialize the session
-session_start();
+
 // TODO: Make session get trashed when window is closed or user is afk for an hour
 // Check if the user is logged in, if not then redirect him to login page
 // This might be helpful: https://stackoverflow.com/questions/22317888/destroy-php-sessions-on-browsers-tab-close
@@ -37,32 +38,34 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 </head>
 
 <body>
+    <section id="headerSection">
     <div id="headerTop">
-        <div id="signout" align="right"><a href="logout.php" class="btn btn-primary">Sign Out</a></div>
+        <div id="signout" align="right"><a href="logout.php" class="btn btn-primary"><?php echo $lang['Sign Out'] ?></a></div>
         <div id="welcome">
-            <p>Hello, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>!<br />
+            <p><?php echo $lang['Hello'] ?>, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>!<br />
 
-                Role: <b><?php echo htmlspecialchars($_SESSION["role"]); ?></b><br />
+                <?php echo $lang['Role'] ?>: <b><?php echo htmlspecialchars($_SESSION["role"]); ?></b><br />
 
                 <?php if ($_SESSION["role"] === "Academic" || $_SESSION["role"] === "Head Of School") {
 
 
                     ?>
-                    School: <b><?php echo $_SESSION["schoolName"]; ?></b><br />
+                    <?php echo $lang['School'] ?>: <b><?php echo $_SESSION["schoolName"]; ?></b><br />
                 <?php
             }
             if ($_SESSION["role"] === "College Manager") {
                 ?></b>
-                    College: <b><?php echo $_SESSION["collegeName"];
+                    <?php echo $lang['College'] ?>: <b><?php echo $_SESSION["collegeName"];
                             } ?>
                 </b></p>
         </div>
     </div>
+    </section>
     <!--Bootstrap Container. Closing tag for this is in the footer, just before the closing body tag-->
     <div class="container">
         <header id="pageTitle">
             <img id="logo" src="img/bangor_logo.png" height="100px">
-            <h1>Visiting Academic Form</h1>
+            <h1><?php echo $lang['Visiting Academics Form'] ?></h1>
         </header>
         <main>
 
