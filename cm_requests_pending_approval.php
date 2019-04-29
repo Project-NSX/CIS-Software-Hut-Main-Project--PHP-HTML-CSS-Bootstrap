@@ -1,6 +1,5 @@
 <!-- Variable used to highlight the appropriate button on the navbar -->
 <?php $page = 'CMRPA';
-include "config.php";
 require 'includes/header.php';
 //import phpmailer to send emails
 require 'includes/verify_cm_role.php'; // Redirect if the user is not logged in as a college manager.
