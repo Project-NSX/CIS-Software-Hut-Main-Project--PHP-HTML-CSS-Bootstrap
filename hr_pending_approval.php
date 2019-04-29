@@ -207,7 +207,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                 <input type=text name=reasoning style="width:100%" class="form-control" onkeypress="return noenter()">
             </div>
             <div class="form-group col-md-12">
-                <p style="text-align:right; margin-top:-15px; font-size:0.8em"><?php echo $lang['resubmitText'] ?><</p>
+                <p style="text-align:right; margin-top:-15px; font-size:0.8em"><?php echo $lang['resubmitText'] ?></p>
             </div>
         </div>
 
