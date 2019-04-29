@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <option value="Academic"><?php echo $lang['Visiting Academic (Position)'] ?></option>
             <option value="Other"><?php echo $lang['Other (Specify)'] ?></option>
         </select>
-        <input type="text" id="visitor_type_ext" placeholder="<?php echo $lang['Please specify the type of academic.'] ?>"" name="visitor_type_ext" class="form-control" style='display:none;' />
+        <input type="text" id="visitor_type_ext" placeholder="<?php echo $lang['Please specify the type of academic.'] ?>"" name="visitor_type_ext" data-toggle="tooltip" data-placement="top" title="Please provide furthur information"  class="form-control" style='display:none;' />
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="home_institution"><?php echo $lang['Home Institution'] ?>: </label>

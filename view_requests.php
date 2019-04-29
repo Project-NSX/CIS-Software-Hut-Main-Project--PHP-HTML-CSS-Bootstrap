@@ -310,7 +310,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                 <div class="row">
                     <div class="col-md"></div>
                     <!-- Button Resubmit request(s) Prompted for Resubmission by HR-->
-                    <div class="col-md"><input type=submit name=RPFRBHRSend value='Resubmit Visit Request' class='btn btn-secondary' style='width:100%; margin-bottom:5px'></div>
+                    <div class="col-md"><input type=submit name=RPFRBHRSend value='Resubmit Visit Request' data-toggle="tooltip" data-placement="top" title="Click here to Resubmit please" class='btn btn-secondary' style='width:100%; margin-bottom:5px'></div>
                     <div class="col-md"></div>
                 </div>
             </div>
@@ -490,7 +490,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                 <div class="row">
                     <div class="col-md"></div>
                     <!-- Button Resubmit request(s) Prompted for Resubmission by Supervisor-->
-                    <div class="col-md"><input type=submit name=RPFRBSSend value='Resubmit Visit Request' class='btn btn-secondary' style='width:100%; margin-bottom:5px'></div>
+                    <div class="col-md"><input type=submit name=RPFRBSSend value='Resubmit Visit Request'  data-toggle="tooltip" data-placement="top" title="Click to Resquest here please"  class='btn btn-secondary' style='width:100%; margin-bottom:5px'></div>
                     <div class="col-md"></div>
                 </div>
             </div>
@@ -582,7 +582,7 @@ if ($awaitingActionresult->num_rows > 0) {
                 <div class="row">
                     <!-- Button to cancel visit -->
                     <div class="col-md"></div>
-                    <div class="col-md"><input type=submit name=VRAACancel value='Cancel Visit' class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
+                    <div class="col-md"><input type=submit name=VRAACancel value='Cancel Visit'  data-toggle="tooltip" data-placement="top" title="Click here to Cancel the Visit please" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
                     <div class="col-md"></div>
                 </div>
             </div>
@@ -675,7 +675,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                 <div class="row">
                     <!-- Button to cancel visit -->
                     <div class="col-md"></div>
-                    <div class="col-md"><input type=submit name=VRABSCancel value='Cancel Visit' class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
+                    <div class="col-md"><input type=submit name=VRABSCancel value='Cancel Visit' class='btn btn-warning' data-toggle="tooltip" data-placement="top" title="To Cancel the Request" style='width:100%; margin-bottom:5px'></div>
                     <div class="col-md"></div>
                 </div>
             </div>
@@ -769,7 +769,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                 <div class="row">
                     <!-- Button to cancel visit -->
                     <div class="col-md"></div>
-                    <div class="col-md"><input type=submit name=VRDBSCancel value='Cancel Visit' class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
+                    <div class="col-md"><input type=submit name=VRDBSCancel value='Cancel Visit' data-toggle="tooltip" data-placement="top" title="To cancel your request"  class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
                     <div class="col-md"></div>
                 </div>
             </div>
@@ -871,7 +871,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                 <div class="row">
                     <!-- Button to cancel visit -->
                     <div class="col-md"></div>
-                    <div class="col-md"><input type=submit name=VRABSHRCancel value='Cancel Visit' class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
+                    <div class="col-md"><input type=submit name=VRABSHRCancel value='Cancel Visit' data-toggle="tooltip" data-placement="top" title="To Cancel your request" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
                     <div class="col-md"></div>
                 </div>
             </div>
@@ -976,7 +976,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                     <!-- Button to cancel visit -->
 
                     <div class="col-md"></div>
-                    <div class="col-md"><input type=submit name=VRDBHRCancel value='Cancel Visit' class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
+                    <div class="col-md"><input type=submit name=VRDBHRCancel value='Cancel Visit' data-toggle="tooltip" data-placement="top" title="To Cancel Requests Only" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
                     <div class="col-md"></div>
                 </div>
             </div>

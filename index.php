@@ -1,7 +1,7 @@
 <?php
 include "config.php";
 if (isset($_GET['accept-cookies'])) {
-setcookie('accept-cookies', 'true', time() + 31556925);
+setcookie('accept-cookies', 'true', time() + 31556925);  //To store cookies pop up
 header('Location: ./');
 }
 ?>
@@ -120,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="container">
     <h2><?php echo $lang['Staff Login Page'] ?></h2>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"    data-toggle="tooltip" data-placement="top" title="Please Input Username Only"  >
         <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
             <label><?php echo $lang['Username'] ?></label>
             <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
@@ -128,14 +128,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
             <label><?php echo $lang['Password'] ?></label>
-            <input type="password" name="password" class="form-control" id="passwordField">
+            <input type="password" name="password" class="form-control" id="passwordField"    data-toggle="tooltip" data-placement="top" title="Please Input Password here"     >
             <span class="help-block"><?php echo $password_err; ?></span>
         </div>
         <div class="form-group">
-            <input type="checkbox" onclick="togglePasswordHidden()"> <?php echo $lang['Show Password'] ?>
+            <input type="checkbox" data-toggle="tooltip" data-placement="top" title="Click here to see Password"  onclick="togglePasswordHidden()"> <?php echo $lang['Show Password'] ?>
         </div>
         <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="<?php echo $lang['Login'] ?>">
+            <input type="submit" data-toggle="tooltip" data-placement="top" title="Click here to LOGIN IN" class="btn btn-primary" value="<?php echo $lang['Login'] ?>">
         </div>
     </form>
 </div>

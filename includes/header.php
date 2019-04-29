@@ -33,7 +33,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 <body>
     <section id="headerSection">
     <div id="headerTop">
-        <div id="signout" align="right"><a href="logout.php" class="btn btn-primary"><?php echo $lang['Sign Out'] ?></a></div>
+        <div id="signout" align="right"><a href="logout.php"   data-toggle="tooltip" data-placement="top" title="Click here to Sign out" class="btn btn-primary"><?php echo $lang['Sign Out'] ?></a></div>
         <div id="welcome">
             <p><?php echo $lang['Hello'] ?>, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>!<br />
 

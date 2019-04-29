@@ -201,7 +201,7 @@ if ($myVisitorsResult->num_rows > 0) {
                     $result = $link->query($sql);
                     if ($result->num_rows > 0) {
                         //If the count is returned that means that there is a visit for that user, therefore the user can't be deleted
-                        echo "<div class='col-sm'><input type=submit name=update value=Update class='btn btn-success' style='width:100%'></div>";
+                        echo "<div class='col-sm'><input type=submit name=update value=Update  class='btn btn-success' style='width:100%'></div>";
                         echo "<div class='col-sm'><input type=submit name=delete value=Delete class='btn btn-danger' disabled style='width:100%'></div>";
                     } else {
                         //If nothing is returned that means that there is not a visit for that user, therefore the user can be deleted
