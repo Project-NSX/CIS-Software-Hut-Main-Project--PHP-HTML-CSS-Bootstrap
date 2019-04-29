@@ -1,6 +1,5 @@
 <!-- Variable to be used to highlight appropriate button in navbar -->
 <?php $page = 'CMAR';
-include "config.php";
 require 'includes/header.php';
 require 'includes/verify_cm_role.php'; // Redirect if the user is not logged in as a college manager.
 ?>

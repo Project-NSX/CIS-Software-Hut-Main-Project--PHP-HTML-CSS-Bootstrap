@@ -2,13 +2,6 @@
 include "config.php";
 // Initialize the session
 
-// TODO: Make session get trashed when window is closed or user is afk for an hour
-// Check if the user is logged in, if not then redirect him to login page
-// This might be helpful: https://stackoverflow.com/questions/22317888/destroy-php-sessions-on-browsers-tab-close
-
-// TODO: Restrict the pages the user can visit depending on their role
-
-
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: index.php");
     exit;
