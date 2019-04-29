@@ -73,6 +73,22 @@
 		"Please summarise the purpose of the visit" => "Plîs crynhowch reswm am yr ymweliad",
 		"IPR Issues" => "Problemau IPR",
 		"Choose file" => "Dewis Ffeil",
+		"My Visitors" => "Fy Ymwelwyr",
+		"Personal Details" => "Manylion Personol",
+		"fNamecount" => "<div class='col-sm-2'><b>Enw Cyntaf:</b></div>",
+		"sNamecount" => "<div class='col-sm-2'><b>Cyfenw:</b></div>",
+		"Visitor Details" => "Manylion Ymwelydd",
+		"Home Institution Details" => "Manylion Sefydliad Cartref",
+		"Home Institution Name" => "Enw Sefydliad Cartref",
+		"Department Name" => "Enw'r Adran",
+		"Update" => "Diweddaru",
+		"Delete" => "Dileu",
+		"Contact Details" => "Manylion Cyswllt",
+		"vasUpdate" => "<div class='col-sm'><input type=submit name=update value=Diweddaru class='btn btn-success' style='width:100%'></div>",
+		"vasDelete1" => "<div class='col-sm'><input type=submit name=delete value=Dileu class='btn btn-danger' disabled style='width:100%'></div>",
+		"vasDelete2" => "<div class='col-sm'><input type=submit name=delete value=Dileu class='btn btn-danger' style='width:100%'></div>",
+		"visAcNo" => "<h2><b>Ymwelydd Academaidd ",
+
 
 
 

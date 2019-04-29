@@ -73,6 +73,22 @@
 		"Please summarise the purpose of the visit" => "Please summarise the purpose of the visit",
 		"IPR Issues" => "IPR Issues",
 		"Choose file" => "Choose File",
+		"My Visitors" => "My Visitors",
+		"Personal Details" => "Personal Details",
+		"fNamecount" => "<div class='col-sm-2'><b>First Name:</b></div>",
+		"sNamecount" => "<div class='col-sm-2'><b>Last Name:</b></div>",
+		"Visitor Details" => "Visitor Details",
+		"Home Institution Details" => "Home Institution Details",
+		"Home Institution Name" => "Home Institution Name",
+		"Department Name" => "Department Name",
+		"Update" => "Update",
+		"Delete" => "Delete",
+		"Contact Details" => "Contact Details",
+		"vasUpdate" => "<div class='col-sm'><input type=submit name=update value=Update class='btn btn-success' style='width:100%'></div>",
+		"vasDelete1" => "<div class='col-sm'><input type=submit name=delete value=Delete class='btn btn-danger' disabled style='width:100%'></div>",
+		"vasDelete2" => "<div class='col-sm'><input type=submit name=delete value=Delete class='btn btn-danger' style='width:100%'></div>",
+		"visAcNo" => "<h2><b>Visiting Academic ",
+
 
 
 
