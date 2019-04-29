@@ -108,10 +108,6 @@ function updateDateFields() {
         endField.setAttribute("value", startField.value);
 }
 
-if($('.cookie-banner').length) {
-    $('.cookie-banner').slideDown(10);
-}
-
-
-
-
+// if($('.cookie-banner').length) {
+//     $('.cookie-banner').slideDown(10);
+// }
