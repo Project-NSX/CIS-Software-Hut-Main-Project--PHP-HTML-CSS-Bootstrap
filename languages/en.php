@@ -88,6 +88,19 @@
 		"vasDelete1" => "<div class='col-sm'><input type=submit name=delete value=Delete class='btn btn-danger' disabled style='width:100%'></div>",
 		"vasDelete2" => "<div class='col-sm'><input type=submit name=delete value=Delete class='btn btn-danger' style='width:100%'></div>",
 		"visAcNo" => "<h2><b>Visiting Academic ",
+		"Head of School - View Requests Pending Approval" => "Requests You Need To Approve",
+		"Head of School - View Approved Requests" => "Requests You've Approved",
+		"Head of School - View Denied Requests" => "Requests You've Denied",
+		"Head of School - Approved Requests" => "Head of School - Approved Requests",
+		"hosTitle" => "<h2>Head of School - Approved Requests</h2>",
+		"Head of School - Denied Requests" => "Head of School - Denied Requests",
+		"hosDenTitle" => "<h2>Head of School - Outright Denied Requests</h2>",
+		"hosPenTitle" => "<h2>Head of School - Pending Requests</h2>",
+		"Head of School - Pending Requests" => "Head of School - Pending Requests",
+		"Approve" => "Approve",
+		"Prompt User to Resubmit" => "Prompt User to Resubmit",
+		"Deny" => "Deny",
+		"Reason to resubmit" => "Reason to resubmit",
 
 
 

@@ -5,7 +5,7 @@ require 'includes/verify_hos_role.php';
 ?>
 <!--HTML HERE-->
 
-<h2>Head of School - Denied Requests</h2>
+<h2><?php echo $lang['Head of School - Denied Requests'] ?></h2>
 <?php require 'includes/navbars/nav_picker.php'; ?>
 <!--This page needs to show application pending approval from HR-->
 
@@ -16,8 +16,7 @@ $supervisorApproved = "SELECT v.visitId, v.visitorId, v.summary, v.financialImpl
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
     //if 1 or more record exists, display the record by running the following code
-echo "<h2>Head of School - Outright Denied Requests</h2>";
-
+    echo $lang['hosDenTitle'];
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
         //saves the database field value to a variable
@@ -50,9 +49,9 @@ echo "<h2>Head of School - Outright Denied Requests</h2>";
             <!-- Display key information in the header -->
             <div class="card-header" id="<?php echo $headingId ?>" <button id="button1" class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
                 <div class="row">
-                    <div class='col-sm'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
-                    <div class='col-sm'><b>Home Institution: </b> <?php echo $homeInt ?></div>
-                    <div class='col-sm'><b>Department: </b> <?php echo $department ?></div>
+                    <div class='col-sm'><b><?php echo $lang['Name'] ?>: </b> <?php echo $fName . " " . $lName ?></div>
+                    <div class='col-sm'><b><?php echo $lang['Home Institution'] ?>: </b> <?php echo $homeInt ?></div>
+                    <div class='col-sm'><b><?php echo $lang['Department'] ?>: </b> <?php echo $department ?></div>
                 </div>
                 <div class="row">
                     <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
@@ -61,20 +60,20 @@ echo "<h2>Head of School - Outright Denied Requests</h2>";
             <!-- Display more detail in the body which is displayed after the card's header is pressed -->
             <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
                 <div class="card-body">
-                    <h5 class='card-title'>Visit Summary</h5>
+                    <h5 class='card-title'><?php echo $lang['Visit Summary'] ?></h5>
                     <p class='card-text'><?php echo $summary ?></p>
-                    <h5 class='card-title'>Financial Implications</h5>
+                    <h5 class='card-title'><?php echo $lang['Financial Implications'] ?></h5>
                     <p class='card-text'><?php echo $financialImp ?></p>
-                    <h5 class='card-title'>Visitor Type</h5>
+                    <h5 class='card-title'><?php echo $lang['Visitor Type'] ?></h5>
                     <p class='card-text'><?php echo $visitorType ?> &#8195; <?php echo $visitorTypeEXT ?></p>
-                    <h5 class='card-title'>Visit Start & End Dates</h5>
-                    <p class='card-text'><b>Start:</b> <?php echo $startDisplay ?> &#8195; <b>End:</b> <?php echo $endDisplay ?></p>
-                    <h5 class='card-title'>Date & Time of Initial Submission</h5>
+                    <h5 class='card-title'><?php echo $lang['Visit Start & End Dates'] ?></h5>
+                    <p class='card-text'><b><?php echo $lang['Start'] ?>:</b> <?php echo $startDisplay ?> &#8195; <b><?php echo $lang['End'] ?>:</b> <?php echo $endDisplay ?></p>
+                    <h5 class='card-title'><?php echo $lang['Date & Time of Initial Submission'] ?></h5>
                     <p class='card-text'><?php echo $addedDisplay ?> </p>
-                    <h5 class='card-title'>Date & Time of Approval</h5>
+                    <h5 class='card-title'><?php echo $lang['Date & Time of Approval'] ?></h5>
                     <p class='card-text'><?php echo $suppervisorApproveDisplay ?> </p>
                     <?php if ($iprIssues == 1) {
-                        echo "<h5 class='card-title'>IPR Issues File:</h5>";
+                        echo $lang['IPR'];
                         echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
                     }
                     ?>

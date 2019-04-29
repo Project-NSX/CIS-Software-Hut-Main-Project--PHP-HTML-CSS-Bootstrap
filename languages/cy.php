@@ -88,6 +88,19 @@
 		"vasDelete1" => "<div class='col-sm'><input type=submit name=delete value=Dileu class='btn btn-danger' disabled style='width:100%'></div>",
 		"vasDelete2" => "<div class='col-sm'><input type=submit name=delete value=Dileu class='btn btn-danger' style='width:100%'></div>",
 		"visAcNo" => "<h2><b>Ymwelydd Academaidd ",
+		"Head of School - View Requests Pending Approval" => "Ceisiadau Rydych Angen Cymeradwyo",
+		"Head of School - View Approved Requests" => "Ceisiadau Rydych Wedi Cymeradwyo",
+		"Head of School - View Denied Requests" => "Ceisiadau Rydych Wedi Gwrthod",
+		"Head of School - Approved Requests" => "Pennaeth Ysgol - Ceisiadau Wedi'u Cymeradwyo",
+		"hosTitle" => "<h2>Pennaeth Ysgol - Ceisiadau Wedi Cymeradwyo</h2>",
+		"Head of School - Denied Requests" => "Pennaeth Ysgol - Ceisiadau Wedi'u Gwrthod",
+		"hosDenTitle" => "<h2>Pennaeth Ysgol - Ceisiadau a Wrthodwyd yn Llwyr</h2>",
+		"hosPenTitle" => "<h2>Pennaeth Ysgol - Ceisiadau Rydych Angen Cymeradwyo</h2>",
+		"Head of School - Pending Requests" => "Pennaeth Ysgol - Ceisiadau Rydych Angen Cymeradwyo",
+		"Approve" => "Cymeradwyo",
+		"Prompt User to Resubmit" => "Gofyn i'r Defnyddiwr Ail-giesio",
+		"Deny" => "Gwrthod",
+		"Reason to resubmit" => "Rheswm dros Ail-giesio",
 
 
 
