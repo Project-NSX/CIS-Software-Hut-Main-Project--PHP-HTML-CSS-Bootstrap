@@ -1,7 +1,3 @@
-<?php
-    include "config.php";
-?>
-
 <li class="nav-item <?php if ($page == 'CVa') {
                         echo 'active';
                     } ?>">

@@ -59,6 +59,20 @@
 		"Email" => "Ebost",
 		"Phone Number" => "Rhif Ffôn",
 		"Send" => "Cwblhau",
+		"Create a Visit" => "Creu Ymweliad",
+		"Visitor" => "Ymwelydd",
+		"Visit Dates" => "Dyddiad yr Ymweliad",
+		"Start Date" => "Dyddiad Dechrau",
+		"End Date" => "Dyddiad Gorffen",
+		"Are there IPR issues with the visit?" => "Oes problem IPR gyda'r ymwelydd yma?",
+		"Yes" => "Oes",
+		"No" => "Nagoes",
+		"Additional Info" => "Gwybodaeth Ychwanegol",
+		"Please summarise the related financial implications" => "Crynhowch y problemau ariannol",
+		"Summary of visit" => "Rheswm cryno am yr ymweliad",
+		"Please summarise the purpose of the visit" => "Plîs crynhowch reswm am yr ymweliad",
+		"IPR Issues" => "Problemau IPR",
+		"Choose file" => "Dewis Ffeil",
 
 
 

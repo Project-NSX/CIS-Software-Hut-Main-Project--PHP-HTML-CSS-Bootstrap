@@ -59,8 +59,20 @@
 		"Email" => "Email",
 		"Phone Number" => "Phone Number",
 		"Send" => "Send",
-
-
+		"Create a Visit" => "Create a Visit",
+		"Visitor" => "Visitor",
+		"Visit Dates" => "Visit Dates",
+		"Start Date" => "Start Date",
+		"End Date" => "End Date",
+		"Are there IPR issues with the visit?" => "Are there IPR issues with the visit?",
+		"Yes" => "Yes",
+		"No" => "No",
+		"Additional Info" => "Additional Info",
+		"Please summarise the related financial implications" => "Please summarise the related financial implications",
+		"Summary of visit" => "Summary of visit",
+		"Please summarise the purpose of the visit" => "Please summarise the purpose of the visit",
+		"IPR Issues" => "IPR Issues",
+		"Choose file" => "Choose File",
 
 
 
