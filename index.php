@@ -154,6 +154,6 @@ if (! isset($_COOKIE['accept-cookies'])) {
 }
 ?>
 
-<script src="bangor_va.js"></script>
+<script src="js/bangor_va.js"></script>
 
 <?php require 'includes/footer.php'; ?>
