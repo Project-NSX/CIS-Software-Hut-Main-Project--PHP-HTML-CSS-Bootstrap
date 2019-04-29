@@ -101,6 +101,18 @@
 		"Prompt User to Resubmit" => "Gofyn i'r Defnyddiwr Ail-giesio",
 		"Deny" => "Gwrthod",
 		"Reason to resubmit" => "Rheswm dros Ail-giesio",
+		"Supervisor Username" => "Enw Defnyddiwr y Goruchwyliwr",
+		"HR Practitioner Username" => "Enw Defnyddiwr Adnoddau Dynol",
+		"Date & Time of Decision" => "Dyddiad ac Amser y Penderfyniad",
+		"Human Resources - Approved Requests" => "Adnoddau Dynol - Ceisiadau Wedi'u Cymeradwyo",
+		"hrTitle" => "<h2>Ceisiadau Wedi'u Cymeradwyo gan AD</h2>",
+		"HR - Approved Requests" => "Ceisiadau Rydych Wedi Cymeradwyo",
+		"HR - Disapproved Requests" => "Ceisiadau Rydych Wedi Gwrthod",
+		"Human Resources - Denied Requests" => "Adnoddau Dynol - Ceisiadau Wedi'u Gwrthod",
+		"hrDenTitle" => "<h2>Ceisiadau Wedi'u Gwrthod gan AD</h2>",
+		"HR Comment" => "Sylw gan AD",
+		"Human Resources - Applications Pending Approval" => "Adnoddau Dynol - Ceisiadau Yn Disgwyl Cymeradwyaeth",
+		"hrPenTitle" => "<h2>Ceisiadau Angen Cymeradwyaeth gan AD</h2>",
 
 
 

@@ -7,17 +7,17 @@
             <li class="nav-item <?php if ($page == 'home') {
                                     echo 'active';
                                 } ?>">
-                <a class="nav-link" href="hr_pending_approval.php">Home<span class="sr-only"></span></a>
+                <a class="nav-link" href="hr_pending_approval.php"><?php echo $lang['Home'] ?><span class="sr-only"></span></a>
             </li>
             <li class="nav-item <?php if ($page == 'HRAR') {
                                     echo 'active';
                                 } ?>">
-                <a class="nav-link" href="hr_approved_requests.php">HR - Approved Requests</a>
+                <a class="nav-link" href="hr_approved_requests.php"><?php echo $lang['HR - Approved Requests'] ?></a>
             </li>
             <li class="nav-item <?php if ($page == 'HRDR') {
                                     echo 'active';
                                 } ?>">
-                <a class="nav-link" href="hr_disapproved_requests.php">HR - Disapproved Requests</a>
+                <a class="nav-link" href="hr_disapproved_requests.php"><?php echo $lang['HR - Disapproved Requests'] ?></a>
         </ul>
     </div>
 </nav>
