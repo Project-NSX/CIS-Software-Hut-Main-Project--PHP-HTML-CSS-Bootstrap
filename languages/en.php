@@ -11,10 +11,10 @@
 		"Username" => "Username",
 		"Password" => "Password",
 		"Show Password" => "Show Password",
-		"Login" => "Login",
+		"Login" => "Log in",
 
 
- 
+
 
 
 

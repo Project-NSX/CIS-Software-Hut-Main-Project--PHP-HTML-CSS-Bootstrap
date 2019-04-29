@@ -135,13 +135,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="checkbox" onclick="togglePasswordHidden()"> <?php echo $lang['Show Password'] ?>
         </div>
         <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="<?php echo $lang['Show Password'] ?>">
+            <input type="submit" class="btn btn-primary" value="<?php echo $lang['Login'] ?>">
         </div>
     </form>
 </div>
-
-
-
 
 
 <?php
@@ -157,23 +154,6 @@ if (! isset($_COOKIE['accept-cookies'])) {
 }
 ?>
 
-
 <script src="bangor_va.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <?php require 'includes/footer.php'; ?>
