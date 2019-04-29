@@ -1,11 +1,12 @@
 <!-- Variable to be used to highlight appropriate button in navbar -->
 <?php $page = 'CMAR';
+include "config.php";
 require 'includes/header.php';
 require 'includes/verify_cm_role.php'; // Redirect if the user is not logged in as a college manager.
 ?>
 <!--HTML HERE-->
 
-<h2>College Manager - Approved Requests</h2>
+<h2><?php echo $lang['College Manager - Approved Requests'] ?></h2>
 <?php require 'includes/navbars/nav_picker.php'; ?>
 <!--TODO: Add the ability to search for an approved request-->
 <?php
@@ -14,7 +15,7 @@ require_once 'includes/database.php';
 $supervisorApproved = "SELECT v.visitId, v.visitorId, v.summary, v.financialImplications, v.startDate, v.endDate, v.visitAddedDate, v.supervisorApprovedDate, va.fName, va.lName, va.homeInstitution, va.department, va.visitorType, va.visitorTypeExt, v.iprIssues, v.iprFile FROM visit v, user u, school s, visitingAcademic va WHERE v.hostAcademic = u.username AND u.school_id = s.schoolId AND va.visitorId = v.visitorId AND u.college_id = '{$_SESSION['college_id']}' AND u.role = 'Head Of School' AND v.supervisorApproved LIKE '3' ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
-    echo "<h2>College Manager - Approved Requests</h2>";
+    echo $lang['CMTitle'];
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
         //assigning returned columns to variables - made it easier to reference at a later stage
@@ -48,9 +49,9 @@ if ($supervisorApprovedresult->num_rows > 0) {
         <div class="card">
             <div class="card-header" id="<?php echo $headingId ?>" <button id="button1" class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
                 <div class="row">
-                    <div class='col-sm'><b>Name: </b> <?php echo htmlspecialchars($fName) . " " . htmlspecialchars($lName) ?></div>
-                    <div class='col-sm'><b>Home Institution: </b> <?php echo htmlspecialchars($homeInt) ?></div>
-                    <div class='col-sm'><b>Department: </b> <?php echo htmlspecialchars($department) ?></div>
+                    <div class='col-sm'><b><?php echo $lang['Name'] ?>: </b> <?php echo htmlspecialchars($fName) . " " . htmlspecialchars($lName) ?></div>
+                    <div class='col-sm'><b><?php echo $lang['Home Institution'] ?>: </b> <?php echo htmlspecialchars($homeInt) ?></div>
+                    <div class='col-sm'><b><?php echo $lang['Department'] ?>: </b> <?php echo htmlspecialchars($department) ?></div>
                 </div>
                 <div class="row">
                     <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
@@ -58,22 +59,22 @@ if ($supervisorApprovedresult->num_rows > 0) {
             </div>
             <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
                 <div class="card-body">
-                    <h5 class='card-title'>Visit Summary</h5>
+                    <h5 class='card-title'><?php echo $lang['Visit Summary'] ?></h5>
                     <p class='card-text'><?php echo htmlspecialchars($summary) ?></p>
-                    <h5 class='card-title'>Financial Implications</h5>
+                    <h5 class='card-title'><?php echo $lang['Financial Implications'] ?></h5>
                     <p class='card-text'><?php echo htmlspecialchars($financialImp) ?></p>
-                    <h5 class='card-title'>Visitor Type</h5>
+                    <h5 class='card-title'><?php echo $lang['Visitor Type'] ?></h5>
                     <p class='card-text'><?php echo $visitorType ?> &#8195; <?php echo htmlspecialchars($visitorTypeEXT) ?></p>
-                    <h5 class='card-title'>Visit Start & End Dates</h5>
-                    <p class='card-text'><b>Start:</b> <?php echo $startDisplay ?> &#8195; <b>End:</b> <?php echo $endDisplay ?>
+                    <h5 class='card-title'><?php echo $lang['Visit Start & End Dates'] ?></h5>
+                    <p class='card-text'><b><?php echo $lang['Start'] ?>:</b> <?php echo $startDisplay ?> &#8195; <b><?php echo $lang['End'] ?>:</b> <?php echo $endDisplay ?>
                     </p>
-                    <h5 class='card-title'>Date & Time of Initial Submission</h5>
+                    <h5 class='card-title'><?php echo $lang['Date & Time of Initial Submission'] ?></h5>
                     <p class='card-text'><?php echo $addedDisplay ?> </p>
-                    <h5 class='card-title'>Date & Time of Approval</h5>
+                    <h5 class='card-title'><?php echo $lang['Date & Time of Approval'] ?></h5>
                     <p class='card-text'><?php echo $suppervisorApproveDisplay ?> </p>
                     <!-- if there is a ipr issue in the database, display the file by allowing the user to download it -->
                     <?php if ($iprIssues == 1) {
-                        echo "<h5 class='card-title'>IPR Issues File:</h5>";
+                        echo $lang['IPR'];
                         echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
                     }
                     ?>

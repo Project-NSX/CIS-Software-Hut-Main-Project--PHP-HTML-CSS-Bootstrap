@@ -1,5 +1,6 @@
 <!-- Variable used to highlight the appropriate button on the navbar -->
 <?php $page = 'CMRPA';
+include "config.php";
 require 'includes/header.php';
 //import phpmailer to send emails
 require 'includes/verify_cm_role.php'; // Redirect if the user is not logged in as a college manager.
@@ -18,7 +19,7 @@ require 'vendor/PHPMailer/src/SMTP.php';
     }
 </script>
 
-<h2>College Manager - Requests Pending Approval</h2>
+<h2><?php echo $lang['College Manager - Requests Pending Approval'] ?></h2>
 <?php require 'includes/navbars/nav_picker.php'; ?>
 <!--TODO: Add the ability to search for an approved request-->
 <?php
@@ -136,9 +137,9 @@ if ($supervisorApprovedresult->num_rows > 0) {
         <div class="card">
             <div class="card-header" id="<?php echo $headingId ?>" <button id="button1" class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
                 <div class="row">
-                    <div class='col-sm'><b>Name: </b> <?php echo htmlspecialchars($fName) . " " . htmlspecialchars($lName) ?></div>
-                    <div class='col-sm'><b>Home Institution: </b> <?php echo htmlspecialchars($homeInt) ?></div>
-                    <div class='col-sm'><b>Home Department: </b> <?php echo htmlspecialchars($department) ?></div>
+                    <div class='col-sm'><b><?php echo $lang['Name'] ?>: </b> <?php echo htmlspecialchars($fName) . " " . htmlspecialchars($lName) ?></div>
+                    <div class='col-sm'><b><?php echo $lang['Home Institution'] ?>: </b> <?php echo htmlspecialchars($homeInt) ?></div>
+                    <div class='col-sm'><b><?php echo $lang['Department'] ?>: </b> <?php echo htmlspecialchars($department) ?></div>
                 </div>
                 <div class="row">
                     <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
@@ -147,20 +148,21 @@ if ($supervisorApprovedresult->num_rows > 0) {
             <form action=cm_requests_pending_approval.php method=post>
                 <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
                     <div class="card-body">
-                        <h5 class='card-title'>Visit Summary</h5>
+                        <h5 class='card-title'><?php echo $lang['Visit Summary'] ?></h5>
                         <p class='card-text'><?php echo htmlspecialchars($summary) ?></p>
-                        <h5 class='card-title'>Financial Implications</h5>
+                        <h5 class='card-title'><?php echo $lang['Financial Implications'] ?></h5>
                         <p class='card-text'><?php echo htmlspecialchars($financialImp) ?></p>
-                        <h5 class='card-title'>Visitor Type</h5>
+                        <h5 class='card-title'><?php echo $lang['Visitor Type'] ?></h5>
                         <p class='card-text'><?php echo $visitorType ?> &#8195; <?php echo htmlspecialchars($visitorTypeEXT) ?></p>
-                        <h5 class='card-title'>Visit Start & End Dates</h5>
-                        <p class='card-text'><b>Start:</b> <?php echo $startDisplay ?> &#8195; <b>End:</b> <?php echo $endDisplay ?></p>
-                        <h5 class='card-title'>Date & Time of Initial Submission</h5>
+                        <h5 class='card-title'><?php echo $lang['Visit Start & End Dates'] ?></h5>
+                        <p class='card-text'><b><?php echo $lang['Start'] ?>:</b> <?php echo $startDisplay ?> &#8195; <b><?php echo $lang['End'] ?>:</b> <?php echo $endDisplay ?></p>
+                        <h5 class='card-title'><?php echo $lang['Date & Time of Initial Submission'] ?></h5>
                         <p class='card-text'><?php echo $addedDisplay ?> </p>
-                        <!-- if there is a ipr issue in the database, display the file by allowing the user to download it -->
+                        <h5 class='card-title'><?php echo $lang['Date & Time of Approval'] ?></h5>
+                        <p class='card-text'><?php echo $suppervisorApproveDisplay ?> </p>
                         <?php if ($iprIssues == 1) {
-                            echo "<h5 class='card-title'>IPR Issues File:</h5>";
-                            echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
+                            echo $lang['IPR'];
+                            echo "<p class='card-text'><a href='ipr/$iprFile' download>htmlspecialchars($iprFile)</a>";
                         }
                         ?>
                     </div>
@@ -184,7 +186,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                 <input type=text name=reasoning style="width:100%" class="form-control" onkeypress="return noenter()">
             </div>
             <div class="form-group col-md-12">
-                <p style="text-align:right; margin-top:-15px; font-size:0.8em">** Required if the visit is prompted for resubmission</p>
+                <p style="text-align:right; margin-top:-15px; font-size:0.8em"><?php echo $lang['resubmitText'] ?></p>
             </div>
         </div>
 
