@@ -45,9 +45,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail->Port = 587;
     $mail->setFrom('support@nwsd.online', 'Visitng Academic Form');
     $mail->Subject = 'New visit request that requires your attention';
-    $mail->Body = "<h1 style='color:#000000;font-family: Arial, Helvetica, sans-serif;text-align:center;line-height:2.5em;'>A visit request has been made by the user: {$hostAcademic}. </h1>
-    <tr><td style='text-align:center'>
-    <div>
+    $mail->Body = "
+    <h1 style='color:#000000;font-family: Arial, Helvetica, sans-serif;text-align:center;line-height:2.5em;'>A visit request has been made by the user: {$hostAcademic}. </h1>
     <p style='color:#000000; font-family: Allura,cursive,Arial, Helvetica, sans-serif; font-size:20px'>Please sign into the visiting academic form to respond to this.</p>";
     $conn = getDB();
 
