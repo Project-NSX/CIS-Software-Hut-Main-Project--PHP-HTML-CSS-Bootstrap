@@ -101,6 +101,18 @@
 		"Prompt User to Resubmit" => "Prompt User to Resubmit",
 		"Deny" => "Deny",
 		"Reason to resubmit" => "Reason to resubmit",
+		"Supervisor Username" => "Supervisor Username",
+		"HR Practitioner Username" => "HR Practitioner Username",
+		"Date & Time of Decision" => "Date & Time of Decision",
+		"Human Resources - Approved Requests" => "Human Resources - Approved Requests",
+		"hrTitle" => "<h2>Request(s) Approved by HR</h2>",
+		"HR - Approved Requests" => "Requests You've Approved",
+		"HR - Disapproved Requests" => "Requests You've Denied",
+		"Human Resources - Denied Requests" => "Human Resources - Denied Requests",
+		"hrDenTitle" => "<h2>Request(s) Denied by HR</h2>",
+		"HR Comment" => "HR Comment",
+		"Human Resources - Applications Pending Approval" => "Human Resources - Applications Pending Approval",
+		"hrPenTitle" => "<h2>HR Pending Request(s)</h2>",
 
 
 
