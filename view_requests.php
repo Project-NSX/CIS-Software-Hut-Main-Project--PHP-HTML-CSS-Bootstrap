@@ -15,7 +15,7 @@ require 'includes/deny_hr_role.php' // Redirects users with the "Human Resources
         margin-right: 2.5em;
     }
 </style>
-<h2>Pending Requests</h2>
+<h2><?php echo $lang['Pending Requests'] ?></h2>
 
 <?php require 'includes/navbars/nav_picker.php'; ?>
 <!-- TODO: Get this to display title of the VA (with the titleExt being displayed as well if the value is "other")
@@ -134,7 +134,7 @@ $currentAcademic = $_SESSION['username'];
 $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.hrComment, v.iprIssues, v.iprFile, va.title, va.street, va.city, va.county, va.postcode  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '2'  ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
-    echo "<h2>Request(s) Prompted for Resubmission by HR </h2>";
+    echo $lang['resByHR'];
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
         $visitId = $row["visitId"];
@@ -176,81 +176,81 @@ if ($supervisorApprovedresult->num_rows > 0) {
         ?>
         <form action=view_requests.php method=post enctype="multipart/form-data">
             <fieldset>
-                <legend>Supervisor Decision Details </legend>
+                <legend><?php echo $lang['Supervisor Decision Details'] ?></legend>
                 <div class='row'>
-                    <div class='col-sm-3'><b>Supervisor Username:</b></div>
+                    <div class='col-sm-3'><b><?php echo $lang['Supervisor Username'] ?>:</b></div>
                     <div class='col-sm-3'><?php echo $supervisorUname ?></div>
-                    <div class='col-sm-3'><b>Date Action Taken:</b></div>
+                    <div class='col-sm-3'><b><?php echo $lang['Date Action Taken'] ?>:</b></div>
                     <div class='col-sm-3'><?php echo $supervisorApprovedDateDisp ?></div>
                 </div>
             </fieldset>
 
             <fieldset>
-                <legend>HR Decision Details</legend>
+                <legend><?php echo $lang['HR Decision Details'] ?></legend>
                 <div class='row'>
-                    <div class='col-sm-3'><b>HR Practitioner Username:</b></div>
+                    <div class='col-sm-3'><b><?php echo $lang['HR Practitioner Username'] ?>:</b></div>
                     <div class='col-sm-3'><?php echo $hrUname ?></div>
-                    <div class='col-sm-3'><b>Date Action Taken:</b></div>
+                    <div class='col-sm-3'><b><?php echo $lang['Date Action Taken'] ?>:</b></div>
                     <div class='col-sm-3'><?php echo $hrApprovedDateDisp ?></div>
                 </div>
                 <div class='row'>
-                    <div class='col-sm-3'><b>Comment:</b></div>
+                    <div class='col-sm-3'><b><?php echo $lang['Comment'] ?>:</b></div>
                     <div class='col-sm-9'><?php echo $hrComment ?></div>
                 </div>
             </fieldset>
 
             <fieldset>
-                <legend>Personal Details</legend>
+                <legend><?php echo $lang['Personal Details'] ?></legend>
                 <div class='row'>
-                    <div class='col-sm'><b>Title:</b></div>
+                    <div class='col-sm'><b><?php echo $lang['Title'] ?>:</b></div>
                     <div class='col-sm'><?php echo $title ?></div>
-                    <div class='col-sm'><b>First Name:</b></div>
+                    <div class='col-sm'><b><?php echo $lang['First Name'] ?>:</b></div>
                     <div class='col-sm'><?php echo $fName ?></div>
-                    <div class='col-sm'><b>Last Name:</b></div>
+                    <div class='col-sm'><b><?php echo $lang['Last Name'] ?>:</b></div>
                     <div class='col-sm'><?php echo $lName ?></div>
                 </div>
                 <div class='row'>
-                    <div class='col-sm'><b>Email Address:</b></div>
+                    <div class='col-sm'><b><?php echo $lang['Email'] ?>:</b></div>
                     <div class='col-sm'><?php echo $email ?></div>
-                    <div class='col-sm'><b>Phone Number:</b></div>
+                    <div class='col-sm'><b><?php echo $lang['Phone Number'] ?>:</b></div>
                     <div class='col-sm'><?php echo $phoneNumber ?></div>
-                    <div class='col-sm'><b>Visitor Type:</b></div>
+                    <div class='col-sm'><b><?php echo $lang['Visitor Type'] ?>:</b></div>
                     <div class='col-sm'><?php echo $visitorType . " " . $visitorTypeEXT ?></div>
                 </div>
             </fieldset>
 
             <fieldset>
-                <legend>Home Institution Details</legend>
+                <legend><?php echo $lang['Home Institution Details'] ?></legend>
                 <div class='row'>
-                    <div class='col-sm'><b>Home Institution Name:</b></div>
+                    <div class='col-sm'><b><?php echo $lang['Home Institution Name'] ?>:</b></div>
                     <div class='col-sm'><?php echo $homeInstitution ?></div>
-                    <div class='col-sm'><b>Department Name:</b></div>
+                    <div class='col-sm'><b><?php echo $lang['Department Name'] ?>:</b></div>
                     <div class='col-sm'><?php echo $department ?></div>
                 </div>
                 <div class='row'>
-                    <div class='col-sm'><b>Street:</b></div>
+                    <div class='col-sm'><b><?php echo $lang['Street'] ?>:</b></div>
                     <div class='col-sm'><?php echo $street ?></div>
-                    <div class='col-sm'><b>City:</b></div>
+                    <div class='col-sm'><b><?php echo $lang['Town / City'] ?>:</b></div>
                     <div class='col-sm'><?php echo $city ?></div>
-                    <div class='col-sm'><b>County:</b></div>
+                    <div class='col-sm'><b><?php echo $lang['County'] ?>:</b></div>
                     <div class='col-sm'><?php echo $county ?></div>
-                    <div class='col-sm'><b>Postcode:</b></div>
+                    <div class='col-sm'><b><?php echo $lang['Postcode'] ?>:</b></div>
                     <div class='col-sm'><?php echo $postcode ?></div>
 
                 </div>
             </fieldset>
 
             <fieldset>
-                <legend>Visitor Details</legend>
+                <legend><?php echo $lang['Visitor Details'] ?></legend>
 
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="s_date"><b>Visit Start Date:</b> </label>
+                        <label for="s_date"><b><?php echo $lang['Visit Start Date'] ?>:</b> </label>
                         <!-- Appends the date from the database to the datefield -->
                         <input id="datefield" type="date" name="s_date" value="<?php echo $startDisplayDateDisp ?>" onchange="updateDateFields()" class="form-control" max=e_date required>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="e_date"><b>Visit End Date:</b> </label>
+                        <label for="e_date"><b><?php echo $lang['Visit End Date'] ?>:</b> </label>
                         <!-- Appends the date from the database to the datefield -->
                         <input id="dateend" type="date" name="e_date" value="<?php echo $endDisplayDateDisp ?>" class="form-control" required>
                     </div>
@@ -259,15 +259,15 @@ if ($supervisorApprovedresult->num_rows > 0) {
 
             <fieldset>
                 <div class="form-group">
-                    <label for="financialImp"><b>Financial Implications:</b> </label>
-                    <textarea class="form-control" id="financialImp" name="financialImp" rows="4" cols="40" placeholder="Please summarise the related financial implications" required> <?php echo $financialImp ?> </textarea>
+                    <label for="financialImp"><b><?php echo $lang['Financial Implications'] ?>:</b> </label>
+                    <textarea class="form-control" id="financialImp" name="financialImp" rows="4" cols="40" placeholder="<?php echo $lang['Please summarise the related financial implications'] ?>" required> <?php echo $financialImp ?> </textarea>
                 </div>
             </fieldset>
 
             <fieldset>
-                <label for="ipr_issues"><b>IPR Issues:</b> </label>
+                <label for="ipr_issues"><b><?php echo $lang['IPR Issues'] ?>:</b> </label>
 
-                <p>Are there IPR issues with the visit? <b>NOTICE:</b> File must be uploaded again!</p>
+                <p><?php echo $lang['Are there IPR issues with the visit?'] ?> <b><?php echo $lang['NOTICE'] ?>:</b> <?php echo $lang['File must be uploaded again!'] ?> </p>
                 <?php if ($iprIssues == 1) {
                     echo "<p class='card-title'><b>Current File:</b> <a href='ipr/$iprFile' download>$iprFile</a></p>";
                 } ?>
@@ -276,14 +276,14 @@ if ($supervisorApprovedresult->num_rows > 0) {
                     <label class="form-check-label" for="radio1">
                         <input type="radio" class="form-check-input" id="radio1" name="ipr_issues" value="yes" onchange='CheckIPR(this.value);' <?php if ($iprIssues == 1) {
                                                                                                                                                     echo "checked";
-                                                                                                                                                } ?>>Yes
+                                                                                                                                                } ?>><?php echo $lang['Yes'] ?>
                     </label>
                 </div>
                 <div class="form-check-inline">
                     <label class="form-check-label" for="radio2">
                         <input type="radio" class="form-check-input" id="radio1" name="ipr_issues" value="no" onchange='CheckIPR(this.value);' <?php if ($iprIssues != 1) {
                                                                                                                                                     echo "checked";
-                                                                                                                                                } ?>>No
+                                                                                                                                                } ?>><?php echo $lang['No'] ?>
                     </label>
                 </div>
 
@@ -291,7 +291,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
 
 
                 <div class="custom-file" id="ipr_issues_ext" <?php ?>>
-                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                    <label class="custom-file-label" for="inputGroupFile01"><?php echo $lang['Choose file'] ?></label>
 
                     <input type="file" class="custom-file-input" id="file" name="file">
 
@@ -301,8 +301,8 @@ if ($supervisorApprovedresult->num_rows > 0) {
 
             <fieldset>
                 <div class="form-group">
-                    <label for="summary"><b>Summary of visit</b></label>
-                    <textarea class="form-control" id="summary" name="summary" rows="4" cols="40" placeholder="Please summarise the purpose of the visit" required><?php echo $summary ?></textarea>
+                    <label for="summary"><b><?php echo $lang['Summary of visit'] ?></b></label>
+                    <textarea class="form-control" id="summary" name="summary" rows="4" cols="40" placeholder="<?php echo $lang['Please summarise the purpose of the visit'] ?>" required><?php echo $summary ?></textarea>
                 </div>
             </fieldset>
             <input type=hidden name=hiddenRPFRBHR value=<?php echo $visitId ?>>
@@ -310,7 +310,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                 <div class="row">
                     <div class="col-md"></div>
                     <!-- Button Resubmit request(s) Prompted for Resubmission by HR-->
-                    <div class="col-md"><input type=submit name=RPFRBHRSend value='Resubmit Visit Request' class='btn btn-secondary' style='width:100%; margin-bottom:5px'></div>
+                    <div class="col-md"><input type=submit name=RPFRBHRSend value="<?php echo $lang['Resubmit Visit Request'] ?>" class='btn btn-secondary' style='width:100%; margin-bottom:5px'></div>
                     <div class="col-md"></div>
                 </div>
             </div>
@@ -331,8 +331,7 @@ echo "</div>";
 $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.supervisorComment, v.iprIssues, v.iprFile, va.title, va.street, va.city, va.county, va.postcode  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '2' ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
-    echo "<h2>Request(s) Prompted for Resubmission by Supervisor </h2>";
-
+    echo $lang['resBySup'];
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
         $visitId = $row["visitId"];
@@ -371,72 +370,72 @@ if ($supervisorApprovedresult->num_rows > 0) {
         ?>
         <form action=view_requests.php method=post enctype="multipart/form-data">
             <fieldset>
-                <legend>Supervisor Decision Details </legend>
+                <legend><?php echo $lang['Supervisor Decision Details'] ?></legend>
                 <div class='row'>
-                    <div class='col-sm-3'><b>Supervisor Username:</b></div>
+                    <div class='col-sm-3'><b><?php echo $lang['Supervisor Username'] ?>:</b></div>
                     <div class='col-sm-3'><?php echo $supervisorUname ?></div>
-                    <div class='col-sm-3'><b>Date Action Taken:</b></div>
+                    <div class='col-sm-3'><b><?php echo $lang['Date Action Taken'] ?>:</b></div>
                     <div class='col-sm-3'><?php echo $supervisorApprovedDateDisp ?></div>
                 </div>
                 <div class='row'>
-                    <div class='col-sm-3'><b>Comment:</b></div>
+                    <div class='col-sm-3'><b><?php echo $lang['Comment'] ?>:</b></div>
                     <div class='col-sm-9'><?php echo $supervisorComment ?></div>
                 </div>
             </fieldset>
 
 
             <fieldset>
-                <legend>Personal Details</legend>
+                <legend><?php echo $lang['Personal Details'] ?></legend>
                 <div class='row'>
-                    <div class='col-sm'><b>Title:</b></div>
+                    <div class='col-sm'><b><?php echo $lang['Title'] ?>:</b></div>
                     <div class='col-sm'><?php echo $title ?></div>
-                    <div class='col-sm'><b>First Name:</b></div>
+                    <div class='col-sm'><b><?php echo $lang['First Name'] ?>:</b></div>
                     <div class='col-sm'><?php echo $fName ?></div>
-                    <div class='col-sm'><b>Last Name:</b></div>
+                    <div class='col-sm'><b><?php echo $lang['Last Name'] ?>:</b></div>
                     <div class='col-sm'><?php echo $lName ?></div>
                 </div>
                 <div class='row'>
-                    <div class='col-sm'><b>Email Address:</b></div>
+                    <div class='col-sm'><b><?php echo $lang['Email'] ?>:</b></div>
                     <div class='col-sm'><?php echo $email ?></div>
-                    <div class='col-sm'><b>Phone Number:</b></div>
+                    <div class='col-sm'><b><?php echo $lang['Phone Number'] ?>:</b></div>
                     <div class='col-sm'><?php echo $phoneNumber ?></div>
-                    <div class='col-sm'><b>Visitor Type:</b></div>
+                    <div class='col-sm'><b><?php echo $lang['Visitor Type'] ?>:</b></div>
                     <div class='col-sm'><?php echo $visitorType . " " . $visitorTypeEXT ?></div>
                 </div>
             </fieldset>
 
             <fieldset>
-                <legend>Home Institution Details</legend>
+                <legend><?php echo $lang['Home Institution Details'] ?></legend>
                 <div class='row'>
-                    <div class='col-sm'><b>Home Institution Name:</b></div>
+                    <div class='col-sm'><b><?php echo $lang['Home Institution Name'] ?>:</b></div>
                     <div class='col-sm'><?php echo $homeInstitution ?></div>
-                    <div class='col-sm'><b>Department Name:</b></div>
+                    <div class='col-sm'><b><?php echo $lang['Department Name'] ?>:</b></div>
                     <div class='col-sm'><?php echo $department ?></div>
                 </div>
                 <div class='row'>
-                    <div class='col-sm'><b>Street:</b></div>
+                    <div class='col-sm'><b><?php echo $lang['Street'] ?>:</b></div>
                     <div class='col-sm'><?php echo $street ?></div>
-                    <div class='col-sm'><b>City:</b></div>
+                    <div class='col-sm'><b><?php echo $lang['Town / City'] ?>:</b></div>
                     <div class='col-sm'><?php echo $city ?></div>
-                    <div class='col-sm'><b>County:</b></div>
+                    <div class='col-sm'><b><?php echo $lang['County'] ?>:</b></div>
                     <div class='col-sm'><?php echo $county ?></div>
-                    <div class='col-sm'><b>Postcode:</b></div>
+                    <div class='col-sm'><b><?php echo $lang['Postcode'] ?>:</b></div>
                     <div class='col-sm'><?php echo $postcode ?></div>
 
                 </div>
             </fieldset>
 
             <fieldset>
-                <legend>Visitor Details</legend>
+                <legend><?php echo $lang['Visitor Details'] ?></legend>
 
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="s_date"><b>Visit Start Date:</b> </label>
+                        <label for="s_date"><b><?php echo $lang['Visit Start Date'] ?>:</b> </label>
                         <!-- Appends the date from the database to the datefield -->
                         <input id="datefield" type="date" name="s_date" value="<?php echo $startDisplayDateDisp ?>" onchange="updateDateFields()" class="form-control" max=e_date required>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="e_date"><b>Visit End Date:</b> </label>
+                        <label for="e_date"><b><?php echo $lang['Visit End Date'] ?>:</b> </label>
                         <!-- Appends the date from the database to the datefield -->
                         <input id="dateend" type="date" name="e_date" value="<?php echo $endDisplayDateDisp ?>" class="form-control" required>
                     </div>
@@ -445,15 +444,15 @@ if ($supervisorApprovedresult->num_rows > 0) {
 
             <fieldset>
                 <div class="form-group">
-                    <label for="financialImp"><b>Financial Implications:</b> </label>
-                    <textarea class="form-control" id="financialImp" name="financialImp" rows="4" cols="40" placeholder="Please summarise the related financial implications" required> <?php echo $financialImp ?> </textarea>
+                    <label for="financialImp"><b><?php echo $lang['Financial Implications'] ?>:</b> </label>
+                    <textarea class="form-control" id="financialImp" name="financialImp" rows="4" cols="40" placeholder="<?php echo $lang['Please summarise the related financial implications'] ?>" required> <?php echo $financialImp ?> </textarea>
                 </div>
             </fieldset>
 
             <fieldset>
-                <label for="ipr_issues"><b>IPR Issues:</b> </label>
+                <label for="ipr_issues"><b><?php echo $lang['IPR Issues'] ?>:</b> </label>
 
-                <p>Are there IPR issues with the visit? <b>NOTICE:</b> File must be uploaded again!</p>
+                <p><?php echo $lang['Are there IPR issues with the visit?'] ?> <b><?php echo $lang['NOTICE'] ?>:</b> <?php echo $lang['File must be uploaded again!'] ?> </p>
                 <?php if ($iprIssues == 1) {
                     echo "<p class='card-title'><b>Current File:</b> <a href='ipr/$iprFile' download>$iprFile</a></p>";
                 }
@@ -462,16 +461,18 @@ if ($supervisorApprovedresult->num_rows > 0) {
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="ipr_issues" id="inlineRadio1" value="yes" onchange='CheckIPR(this.value);' <?php
                                                                                                                                                     ?>>
-                    <label class="form-check-label" for="inlineRadio1">Yes</label>
+                    <label class="form-check-label" for="inlineRadio1"><?php echo $lang['Yes'] ?>
+</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="ipr_issues" id="inlineRadio1" value="no" onchange='CheckIPR(this.value);' <?php
                                                                                                                                                     ?>>
-                    <label class="form-check-label" for="inlineRadio1">No</label>
+                    <label class="form-check-label" for="inlineRadio1"><?php echo $lang['No'] ?>
+</label>
                 </div>
 
                 <div class="custom-file" id="ipr_issues_ext" <? php ?>>
-                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                    <label class="custom-file-label" for="inputGroupFile01"><?php echo $lang['Choose file'] ?></label>
 
                     <input type="file" class="custom-file-input" id="file" name="file">
 
@@ -482,7 +483,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
             <fieldset>
                 <div class="form-group">
                     <label for="summary"><b>Summary of visit</b></label>
-                    <textarea class="form-control" id="summary" name="summary" rows="4" cols="40" placeholder="Please summarise the purpose of the visit" required><?php echo $summary ?></textarea>
+                    <textarea class="form-control" id="summary" name="summary" rows="4" cols="40" placeholder="<?php echo $lang['Please summarise the purpose of the visit'] ?>" required><?php echo $summary ?></textarea>
                 </div>
             </fieldset>
             <input type=hidden name=hiddenRPFRBS value=<?php echo $visitId ?>>
@@ -490,7 +491,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                 <div class="row">
                     <div class="col-md"></div>
                     <!-- Button Resubmit request(s) Prompted for Resubmission by Supervisor-->
-                    <div class="col-md"><input type=submit name=RPFRBSSend value='Resubmit Visit Request' class='btn btn-secondary' style='width:100%; margin-bottom:5px'></div>
+                    <div class="col-md"><input type=submit name=RPFRBSSend value="<?php echo $lang['Resubmit Visit Request'] ?>" class='btn btn-secondary' style='width:100%; margin-bottom:5px'></div>
                     <div class="col-md"></div>
                 </div>
             </div>
@@ -511,8 +512,7 @@ echo "</div>";
 $awaitingAction = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.iprIssues, v.iprFile  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '0' AND v.hrApproved LIKE '0'  ORDER BY v.visitAddedDate DESC";
 $awaitingActionresult = $link->query($awaitingAction);
 if ($awaitingActionresult->num_rows > 0) {
-    echo "<h2>Request(s) Awaiting Action</h2>";
-
+    echo $lang['reqAwaiting'];
 
     echo "<div id='accordion'>";
     while ($row = $awaitingActionresult->fetch_assoc()) {
@@ -545,11 +545,11 @@ if ($awaitingActionresult->num_rows > 0) {
             <div class="card">
                 <div class="card-header" id="<?php echo $headingId ?>" <button id="button1" class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
                     <div class="row">
-                        <div class='col-sm'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
-                        <div class='col-sm'><b>Home Institution: </b> <?php echo $homeInt ?></div>
-                        <div class='col-sm'><b>Department: </b> <?php echo $department ?></div>
-                        <div class='col-sm'><b>Email: </b> <?php echo $email ?></div>
-                        <div class='col-sm'><b>Phone Number:</b> <?php echo $phone ?></div>
+                        <div class='col-sm'><b><?php echo $lang['sign outt'] ?>Name: </b> <?php echo $fName . " " . $lName ?></div>
+                        <div class='col-sm'><b><?php echo $lang['sign outt'] ?>Home Institution: </b> <?php echo $homeInt ?></div>
+                        <div class='col-sm'><b><?php echo $lang['sign outt'] ?>Department: </b> <?php echo $department ?></div>
+                        <div class='col-sm'><b><?php echo $lang['sign outt'] ?>Email: </b> <?php echo $email ?></div>
+                        <div class='col-sm'><b><?php echo $lang['sign outt'] ?>Phone Number:</b> <?php echo $phone ?></div>
                     </div>
                     <div class="row">
                         <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
@@ -559,18 +559,18 @@ if ($awaitingActionresult->num_rows > 0) {
                     <div class="card-body">
 
 
-                        <h5 class='card-title'>Visit Summary</h5>
+                        <h5 class='card-title'><?php echo $lang['Visit Summary'] ?></h5>
                         <p class='card-text'><?php echo $summary ?></p>
-                        <h5 class='card-title'>Financial Implications</h5>
+                        <h5 class='card-title'><?php echo $lang['Financial Implications'] ?></h5>
                         <p class='card-text'><?php echo $financialImp ?></p>
-                        <h5 class='card-title'>Visitor Type</h5>
+                        <h5 class='card-title'><?php echo $lang['Visitor Type'] ?></h5>
                         <p class='card-text'><?php echo $visitorType ?> &#8195; <?php echo $visitorTypeEXT ?></p>
-                        <h5 class='card-title'>Visit Start & End Dates</h5>
-                        <p class='card-text'><b>Start:</b> <?php echo $startDisplay ?> &#8195; <b>End:</b> <?php echo $endDisplay ?></p>
-                        <h5 class='card-title'>Date & Time of Initial Submission</h5>
+                        <h5 class='card-title'><?php echo $lang['Visit Start & End Dates'] ?></h5>
+                        <p class='card-text'><b><?php echo $lang['Start'] ?>:</b> <?php echo $startDisplay ?> &#8195; <b><?php echo $lang['End'] ?>:</b> <?php echo $endDisplay ?></p>
+                        <h5 class='card-title'><?php echo $lang['Date & Time of Initial Submission'] ?></h5>
                         <p class='card-text'><?php echo $addedDisplay ?> </p>
                         <?php if ($iprIssues == 1) {
-                            echo "<h5 class='card-title'>IPR Issues File:</h5>";
+                            echo $lang['IPR'];
                             echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
                         }
                         ?>
@@ -582,7 +582,7 @@ if ($awaitingActionresult->num_rows > 0) {
                 <div class="row">
                     <!-- Button to cancel visit -->
                     <div class="col-md"></div>
-                    <div class="col-md"><input type=submit name=VRAACancel value='Cancel Visit' class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
+                    <div class="col-md"><input type=submit name=VRAACancel value="<?php echo $lang['Cancel Visit'] ?>" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
                     <div class="col-md"></div>
                 </div>
             </div>
@@ -597,7 +597,7 @@ echo "</div>";
 $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.iprIssues, v.iprFile FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '0'  ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
-    echo "<h2>Request(s) Approved by Supervisor</h2>";
+    echo $lang['reqApprovedByS'];
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
         $visitId = $row["visitId"];
@@ -634,11 +634,11 @@ if ($supervisorApprovedresult->num_rows > 0) {
             <div class="card">
                 <div class="card-header" id="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
                     <div class="row">
-                        <div class='col-sm'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
-                        <div class='col-sm'><b>Home Institution: </b> <?php echo $homeInt ?></div>
-                        <div class='col-sm'><b>Department: </b> <?php echo $department ?></div>
-                        <div class='col-sm'><b>Email: </b> <?php echo $email ?></div>
-                        <div class='col-sm'><b>Phone Number:</b> <?php echo $phone ?></div>
+                        <div class='col-sm'><b><?php echo $lang['Name'] ?>: </b> <?php echo $fName . " " . $lName ?></div>
+                        <div class='col-sm'><b><?php echo $lang['Home Institution'] ?>: </b> <?php echo $homeInt ?></div>
+                        <div class='col-sm'><b><?php echo $lang['Department'] ?>: </b> <?php echo $department ?></div>
+                        <div class='col-sm'><b><?php echo $lang['Email'] ?>: </b> <?php echo $email ?></div>
+                        <div class='col-sm'><b><?php echo $lang['Phone Number'] ?>:</b> <?php echo $phone ?></div>
                     </div>
                     <div class="row">
                         <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
@@ -648,22 +648,22 @@ if ($supervisorApprovedresult->num_rows > 0) {
                     <div class="card-body">
 
 
-                        <h5 class='card-title'>Visit Summary</h5>
+                        <h5 class='card-title'><?php echo $lang['Visit Summary'] ?></h5>
                         <p class='card-text'><?php echo $summary ?></p>
-                        <h5 class='card-title'>Financial Implications</h5>
+                        <h5 class='card-title'><?php echo $lang['Financial Implications'] ?></h5>
                         <p class='card-text'><?php echo $financialImp ?></p>
-                        <h5 class='card-title'>Visitor Type</h5>
+                        <h5 class='card-title'><?php echo $lang['Visitor Type'] ?></h5>
                         <p class='card-text'><?php echo $visitorType ?> &#8195; <?php echo $visitorTypeEXT ?></p>
-                        <h5 class='card-title'>Visit Start & End Dates</h5>
-                        <p class='card-text'><b>Start:</b> <?php echo $startDisplay ?> &#8195; <b>End:</b> <?php echo $endDisplay ?></p>
-                        <h5 class='card-title'>Date & Time of Initial Submission</h5>
+                        <h5 class='card-title'><?php echo $lang['Visit Start & End Dates'] ?></h5>
+                        <p class='card-text'><b><?php echo $lang['Start'] ?>:</b> <?php echo $startDisplay ?> &#8195; <b><?php echo $lang['End'] ?>:</b> <?php echo $endDisplay ?></p>
+                        <h5 class='card-title'><?php echo $lang['Date & Time of Initial Submission'] ?></h5>
                         <p class='card-text'><?php echo $addedDisplay ?> </p>
-                        <h5 class='card-title'>Supervisor Username</h5>
+                        <h5 class='card-title'><?php echo $lang['Supervisor Username'] ?></h5>
                         <p class='card-text'><?php echo $supervisorUname ?> </p>
-                        <h5 class='card-title'>Date & Time of Decision</h5>
+                        <h5 class='card-title'><?php echo $lang['Date & Time of Decision'] ?></h5>
                         <p class='card-text'><?php echo $supervisorApprovedDateDisp ?> </p>
                         <?php if ($iprIssues == 1) {
-                            echo "<h5 class='card-title'>IPR Issues File:</h5>";
+                            echo $lang['IPR'];
                             echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
                         }
                         ?>
@@ -675,7 +675,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                 <div class="row">
                     <!-- Button to cancel visit -->
                     <div class="col-md"></div>
-                    <div class="col-md"><input type=submit name=VRABSCancel value='Cancel Visit' class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
+                    <div class="col-md"><input type=submit name=VRABSCancel value="<?php echo $lang['Cancel Visit'] ?>" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
                     <div class="col-md"></div>
                 </div>
             </div>
@@ -690,7 +690,7 @@ echo "</div>";
 $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.supervisorComment, v.iprIssues, v.iprFile FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '1' AND v.hrApproved LIKE '0'  ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
-    echo "<h2>Request(s) Denied by Supervisor</h2>";
+    echo $lang['reqDeniedByS'];
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
         $visitId = $row["visitId"];
@@ -727,11 +727,11 @@ if ($supervisorApprovedresult->num_rows > 0) {
             <div class="card">
                 <div class="card-header" id="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
                     <div class="row">
-                        <div class='col-sm'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
-                        <div class='col-sm'><b>Home Institution: </b> <?php echo $homeInt ?></div>
-                        <div class='col-sm'><b>Department: </b> <?php echo $department ?></div>
-                        <div class='col-sm'><b>Email: </b> <?php echo $email ?></div>
-                        <div class='col-sm'><b>Phone Number:</b> <?php echo $phone ?></div>
+                        <div class='col-sm'><b><?php echo $lang['Name'] ?>: </b> <?php echo $fName . " " . $lName ?></div>
+                        <div class='col-sm'><b><?php echo $lang['Home Institution'] ?>: </b> <?php echo $homeInt ?></div>
+                        <div class='col-sm'><b><?php echo $lang['Department'] ?>: </b> <?php echo $department ?></div>
+                        <div class='col-sm'><b><?php echo $lang['Email'] ?>: </b> <?php echo $email ?></div>
+                        <div class='col-sm'><b><?php echo $lang['Phone Number'] ?>:</b> <?php echo $phone ?></div>
                     </div>
                     <div class="row">
                         <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
@@ -739,25 +739,22 @@ if ($supervisorApprovedresult->num_rows > 0) {
                 </div>
                 <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
                     <div class="card-body">
-
-                        <h5 class='card-title'>Visit Summary</h5>
+                        <h5 class='card-title'><?php echo $lang['Visit Summary'] ?></h5>
                         <p class='card-text'><?php echo $summary ?></p>
-                        <h5 class='card-title'>Financial Implications</h5>
+                        <h5 class='card-title'><?php echo $lang['Financial Implications'] ?></h5>
                         <p class='card-text'><?php echo $financialImp ?></p>
-                        <h5 class='card-title'>Visitor Type</h5>
+                        <h5 class='card-title'><?php echo $lang['Visitor Type'] ?></h5>
                         <p class='card-text'><?php echo $visitorType ?> &#8195; <?php echo $visitorTypeEXT ?></p>
-                        <h5 class='card-title'>Visit Start & End Dates</h5>
-                        <p class='card-text'><b>Start:</b> <?php echo $startDisplay ?> &#8195; <b>End:</b> <?php echo $endDisplay ?></p>
-                        <h5 class='card-title'>Date & Time of Initial Submission</h5>
+                        <h5 class='card-title'><?php echo $lang['Visit Start & End Dates'] ?></h5>
+                        <p class='card-text'><b><?php echo $lang['Start'] ?>:</b> <?php echo $startDisplay ?> &#8195; <b><?php echo $lang['End'] ?>:</b> <?php echo $endDisplay ?></p>
+                        <h5 class='card-title'><?php echo $lang['Date & Time of Initial Submission'] ?></h5>
                         <p class='card-text'><?php echo $addedDisplay ?> </p>
-                        <h5 class='card-title'>Supervisor Username</h5>
+                        <h5 class='card-title'><?php echo $lang['Supervisor Username'] ?></h5>
                         <p class='card-text'><?php echo $supervisorUname ?> </p>
-                        <h5 class='card-title'>Supervisor Comment</h5>
-                        <p class='card-text'><?php echo $supervisorComment ?> </p>
-                        <h5 class='card-title'>Date & Time of Decision</h5>
+                        <h5 class='card-title'><?php echo $lang['Date & Time of Decision'] ?></h5>
                         <p class='card-text'><?php echo $supervisorApprovedDateDisp ?> </p>
                         <?php if ($iprIssues == 1) {
-                            echo "<h5 class='card-title'>IPR Issues File:</h5>";
+                            echo $lang['IPR'];
                             echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
                         }
                         ?>
@@ -769,7 +766,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                 <div class="row">
                     <!-- Button to cancel visit -->
                     <div class="col-md"></div>
-                    <div class="col-md"><input type=submit name=VRDBSCancel value='Cancel Visit' class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
+                    <div class="col-md"><input type=submit name=VRDBSCancel value="<?php echo $lang['Cancel Visit'] ?>" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
                     <div class="col-md"></div>
                 </div>
             </div>
@@ -785,7 +782,7 @@ echo "</div>";
 $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.iprIssues, v.iprFile  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '3'  ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
-    echo "<h2>Request(s) Approved by Supervisor & HR</h2>";
+    echo $lang['reqApprovedBySHR'];
 
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
@@ -826,11 +823,11 @@ if ($supervisorApprovedresult->num_rows > 0) {
             <div class="card">
                 <div class="card-header" id="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
                     <div class="row">
-                        <div class='col-sm'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
-                        <div class='col-sm'><b>Home Institution: </b> <?php echo $homeInt ?></div>
-                        <div class='col-sm'><b>Department: </b> <?php echo $department ?></div>
-                        <div class='col-sm'><b>Email: </b> <?php echo $email ?></div>
-                        <div class='col-sm'><b>Phone Number:</b> <?php echo $phone ?></div>
+                        <div class='col-sm'><b><?php echo $lang['Name'] ?>: </b> <?php echo $fName . " " . $lName ?></div>
+                        <div class='col-sm'><b><?php echo $lang['Home Institution'] ?>: </b> <?php echo $homeInt ?></div>
+                        <div class='col-sm'><b><?php echo $lang['Department'] ?>: </b> <?php echo $department ?></div>
+                        <div class='col-sm'><b><?php echo $lang['Email'] ?>: </b> <?php echo $email ?></div>
+                        <div class='col-sm'><b><?php echo $lang['Phone Number'] ?>:</b> <?php echo $phone ?></div>
                     </div>
                     <div class="row">
                         <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
@@ -838,28 +835,22 @@ if ($supervisorApprovedresult->num_rows > 0) {
                 </div>
                 <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
                     <div class="card-body">
-
-
-                        <h5 class='card-title'>Visit Summary</h5>
+                        <h5 class='card-title'><?php echo $lang['Visit Summary'] ?></h5>
                         <p class='card-text'><?php echo $summary ?></p>
-                        <h5 class='card-title'>Financial Implications</h5>
+                        <h5 class='card-title'><?php echo $lang['Financial Implications'] ?></h5>
                         <p class='card-text'><?php echo $financialImp ?></p>
-                        <h5 class='card-title'>Visitor Type</h5>
+                        <h5 class='card-title'><?php echo $lang['Visitor Type'] ?></h5>
                         <p class='card-text'><?php echo $visitorType ?> &#8195; <?php echo $visitorTypeEXT ?></p>
-                        <h5 class='card-title'>Visit Start & End Dates</h5>
-                        <p class='card-text'><b>Start:</b> <?php echo $startDisplay ?> &#8195; <b>End:</b> <?php echo $endDisplay ?></p>
-                        <h5 class='card-title'>Date & Time of Initial Submission</h5>
+                        <h5 class='card-title'><?php echo $lang['Visit Start & End Dates'] ?></h5>
+                        <p class='card-text'><b><?php echo $lang['Start'] ?>:</b> <?php echo $startDisplay ?> &#8195; <b><?php echo $lang['End'] ?>:</b> <?php echo $endDisplay ?></p>
+                        <h5 class='card-title'><?php echo $lang['Date & Time of Initial Submission'] ?></h5>
                         <p class='card-text'><?php echo $addedDisplay ?> </p>
-                        <h5 class='card-title'>Supervisor Username</h5>
+                        <h5 class='card-title'><?php echo $lang['Supervisor Username'] ?></h5>
                         <p class='card-text'><?php echo $supervisorUname ?> </p>
-                        <h5 class='card-title'>Date & Time of Decision</h5>
+                        <h5 class='card-title'><?php echo $lang['Date & Time of Decision'] ?></h5>
                         <p class='card-text'><?php echo $supervisorApprovedDateDisp ?> </p>
-                        <h5 class='card-title'>HR Practitioner Username</h5>
-                        <p class='card-text'><?php echo $hrUname ?> </p>
-                        <h5 class='card-title'>Date & Time of Decision</h5>
-                        <p class='card-text'><?php echo $hrApprovedDateDisp ?> </p>
                         <?php if ($iprIssues == 1) {
-                            echo "<h5 class='card-title'>IPR Issues File:</h5>";
+                            echo $lang['IPR'];
                             echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
                         }
                         ?>
@@ -871,7 +862,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                 <div class="row">
                     <!-- Button to cancel visit -->
                     <div class="col-md"></div>
-                    <div class="col-md"><input type=submit name=VRABSHRCancel value='Cancel Visit' class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
+                    <div class="col-md"><input type=submit name=VRABSHRCancel value="<?php echo $lang['Cancel Visit'] ?>" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
                     <div class="col-md"></div>
                 </div>
             </div>
@@ -886,8 +877,7 @@ echo "</div>";
 $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.hrComment, v.iprIssues, v.iprFile  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.hostAcademic LIKE '" . $currentAcademic . "%' AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '1'  ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
-    echo "<h2>Request(s) Denied by HR</h2>";
-
+    echo $lang['reqDenHR'];
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
         $visitId = $row["visitId"];
@@ -929,11 +919,11 @@ if ($supervisorApprovedresult->num_rows > 0) {
             <div class="card">
                 <div class="card-header" id="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
                     <div class="row">
-                        <div class='col-sm'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
-                        <div class='col-sm'><b>Home Institution: </b> <?php echo $homeInt ?></div>
-                        <div class='col-sm'><b>Department: </b> <?php echo $department ?></div>
-                        <div class='col-sm'><b>Email: </b> <?php echo $email ?></div>
-                        <div class='col-sm'><b>Phone Number:</b> <?php echo $phone ?></div>
+                        <div class='col-sm'><b><?php echo $lang['Name'] ?>: </b> <?php echo $fName . " " . $lName ?></div>
+                        <div class='col-sm'><b><?php echo $lang['Home Institution'] ?>: </b> <?php echo $homeInt ?></div>
+                        <div class='col-sm'><b><?php echo $lang['Department'] ?>: </b> <?php echo $department ?></div>
+                        <div class='col-sm'><b><?php echo $lang['Email'] ?>: </b> <?php echo $email ?></div>
+                        <div class='col-sm'><b><?php echo $lang['Phone Number'] ?>:</b> <?php echo $phone ?></div>
                     </div>
                     <div class="row">
                         <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
@@ -942,28 +932,28 @@ if ($supervisorApprovedresult->num_rows > 0) {
                 <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
                     <div class="card-body">
 
-                        <h5 class='card-title'>Visit Summary</h5>
+                        <h5 class='card-title'><?php echo $lang['Visit Summary'] ?></h5>
                         <p class='card-text'><?php echo $summary ?></p>
-                        <h5 class='card-title'>Financial Implications</h5>
+                        <h5 class='card-title'><?php echo $lang['Financial Implications'] ?></h5>
                         <p class='card-text'><?php echo $financialImp ?></p>
-                        <h5 class='card-title'>Visitor Type</h5>
+                        <h5 class='card-title'><?php echo $lang['Visitor Type'] ?></h5>
                         <p class='card-text'><?php echo $visitorType ?> &#8195; <?php echo $visitorTypeEXT ?></p>
-                        <h5 class='card-title'>Visit Start & End Dates</h5>
-                        <p class='card-text'><b>Start:</b> <?php echo $startDisplay ?> &#8195; <b>End:</b> <?php echo $endDisplay ?></p>
-                        <h5 class='card-title'>Date & Time of Initial Submission</h5>
+                        <h5 class='card-title'><?php echo $lang['Visit Start & End Dates'] ?></h5>
+                        <p class='card-text'><b><?php echo $lang['Start'] ?>:</b> <?php echo $startDisplay ?> &#8195; <b><?php echo $lang['End'] ?>:</b> <?php echo $endDisplay ?></p>
+                        <h5 class='card-title'><?php echo $lang['Date & Time of Initial Submission'] ?></h5>
                         <p class='card-text'><?php echo $addedDisplay ?> </p>
-                        <h5 class='card-title'>Supervisor Username</h5>
+                        <h5 class='card-title'><?php echo $lang['Supervisor Username'] ?></h5>
                         <p class='card-text'><?php echo $supervisorUname ?> </p>
-                        <h5 class='card-title'>Date & Time of Decision</h5>
+                        <h5 class='card-title'><?php echo $lang['Date & Time of Decision'] ?></h5>
                         <p class='card-text'><?php echo $supervisorApprovedDateDisp ?> </p>
-                        <h5 class='card-title'>HR Practitioner Username</h5>
+                        <h5 class='card-title'><?php echo $lang['HR Practitioner Username'] ?></h5>
                         <p class='card-text'><?php echo $hrUname ?> </p>
-                        <h5 class='card-title'>Date & Time of Decision</h5>
+                        <h5 class='card-title'><?php echo $lang['Date & Time of Decision'] ?></h5>
                         <p class='card-text'><?php echo $hrApprovedDateDisp ?> </p>
-                        <h5 class='card-title'>HR Comment</h5>
+                        <h5 class='card-title'><?php echo $lang['HR Comment'] ?></h5>
                         <p class='card-text'><?php echo $hrComment ?> </p>
                         <?php if ($iprIssues == 1) {
-                            echo "<h5 class='card-title'>IPR Issues File:</h5>";
+                            echo $lang['IPR'];
                             echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
                         }
                         ?>
@@ -976,7 +966,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                     <!-- Button to cancel visit -->
 
                     <div class="col-md"></div>
-                    <div class="col-md"><input type=submit name=VRDBHRCancel value='Cancel Visit' class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
+                    <div class="col-md"><input type=submit name=VRDBHRCancel value="<?php echo $lang['Cancel Visit'] ?>" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
                     <div class="col-md"></div>
                 </div>
             </div>
