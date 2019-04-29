@@ -194,14 +194,14 @@ if ($supervisorApprovedresult->num_rows > 0) {
             <div class="row">
                 <!-- Implemented three buttons -->
                 <!-- The button name gets used in the isset() in the top to check if it's been pressed -->
-                <div class="col-md-4"><input type=submit name=approve value=Approve class='btn btn-success' style='width:100%; margin-bottom:5px'></div>
-                <div class="col-md-4"><input type=submit name=revise value='Prompt User to Resubmit' class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
-                <div class="col-md-4"><input type=submit name=deny value=Deny class='btn btn-danger' style='width:100%; margin-bottom:5px'></div>
+                <div class="col-md-4"><input type=submit name=approve   data-toggle="tooltip" data-placement="top" title="To Approve Requests Only"    value=Approve class='btn btn-success' style='width:100%; margin-bottom:5px'></div>
+                <div class="col-md-4"><input type=submit name=revise    data-toggle="tooltip" data-placement="top" title="To Re-submit Only"           value='Prompt User to Resubmit' class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
+                <div class="col-md-4"><input type=submit name=deny      data-toggle="tooltip" data-placement="top" title="To Deny Requests Only"        value=Deny class='btn btn-danger' style='width:100%; margin-bottom:5px'></div>
             </div>
         </div>
-        <div class="form-row" style="margin-top:5px">
+        <div class="form-row" data-toggle="tooltip" data-placement="top" title="Please provide us furthur details of re-submitting" style="margin-top:5px">
             <div class="form-group col-md-3">
-                <label for="reason"><b>Reason to resubmit:</b></label>
+                <label for="reason"><b>Reason to resubmit: </b></label>
             </div>
             <div class="form-group col-md-9">
                 <input type=text name=reasoning style="width:100%" class="form-control" onkeypress="return noenter()">
