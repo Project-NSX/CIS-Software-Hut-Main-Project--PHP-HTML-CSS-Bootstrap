@@ -131,7 +131,9 @@
 		"reqApprovedBySHR" => "<h2>Request(s) Approved by Supervisor & HR</h2>",
 		"Cancel Visit" => "Cancel Visit",
 		"reqDenHR" => "<h2>Request(s) Denied by HR</h2>",
-
+		"reqComp" => "<h2>Completed Visit(s)</h2>",
+		"reqCan" => "<h2>Cancelled Request(s)</h2>",
+		"Cancelled Date" => "Cancelled Date",
 
 
 

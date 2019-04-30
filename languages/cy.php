@@ -131,6 +131,10 @@
 		"reqApprovedBySHR" => "<h2>Ceisiadau Wedi'u Cymeradwyo gan AD a Goruchwyliwr</h2>",
 		"Cancel Visit" => "Canslo'r Ymweliad",
 		"reqDenHR" => "<h2>Ceisiadau Wedi'u Gwrthod gan AD</h2>",
+		"reqComp" => "<h2>Ymweliadau Wedi'u Cwblhau</h2>",
+		"reqCan" => "<h2>Ymweliadau Wedi'u Canslo</h2>",
+		"Cancelled Date" => "Dyddiad Canslwyd",
+
 
 
 
