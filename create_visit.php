@@ -50,6 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message = str_replace('%enddate%', $e_date, $message);
     $message = str_replace('%summary%', $summary, $message);
     $message = str_replace('%HostAcademic%', $hostAcademic, $message);
+    $message = str_replace('%visitorId%', $visitorId, $message);
     $mail->AddEmbeddedImage('img/bangor_logo.png', 'logo');
     $mail->MsgHTML($message);
 
