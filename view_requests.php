@@ -310,11 +310,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                 <div class="row">
                     <div class="col-md"></div>
                     <!-- Button Resubmit request(s) Prompted for Resubmission by HR-->
-<<<<<<< HEAD
                     <div class="col-md"><input type=submit name=RPFRBHRSend value='Resubmit Visit Request' data-toggle="tooltip" data-placement="top" title="Click here to Resubmit please" class='btn btn-secondary' style='width:100%; margin-bottom:5px'></div>
-=======
-                    <div class="col-md"><input type=submit name=RPFRBHRSend value="<?php echo $lang['Resubmit Visit Request'] ?>" class='btn btn-secondary' style='width:100%; margin-bottom:5px'></div>
->>>>>>> ce0b0baeefca02550cd02db5187924d725596eaf
                     <div class="col-md"></div>
                 </div>
             </div>
@@ -594,7 +590,6 @@ if ($awaitingActionresult->num_rows > 0) {
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
             <input type=hidden name=hiddenVRAA value=<?php echo $visitId ?>>
             <div class="container">
                 <div class="row">
@@ -604,8 +599,6 @@ if ($awaitingActionresult->num_rows > 0) {
                     <div class="col-md"></div>
                 </div>
             </div>
-=======
->>>>>>> ce0b0baeefca02550cd02db5187924d725596eaf
         </form>
         <br>
     <?php
@@ -699,7 +692,6 @@ if ($supervisorApprovedresult->num_rows > 0) {
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
             <input type=hidden name=hiddenVRABS value=<?php echo $visitId ?>>
             <div class="container">
                 <div class="row">
@@ -709,8 +701,6 @@ if ($supervisorApprovedresult->num_rows > 0) {
                     <div class="col-md"></div>
                 </div>
             </div>
-=======
->>>>>>> ce0b0baeefca02550cd02db5187924d725596eaf
         </form>
         <br>
     <?php
@@ -802,7 +792,6 @@ if ($supervisorApprovedresult->num_rows > 0) {
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
             <input type=hidden name=hiddenVRDBS value=<?php echo $visitId ?>>
             <div class="container">
                 <div class="row">
@@ -812,8 +801,6 @@ if ($supervisorApprovedresult->num_rows > 0) {
                     <div class="col-md"></div>
                 </div>
             </div>
-=======
->>>>>>> ce0b0baeefca02550cd02db5187924d725596eaf
         </form>
         <br>
     <?php
@@ -910,7 +897,6 @@ if ($supervisorApprovedresult->num_rows > 0) {
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
             <input type=hidden name=hiddenVRABSHR value=<?php echo $visitId ?>>
             <div class="container">
                 <div class="row">
@@ -920,9 +906,6 @@ if ($supervisorApprovedresult->num_rows > 0) {
                     <div class="col-md"></div>
                 </div>
             </div>
-=======
-            
->>>>>>> ce0b0baeefca02550cd02db5187924d725596eaf
         </form>
         <br>
     <?php
@@ -1023,11 +1006,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                     <!-- Button to cancel visit -->
 
                     <div class="col-md"></div>
-<<<<<<< HEAD
                     <div class="col-md"><input type=submit name=VRDBHRCancel value='Cancel Visit' data-toggle="tooltip" data-placement="top" title="To Cancel Requests Only" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
-=======
-                    <div class="col-md"><input type=submit name=VRDBHRCancel value="<?php echo $lang['Cancel Visit'] ?>" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
->>>>>>> ce0b0baeefca02550cd02db5187924d725596eaf
                     <div class="col-md"></div>
                 </div>
             </div>
