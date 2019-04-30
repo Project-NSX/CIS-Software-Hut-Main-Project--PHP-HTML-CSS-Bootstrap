@@ -67,7 +67,7 @@ echo $lang['reqComp'];
                 <div class="row">
                     <div class='col-sm'><b><?php echo $lang['Name'] ?>: </b> <?php echo $fName . " " . $lName ?></div>
                     <div class='col-sm'><b><?php echo $lang['Home Institution'] ?>: </b> <?php echo $homeInt ?></div>
-                    <div class='col-sm'><b><?php echo $lang['department'] ?>: </b> <?php echo $department ?></div>
+                    <div class='col-sm'><b><?php echo $lang['Department'] ?>: </b> <?php echo $department ?></div>
                     <div class='col-sm'><b><?php echo $lang['Email'] ?>: </b> <?php echo $email ?></div>
                     <div class='col-sm'><b><?php echo $lang['Phone Number'] ?>:</b> <?php echo $phone ?></div>
                 </div>
