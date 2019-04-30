@@ -145,6 +145,9 @@
 		"lang_en" => "English",
 		"lang_cy" => "Cymraeg",
 		"VA Login Page" => "Visiting Academic Login",
-		"reqInduction" => "<h2>Outstanding Visit(s)</h2>"
+		"reqInduction" => "<h2>Outstanding Visit(s)</h2>",
+		"H&S Induction" => "Health & Safety Induction",
+		"Cancel" => "Cancel",
+		"Proceed" => "Proceed"
 	);
 ?>

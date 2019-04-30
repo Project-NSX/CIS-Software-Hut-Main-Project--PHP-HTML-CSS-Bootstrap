@@ -76,7 +76,6 @@ if ($supervisorApprovedresult->num_rows > 0) {
             </div>
             <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
                 <div class="card-body">
-
                     <h5 class='card-title'><?php echo $lang['Visit Summary'] ?></h5>
                     <p class='card-text'><?php echo htmlspecialchars($summary) ?></p>
                     <h5 class='card-title'><?php echo $lang['Financial Implications'] ?></h5>
@@ -106,7 +105,6 @@ if ($supervisorApprovedresult->num_rows > 0) {
                 </div>
             </div>
         </div>
-
         <br>
     <?php
 }
@@ -115,4 +113,25 @@ echo "</div>";
 
 $link->close();
 ?>
+
+<div class="modal fade" id="health-safety-dialog" tabindex="-1" role="dialog" aria-labelledby="health-safety-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="health-safety-title"><?php echo $lang["H&S Induction"] ?></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <p><?php echo $lang["H&S Intro"] ?></p>
+            <a href="<?php echo $lang["H&S Policy Link"] ?>"><?php echo $lang["H&S Link"] ?></a>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo $lang["Cancel"] ?></button>
+            <button type="button" class="btn btn-primary"><?php echo $lang["Proceed"] ?></button>
+        </div>
+    </div>
+</div>
 <?php require 'includes/footer.php'; ?>

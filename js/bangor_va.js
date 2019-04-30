@@ -108,6 +108,9 @@ function updateDateFields() {
         endField.setAttribute("value", startField.value);
 }
 
-// if($('.cookie-banner').length) {
-//     $('.cookie-banner').slideDown(10);
-// }
+// Activate Health & Safety modal
+$(window).load(function() {
+    $('#health-safety-dialog').modal({
+        show: false
+    });
+});
