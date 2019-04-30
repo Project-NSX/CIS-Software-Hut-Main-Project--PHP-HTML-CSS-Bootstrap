@@ -1,7 +1,8 @@
 <!-- Variable used to highlight the appropriate button on the navbar -->
 <?php $page = 'CV';
 require 'includes/header.php';
-require 'includes/deny_hr_role.php' // Redirects users with the "Human Resources" role to prevent access to this page
+require 'includes/deny_hr_role.php'; // Redirects users with the "Human Resources" role to prevent access to this page
+require 'includes/deny_va_role.php'; // Redirect visiting academics to prevent access to the page.
 ?>
 <?php require 'includes/database.php'; ?>
 <?php

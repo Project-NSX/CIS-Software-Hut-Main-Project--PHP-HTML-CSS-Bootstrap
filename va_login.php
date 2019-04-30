@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Check if username exists, if yes then verify password
                 if (mysqli_stmt_num_rows($stmt) == 1) {
                     // Bind result variables
-                    mysqli_stmt_bind_result($stmt, $username, $password_db, $visit_id);
+                    mysqli_stmt_bind_result($stmt, $username, $password_db);
                     if (mysqli_stmt_fetch($stmt)) {
                         if ($password_entered == $password_db) {
                             session_regenerate_id(true);
@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!--HTML HERE-->
 
 <div class="container">
-    <h2><?php echo $lang['Staff Login Page'] ?></h2>
+    <h2><?php echo $lang['VA Login Page'] ?></h2>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
             <label><?php echo $lang['Username'] ?></label>

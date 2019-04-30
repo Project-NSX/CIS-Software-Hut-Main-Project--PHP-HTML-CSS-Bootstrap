@@ -7,7 +7,7 @@
 		"College" => "College",
 		"Sign Out" => "Sign Out",
 		"Visiting Academics Form" => "Visiting Academics Form",
-		"Staff Login Page" => "Staff Login Page",
+		"Staff Login Page" => "Staff Login",
 		"Username" => "Username",
 		"Password" => "Password",
 		"Show Password" => "Show Password",
@@ -144,17 +144,7 @@
 		"Visiting Academic Form" => "Visiting Academic Form",
 		"lang_en" => "English",
 		"lang_cy" => "Cymraeg",
-
-
-
-
-
-
-
-
-
-
-
-
+		"VA Login Page" => "Visiting Academic Login",
+		"reqInduction" => "<h2>Outstanding Visit(s)</h2>"
 	);
 ?>

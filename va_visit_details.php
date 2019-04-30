@@ -11,17 +11,17 @@ require_once 'includes/database.php';
 $uname = $_SESSION["username"];
 
 $sql = "SELECT visitorId FROM vaLogin WHERE username LIKE '" . $uname . "%'";
-            $result = $link->query($sql);
-            while ($row = $result->fetch_assoc()) {
-                $visit = $row['visitorId'];
-            }
+$result = $link->query($sql);
+while ($row = $result->fetch_assoc()) {
+    $visit = $row['visitorId'];
+}
 //SQL statement to retrieve columns from database table
 $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.induction, v.iprIssues, v.iprFile  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.visitorId LIKE '" . $visit . "%' AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '3' AND v.induction LIKE '0' ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
 
-    //if 1 or more results are returned, execute the following code to display the information
-echo $lang['reqComp'];
+    // If 1 or more results are returned, display each results as a separate card
+    echo $lang['reqInduction'];
 
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
@@ -98,10 +98,10 @@ echo $lang['reqComp'];
 
                     <!-- if there is an IPR issue (field value = 1) - display the IPR deed file -->
                     <?php
-                        if ($iprIssues == 1) {
-                            echo $lang['IPR'];
-                            echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
-                        }
+                    if ($iprIssues == 1) {
+                        echo $lang['IPR'];
+                        echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
+                    }
                     ?>
                 </div>
             </div>
@@ -109,7 +109,6 @@ echo $lang['reqComp'];
 
         <br>
     <?php
-
 }
 echo "</div>";
 } else { }

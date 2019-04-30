@@ -7,7 +7,7 @@
 		"College" => "Coleg",
 		"Sign Out" => "Allgofnodi",
 		"Visiting Academics Form" => "Ffurflen Ymwelwyr Academaidd",
-		"Staff Login Page" => "Tudalen Mewngofnodi Staff",
+		"Staff Login Page" => "Mewngofnodi Staff",
 		"Username" => "Enw Defnyddiwr",
 		"Password" => "Cyfrinair",
 		"Show Password" => "Dangos Cyfrinair",

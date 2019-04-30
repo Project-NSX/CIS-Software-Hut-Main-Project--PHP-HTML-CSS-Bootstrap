@@ -115,6 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="container">
     <h2><?php echo $lang['Staff Login Page'] ?></h2>
+    <p>Visiting academics should login <a href="va_login.php">here.</a></p>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
             <label><?php echo $lang['Username'] ?></label>
