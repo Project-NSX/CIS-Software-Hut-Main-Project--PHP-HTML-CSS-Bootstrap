@@ -46,32 +46,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail->setFrom('support@nwsd.online', 'Visitng Academic Form');
     $mail->Subject = "Visit At start date :{$s_date} End date : {$e_date}";
     $mail->Body = "A visit request has been made by the user: {$hostAcademic}. Please sign into the visiting academic form to respond to this.";
-    //$message = file_get_contents('Email.html');
-    $message = '
-    <style>
-    .bordered {
-        width: 400px;
-        height: 300px;
-        padding: 20px;
-        border: 10px solid black;
-        }
-        </style>
-
-
-        <html>
-
-        <body>
-            <div class="bordered">
-                <h1>Thanks for using the NWSD Visiting Academic System</h1>
-                <p>the link to check your visiting information is found below</p>
-                <a href="http://nwsd.online/index.php"><img src="img/bangor_logo.png" height="119" width="168"></a>
-            </div>
-        </body>
-
-
-        </html>
-        ';
+    $message = file_get_contents('Email.html');
     $mail->MsgHTML($message);
+    $message = str_replace('%STARTDATE%', $s_date, $message);
+    $message = str_replace('%ENDDATE%', $e_date, $message);
     $mail->addAttachment("img/bangor_logo.png");
     $conn = getDB();
 
