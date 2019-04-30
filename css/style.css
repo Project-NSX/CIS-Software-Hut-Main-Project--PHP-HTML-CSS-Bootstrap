@@ -9,7 +9,7 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
-    background: grey;
+    background-color: #CDCDCD;
     border-top: solid;
     border-color: #B82233;
 }
@@ -69,13 +69,11 @@ li.active{
     background-color: #ddd;
 }
 
-#footerLeft{
-    color: white;
+#footerLeft{ 
     text-align: left;
 }
 
 #footerRight{
-    color: white;
     text-align: right;
 }
 
