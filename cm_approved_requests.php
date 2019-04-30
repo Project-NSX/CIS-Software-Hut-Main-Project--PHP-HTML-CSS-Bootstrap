@@ -7,7 +7,6 @@ require 'includes/verify_cm_role.php'; // Redirect if the user is not logged in 
 
 <h2><?php echo $lang['College Manager - Approved Requests'] ?></h2>
 <?php require 'includes/navbars/nav_picker.php'; ?>
-<!--TODO: Add the ability to search for an approved request-->
 <?php
 require_once 'includes/database.php';
 //SQL Statement to retrieve the appropriate cells from the tables

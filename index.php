@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $_SESSION["college_id"] = $college_id;
 
                             if ($_SESSION['role'] == "Academic" || $_SESSION['role'] ==  "Head Of School" || $_SESSION['role'] == "College Manager") {
-                                //TODO: Insert code to bind college name to $_SESSION["college_name"] here
+
                                 $sql = "SELECT name FROM college WHERE collegeId = $college_id";
                                 $result = $link->query($sql);
                                 while ($row = $result->fetch_assoc()) {
@@ -80,7 +80,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     }
                             }
                             if ($_SESSION['role'] == "Academic" || $_SESSION['role'] ==  "Head Of School") {
-                                //TODO: Insert code to bind school name to $_SESSION["school_name"] here
                                 $sql = "SELECT name FROM school WHERE schoolId = $school_id";
                                 $result = $link->query($sql);
                                 while ($row = $result->fetch_assoc()) {

@@ -20,7 +20,6 @@ require 'vendor/PHPMailer/src/SMTP.php';
 
 <h2><?php echo $lang['College Manager - Requests Pending Approval'] ?></h2>
 <?php require 'includes/navbars/nav_picker.php'; ?>
-<!--TODO: Add the ability to search for an approved request-->
 <?php
 require_once 'includes/database.php';
 //initialize phpmailer to send emails

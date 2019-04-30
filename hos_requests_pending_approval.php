@@ -93,7 +93,6 @@ if (isset($_POST['hosrevise'])) {
         $publish_date = date("Y-m-d H:i:s");
         $ApproveQuery = "UPDATE visit SET supervisorApproved = 2, supervisorUsername = '$uName', supervisorApprovedDate = '$publish_date', supervisorComment = 'htmlspecialchars($_POST[reasoning])' WHERE visitId = '$_POST[hidden]'";
         mysqli_query($link, $ApproveQuery);
-        //TODO: add datetime to hrApprovedDate field
 
 
         $mail->Subject = 'Your visit requests requires additional information!';
