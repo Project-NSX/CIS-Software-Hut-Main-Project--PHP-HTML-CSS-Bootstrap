@@ -142,6 +142,8 @@
 		"Cookies2" => " the cookies we set",
 		"Cookies3" => "Ok, Continue",
 		"Visiting Academic Form" => "Visiting Academic Form",
+		"lang_en" => "English",
+		"lang_cy" => "Cymraeg",
 
 
 

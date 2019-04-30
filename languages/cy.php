@@ -142,6 +142,8 @@
 		"Cookies2" => " y cwcis rydym yn defnyddio",
 		"Cookies3" => "Iawn",
 		"Visiting Academic Form" => "Ffurflen Ymwelwyr Academaidd",
+		"lang_en" => "English",
+		"lang_cy" => "Cymraeg",
 
 
 

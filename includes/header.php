@@ -51,6 +51,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     <?php echo $lang['College'] ?>: <b><?php echo $_SESSION["collegeName"];
                             } ?>
                 </b></p>
+                <a href="index.php?lang=en"><?php echo $lang['lang_en'] ?></a>
+                | <a href="index.php?lang=cy"><?php echo $lang['lang_cy'] ?></a>
         </div>
     </div>
     </section>
