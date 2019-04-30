@@ -63,5 +63,3 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             <h1><?php echo $lang['Visiting Academics Form'] ?></h1>
         </header>
         <main>
-
-            <!--TODO: Make a header bar here-->

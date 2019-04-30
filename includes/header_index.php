@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <html>
-
 <head>
     <title>Visiting Academic Form</title>
     <meta name="robots" content="noindex, nofollow">
