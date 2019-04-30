@@ -134,6 +134,9 @@
 		"reqComp" => "<h2>Ymweliadau Wedi'u Cwblhau</h2>",
 		"reqCan" => "<h2>Ymweliadau Wedi'u Canslo</h2>",
 		"Cancelled Date" => "Dyddiad Canslwyd",
+		"PhoneNo" => "Ffôn: 01248 351151",
+		"Charity" => "Mae Prifysgol Bangor yn Elusen Gofrestredig: Rhif 1141565",
+		"ContactEmail" => "E-bost: marchnata@bangor.ac.uk",
 
 
 

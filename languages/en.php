@@ -134,7 +134,9 @@
 		"reqComp" => "<h2>Completed Visit(s)</h2>",
 		"reqCan" => "<h2>Cancelled Request(s)</h2>",
 		"Cancelled Date" => "Cancelled Date",
-
+		"PhoneNo" => "Phone: 01248 351151",
+		"Charity" => "Bangor University is a Registered Charity: No. 1141565",
+		"ContactEmail" => "Email: marketing@bangor.ac.uk",
 
 
 
