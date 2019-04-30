@@ -9,7 +9,7 @@ if (isset($_GET['accept-cookies'])) {
 <?php
 
 $role = "";
-// Check if the user is already logged in, if yes then redirect him to welcome page
+// Check if the user is already logged in, if yes then redirect them to the welcome page
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     // Redirect user to welcome page
     require 'includes/user_redirect.php';
@@ -66,6 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
                             $_SESSION["username"] = $username;
+                            $_SESSION["role"] = "Visiting Academic";
                             $_SESSION["visit_id"] = $visit_id;
 
                             require 'includes/user_redirect.php';
