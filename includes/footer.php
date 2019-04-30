@@ -1,12 +1,11 @@
 </main>
 </div>
 <script>
-$(document).ready(function(){
-  $('[data-toggle="tooltip"]').tooltip();
-});
+    $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
 </script>
 </body>
-<link rel="stylesheet" type="text/css" href="css/style.css">
 <footer>
     <section class="footerContent">
         <div id="footerLeft">
@@ -22,4 +21,5 @@ $(document).ready(function(){
         </div>
     </section>
 </footer>
+
 </html>
