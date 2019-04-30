@@ -152,6 +152,7 @@
 		"To Re-submit Only" => "Ask the user to resubmit this request",
 		"To Deny Requests Only" => "If you're unhappy with this request, you can select to deny the visit",
 		"moreInfoNeeded" => "Explain to the user why they need to resubmit their request",
+		"passWrong" => "The password you entered was not valid.",
 
 
 
