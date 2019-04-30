@@ -159,7 +159,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                     <div class='col-sm'><b>Department: </b> <?php echo $department ?></div>
                 </div>
                 <div class="row">
-                    <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
+                    <div class='col-md-1 offset-md-11' style="text-align: right;"><?php echo $lang['seeMore'] ?> &#x25BC</div>
                 </div>
             </div>
             <!-- Create form with text fields and buttons -->

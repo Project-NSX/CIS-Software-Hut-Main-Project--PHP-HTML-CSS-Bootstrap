@@ -144,5 +144,9 @@
 		"Visiting Academic Form" => "Ffurflen Ymwelwyr Academaidd",
 		"lang_en" => "English",
 		"lang_cy" => "Cymraeg",
+		"seeMore" => "Mwy",
+		"Resubmit the request" => "Ail yrru'r cais",
+		"Click to resubmit" => "Cliciwch i ail yrru'r cais",
+		"CancelVisit" => "Canslo'r ymweliad yma",
 	);
 ?>

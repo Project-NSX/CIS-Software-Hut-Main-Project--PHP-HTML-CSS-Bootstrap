@@ -309,7 +309,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                 <div class="row">
                     <div class="col-md"></div>
                     <!-- Button Resubmit request(s) Prompted for Resubmission by HR-->
-                    <div class="col-md"><input type=submit name=RPFRBHRSend value='Resubmit Visit Request' data-toggle="tooltip" data-placement="top" title="Click here to Resubmit please" class='btn btn-secondary' style='width:100%; margin-bottom:5px'></div>
+                    <div class="col-md"><input type=submit name=RPFRBHRSend value="<?php echo $lang['Resubmit Visit Request'] ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $lang['Click to resubmit'] ?>" class='btn btn-secondary' style='width:100%; margin-bottom:5px'></div>
                     <div class="col-md"></div>
                 </div>
             </div>
@@ -490,7 +490,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                 <div class="row">
                     <div class="col-md"></div>
                     <!-- Button Resubmit request(s) Prompted for Resubmission by Supervisor-->
-                    <div class="col-md"><input type=submit name=RPFRBSSend value="<?php echo $lang['Resubmit Visit Request'] ?>" class='btn btn-secondary' style='width:100%; margin-bottom:5px'></div>
+                    <div class="col-md"><input type=submit name=RPFRBSSend value="<?php echo $lang['Resubmit Visit Request'] ?>" class='btn btn-secondary' data-toggle="tooltip" data-placement="top" title="<?php echo $lang['Resubmit the request'] ?>" style='width:100%; margin-bottom:5px'></div>
                     <div class="col-md"></div>
                 </div>
             </div>
@@ -551,13 +551,11 @@ if ($awaitingActionresult->num_rows > 0) {
                         <div class='col-sm'><b><?php echo $lang['Phone Number'] ?>:</b> <?php echo $phone ?></div>
                     </div>
                     <div class="row">
-                        <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
+                        <div class='col-md-1 offset-md-11' style="text-align: right;"><?php echo $lang['seeMore'] ?> &#x25BC</div>
                     </div>
                 </div>
                 <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
                     <div class="card-body">
-
-
                         <h5 class='card-title'><?php echo $lang['Visit Summary'] ?></h5>
                         <p class='card-text'><?php echo $summary ?></p>
                         <h5 class='card-title'><?php echo $lang['Financial Implications'] ?></h5>
@@ -578,20 +576,11 @@ if ($awaitingActionresult->num_rows > 0) {
                             <div class="row">
                                 <!-- Button to cancel visit -->
                                 <div class="col-md"></div>
-                                <div class="col-md"><input type=submit name=VRAACancel value="<?php echo $lang['Cancel Visit'] ?>" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
+                                <div class="col-md"><input type=submit name=VRAACancel value="<?php echo $lang['Cancel Visit'] ?>" class='btn btn-warning' data-toggle="tooltip" data-placement="top" title="<?php echo $lang['CancelVisit'] ?>" style='width:100%; margin-bottom:5px'></div>
                                 <div class="col-md"></div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <input type=hidden name=hiddenVRAA value=<?php echo $visitId ?>>
-            <div class="container">
-                <div class="row">
-                    <!-- Button to cancel visit -->
-                    <div class="col-md"></div>
-                    <div class="col-md"><input type=submit name=VRAACancel value='Cancel Visit'  data-toggle="tooltip" data-placement="top" title="Click here to Cancel the Visit please" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
-                    <div class="col-md"></div>
                 </div>
             </div>
         </form>
@@ -649,7 +638,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                         <div class='col-sm'><b><?php echo $lang['Phone Number'] ?>:</b> <?php echo $phone ?></div>
                     </div>
                     <div class="row">
-                        <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
+                        <div class='col-md-1 offset-md-11' style="text-align: right;"><?php echo $lang['seeMore'] ?> &#x25BC</div>
                     </div>
                 </div>
                 <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
@@ -680,20 +669,11 @@ if ($supervisorApprovedresult->num_rows > 0) {
                             <div class="row">
                                 <!-- Button to cancel visit -->
                                 <div class="col-md"></div>
-                                <div class="col-md"><input type=submit name=VRABSCancel value="<?php echo $lang['Cancel Visit'] ?>" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
+                                <div class="col-md"><input type=submit name=VRABSCancel value="<?php echo $lang['Cancel Visit'] ?>" class='btn btn-warning'data-toggle="tooltip" data-placement="top" title="<?php echo $lang['CancelVisit'] ?>" style='width:100%; margin-bottom:5px'></div>
                                 <div class="col-md"></div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <input type=hidden name=hiddenVRABS value=<?php echo $visitId ?>>
-            <div class="container">
-                <div class="row">
-                    <!-- Button to cancel visit -->
-                    <div class="col-md"></div>
-                    <div class="col-md"><input type=submit name=VRABSCancel value='Cancel Visit' class='btn btn-warning' data-toggle="tooltip" data-placement="top" title="To Cancel the Request" style='width:100%; margin-bottom:5px'></div>
-                    <div class="col-md"></div>
                 </div>
             </div>
         </form>
@@ -751,7 +731,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                         <div class='col-sm'><b><?php echo $lang['Phone Number'] ?>:</b> <?php echo $phone ?></div>
                     </div>
                     <div class="row">
-                        <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
+                        <div class='col-md-1 offset-md-11' style="text-align: right;"><?php echo $lang['seeMore'] ?> &#x25BC</div>
                     </div>
                 </div>
                 <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
@@ -780,20 +760,11 @@ if ($supervisorApprovedresult->num_rows > 0) {
                             <div class="row">
                                 <!-- Button to cancel visit -->
                                 <div class="col-md"></div>
-                                <div class="col-md"><input type=submit name=VRDBSCancel value="<?php echo $lang['Cancel Visit'] ?>" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
+                                <div class="col-md"><input type=submit name=VRDBSCancel value="<?php echo $lang['Cancel Visit'] ?>" class='btn btn-warning' data-toggle="tooltip" data-placement="top" title="<?php echo $lang['CancelVisit'] ?>" style='width:100%; margin-bottom:5px'></div>
                                 <div class="col-md"></div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <input type=hidden name=hiddenVRDBS value=<?php echo $visitId ?>>
-            <div class="container">
-                <div class="row">
-                    <!-- Button to cancel visit -->
-                    <div class="col-md"></div>
-                    <div class="col-md"><input type=submit name=VRDBSCancel value='Cancel Visit' data-toggle="tooltip" data-placement="top" title="To cancel your request"  class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
-                    <div class="col-md"></div>
                 </div>
             </div>
         </form>
@@ -856,7 +827,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                         <div class='col-sm'><b><?php echo $lang['Phone Number'] ?>:</b> <?php echo $phone ?></div>
                     </div>
                     <div class="row">
-                        <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
+                        <div class='col-md-1 offset-md-11' style="text-align: right;"><?php echo $lang['seeMore'] ?> &#x25BC</div>
                     </div>
                 </div>
                 <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
@@ -885,20 +856,11 @@ if ($supervisorApprovedresult->num_rows > 0) {
                                 <div class="row">
                                     <!-- Button to cancel visit -->
                                     <div class="col-md"></div>
-                                    <div class="col-md"><input type=submit name=VRABSHRCancel value="<?php echo $lang['Cancel Visit'] ?>" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
+                                    <div class="col-md"><input type=submit name=VRABSHRCancel value="<?php echo $lang['Cancel Visit'] ?>" class='btn btn-warning' data-toggle="tooltip" data-placement="top" title="<?php echo $lang['CancelVisit'] ?>" style='width:100%; margin-bottom:5px'></div>
                                     <div class="col-md"></div>
                                 </div>
                             </div>
                     </div>
-                </div>
-            </div>
-            <input type=hidden name=hiddenVRABSHR value=<?php echo $visitId ?>>
-            <div class="container">
-                <div class="row">
-                    <!-- Button to cancel visit -->
-                    <div class="col-md"></div>
-                    <div class="col-md"><input type=submit name=VRABSHRCancel value='Cancel Visit' data-toggle="tooltip" data-placement="top" title="To Cancel your request" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
-                    <div class="col-md"></div>
                 </div>
             </div>
         </form>
@@ -961,7 +923,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                         <div class='col-sm'><b><?php echo $lang['Phone Number'] ?>:</b> <?php echo $phone ?></div>
                     </div>
                     <div class="row">
-                        <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
+                        <div class='col-md-1 offset-md-11' style="text-align: right;"><?php echo $lang['seeMore'] ?> &#x25BC</div>
                     </div>
                 </div>
                 <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
@@ -992,21 +954,19 @@ if ($supervisorApprovedresult->num_rows > 0) {
                             echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
                         }
                         ?>
+                        <input type=hidden name=hiddenVRDBHR value=<?php echo $visitId ?>>
+                        <div class="container">
+                            <div class="row">
+                                <!-- Button to cancel visit -->
+                                <div class="col-md"></div>
+                                <div class="col-md"><input type=submit name=VRABSCancel value="<?php echo $lang['Cancel Visit'] ?>" class='btn btn-warning' data-toggle="tooltip" data-placement="top" title="<?php echo $lang['CancelVisit'] ?>" style='width:100%; margin-bottom:5px'></div>
+                                <div class="col-md"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <input type=hidden name=hiddenVRDBHR value=<?php echo $visitId ?>>
-            <div class="container">
-                <div class="row">
-                    <!-- Button to cancel visit -->
-
-                    <div class="col-md"></div>
-                    <div class="col-md"><input type=submit name=VRDBHRCancel value='Cancel Visit' data-toggle="tooltip" data-placement="top" title="To Cancel Requests Only" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
-                    <div class="col-md"></div>
-                </div>
-            </div>
         </form>
-
         <br>
     <?php
 }

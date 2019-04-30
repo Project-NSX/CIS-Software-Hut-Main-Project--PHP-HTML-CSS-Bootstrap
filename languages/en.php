@@ -144,6 +144,10 @@
 		"Visiting Academic Form" => "Visiting Academic Form",
 		"lang_en" => "English",
 		"lang_cy" => "Cymraeg",
+		"seeMore" => "More",
+		"Resubmit the request" => "Resubmit the request",
+		"Click to resubmit" => "Click to resubmit",
+		"CancelVisit" => "Cancel the visit",
 
 
 

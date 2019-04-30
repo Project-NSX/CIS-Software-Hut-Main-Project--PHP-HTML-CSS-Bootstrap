@@ -68,7 +68,7 @@ echo $lang['reqComp'];
                     <div class='col-sm'><b><?php echo $lang['Phone Number'] ?>:</b> <?php echo $phone ?></div>
                 </div>
                 <div class="row">
-                    <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
+                    <div class='col-md-1 offset-md-11' style="text-align: right;"><?php echo $lang['seeMore'] ?> &#x25BC</div>
                 </div>
             </div>
             <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
@@ -166,7 +166,7 @@ echo $lang['reqCan'];
                         <div class='col-sm'><b><?php echo $lang['Cancelled Date'] ?>: </b> <?php echo $cancelTimeDisplay ?></div>
                     </div>
                     <div class="row">
-                        <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
+                        <div class='col-md-1 offset-md-11' style="text-align: right;"><?php echo $lang['seeMore'] ?> &#x25BC</div>
                     </div>
                 </div>
                 <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">

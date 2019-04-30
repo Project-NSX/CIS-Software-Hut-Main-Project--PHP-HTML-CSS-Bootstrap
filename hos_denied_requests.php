@@ -54,7 +54,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                     <div class='col-sm'><b><?php echo $lang['Department'] ?>: </b> <?php echo $department ?></div>
                 </div>
                 <div class="row">
-                    <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
+                    <div class='col-md-1 offset-md-11' style="text-align: right;"><?php echo $lang['seeMore'] ?> &#x25BC</div>
                 </div>
             </div>
             <!-- Display more detail in the body which is displayed after the card's header is pressed -->
