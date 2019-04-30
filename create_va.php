@@ -52,7 +52,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mysqli_stmt_bind_param($stmt, "ssssssssssssss", $title, $f_name, $l_name, $street, $town_city, $county, $postcode, $email, $phone_number, $visitor_type, $visitor_type_ext, $home_institution, $host_academic, $department);
         // If the $stmt is able to execute:
         if (mysqli_stmt_execute($stmt)) {
-            // TODO: Confirmation dialogue on success
 
             // Redirect the user to their home page
             require 'includes/user_redirect.php';
@@ -152,7 +151,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="form-group col-md-6">
                 <label for="phone_number"><?php echo $lang['Phone Number'] ?>: </label>
-                <!--TODO: Restrict this to numbers only-->
                 <input type="tel" name="phone_number" class="form-control" minlength="9" maxlength="14">
             </div>
 

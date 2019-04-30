@@ -18,12 +18,11 @@ require 'includes/deny_hr_role.php' // Redirects users with the "Human Resources
 <h2><?php echo $lang['Pending Requests'] ?></h2>
 
 <?php require 'includes/navbars/nav_picker.php'; ?>
-<!-- TODO: Get this to display title of the VA (with the titleExt being displayed as well if the value is "other")
 
--->
+
 
 <?php
-//TODO: check sql statements and button clicks
+
 require_once 'includes/database.php';
 //Cancel Action for section Visit Requests awaiting action
 if (isset($_POST['VRAACancel'])) {
