@@ -17,7 +17,7 @@ require 'vendor/PHPMailer/src/SMTP.php';
     }
 </script>
 
-<h2>Human Resources - Applications Pending Approval</h2>
+<h2><?php echo $lang['Human Resources - Applications Pending Approval'] ?></h2>
 <?php require 'includes/navbars/nav_picker.php'; ?>
 
 <?php
@@ -111,8 +111,7 @@ $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.hom
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
     //if one or more record returns do the following to display the record
-    echo "<h2>HR Pending Request(s)</h2>";
-
+    echo $lang['hrPenTitle'];
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
         $uName = $_SESSION['username'];
@@ -154,9 +153,9 @@ if ($supervisorApprovedresult->num_rows > 0) {
         <div class="card">
             <div class="card-header" id="<?php echo $headingId ?>" <button id="button1" class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
                 <div class="row">
-                    <div class='col-sm'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
-                    <div class='col-sm'><b>Home Institution: </b> <?php echo $homeInt ?></div>
-                    <div class='col-sm'><b>Department: </b> <?php echo $department ?></div>
+                    <div class='col-sm'><b><?php echo $lang['Name'] ?>: </b> <?php echo $fName . " " . $lName ?></div>
+                    <div class='col-sm'><b><?php echo $lang['Home Institution'] ?>: </b> <?php echo $homeInt ?></div>
+                    <div class='col-sm'><b><?php echo $lang['Department'] ?>: </b> <?php echo $department ?></div>
                 </div>
                 <div class="row">
                     <div class='col-md-1 offset-md-11' style="text-align: right;"><?php echo $lang['seeMore'] ?> &#x25BC</div>
@@ -166,56 +165,50 @@ if ($supervisorApprovedresult->num_rows > 0) {
             <form action=hr_pending_approval.php method=post>
                 <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
                     <div class="card-body">
-                        <h5 class='card-title'>Visit Summary</h5>
+                        <h5 class='card-title'><?php echo $lang['Visit Summary'] ?></h5>
                         <p class='card-text'><?php echo $summary ?></p>
-                        <h5 class='card-title'>Financial Implications</h5>
+                        <h5 class='card-title'><?php echo $lang['Financial Implications'] ?></h5>
                         <p class='card-text'><?php echo $financialImp ?></p>
-                        <h5 class='card-title'>Visitor Type</h5>
+                        <h5 class='card-title'><?php echo $lang['Visitor Type'] ?></h5>
                         <p class='card-text'><?php echo $visitorType ?> &#8195; <?php echo $visitorTypeEXT ?></p>
-                        <h5 class='card-title'>Visit Start & End Dates</h5>
-                        <p class='card-text'><b>Start:</b> <?php echo $startDisplay ?> &#8195; <b>End:</b> <?php echo $endDisplay ?></p>
-                        <h5 class='card-title'>Date & Time of Initial Submission</h5>
+                        <h5 class='card-title'><?php echo $lang['Visit Start & End Dates'] ?></h5>
+                        <p class='card-text'><b><?php echo $lang['Start'] ?>:</b> <?php echo $startDisplay ?> &#8195; <b><?php echo $lang['End'] ?>:</b> <?php echo $endDisplay ?></p>
+                        <h5 class='card-title'><?php echo $lang['Date & Time of Initial Submission'] ?></h5>
                         <p class='card-text'><?php echo $addedDisplay ?> </p>
-                        <h5 class='card-title'>Supervisor Username</h5>
+                        <h5 class='card-title'><?php echo $lang['Supervisor Username'] ?></h5>
                         <p class='card-text'><?php echo $supervisorUname ?> </p>
-                        <h5 class='card-title'>Date & Time of Decision</h5>
+                        <h5 class='card-title'><?php echo $lang['Date & Time of Decision'] ?></h5>
                         <p class='card-text'><?php echo $supervisorApprovedDateDisp ?> </p>
                         <?php if ($iprIssues == 1) {
-                            echo "<h5 class='card-title'>IPR Issues File:</h5>";
+                            echo $lang['IPR'];
                             echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
                         }
                         ?>
-
+                        <input type=hidden name=hidden value=<?php echo $visitId ?>>
+                            <div class="container">
+                                <div class="row">
+                                    <!-- Implemented three buttons -->
+                                    <!-- The button name gets used in the isset() in the top to check if it's been pressed -->
+                                    <div class="col-md-4"><input type=submit name=approve   data-toggle="tooltip" data-placement="top" title="<?php echo $lang['To Approve Requests Only'] ?>"    value="<?php echo $lang['Approve'] ?>" class='btn btn-success' style='width:100%; margin-bottom:5px'></div>
+                                    <div class="col-md-4"><input type=submit name=revise    data-toggle="tooltip" data-placement="top" title="<?php echo $lang['To Re-submit Only'] ?>"           value="<?php echo $lang['Prompt User to Resubmit'] ?>" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
+                                    <div class="col-md-4"><input type=submit name=deny      data-toggle="tooltip" data-placement="top" title="<?php echo $lang['To Deny Requests Only'] ?>"        value="<?php echo $lang['Deny'] ?>" class='btn btn-danger' style='width:100%; margin-bottom:5px'></div>
+                                </div>
+                            </div>
+                            <div class="form-row" data-toggle="tooltip" data-placement="top" title="<?php echo $lang['moreInfoNeeded'] ?>" style="margin-top:5px">
+                                <div class="form-group col-md-3">
+                                    <label for="reason"><b><?php echo $lang['Reason to resubmit'] ?>:</b></label>
+                                </div>
+                                <div class="form-group col-md-9">
+                                    <input type=text name=reasoning style="width:100%" class="form-control" onkeypress="return noenter()">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <p style="text-align:right; margin-top:-15px; font-size:0.8em"><?php echo $lang['resubmitText'] ?></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-        </div>
-        <input type=hidden name=hidden value=<?php echo $visitId ?>>
-        <div class="container">
-            <div class="row">
-                <!-- Implemented three buttons -->
-                <!-- The button name gets used in the isset() in the top to check if it's been pressed -->
-                <div class="col-md-4"><input type=submit name=approve   data-toggle="tooltip" data-placement="top" title="To Approve Requests Only"    value=Approve class='btn btn-success' style='width:100%; margin-bottom:5px'></div>
-                <div class="col-md-4"><input type=submit name=revise    data-toggle="tooltip" data-placement="top" title="To Re-submit Only"           value='Prompt User to Resubmit' class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
-                <div class="col-md-4"><input type=submit name=deny      data-toggle="tooltip" data-placement="top" title="To Deny Requests Only"        value=Deny class='btn btn-danger' style='width:100%; margin-bottom:5px'></div>
             </div>
-        </div>
-        <div class="form-row" data-toggle="tooltip" data-placement="top" title="Please provide us furthur details of re-submitting" style="margin-top:5px">
-            <div class="form-group col-md-3">
-                <label for="reason"><b>Reason to resubmit: </b></label>
-            </div>
-            <div class="form-group col-md-9">
-                <input type=text name=reasoning style="width:100%" class="form-control" onkeypress="return noenter()">
-            </div>
-            <div class="form-group col-md-12">
-                <p style="text-align:right; margin-top:-15px; font-size:0.8em">** Required if the visit is prompted for resubmission</p>
-            </div>
-        </div>
-
-
-
         </form>
-        <br>
-        <br>
     <?php
 }
 echo "</div>";

@@ -148,5 +148,10 @@
 		"Resubmit the request" => "Ail yrru'r cais",
 		"Click to resubmit" => "Cliciwch i ail yrru'r cais",
 		"CancelVisit" => "Canslo'r ymweliad yma",
+		"To Approve Requests Only" => "Os ydych yn hapus i'r ymweliad ddigwydd",
+		"To Re-submit Only" => "Gofynwch i'r defnyddiwr ail yrru'r cais yma",
+		"To Deny Requests Only" => "Os nad ydych yn hapus gyda'r cais, mae modd gwahardd yr ymweliad",
+		"moreInfoNeeded" => "Esboniwch i'r defnyddiwr pam fod angen iddynt ail yrru'r cais yma",
+
 	);
 ?>

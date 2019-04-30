@@ -163,36 +163,31 @@ if ($supervisorApprovedresult->num_rows > 0) {
                             echo "<p class='card-text'><a href='ipr/$iprFile' download>htmlspecialchars($iprFile)</a>";
                         }
                         ?>
+                        <input type=hidden name=hidden value=<?php echo $visitId ?>>
+                        <div class="container">
+                            <div class="row">
+                                <!-- three buttons for the College Manager to use to decide on a request -->
+                                <div class="col-md-4"><input type=submit name=cmapprove value=Approve     data-toggle="tooltip" data-placement="top" title="To Approve Requests Only"     class='btn btn-success' style='width:100%; margin-bottom:5px'></div>
+                                <div class="col-md-4"><input type=submit name=cmrevise value='Prompt User to Resubmit' data-toggle="tooltip" data-placement="top" title="To Resubmit Requests Only" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
+                                <div class="col-md-4"><input type=submit name=cmdeny value=Deny data-toggle="tooltip" data-placement="top" title="To Approve Deny Only" class='btn btn-danger' style='width:100%; margin-bottom:5px'></div>
+                            </div>
+                        </div>
+                        <!-- Field to provide a reason why the request must be resubmitted -->
+                        <div class="form-row" style="margin-top:5px">
+                            <div class="form-group col-md-3">
+                                <label for="reason"><b>Reason to resubmit:</b></label>
+                            </div>
+                            <div class="form-group col-md-9">
+                                <input type=text name=reasoning style="width:100%" data-toggle="tooltip" data-placement="top" title="Go back" class="form-control" onkeypress="return noenter()">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <p style="text-align:right; margin-top:-15px; font-size:0.8em"><?php echo $lang['resubmitText'] ?></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-        </div>
-        <input type=hidden name=hidden value=<?php echo $visitId ?>>
-        <div class="container">
-            <div class="row">
-                <!-- three buttons for the College Manager to use to decide on a request -->
-                <div class="col-md-4"><input type=submit name=cmapprove value=Approve     data-toggle="tooltip" data-placement="top" title="To Approve Requests Only"     class='btn btn-success' style='width:100%; margin-bottom:5px'></div>
-                <div class="col-md-4"><input type=submit name=cmrevise value='Prompt User to Resubmit' data-toggle="tooltip" data-placement="top" title="To Resubmit Requests Only" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
-                <div class="col-md-4"><input type=submit name=cmdeny value=Deny data-toggle="tooltip" data-placement="top" title="To Approve Deny Only" class='btn btn-danger' style='width:100%; margin-bottom:5px'></div>
             </div>
-        </div>
-        <!-- Field to provide a reason why the request must be resubmitted -->
-        <div class="form-row" style="margin-top:5px">
-            <div class="form-group col-md-3">
-                <label for="reason"><b>Reason to resubmit:</b></label>
-            </div>
-            <div class="form-group col-md-9">
-                <input type=text name=reasoning style="width:100%" data-toggle="tooltip" data-placement="top" title="Go back" class="form-control" onkeypress="return noenter()">
-            </div>
-            <div class="form-group col-md-12">
-                <p style="text-align:right; margin-top:-15px; font-size:0.8em"><?php echo $lang['resubmitText'] ?></p>
-            </div>
-        </div>
-
-
-
         </form>
-        <br>
-        <br>
     <?php
 }
 echo "</div>";

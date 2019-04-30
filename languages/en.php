@@ -148,6 +148,11 @@
 		"Resubmit the request" => "Resubmit the request",
 		"Click to resubmit" => "Click to resubmit",
 		"CancelVisit" => "Cancel the visit",
+		"To Approve Requests Only" => "If you're happy with this request, you can approve it",
+		"To Re-submit Only" => "Ask the user to resubmit this request",
+		"To Deny Requests Only" => "If you're unhappy with this request, you can select to deny the visit",
+		"moreInfoNeeded" => "Explain to the user why they need to resubmit their request",
+
 
 
 
