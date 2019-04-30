@@ -1,3 +1,7 @@
+html{
+    background-color: white;
+}
+
 footer {
     margin-top: 50px;
     padding-top: 20px;
@@ -8,6 +12,51 @@ footer {
     background: grey;
     border-top: solid;
     border-color: #B82233;
+}
+
+.row  {
+  border-bottom: 1px solid #ddd;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: left;
+}
+
+.col-sm{
+    text-align: left;
+}
+
+legend{
+    padding-top: 10px;
+    text-decoration: underline #B82233;
+}
+
+form{
+    border-bottom: 5px solid #ddd;
+}
+
+h2{
+    padding-bottom: 10px;
+}
+
+.navbar-nav{
+    text-align: center;
+    
+}
+
+li{
+    border-bottom: 1px solid #B82233;
+
+}
+
+.btn{
+    background-color: #B82233;
+    border-style: solid;
+    border-color: #B82233;
+}
+
+li.active{
+    border-bottom: 5px solid #B82233;
+    background-color: #ddd;
 }
 
 #footerLeft{
@@ -36,28 +85,27 @@ footer {
 }
 
 body {
-    background-color: rgb(233, 233, 233);
+
 }
 
-#welcome {}
+#welcome {
+
+}
 
 #signout {
     float: right;
 }
 
-.headerSection{
-    background-color: grey;
-
-
+#headerSection{
+    background-color: #CDCDCD;
+    margin-bottom: 50px; 
 }
 
 #headerTop {
     padding-top: 20px;
     padding-bottom: 20px;
-    width: 65%;
     margin: auto;
-    background-color: #CDCDCD;
-    
+    width: 65%;  
 }
 
 #pageTitle {
@@ -74,7 +122,9 @@ body {
     margin-bottom: 40px;
 }
 
-h2 {}
+h2 {
+
+}
 
 #button1 {
     background-color: #B82233;

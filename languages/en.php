@@ -137,6 +137,12 @@
 		"PhoneNo" => "Phone: 01248 351151",
 		"Charity" => "Bangor University is a Registered Charity: No. 1141565",
 		"ContactEmail" => "Email: marketing@bangor.ac.uk",
+		"curFile" => "<p class='card-title'><b>Current File:</b> <a href='ipr/iprFile' download>iprFile</a></p>",
+		"Cookies" => "We use cookies on this website. By using this website, we'll assume you consent to ",
+		"Cookies2" => " the cookies we set",
+		"Cookies3" => "Ok, Continue",
+		"Visiting Academic Form" => "Visiting Academic Form",
+
 
 
 

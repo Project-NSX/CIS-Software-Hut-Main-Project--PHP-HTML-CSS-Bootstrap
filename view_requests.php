@@ -269,7 +269,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
 
                 <p><?php echo $lang['Are there IPR issues with the visit?'] ?> <b><?php echo $lang['NOTICE'] ?>:</b> <?php echo $lang['File must be uploaded again!'] ?> </p>
                 <?php if ($iprIssues == 1) {
-                    echo "<p class='card-title'><b>Current File:</b> <a href='ipr/$iprFile' download>$iprFile</a></p>";
+                    echo $lang['curFile'];
                 } ?>
 
                 <div class="form-check-inline">
@@ -454,7 +454,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
 
                 <p><?php echo $lang['Are there IPR issues with the visit?'] ?> <b><?php echo $lang['NOTICE'] ?>:</b> <?php echo $lang['File must be uploaded again!'] ?> </p>
                 <?php if ($iprIssues == 1) {
-                    echo "<p class='card-title'><b>Current File:</b> <a href='ipr/$iprFile' download>$iprFile</a></p>";
+                    echo $lang['curFile'];
                 }
 
                 ?>
@@ -482,7 +482,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
 
             <fieldset>
                 <div class="form-group">
-                    <label for="summary"><b>Summary of visit</b></label>
+                    <label for="summary"><b><?php echo $lang['Summary of visit'] ?></b></label>
                     <textarea class="form-control" id="summary" name="summary" rows="4" cols="40" placeholder="<?php echo $lang['Please summarise the purpose of the visit'] ?>" required><?php echo $summary ?></textarea>
                 </div>
             </fieldset>
@@ -574,16 +574,16 @@ if ($awaitingActionresult->num_rows > 0) {
                             echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
                         }
                         ?>
+                        <input type=hidden name=hiddenVRAA value=<?php echo $visitId ?>>
+                        <div class="container">
+                            <div class="row">
+                                <!-- Button to cancel visit -->
+                                <div class="col-md"></div>
+                                <div class="col-md"><input type=submit name=VRAACancel value="<?php echo $lang['Cancel Visit'] ?>" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
+                                <div class="col-md"></div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <input type=hidden name=hiddenVRAA value=<?php echo $visitId ?>>
-            <div class="container">
-                <div class="row">
-                    <!-- Button to cancel visit -->
-                    <div class="col-md"></div>
-                    <div class="col-md"><input type=submit name=VRAACancel value="<?php echo $lang['Cancel Visit'] ?>" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
-                    <div class="col-md"></div>
                 </div>
             </div>
         </form>
@@ -667,16 +667,16 @@ if ($supervisorApprovedresult->num_rows > 0) {
                             echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
                         }
                         ?>
+                        <input type=hidden name=hiddenVRABS value=<?php echo $visitId ?>>
+                        <div class="container">
+                            <div class="row">
+                                <!-- Button to cancel visit -->
+                                <div class="col-md"></div>
+                                <div class="col-md"><input type=submit name=VRABSCancel value="<?php echo $lang['Cancel Visit'] ?>" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
+                                <div class="col-md"></div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <input type=hidden name=hiddenVRABS value=<?php echo $visitId ?>>
-            <div class="container">
-                <div class="row">
-                    <!-- Button to cancel visit -->
-                    <div class="col-md"></div>
-                    <div class="col-md"><input type=submit name=VRABSCancel value="<?php echo $lang['Cancel Visit'] ?>" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
-                    <div class="col-md"></div>
                 </div>
             </div>
         </form>
@@ -758,16 +758,16 @@ if ($supervisorApprovedresult->num_rows > 0) {
                             echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
                         }
                         ?>
+                        <input type=hidden name=hiddenVRDBS value=<?php echo $visitId ?>>
+                        <div class="container">
+                            <div class="row">
+                                <!-- Button to cancel visit -->
+                                <div class="col-md"></div>
+                                <div class="col-md"><input type=submit name=VRDBSCancel value="<?php echo $lang['Cancel Visit'] ?>" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
+                                <div class="col-md"></div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <input type=hidden name=hiddenVRDBS value=<?php echo $visitId ?>>
-            <div class="container">
-                <div class="row">
-                    <!-- Button to cancel visit -->
-                    <div class="col-md"></div>
-                    <div class="col-md"><input type=submit name=VRDBSCancel value="<?php echo $lang['Cancel Visit'] ?>" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
-                    <div class="col-md"></div>
                 </div>
             </div>
         </form>
@@ -854,18 +854,19 @@ if ($supervisorApprovedresult->num_rows > 0) {
                             echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
                         }
                         ?>
+                        <input type=hidden name=hiddenVRABSHR value=<?php echo $visitId ?>>
+                            <div class="container">
+                                <div class="row">
+                                    <!-- Button to cancel visit -->
+                                    <div class="col-md"></div>
+                                    <div class="col-md"><input type=submit name=VRABSHRCancel value="<?php echo $lang['Cancel Visit'] ?>" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
+                                    <div class="col-md"></div>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>
-            <input type=hidden name=hiddenVRABSHR value=<?php echo $visitId ?>>
-            <div class="container">
-                <div class="row">
-                    <!-- Button to cancel visit -->
-                    <div class="col-md"></div>
-                    <div class="col-md"><input type=submit name=VRABSHRCancel value="<?php echo $lang['Cancel Visit'] ?>" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
-                    <div class="col-md"></div>
-                </div>
-            </div>
+            
         </form>
         <br>
     <?php

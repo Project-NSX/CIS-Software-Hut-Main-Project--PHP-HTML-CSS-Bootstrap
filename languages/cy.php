@@ -137,6 +137,11 @@
 		"PhoneNo" => "Ffôn: 01248 351151",
 		"Charity" => "Mae Prifysgol Bangor yn Elusen Gofrestredig: Rhif 1141565",
 		"ContactEmail" => "E-bost: marchnata@bangor.ac.uk",
+		"curFile" => "<p class='card-title'><b>Ffeil Presenol:</b> <a href='ipr/iprFile' download>iprFile</a></p>",
+		"Cookies" => "Rydym yn defnyddio 'cwcis' ar yr wefan yma. Drwy ddefnyddio'r gwefan, rydych yn derbyn ",
+		"Cookies2" => " y cwcis rydym yn defnyddio",
+		"Cookies3" => "Iawn",
+		"Visiting Academic Form" => "Ffurflen Ymwelwyr Academaidd",
 
 
 
