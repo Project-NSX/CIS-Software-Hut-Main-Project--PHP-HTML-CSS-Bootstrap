@@ -148,6 +148,9 @@
 		"reqInduction" => "<h2>Outstanding Visit(s)</h2>",
 		"H&S Induction" => "Health & Safety Induction",
 		"Cancel" => "Cancel",
-		"Proceed" => "Proceed"
+		"Proceed" => "Proceed",
+		"H&S Intro" => "Before your visit, you will need to be aware of the University's Health & Safety policies. You may read the policy in the link below; once you have read and understood our policy, click the 'Proceed' button below.",
+		"H&S Policy Link" => "https://www.bangor.ac.uk/hss/policies-guidance/pol-notes.php.en",
+		"H&S Link" => "Click here to read the policy.",
 	);
 ?>

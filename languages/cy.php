@@ -144,5 +144,6 @@
 		"Visiting Academic Form" => "Ffurflen Ymwelwyr Academaidd",
 		"lang_en" => "English",
 		"lang_cy" => "Cymraeg",
+		"H&S Policy Link" => "https://www.bangor.ac.uk/hss/policies-guidance/pol-notes.php.cy",
 	);
 ?>

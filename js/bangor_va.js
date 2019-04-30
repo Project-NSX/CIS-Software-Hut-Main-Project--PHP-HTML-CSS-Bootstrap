@@ -107,10 +107,3 @@ function updateDateFields() {
     else if (endField.value < startField.value)
         endField.setAttribute("value", startField.value);
 }
-
-// Activate Health & Safety modal
-$(window).load(function() {
-    $('#health-safety-dialog').modal({
-        show: false
-    });
-});
