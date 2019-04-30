@@ -144,12 +144,5 @@
 		"Visiting Academic Form" => "Ffurflen Ymwelwyr Academaidd",
 		"lang_en" => "English",
 		"lang_cy" => "Cymraeg",
-
-
-
-
-
-
-
 	);
 ?>

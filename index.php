@@ -6,11 +6,7 @@ header('Location: ./');
 }
 ?>
 
-
 <?php
-//TODO: Add tutorial link for this page, so everyone knows where you got it from.
-
-// Initialize the session
 
 $role = "";
 // Check if the user is already logged in, if yes then redirect him to welcome page
