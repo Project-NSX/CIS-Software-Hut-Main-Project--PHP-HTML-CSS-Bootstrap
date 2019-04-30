@@ -32,13 +32,6 @@ $mail->Password = 'twNqxeX4okGE';
 $mail->SMTPSecure = 'tls';
 $mail->Port = 587;
 $mail->setFrom('support@nwsd.online', 'Visitng Academic Form');
-$message = file_get_contents('includes/email_approved.html');
-$message = str_replace('%startdate%', $visitStart, $message);
-$message = str_replace('%enddate%', $visitEnd, $message);
-$message = str_replace('%HostAcademic%', $uName, $message);
-$message = str_replace('%visitorId%', $visitorId, $message);
-$mail->AddEmbeddedImage('img/bangor_logo.png', 'logo');
-$mail->MsgHTML($message);
 
 //script behind the button the College Manager uses to approve a request which updates the database and emails HR since that's the next step in the procedure
 if (isset($_POST['cmapprove'])) {
