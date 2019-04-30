@@ -36,6 +36,13 @@ $mail->Password = 'twNqxeX4okGE';
 $mail->SMTPSecure = 'tls';
 $mail->Port = 587;
 $mail->setFrom('support@nwsd.online', 'Visitng Academic Form');
+$message = file_get_contents('EmailApprove.html');
+$message = str_replace('%startdate%', $visitStart, $message);
+$message = str_replace('%enddate%', $visitEnd, $message);
+$message = str_replace('%HostAcademic%', $uName, $message);
+$message = str_replace('%visitorId%', $visitorId, $message);
+$mail->AddEmbeddedImage('img/bangor_logo.png', 'logo');
+$mail->MsgHTML($message);
 
 //Check if Approve button has been pressed
 if (isset($_POST['hosapprove'])) {
