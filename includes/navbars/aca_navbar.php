@@ -7,7 +7,7 @@
             <li class="nav-item <?php if ($page == 'home') {
                                     echo 'active';
                                 } ?>">
-                <a class="nav-link" href="view_requests.php">Home<span class="sr-only"></span></a>
+                <a class="nav-link" href="view_requests.php"><?php echo $lang['Home'] ?><span class="sr-only"></span></a>
             </li>
             <?php require 'includes/navbars/va_tools.php'; ?>
         </ul>

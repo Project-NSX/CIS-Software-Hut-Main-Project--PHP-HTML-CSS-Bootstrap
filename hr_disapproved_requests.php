@@ -5,7 +5,7 @@ require 'includes/verify_hr_role.php';
 ?>
 <!--HTML HERE-->
 
-<h2>Human Resources - Denied Requests</h2>
+<h2><?php echo $lang['Human Resources - Denied Requests'] ?></h2>
 <?php require 'includes/navbars/nav_picker.php'; ?>
 <!--This page needs to show requests that have been approved (by who? HR? both HOS and HR?)-->
 
@@ -17,7 +17,7 @@ require_once 'includes/database.php';
 $supervisorDenied = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.hrComment, v.iprIssues, v.iprFile  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '1'  ORDER BY v.visitAddedDate DESC";
 $supervisorDeniedresult = $link->query($supervisorDenied);
 if ($supervisorDeniedresult->num_rows > 0) {
-    echo "<h2>Request(s) Denied by HR</h2>";
+    echo $lang['hrDenTitle'];
 
     echo "<div id='accordion'>";
     //store column value in variables - easier to refer to
@@ -62,9 +62,9 @@ if ($supervisorDeniedresult->num_rows > 0) {
             <!-- This was achieved by passing a created php variable (made from multiple exisiting php variables) to be unique for each record -->
             <div class="card-header" id="<?php echo $headingId ?>" <button id="button1" class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
                 <div class="row">
-                    <div class='col-sm'><b>Name: </b> <?php echo $fName . " " . $lName ?></div>
-                    <div class='col-sm'><b>Home Institution: </b> <?php echo $homeInt ?></div>
-                    <div class='col-sm'><b>Department: </b> <?php echo $department ?></div>
+                    <div class='col-sm'><b><?php echo $lang['Name'] ?>: </b> <?php echo $fName . " " . $lName ?></div>
+                    <div class='col-sm'><b><?php echo $lang['Home Institution'] ?>: </b> <?php echo $homeInt ?></div>
+                    <div class='col-sm'><b><?php echo $lang['Department'] ?>: </b> <?php echo $department ?></div>
                 </div>
                 <div class="row">
                     <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
@@ -74,30 +74,30 @@ if ($supervisorDeniedresult->num_rows > 0) {
                 <div class="card-body">
 
 
-                    <h5 class='card-title'>Visit Summary</h5>
+                    <h5 class='card-title'><?php echo $lang['Visit Summary'] ?></h5>
                     <p class='card-text'><?php echo $summary ?></p>
-                    <h5 class='card-title'>Financial Implications</h5>
+                    <h5 class='card-title'><?php echo $lang['Financial Implications'] ?></h5>
                     <p class='card-text'><?php echo $financialImp ?></p>
-                    <h5 class='card-title'>Visitor Type</h5>
+                    <h5 class='card-title'><?php echo $lang['Visitor Type'] ?></h5>
                     <p class='card-text'><?php echo $visitorType ?> &#8195; <?php echo $visitorTypeEXT ?></p>
-                    <h5 class='card-title'>Visit Start & End Dates</h5>
-                    <p class='card-text'><b>Start:</b> <?php echo $startDisplay ?> &#8195; <b>End:</b> <?php echo $endDisplay ?></p>
-                    <h5 class='card-title'>Date & Time of Initial Submission</h5>
+                    <h5 class='card-title'><?php echo $lang['Visit Start & End Dates'] ?></h5>
+                    <p class='card-text'><b><?php echo $lang['Start'] ?>:</b> <?php echo $startDisplay ?> &#8195; <b><?php echo $lang['End'] ?>:</b> <?php echo $endDisplay ?></p>
+                    <h5 class='card-title'><?php echo $lang['Date & Time of Initial Submission'] ?></h5>
                     <p class='card-text'><?php echo $addedDisplay ?> </p>
-                    <h5 class='card-title'>Supervisor Username</h5>
+                    <h5 class='card-title'><?php echo $lang['Supervisor Username'] ?></h5>
                     <p class='card-text'><?php echo $supervisorUname ?> </p>
-                    <h5 class='card-title'>Date & Time of Decision</h5>
+                    <h5 class='card-title'><?php echo $lang['Date & Time of Decision'] ?></h5>
                     <p class='card-text'><?php echo $supervisorApprovedDateDisp ?> </p>
 
-                    <h5 class='card-title'>HR Practitioner Username</h5>
+                    <h5 class='card-title'><?php echo $lang['HR Practitioner Username'] ?></h5>
                     <p class='card-text'><?php echo $hrUname ?> </p>
-                    <h5 class='card-title'>Date & Time of Decision</h5>
+                    <h5 class='card-title'><?php echo $lang['Date & Time of Decision'] ?></h5>
                     <p class='card-text'><?php echo $hrApprovedDateDisp ?> </p>
-                    <h5 class='card-title'>HR Comment</h5>
+                    <h5 class='card-title'><?php echo $lang['HR Comment'] ?></h5>
                     <p class='card-text'><?php echo $hrComment ?> </p>
 
                     <?php if ($iprIssues == 1) {
-                        echo "<h5 class='card-title'>IPR Issues File:</h5>";
+                        echo $lang['IPR'];
                         echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
                     }
                     ?>

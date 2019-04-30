@@ -46,7 +46,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail->setFrom('support@nwsd.online', 'Visitng Academic Form');
     $mail->Subject = 'New visit request that requires your attention';
     $mail->Body = "A visit request has been made by the user: {$hostAcademic}. Please sign into the visiting academic form to respond to this.";
-
     $conn = getDB();
 
     //gets the users input and adds the directory to the beginning before the file name
