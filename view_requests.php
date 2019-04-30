@@ -545,11 +545,11 @@ if ($awaitingActionresult->num_rows > 0) {
             <div class="card">
                 <div class="card-header" id="<?php echo $headingId ?>" <button id="button1" class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
                     <div class="row">
-                        <div class='col-sm'><b><?php echo $lang['sign outt'] ?>Name: </b> <?php echo $fName . " " . $lName ?></div>
-                        <div class='col-sm'><b><?php echo $lang['sign outt'] ?>Home Institution: </b> <?php echo $homeInt ?></div>
-                        <div class='col-sm'><b><?php echo $lang['sign outt'] ?>Department: </b> <?php echo $department ?></div>
-                        <div class='col-sm'><b><?php echo $lang['sign outt'] ?>Email: </b> <?php echo $email ?></div>
-                        <div class='col-sm'><b><?php echo $lang['sign outt'] ?>Phone Number:</b> <?php echo $phone ?></div>
+                        <div class='col-sm'><b><?php echo $lang['Name'] ?>: </b> <?php echo $fName . " " . $lName ?></div>
+                        <div class='col-sm'><b><?php echo $lang['Home Institution'] ?>: </b> <?php echo $homeInt ?></div>
+                        <div class='col-sm'><b><?php echo $lang['Department'] ?>: </b> <?php echo $department ?></div>
+                        <div class='col-sm'><b><?php echo $lang['Email'] ?>: </b> <?php echo $email ?></div>
+                        <div class='col-sm'><b><?php echo $lang['Phone Number'] ?>:</b> <?php echo $phone ?></div>
                     </div>
                     <div class="row">
                         <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
