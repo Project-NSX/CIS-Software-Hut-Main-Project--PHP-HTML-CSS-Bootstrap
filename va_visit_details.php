@@ -1,6 +1,4 @@
-<html>
-    <head></head>
-    <body>
-        <h1>Test</h1>
-    </body>
-</html>
+<?php
+require 'includes/header.php';
+require 'includes/verify_va_role.php';
+?>
