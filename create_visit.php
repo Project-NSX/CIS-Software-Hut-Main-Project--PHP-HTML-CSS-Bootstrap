@@ -15,7 +15,7 @@ require 'vendor/PHPMailer/src/SMTP.php';
 
 ?>
 
-<h2>Create a Visit</h2>
+<h2><?php echo $lang['Create a Visit'] ?></h2>
 <?php require 'includes/navbars/nav_picker.php'; ?>
 
 <?php
@@ -138,8 +138,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <form method="post" enctype="multipart/form-data">
     <fieldset>
-        <legend>Visitor</legend>
-        <label for="Visitor">Visitor: </label>
+        <legend><?php echo $lang['Visitor'] ?></legend>
+        <label for="Visitor"><?php echo $lang['Visitor'] ?>: </label>
         <?php
         $populatingVisitorDropDown = $link->query("SELECT visitorId, fName, lName from visitingAcademic WHERE hostAcademic='{$_SESSION['username']}'");
         ?>
@@ -156,53 +156,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </select>
     </fieldset>
     <fieldset>
-        <legend>Visit Dates</legend>
+        <legend><?php echo $lang['Visit Dates'] ?></legend>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="s_date">Start Date: </label>
+                <label for="s_date"><?php echo $lang['Start Date'] ?>: </label>
                 <input id="datefield" type="date" name="s_date" onchange="updateDateFields()" class="form-control" max=e_date required>
             </div>
             <div class="form-group col-md-6">
-                <label for="e_date">End Date: </label>
+                <label for="e_date"><?php echo $lang['End Date'] ?>: </label>
                 <input id="dateend" type="date" name="e_date" class=" form-control" required>
             </div>
         </div>
     </fieldset>
 
     <fieldset>
-        <legend>Financial Implications</legend>
+        <legend><?php echo $lang['Financial Implications'] ?></legend>
         <div class="form-group">
-            <textarea class="form-control" id="financialImp" name="financialImp" rows="4" cols="40" placeholder="Please summarise the related financial implications" required></textarea>
+            <textarea class="form-control" id="financialImp" name="financialImp" rows="4" cols="40" placeholder="<?php echo $lang['Please summarise the related financial implications'] ?>" required></textarea>
         </div>
     </fieldset>
 
     <fieldset>
-        <legend>IPR Issues</legend>
-        <p>Are there IPR issues with the visit?</p>
+        <legend><?php echo $lang['IPR Issues'] ?></legend>
+        <p><?php echo $lang['Are there IPR issues with the visit?'] ?></p>
         <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="ipr_issues" id="inlineRadio1" value="yes" onchange='CheckIPR(this.value);'>
-            <label class="form-check-label" for="inlineRadio1">Yes</label>
+            <label class="form-check-label" for="inlineRadio1"><?php echo $lang['Yes'] ?></label>
         </div>
         <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="ipr_issues" id="inlineRadio1" value="no" onchange='CheckIPR(this.value);' checked>
-            <label class="form-check-label" for="inlineRadio1">No</label>
+            <label class="form-check-label" for="inlineRadio1"><?php echo $lang['No'] ?></label>
         </div>
 
         <div class="custom-file" id="ipr_issues_ext" style='display:none;'>
-            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+            <label class="custom-file-label" for="inputGroupFile01"><?php echo $lang['Choose file'] ?></label>
             <input type="file" class="custom-file-input" id="file" name="file">
         </div>
     </fieldset>
 
     <fieldset>
-        <legend>Additional Info</legend>
+        <legend><?php echo $lang['Additional Info'] ?></legend>
         <div class="form-group">
-            <label for="summary">Summary of visit</label>
-            <textarea class="form-control" id="summary" name="summary" rows="4" cols="40" placeholder="Please summarise the purpose of the visit" required></textarea>
+            <label for="summary"><?php echo $lang['Summary of visit'] ?></label>
+            <textarea class="form-control" id="summary" name="summary" rows="4" cols="40" placeholder="<?php echo $lang['Please summarise the purpose of the visit'] ?>" required></textarea>
         </div>
     </fieldset>
 
-    <button id="button1" style="margin:10px 0px" type="submit" class="btn btn-primary btn-lg btn-block">Send</button>
+    <button id="button1" style="margin:10px 0px" type="submit" class="btn btn-primary btn-lg btn-block"><?php echo $lang['Send'] ?></button>
 
     <script type="text/javascript">
         updateDateFields();

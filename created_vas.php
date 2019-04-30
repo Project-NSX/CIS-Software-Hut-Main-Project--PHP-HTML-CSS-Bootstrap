@@ -11,7 +11,7 @@ require 'includes/deny_hr_role.php' // Redirects users with the "Human Resources
     }
 </script>
 
-<h2>My Visitors</h2>
+<h2><?php echo $lang['My Visitors'] ?></h2>
 <?php require 'includes/navbars/nav_picker.php'; ?>
 
 <?php
@@ -61,14 +61,15 @@ if ($myVisitorsResult->num_rows > 0) {
         ?>
         <form action=created_vas.php method=post>
             <?php
-            echo "<h2><b>Visiting Academic $num:</b> $title $fName $lName</h2>";
+            echo $lang['visAcNo'];
+            echo "$num:</b> $title $fName $lName</h2>";
             $num++;
             ?>
 
             <fieldset>
-                <legend>Personal Details</legend>
+                <legend><?php echo $lang['Personal Details'] ?></legend>
                 <div class='row'>
-                    <div class='col-sm-2'><b>Title:</b></div>
+                    <div class='col-sm-2'><b><?php echo $lang['Title'] ?>:</b></div>
                     <!-- Dropdown for title -->
                     <div class='col-sm-2'><select name="title" id="title" class="form-control" required>'
                             style="margin:0px 0px 10px 0px" required>
@@ -122,15 +123,15 @@ if ($myVisitorsResult->num_rows > 0) {
                     $result = $link->query($sql);
                     if ($result->num_rows > 0) {
                         //If the count is returned that means that there is a visit for that user, therefore the name can't be changed
-                        echo "<div class='col-sm-2'><b>First Name:</b></div>";
+                        echo $lang['fNamecount'];
                         echo "<div class='col-sm-2'> <input type=text name=fName class='form-control' value='$fName' disabled onkeypress='return noenter()' required></div>";
-                        echo "<div class='col-sm-2'><b>Last Name:</b></div>";
+                        echo $lang['sNamecount'];
                         echo "<div class='col-sm-2'> <input type=text name=lName class='form-control' value='$lName' disabled onkeypress='return noenter()' required></div>";
                     } else {
                         //If nothing gets returned that means that there is not a visit for that user, therefore the name can be changed
-                        echo "<div class='col-sm-2'><b>First Name:</b></div>";
+                        echo $lang['fNamecount'];
                         echo "<div class='col-sm-2'> <input type=text name=fName class='form-control' value='$fName'  onkeypress='return noenter()' required></div>";
-                        echo "<div class='col-sm-2'><b>Last Name:</b></div>";
+                        echo $lang['sNamecount'];
                         echo "<div class='col-sm-2'> <input type=text name=lName class='form-control' value='$lName' onkeypress='return noenter()' required></div>";
                     }
                     ?>
@@ -138,56 +139,56 @@ if ($myVisitorsResult->num_rows > 0) {
             </fieldset>
 
             <fieldset>
-                <legend>Visitor Details</legend>
+                <legend><?php echo $lang['Visitor Details'] ?></legend>
                 <div class='row'>
-                    <div class='col-sm-2'><b>Visitor Type:</b></div>
+                    <div class='col-sm-2'><b><?php echo $lang['Visitor Type'] ?>:</b></div>
                     <div class='col-sm-5'><select name="visitorType" id="visitor" class="form-control" value="<?php echo $visitorType ?>" required>
                     <!-- If the visitorType from the database matches the option, it makes the option selected -->
                             <option value="Undergraduate" <?php if ($visitorType === 'Undergraduate') {
                                                                 echo "selected";
-                                                            } ?>>Undergraduate</option>
+                                                            } ?>><?php echo $lang['Undergraduate'] ?></option>
                             <option value="PhD Student" <?php if ($visitorType === 'PhD Student') {
                                                             echo "selected";
-                                                        } ?>>PhD Student</option>
+                                                        } ?>><?php echo $lang['PhD Student'] ?></option>
                             <option value="Visiting Academic" <?php if ($visitorType === 'Academic') {
                                                                     echo "selected";
-                                                                } ?>>Visiting Academic (position)</option>
+                                                                } ?>><?php echo $lang['Visiting Academic (Position)'] ?></option>
                             <option value="Other" <?php if ($visitorType === 'Other') {
                                                         echo "selected";
-                                                    } ?>>Other (specify)</option>
+                                                    } ?>><?php echo $lang['Other (Specify)'] ?></option>
                         </select></div>
                     <div class='col-sm-5'> <input type=text name=visitorTypeExt class="form-control" value="<?php echo $visitorTypeEXT ?>" onkeypress="return noenter()"></div>
                 </div>
             </fieldset>
 
             <fieldset>
-                <legend>Home Institution Details</legend>
+                <legend><?php echo $lang['Home Institution Details'] ?></legend>
                 <div class='row'>
-                    <div class='col-sm-3'><b>Home Institution Name:</b></div>
+                    <div class='col-sm-3'><b><?php echo $lang['Home Institution Name'] ?>:</b></div>
                     <div class='col-sm-3'> <input type=text name=homeInstitution class="form-control" value="<?php echo $homeInstitution ?>" onkeypress="return noenter()" required></div>
-                    <div class='col-sm-3'><b>Department Name:</b></div>
+                    <div class='col-sm-3'><b><?php echo $lang['Department Name'] ?>:</b></div>
                     <div class='col-sm-3'> <input type=text name=department class="form-control" value="<?php echo $department ?>" onkeypress="return noenter()" required></div>
                 </div>
                 <div class='row'>
-                    <div class='col-sm-2'><b>Street:</b></div>
+                    <div class='col-sm-2'><b><?php echo $lang['Street'] ?>:</b></div>
                     <div class='col-sm-4'> <input type=text name=street class="form-control" value="<?php echo $street ?>" onkeypress="return noenter()" required></div>
-                    <div class='col-sm-2'><b>City:</b></div>
+                    <div class='col-sm-2'><b><?php echo $lang['Town / City'] ?>:</b></div>
                     <div class='col-sm-4'> <input type=text name=city class="form-control" value="<?php echo $city ?>" onkeypress="return noenter()" required></div>
                 </div>
                 <div class='row'>
-                    <div class='col-sm-2'><b>County:</b></div>
+                    <div class='col-sm-2'><b><?php echo $lang['County'] ?>:</b></div>
                     <div class='col-sm-4'> <input type=text name=county class="form-control" value="<?php echo $county ?>" onkeypress="return noenter()" required></div>
-                    <div class='col-sm-2'><b>Postcode:</b></div>
+                    <div class='col-sm-2'><b><?php echo $lang['Postcode'] ?>:</b></div>
                     <div class='col-sm-4'> <input type=text name=postcode class="form-control" pattern="([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})" title="Please enter a valid UK postcode" value="<?php echo $postcode ?>" onkeypress="return noenter()" required></div>
                 </div>
             </fieldset>
 
             <fieldset>
-                <legend>Contact Details</legend>
+                <legend><?php echo $lang['Contact Details'] ?></legend>
                 <div class='row'>
-                    <div class='col-sm-2'><b>Email Address:</b></div>
+                    <div class='col-sm-2'><b><?php echo $lang['Email'] ?>:</b></div>
                     <div class='col-sm-4'> <input type=email name=email class="form-control" value="<?php echo $email ?>" onkeypress="return noenter()"></div>
-                    <div class='col-sm-2'><b>Phone Number:</b></div>
+                    <div class='col-sm-2'><b><?php echo $lang['Phone Number'] ?>:</b></div>
                     <div class='col-sm-4'> <input type=tel name=phoneNumber class="form-control" minlength="9" maxlength="14" value="<?php echo $phoneNumber ?>" onkeypress="return noenter()"></div>
                 </div>
             </fieldset>
@@ -201,12 +202,17 @@ if ($myVisitorsResult->num_rows > 0) {
                     $result = $link->query($sql);
                     if ($result->num_rows > 0) {
                         //If the count is returned that means that there is a visit for that user, therefore the user can't be deleted
+<<<<<<< HEAD
                         echo "<div class='col-sm'><input type=submit name=update value=Update  class='btn btn-success' style='width:100%'></div>";
                         echo "<div class='col-sm'><input type=submit name=delete value=Delete class='btn btn-danger' disabled style='width:100%'></div>";
+=======
+                        echo $lang['vasUpdate'];
+                        echo $lang['vasDelete1'];
+>>>>>>> 1f81a61c0d75169bb0f2a2b0a537ac13a4640cbe
                     } else {
                         //If nothing is returned that means that there is not a visit for that user, therefore the user can be deleted
-                        echo "<div class='col-sm'><input type=submit name=update value=Update class='btn btn-success' style='width:100%'></div>";
-                        echo "<div class='col-sm'><input type=submit name=delete value=Delete class='btn btn-danger' style='width:100%'></div>";
+                        echo $lang['vasUpdate'];
+                        echo $lang['vasDelete2'];
                     }
                     ?>
 
