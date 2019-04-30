@@ -32,29 +32,39 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 <body>
     <section id="headerSection">
-    <div id="headerTop">
-        <div id="signout" align="right"><a href="logout.php"   data-toggle="tooltip" data-placement="top" title="Click here to Sign out" class="btn btn-primary"><?php echo $lang['Sign Out'] ?></a></div>
-        <div id="welcome">
-            <p><?php echo $lang['Hello'] ?>, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>!<br />
-
-                <?php echo $lang['Role'] ?>: <b><?php echo htmlspecialchars($_SESSION["role"]); ?></b><br />
-
-                <?php if ($_SESSION["role"] === "Academic" || $_SESSION["role"] === "Head Of School") {
-
-
-                    ?>
-                    <?php echo $lang['School'] ?>: <b><?php echo $_SESSION["schoolName"]; ?></b><br />
+        <div id="headerTop">
+            <?php
+            if ($_SESSION["role"] === "Visiting Academic") {
+                ?>
+                <div id="signout" align="right"><a href="logout_va.php" class="btn btn-primary"><?php echo $lang['Sign Out'] ?></a></div>
+            <?php
+        } else {
+            ?>
+                <div id="signout" align="right"><a href="logout.php" class="btn btn-primary"><?php echo $lang['Sign Out'] ?></a></div>
                 <?php
-            }
-            if ($_SESSION["role"] === "College Manager") {
-                ?></b>
-                    <?php echo $lang['College'] ?>: <b><?php echo $_SESSION["collegeName"];
-                            } ?>
-                </b></p>
+        }
+        ?>
+            <div id="welcome">
+                <p><?php echo $lang['Hello'] ?>, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>!<br />
+
+                    <?php echo $lang['Role'] ?>: <b><?php echo htmlspecialchars($_SESSION["role"]); ?></b><br />
+
+                    <?php if ($_SESSION["role"] === "Academic" || $_SESSION["role"] === "Head Of School") {
+
+
+                        ?>
+                        <?php echo $lang['School'] ?>: <b><?php echo $_SESSION["schoolName"]; ?></b><br />
+                    <?php
+                }
+                if ($_SESSION["role"] === "College Manager") {
+                    ?></b>
+                        <?php echo $lang['College'] ?>: <b><?php echo $_SESSION["collegeName"];
+                                                        } ?>
+                    </b></p>
                 <a href="index.php?lang=en"><?php echo $lang['lang_en'] ?></a>
                 | <a href="index.php?lang=cy"><?php echo $lang['lang_cy'] ?></a>
+            </div>
         </div>
-    </div>
     </section>
     <!--Bootstrap Container. Closing tag for this is in the footer, just before the closing body tag-->
     <div class="container">
