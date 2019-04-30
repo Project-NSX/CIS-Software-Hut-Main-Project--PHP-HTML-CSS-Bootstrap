@@ -203,12 +203,17 @@ if ($myVisitorsResult->num_rows > 0) {
                     if ($result->num_rows > 0) {
                         //If the count is returned that means that there is a visit for that user, therefore the user can't be deleted
 <<<<<<< HEAD
+<<<<<<< HEAD
                         echo "<div class='col-sm'><input type=submit name=update value=Update  class='btn btn-success' style='width:100%'></div>";
                         echo "<div class='col-sm'><input type=submit name=delete value=Delete class='btn btn-danger' disabled style='width:100%'></div>";
 =======
                         echo $lang['vasUpdate'];
                         echo $lang['vasDelete1'];
 >>>>>>> 1f81a61c0d75169bb0f2a2b0a537ac13a4640cbe
+=======
+                        echo $lang['vasUpdate'];
+                        echo $lang['vasDelete1'];
+>>>>>>> ce0b0baeefca02550cd02db5187924d725596eaf
                     } else {
                         //If nothing is returned that means that there is not a visit for that user, therefore the user can be deleted
                         echo $lang['vasUpdate'];
