@@ -114,6 +114,9 @@ echo "</div>";
 $link->close();
 ?>
 
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#health-safety-dialog">
+    Open Modal
+</button>
 <div class="modal fade" id="health-safety-dialog" tabindex="-1" role="dialog" aria-labelledby="health-safety-title" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
