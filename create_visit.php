@@ -33,7 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $financialImp = htmlspecialchars($_POST['financialImp']);
     $inlineRadio1 = htmlspecialchars($_POST['ipr_issues']);
     $suppervisorVal = 3;
-    $logo ='';
     //initialise phpMailer to send emails
     $mail = new PHPMailer(true);
     $mail->isSMTP();
