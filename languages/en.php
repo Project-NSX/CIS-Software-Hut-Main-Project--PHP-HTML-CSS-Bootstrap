@@ -101,9 +101,6 @@
 		"Prompt User to Resubmit" => "Prompt User to Resubmit",
 		"Deny" => "Deny",
 		"Reason to resubmit" => "Reason to resubmit",
-<<<<<<< HEAD
-
-=======
 		"Supervisor Username" => "Supervisor Username",
 		"HR Practitioner Username" => "HR Practitioner Username",
 		"Date & Time of Decision" => "Date & Time of Decision",
@@ -147,7 +144,6 @@
 		"Visiting Academic Form" => "Visiting Academic Form",
 		"lang_en" => "English",
 		"lang_cy" => "Cymraeg",
->>>>>>> ce0b0baeefca02550cd02db5187924d725596eaf
 
 
 

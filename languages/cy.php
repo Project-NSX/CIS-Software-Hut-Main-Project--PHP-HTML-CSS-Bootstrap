@@ -101,8 +101,6 @@
 		"Prompt User to Resubmit" => "Gofyn i'r Defnyddiwr Ail-giesio",
 		"Deny" => "Gwrthod",
 		"Reason to resubmit" => "Rheswm dros Ail-giesio",
-<<<<<<< HEAD
-=======
 		"Supervisor Username" => "Enw Defnyddiwr y Goruchwyliwr",
 		"HR Practitioner Username" => "Enw Defnyddiwr Adnoddau Dynol",
 		"Date & Time of Decision" => "Dyddiad ac Amser y Penderfyniad",
@@ -147,7 +145,6 @@
 		"lang_en" => "English",
 		"lang_cy" => "Cymraeg",
 
->>>>>>> ce0b0baeefca02550cd02db5187924d725596eaf
 
 
 
