@@ -137,14 +137,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 <?php
-if (! isset($_COOKIE['accept-cookies'])) {
+if (!isset($_COOKIE['accept-cookies'])) {
 ?>
-<div class="cookie-banner">
-    <div class="container1"
-    <p><?php echo $lang['Cookies'] ?><a href="/cookies"> <?php echo $lang['Cookies2'] ?></a> </p>
-    <a href="?accept-cookies" class="button"><?php echo $lang['Cookies3'] ?></a>
+    <div class="cookie-banner">
+        <div class="container1">
+            <p><?php echo $lang['Cookies'] ?><a href="/cookies"> <?php echo $lang['Cookies2'] ?></a> </p>
+            <a href="?accept-cookies" class="button"><?php echo $lang['Cookies3'] ?></a>
+        </div>
     </div>
-</div>
 <?php
 }
 ?>
