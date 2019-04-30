@@ -490,11 +490,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                 <div class="row">
                     <div class="col-md"></div>
                     <!-- Button Resubmit request(s) Prompted for Resubmission by Supervisor-->
-<<<<<<< HEAD
-                    <div class="col-md"><input type=submit name=RPFRBSSend value='Resubmit Visit Request'  data-toggle="tooltip" data-placement="top" title="Click to Resquest here please"  class='btn btn-secondary' style='width:100%; margin-bottom:5px'></div>
-=======
                     <div class="col-md"><input type=submit name=RPFRBSSend value="<?php echo $lang['Resubmit Visit Request'] ?>" class='btn btn-secondary' style='width:100%; margin-bottom:5px'></div>
->>>>>>> ce0b0baeefca02550cd02db5187924d725596eaf
                     <div class="col-md"></div>
                 </div>
             </div>

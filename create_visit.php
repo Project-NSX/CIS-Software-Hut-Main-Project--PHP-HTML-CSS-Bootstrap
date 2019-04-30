@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $financialImp = htmlspecialchars($_POST['financialImp']);
     $inlineRadio1 = htmlspecialchars($_POST['ipr_issues']);
     $suppervisorVal = 3;
-
+    $logo ='';
     //initialise phpMailer to send emails
     $mail = new PHPMailer(true);
     $mail->isSMTP();
@@ -47,10 +47,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail->Subject = "Visit At start date :{$s_date} End date : {$e_date}";
     $mail->Body = "A visit request has been made by the user: {$hostAcademic}. Please sign into the visiting academic form to respond to this.";
     $message = file_get_contents('Email.html');
+    $message = str_replace('%startdate%', $s_date, $message);
+    $message = str_replace('%enddate%', $e_date, $message);
+
+    $mail->AddEmbeddedImage('img/bangor_logo.png', 'logo');
     $mail->MsgHTML($message);
-    $message = str_replace('%STARTDATE%', $s_date, $message);
-    $message = str_replace('%ENDDATE%', $e_date, $message);
-    $mail->addAttachment("img/bangor_logo.png");
+
     $conn = getDB();
 
     //gets the users input and adds the directory to the beginning before the file name
