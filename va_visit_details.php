@@ -126,7 +126,6 @@ $link->close();
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-        </div>
         <div class="modal-body">
             <p><?php echo $lang["H&S Intro"] ?></p>
             <a href="<?php echo $lang["H&S Policy Link"] ?>"><?php echo $lang["H&S Link"] ?></a>
@@ -136,5 +135,7 @@ $link->close();
             <button type="button" class="btn btn-primary"><?php echo $lang["Proceed"] ?></button>
         </div>
     </div>
+    </div>
+
 </div>
 <?php require 'includes/footer.php'; ?>
