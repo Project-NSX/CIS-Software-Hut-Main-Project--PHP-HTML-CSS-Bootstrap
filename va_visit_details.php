@@ -95,11 +95,13 @@ echo $lang['reqComp'];
                     <p class='card-text'><?php echo $hrUname ?> </p>
                     <h5 class='card-title'><?php echo $lang['Date & Time of Decision'] ?></h5>
                     <p class='card-text'><?php echo $hrApprovedDateDisp ?> </p>
-<!-- if there is an IPR issue (field value = 1)display file, otherwise don't -->
-                    <?php if ($iprIssues == 1) {
-                        echo $lang['IPR'];
-                        echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
-                    }
+
+                    <!-- if there is an IPR issue (field value = 1) - display the IPR deed file -->
+                    <?php
+                        if ($iprIssues == 1) {
+                            echo $lang['IPR'];
+                            echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
+                        }
                     ?>
                 </div>
             </div>
