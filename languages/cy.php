@@ -28,7 +28,7 @@
 		"CMTitle" => "<h2>Rheolwr Coleg - Ceisiadau Llwyddianus</h2>",
 		"College Manager - Denied Requests" => "Rheolwr Coleg - Ceisiadau Aflwyddianus",
 		"<h2>College Manager - Outright Denied Requests</h2>" => "<h2>Rheolwr Coleg - Ceisiadau a wrthodwyd yn llwyr</h2>",
-		"College Manager - Requests Pending Approval" => "Rheolwr Coleg - Ceisiadau'n Disgwyl Cymeradwyaeth",
+		"College Manager - Requests Pending Approval" => "<h2>Rheolwr Coleg - Ceisiadau'n Disgwyl Cymeradwyaeth</h2>",
 		"resubmitText" => "** Mae'n rhaid llenwi hwn os oes angen ail yrru'r cais",
 		"Home" => "Cartref",
 		"View Requests Pending Approval" => "Ceisiadau Angen Cymeradwyaeth",
@@ -152,6 +152,11 @@
 		"To Re-submit Only" => "Gofynwch i'r defnyddiwr ail yrru'r cais yma",
 		"To Deny Requests Only" => "Os nad ydych yn hapus gyda'r cais, mae modd gwahardd yr ymweliad",
 		"moreInfoNeeded" => "Esboniwch i'r defnyddiwr pam fod angen iddynt ail yrru'r cais yma",
+		"ttUsername" => "Rhowch eich enw defnyddiwr yn y blwch yma",
+		"ttPassword" => "Rhowch eich cyfrinair yn y blwch yma",
+		"ttShow" => "Cliciwch yma oes ydych eisiau gweld eich cyfrinair wrth i chi deipio",
+		"ttLogin" => "Pwyswch i fewngofnodi i'ch cyfrif",
+		"College Manager - Denied Requests2" => "<h2>Rheolwr Coleg - Ceisiadau Wedi'u Gwrthod</h2>",
 
 	);
 ?>

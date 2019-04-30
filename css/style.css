@@ -38,6 +38,14 @@ form{
     border-bottom: 5px solid #ddd;
 }
 
+.form-check-inline{
+    padding-bottom: 10px;
+}
+
+.custom-file{
+    margin-bottom: 10px;
+}
+
 h2{
     padding-bottom: 10px;
 }
@@ -100,7 +108,9 @@ body {
 
 #headerSection{
     background-color: #CDCDCD;
-    margin-bottom: 50px; 
+    margin-bottom: 50px;
+    border-bottom: solid;
+    border-color: #B82233; 
 }
 
 #headerTop {

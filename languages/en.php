@@ -28,7 +28,7 @@
 		"CMTitle" => "<h2>College Manager - Approved Requests</h2>",
 		"College Manager - Denied Requests" => "College Manager - Denied Requests",
 		"<h2>College Manager - Outright Denied Requests</h2>" => "<h2>College Manager - Outright Denied Requests</h2>",
-		"College Manager - Requests Pending Approval" => "College Manager - Requests Pending Approval",
+		"College Manager - Requests Pending Approval" => "<h2>College Manager - Requests Pending Approval</h2>",
 		"resubmitText" => "** Required if the visit is prompted for resubmission",
 		"Home" => "Home",
 		"View Requests Pending Approval" => "View Requests Pending Approval",
@@ -152,6 +152,12 @@
 		"To Re-submit Only" => "Ask the user to resubmit this request",
 		"To Deny Requests Only" => "If you're unhappy with this request, you can select to deny the visit",
 		"moreInfoNeeded" => "Explain to the user why they need to resubmit their request",
+		"ttUsername" => "Enter your username here",
+		"ttPassword" => "Enter your password here",
+		"ttShow" => "Select if you want too see your password",
+		"ttLogin" => "Press to login to your account",
+		"College Manager - Denied Requests2" => "<h2>College Manager - Denied Requests</h2>",
+
 
 
 
