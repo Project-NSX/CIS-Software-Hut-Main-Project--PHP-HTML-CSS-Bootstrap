@@ -128,7 +128,7 @@ $link->close();
             </div>
         <div class="modal-body">
             <p><?php echo $lang["H&S Intro"] ?></p>
-            <a href="<?php echo $lang["H&S Policy Link"] ?>"><?php echo $lang["H&S Link"] ?></a>
+            <a href="<?php echo $lang["H&S Policy Link"] ?>" target="_blank"><?php echo $lang["H&S Link"] ?></a>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo $lang["Cancel"] ?></button>
