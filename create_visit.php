@@ -48,7 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message = file_get_contents('Email.html');
     $message = str_replace('%startdate%', $s_date, $message);
     $message = str_replace('%enddate%', $e_date, $message);
-
+    $message = str_replace('%summary%', $summary, $message);
+    $message = str_replace('%HostAcademic%', $hostAcademic, $message);
     $mail->AddEmbeddedImage('img/bangor_logo.png', 'logo');
     $mail->MsgHTML($message);
 
