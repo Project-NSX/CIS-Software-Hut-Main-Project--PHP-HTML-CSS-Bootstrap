@@ -32,7 +32,7 @@ $mail->Password = 'twNqxeX4okGE';
 $mail->SMTPSecure = 'tls';
 $mail->Port = 587;
 $mail->setFrom('support@nwsd.online', 'Visitng Academic Form');
-$message = file_get_contents('EmailApprove.html');
+$message = file_get_contents('includes/email_approved.html');
 $message = str_replace('%startdate%', $visitStart, $message);
 $message = str_replace('%enddate%', $visitEnd, $message);
 $message = str_replace('%HostAcademic%', $uName, $message);
