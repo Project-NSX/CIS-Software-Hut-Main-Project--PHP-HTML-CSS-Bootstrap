@@ -1,7 +1,8 @@
 <!-- Variable used to highlight the appropriate button on the navbar -->
 <?php $page = 'VC';
 require 'includes/header.php';
-require 'includes/deny_hr_role.php' // Redirects users with the "Human Resources" role to prevent access to this page
+require 'includes/deny_hr_role.php'; // Redirects users with the "Human Resources" role to prevent access to this page
+require 'includes/deny_va_role.php'; // Redirect visiting academics to prevent access to the page.
 ?>
 <!--HTML HERE-->
 
@@ -18,7 +19,7 @@ $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.hom
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
     //if 1 or more results are returned, execute the following code to display the information
-echo $lang['reqComp'];
+    echo $lang['reqComp'];
 
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
@@ -92,7 +93,7 @@ echo $lang['reqComp'];
                     <p class='card-text'><?php echo $hrUname ?> </p>
                     <h5 class='card-title'><?php echo $lang['Date & Time of Decision'] ?></h5>
                     <p class='card-text'><?php echo $hrApprovedDateDisp ?> </p>
-<!-- if there is an IPR issue (field value = 1)display file, otherwise don't -->
+                    <!-- if there is an IPR issue (field value = 1)display file, otherwise don't -->
                     <?php if ($iprIssues == 1) {
                         echo $lang['IPR'];
                         echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
@@ -115,7 +116,7 @@ $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
     //if 1 or more results are returned, execute the following code to display the information
 
-echo $lang['reqCan'];
+    echo $lang['reqCan'];
 
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
@@ -169,41 +170,42 @@ echo $lang['reqCan'];
                         <div class='col-md-1 offset-md-11' style="text-align: right;"><?php echo $lang['seeMore'] ?> &#x25BC</div>
                     </div>
                 </div>
-                <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
-                    <div class="card-body">
+            </div>
+            <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
+                <div class="card-body">
 
-                        <h5 class='card-title'><?php echo $lang['Email'] ?></h5>
-                        <p class='card-text'><?php echo $email ?></p>
-                        <h5 class='card-title'><?php echo $lang['Phone Number'] ?></h5>
-                        <p class='card-text'><?php echo $phone ?></p>
-                        <h5 class='card-title'><?php echo $lang['Visit Summary'] ?></h5>
-                        <p class='card-text'><?php echo $summary ?></p>
-                        <h5 class='card-title'><?php echo $lang['Financial Implications'] ?></h5>
-                        <p class='card-text'><?php echo $financialImp ?></p>
-                        <h5 class='card-title'><?php echo $lang['Visitor Type'] ?></h5>
-                        <p class='card-text'><?php echo $visitorType ?> &#8195; <?php echo $visitorTypeEXT ?></p>
-                        <h5 class='card-title'><?php echo $lang['Visit Start & End Dates'] ?></h5>
-                        <p class='card-text'><b><?php echo $lang['Start'] ?>:</b> <?php echo $startDisplay ?> &#8195; <b><?php echo $lang['End'] ?>:</b> <?php echo $endDisplay ?></p>
-                        <h5 class='card-title'><?php echo $lang['Date & Time of Initial Submission'] ?></h5>
-                        <p class='card-text'><?php echo $addedDisplay ?> </p>
-                        <h5 class='card-title'><?php echo $lang['Supervisor Username'] ?></h5>
-                        <p class='card-text'><?php echo $supervisorUname ?> </p>
-                        <h5 class='card-title'><?php echo $lang['Date & Time of Decision'] ?></h5>
-                        <p class='card-text'><?php echo $supervisorApprovedDateDisp ?> </p>
-                        <h5 class='card-title'><?php echo $lang['HR Practitioner Username'] ?></h5>
-                        <p class='card-text'><?php echo $hrUname ?> </p>
-                        <h5 class='card-title'><?php echo $lang['Date & Time of Decision'] ?></h5>
-                        <p class='card-text'><?php echo $hrApprovedDateDisp ?> </p>
-                        <h5 class='card-title'><?php echo $lang['HR Comment'] ?></h5>
-                        <p class='card-text'><?php echo $hrComment ?> </p>
-                        <?php if ($iprIssues == 1) {
-                            echo "<h5 class='card-title'>IPR Issues File:</h5>";
-                            echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
-                        }
-                        ?>
-                    </div>
+                    <h5 class='card-title'><?php echo $lang['Email'] ?></h5>
+                    <p class='card-text'><?php echo $email ?></p>
+                    <h5 class='card-title'><?php echo $lang['Phone Number'] ?></h5>
+                    <p class='card-text'><?php echo $phone ?></p>
+                    <h5 class='card-title'><?php echo $lang['Visit Summary'] ?></h5>
+                    <p class='card-text'><?php echo $summary ?></p>
+                    <h5 class='card-title'><?php echo $lang['Financial Implications'] ?></h5>
+                    <p class='card-text'><?php echo $financialImp ?></p>
+                    <h5 class='card-title'><?php echo $lang['Visitor Type'] ?></h5>
+                    <p class='card-text'><?php echo $visitorType ?> &#8195; <?php echo $visitorTypeEXT ?></p>
+                    <h5 class='card-title'><?php echo $lang['Visit Start & End Dates'] ?></h5>
+                    <p class='card-text'><b><?php echo $lang['Start'] ?>:</b> <?php echo $startDisplay ?> &#8195; <b><?php echo $lang['End'] ?>:</b> <?php echo $endDisplay ?></p>
+                    <h5 class='card-title'><?php echo $lang['Date & Time of Initial Submission'] ?></h5>
+                    <p class='card-text'><?php echo $addedDisplay ?> </p>
+                    <h5 class='card-title'><?php echo $lang['Supervisor Username'] ?></h5>
+                    <p class='card-text'><?php echo $supervisorUname ?> </p>
+                    <h5 class='card-title'><?php echo $lang['Date & Time of Decision'] ?></h5>
+                    <p class='card-text'><?php echo $supervisorApprovedDateDisp ?> </p>
+                    <h5 class='card-title'><?php echo $lang['HR Practitioner Username'] ?></h5>
+                    <p class='card-text'><?php echo $hrUname ?> </p>
+                    <h5 class='card-title'><?php echo $lang['Date & Time of Decision'] ?></h5>
+                    <p class='card-text'><?php echo $hrApprovedDateDisp ?> </p>
+                    <h5 class='card-title'><?php echo $lang['HR Comment'] ?></h5>
+                    <p class='card-text'><?php echo $hrComment ?> </p>
+                    <?php if ($iprIssues == 1) {
+                        echo "<h5 class='card-title'>IPR Issues File:</h5>";
+                        echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
+                    }
+                    ?>
                 </div>
             </div>
+        </div>
 
 
         <br>

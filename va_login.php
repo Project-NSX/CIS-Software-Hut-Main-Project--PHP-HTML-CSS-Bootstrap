@@ -9,7 +9,7 @@ if (isset($_GET['accept-cookies'])) {
 <?php
 
 $role = "";
-// Check if the user is already logged in, if yes then redirect him to welcome page
+// Check if the user is already logged in, if yes then redirect them to the welcome page
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     // Redirect user to welcome page
     require 'includes/user_redirect.php';
@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate credentials
     if (empty($username_err) && empty($password_err)) {
         // Prepare a select statement
-        $sql = "SELECT role, school_id, college_id, username, password FROM user WHERE username = ?";
+        $sql = "SELECT username, password FROM vaLogin WHERE username = ?";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
             // Bind variables to the prepared statement as parameters
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Check if username exists, if yes then verify password
                 if (mysqli_stmt_num_rows($stmt) == 1) {
                     // Bind result variables
-                    mysqli_stmt_bind_result($stmt, $role, $school_id, $college_id, $username, $password_db);
+                    mysqli_stmt_bind_result($stmt, $username, $password_db);
                     if (mysqli_stmt_fetch($stmt)) {
                         if ($password_entered == $password_db) {
                             session_regenerate_id(true);
@@ -65,27 +65,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
-                            $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;
-                            $_SESSION["role"] = $role;
-                            $_SESSION["school_id"] = $school_id;
-                            $_SESSION["college_id"] = $college_id;
+                            $_SESSION["role"] = "Visiting Academic";
 
-                            if ($_SESSION['role'] == "Academic" || $_SESSION['role'] ==  "Head Of School" || $_SESSION['role'] == "College Manager") {
-
-                                $sql = "SELECT name FROM college WHERE collegeId = $college_id";
-                                $result = $link->query($sql);
-                                while ($row = $result->fetch_assoc()) {
-                                    $_SESSION["collegeName"] = $row["name"];
-                                }
-                            }
-                            if ($_SESSION['role'] == "Academic" || $_SESSION['role'] ==  "Head Of School") {
-                                $sql = "SELECT name FROM school WHERE schoolId = $school_id";
-                                $result = $link->query($sql);
-                                while ($row = $result->fetch_assoc()) {
-                                    $_SESSION["schoolName"] = $row["name"];
-                                }
-                            }
                             require 'includes/user_redirect.php';
                         } else {
                             // Display an error message if password is not valid
@@ -114,8 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!--HTML HERE-->
 
 <div class="container">
-    <h2><?php echo $lang['Staff Login Page'] ?></h2>
-    <p>Visiting academics should login <a href="va_login.php">here.</a></p>
+    <h2><?php echo $lang['VA Login Page'] ?></h2>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
             <label><?php echo $lang['Username'] ?></label>
