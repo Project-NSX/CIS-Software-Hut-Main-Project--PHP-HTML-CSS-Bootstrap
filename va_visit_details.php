@@ -102,6 +102,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                         echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
                     }
                     ?>
+                    <button type="button" on-click="updateHealthSafetyModal(<?php echo $visitId ?>)" class="btn btn-primary" data-toggle="modal" data-target="#health-safety-dialog">Complete Induction</button>
                 </div>
             </div>
         </div>
@@ -114,9 +115,6 @@ echo "</div>";
 $link->close();
 ?>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#health-safety-dialog">
-    Open Modal
-</button>
 <div class="modal fade" id="health-safety-dialog" tabindex="-1" role="dialog" aria-labelledby="health-safety-title" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -126,15 +124,16 @@ $link->close();
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-        <div class="modal-body">
-            <p><?php echo $lang["H&S Intro"] ?></p>
-            <a href="<?php echo $lang["H&S Policy Link"] ?>"><?php echo $lang["H&S Link"] ?></a>
+            <div class="modal-body">
+                <p><?php echo $lang["H&S Intro"] ?></p>
+                <a href="<?php echo $lang["H&S Policy Link"] ?>"><?php echo $lang["H&S Link"] ?></a>
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" name="hidden" id="health-safety-visit" value=<?php echo $visitId ?>>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo $lang["Cancel"] ?></button>
+                <button type="button" class="btn btn-primary"><?php echo $lang["Proceed"] ?></button>
+            </div>
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo $lang["Cancel"] ?></button>
-            <button type="button" class="btn btn-primary"><?php echo $lang["Proceed"] ?></button>
-        </div>
-    </div>
     </div>
 
 </div>

@@ -6,6 +6,7 @@
     });
 </script>
 </body>
+<link rel="stylesheet" type="text/css" href="css/style.css">
 <footer>
     <section class="footerContent">
         <div id="footerLeft">
