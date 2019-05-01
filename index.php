@@ -1,4 +1,6 @@
 <?php
+// This login page was taken from the following URL and heavily modified
+// https://www.tutorialrepublic.com/php-tutorial/php-mysql-login-system.php
 include "config.php";
 if (isset($_GET['accept-cookies'])) {
     setcookie('accept-cookies', 'true', time() + 31556925);  //To store cookies pop up
