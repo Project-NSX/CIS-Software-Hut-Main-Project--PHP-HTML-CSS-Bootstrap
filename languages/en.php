@@ -167,6 +167,7 @@
 		"College Manager - Denied Requests2" => "<h2>College Manager - Denied Requests</h2>",
 		"Visiting academics should login " => "Visiting academics should login ",
 		"here." => "here.",
+		"View Policy" => "Health & Safety Induction",
 
 
 
