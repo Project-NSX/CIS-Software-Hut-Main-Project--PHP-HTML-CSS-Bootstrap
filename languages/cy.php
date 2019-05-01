@@ -167,6 +167,7 @@
 		"Visiting academics should login " => "Dylir ymwelwyr academaidd fewngofnodi drwy'r dudalen ",
 		"here." => "yma.",
 		"View Policy" => "Anwythiad Iechyd a Diogelwch",
+		"Uni" => "Prifysgol Bangor",
 
 	);
 ?>

@@ -168,6 +168,7 @@
 		"Visiting academics should login " => "Visiting academics should login ",
 		"here." => "here.",
 		"View Policy" => "Health & Safety Induction",
+		"Uni" => "Bangor University",
 
 
 

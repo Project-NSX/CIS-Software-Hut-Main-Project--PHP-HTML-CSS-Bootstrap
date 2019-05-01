@@ -12,7 +12,7 @@
         <div id="footerLeft">
         </div>
         <div id="footerRight">
-            <p>© 2019 Prifysgol Bangor University</p>
+            <p>© 2019 <?php echo $lang['Uni'] ?></p>
             <p>Bangor, Gwynedd, LL57 2DG</p>
             <p><?php echo $lang['PhoneNo'] ?></p>
             <p><?php echo $lang['ContactEmail'] ?></p>
