@@ -1,4 +1,4 @@
-html{
+html {
     background-color: white;
 }
 
@@ -14,66 +14,63 @@ footer {
     border-color: #B82233;
 }
 
-.row  {
-  border-bottom: 1px solid #ddd;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  text-align: left;
-}
-
-.col-sm{
+.row {
+    border-bottom: 1px solid #ddd;
+    padding-top: 10px;
+    padding-bottom: 10px;
     text-align: left;
 }
 
-legend{
+.col-sm {
+    text-align: left;
+}
+
+legend {
     padding-top: 10px;
     text-decoration: underline #B82233;
 }
 
-form{
+form {
     border-bottom: 5px solid #ddd;
 }
 
-h2{
+h2 {
     padding-bottom: 10px;
 }
 
-.navbar-nav{
+.navbar-nav {
     text-align: center;
-    
 }
 
-li{
+li {
     border-bottom: 1px solid #B82233;
-
 }
 
-.btn{
+.btn {
     background-color: #B82233;
     border-style: solid;
     border-color: #B82233;
 }
 
-li.active{
+li.active {
     border-bottom: 5px solid #B82233;
     background-color: #ddd;
 }
 
-#footerLeft{
+#footerLeft {
     color: white;
     text-align: left;
 }
 
-#footerRight{
+#footerRight {
     color: white;
     text-align: right;
 }
 
-.footerContent{
+.footerContent {
     width: 65%;
     text-align: center;
     margin: auto;
-
 }
 
 #top {
@@ -84,28 +81,24 @@ li.active{
     background-color: red;
 }
 
-body {
+body {}
 
-}
-
-#welcome {
-
-}
+#welcome {}
 
 #signout {
     float: right;
 }
 
-#headerSection{
+#headerSection {
     background-color: #CDCDCD;
-    margin-bottom: 50px; 
+    margin-bottom: 50px;
 }
 
 #headerTop {
     padding-top: 20px;
     padding-bottom: 20px;
     margin: auto;
-    width: 65%;  
+    width: 65%;
 }
 
 #pageTitle {
@@ -122,9 +115,7 @@ body {
     margin-bottom: 40px;
 }
 
-h2 {
-
-}
+h2 {}
 
 #button1 {
     background-color: #B82233;
@@ -196,4 +187,8 @@ strong {
     display: inline;
     color: rgb(255, 255, 250);
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.35);
+}
+
+#accordion>form {
+    border: none;
 }
