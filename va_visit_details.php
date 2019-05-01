@@ -15,6 +15,12 @@ $result = $link->query($sql);
 while ($row = $result->fetch_assoc()) {
     $visit = $row['visitorId'];
 }
+
+if (isset($_POST['acceptInduction'])) {
+        $accept = "UPDATE visit SET induction = 1, WHERE visitId = '$_POST[hidden]'";
+        mysqli_query($link, $accept);
+    };
+
 //SQL statement to retrieve columns from database table
 $supervisorApproved = "SELECT v.visitId, v.visitorId, va.fName, va.lName, va.homeInstitution, va.department, va.email, va.phoneNumber, v.summary, v.visitAddedDate, v.status,  v.financialImplications, va.visitorType, va.visitorTypeExt,  v.startDate, v.endDate, v.supervisorApproved, v.supervisorUsername, v.supervisorApprovedDate, v.hrApproved, v.hrUsername, v.hrApprovedDate, v.induction, v.iprIssues, v.iprFile  FROM visit v, visitingAcademic va WHERE v.visitorId = va.visitorId AND v.visitorId LIKE '" . $visit . "%' AND v.supervisorApproved LIKE '3' AND v.hrApproved LIKE '3' AND v.induction LIKE '0' ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
@@ -58,6 +64,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         $iprIssues = $row['iprIssues'];
         $iprFile = $row['iprFile'];
         ?>
+<form action=va_visit_details.php method=post>
 
         <!-- Using a card as an accordion -->
         <div class="card">
@@ -102,6 +109,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                         echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
                     }
                     ?>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#health-safety-dialog"> Open Modal </button>
                 </div>
             </div>
         </div>
@@ -114,9 +122,7 @@ echo "</div>";
 $link->close();
 ?>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#health-safety-dialog">
-    Open Modal
-</button>
+
 <div class="modal fade" id="health-safety-dialog" tabindex="-1" role="dialog" aria-labelledby="health-safety-title" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -131,11 +137,12 @@ $link->close();
             <a href="<?php echo $lang["H&S Policy Link"] ?>" target="_blank"><?php echo $lang["H&S Link"] ?></a>
         </div>
         <div class="modal-footer">
+        <input type=hidden name=hidden value=<?php echo $visitId ?>>
             <button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo $lang["Cancel"] ?></button>
-            <button type="button" class="btn btn-primary"><?php echo $lang["Proceed"] ?></button>
+            <input type=submit name=acceptInduction class="btn btn-primary" value="<?php echo $lang["Proceed"] ?>"></button>
         </div>
     </div>
     </div>
-
+</form>
 </div>
 <?php require 'includes/footer.php'; ?>
