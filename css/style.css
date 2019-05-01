@@ -15,7 +15,6 @@ footer {
 }
 
 .row {
-    border-bottom: 1px solid #ddd;
     padding-top: 10px;
     padding-bottom: 10px;
     text-align: left;
@@ -32,6 +31,14 @@ footer {
 legend {
     padding-top: 9px;
     text-decoration: underline #B82233;
+}
+
+fieldset{
+    border-bottom: 1px solid #ddd;
+}
+
+label{
+    padding-top: 10px;
 }
 
 form {
