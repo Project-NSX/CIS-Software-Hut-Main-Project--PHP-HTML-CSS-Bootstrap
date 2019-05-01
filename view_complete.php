@@ -158,7 +158,8 @@ if ($supervisorApprovedresult->num_rows > 0) {
         ?>
 
            <!-- Using a card as an accordion -->
-           <div class="card">
+           
+           
                 <div class="card-header" id="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
                     <div class="row">
                         <div class='col-sm'><b><?php echo $lang['Name'] ?>: </b> <?php echo htmlspecialchars($fName) . " " . htmlspecialchars($lName) ?></div>
@@ -199,7 +200,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                     <h5 class='card-title'><?php echo $lang['HR Comment'] ?></h5>
                     <p class='card-text'><?php echo $hrComment ?> </p>
                     <?php if ($iprIssues == 1) {
-                        echo "<h5 class='card-title'>IPR Issues File:</h5>";
+                        echo $lang['IPR'];
                         echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
                     }
                     ?>
