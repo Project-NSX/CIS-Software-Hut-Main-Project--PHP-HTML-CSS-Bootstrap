@@ -103,7 +103,7 @@ if (isset($_POST['cmrevise'])) {
 $supervisorApproved = "SELECT v.visitId, v.visitorId, v.summary, v.financialImplications, v.startDate, v.endDate, v.visitAddedDate, va.fName, va.lName, va.homeInstitution, va.department, va.visitorType, va.visitorTypeExt, v.iprIssues, v.iprFile FROM visit v, user u, school s, visitingAcademic va WHERE v.hostAcademic = u.username AND u.school_id = s.schoolId AND va.visitorId = v.visitorId AND u.college_id = '{$_SESSION['college_id']}' AND u.role = 'Head Of School' AND v.supervisorApproved LIKE '0' ORDER BY v.visitAddedDate DESC";
 $supervisorApprovedresult = $link->query($supervisorApproved);
 if ($supervisorApprovedresult->num_rows > 0) {
-    echo "<h2>College Manager - Requests Pending Approval</h2>";
+    echo $lang['College Manager - Requests Pending Approval'];
 
     echo "<div id='accordion'>";
     while ($row = $supervisorApprovedresult->fetch_assoc()) {
@@ -140,7 +140,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                     <div class='col-sm'><b><?php echo $lang['Department'] ?>: </b> <?php echo htmlspecialchars($department) ?></div>
                 </div>
                 <div class="row">
-                    <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
+                    <div class='col-md-1 offset-md-11' style="text-align: right;"><?php echo $lang['seeMore'] ?> &#x25BC</div>
                 </div>
             </div>
             <form action=cm_requests_pending_approval.php method=post>
@@ -156,8 +156,6 @@ if ($supervisorApprovedresult->num_rows > 0) {
                         <p class='card-text'><b><?php echo $lang['Start'] ?>:</b> <?php echo $startDisplay ?> &#8195; <b><?php echo $lang['End'] ?>:</b> <?php echo $endDisplay ?></p>
                         <h5 class='card-title'><?php echo $lang['Date & Time of Initial Submission'] ?></h5>
                         <p class='card-text'><?php echo $addedDisplay ?> </p>
-                        <h5 class='card-title'><?php echo $lang['Date & Time of Approval'] ?></h5>
-                        <p class='card-text'><?php echo $suppervisorApproveDisplay ?> </p>
                         <?php if ($iprIssues == 1) {
                             echo $lang['IPR'];
                             echo "<p class='card-text'><a href='ipr/$iprFile' download>htmlspecialchars($iprFile)</a>";
@@ -167,18 +165,18 @@ if ($supervisorApprovedresult->num_rows > 0) {
                         <div class="container">
                             <div class="row">
                                 <!-- three buttons for the College Manager to use to decide on a request -->
-                                <div class="col-md-4"><input type=submit name=cmapprove value=Approve     data-toggle="tooltip" data-placement="top" title="To Approve Requests Only"     class='btn btn-success' style='width:100%; margin-bottom:5px'></div>
-                                <div class="col-md-4"><input type=submit name=cmrevise value='Prompt User to Resubmit' data-toggle="tooltip" data-placement="top" title="To Resubmit Requests Only" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
-                                <div class="col-md-4"><input type=submit name=cmdeny value=Deny data-toggle="tooltip" data-placement="top" title="To Approve Deny Only" class='btn btn-danger' style='width:100%; margin-bottom:5px'></div>
+                                <div class="col-md-4"><input type=submit name=cmapprove value=<?php echo $lang['Approve'] ?>     data-toggle="tooltip" data-placement="top" title="<?php echo $lang['To Approve Requests Only'] ?>"     class='btn btn-success' style='width:100%; margin-bottom:5px'></div>
+                                <div class="col-md-4"><input type=submit name=cmrevise value=<?php echo $lang['Prompt User to Resubmit'] ?> data-toggle="tooltip" data-placement="top" title="<?php echo $lang['To Re-submit Only'] ?>" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
+                                <div class="col-md-4"><input type=submit name=cmdeny value="<?php echo $lang['Deny'] ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $lang['To Deny Requests Only'] ?>" class='btn btn-danger' style='width:100%; margin-bottom:5px'></div>
                             </div>
                         </div>
                         <!-- Field to provide a reason why the request must be resubmitted -->
                         <div class="form-row" style="margin-top:5px">
                             <div class="form-group col-md-3">
-                                <label for="reason"><b>Reason to resubmit:</b></label>
+                                <label for="reason"><b><?php echo $lang['Reason to resubmit'] ?>:</b></label>
                             </div>
                             <div class="form-group col-md-9">
-                                <input type=text name=reasoning style="width:100%" data-toggle="tooltip" data-placement="top" title="Go back" class="form-control" onkeypress="return noenter()">
+                                <input type=text name=reasoning style="width:100%" data-toggle="tooltip" data-placement="top" title="<?php echo $lang['moreInfoNeeded'] ?>" class="form-control" onkeypress="return noenter()">
                             </div>
                             <div class="form-group col-md-12">
                                 <p style="text-align:right; margin-top:-15px; font-size:0.8em"><?php echo $lang['resubmitText'] ?></p>

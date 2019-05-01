@@ -1,4 +1,4 @@
-html{
+html {
     background-color: white;
 }
 
@@ -9,73 +9,81 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
-    background: grey;
+    background-color: #CDCDCD;
     border-top: solid;
     border-color: #B82233;
 }
 
-.row  {
-  border-bottom: 1px solid #ddd;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  text-align: left;
-}
-
-.card{
-    margin-bottom: 10px;
-}
-
-.col-sm{
+.row {
+    padding-top: 10px;
+    padding-bottom: 10px;
     text-align: left;
 }
 
-legend{
-    padding-top: 10px;
-    text-decoration: underline #B82233;
+.card {
+    margin-bottom: 10px;
+    width: 100%;
 }
 
-form{
-    border-bottom: 5px solid #ddd;
-}
-
-h2{
-    padding-bottom: 10px;
-}
-
-.navbar-nav{
-    text-align: center;
+.col-sm {
     
 }
 
-li{
-    border-bottom: 1px solid #B82233;
-
+legend {
+    padding-top: 9px;
+    text-decoration: underline #B82233;
 }
 
-#accordian{
+fieldset{
+    border-bottom: 1px solid #ddd;
+}
+
+label{
+    padding-top: 10px;
+}
+
+
+.form-check-inline {
     padding-bottom: 10px;
 }
 
-li.active{
+.custom-file {
+    margin-bottom: 10px;
+}
+
+h2 {
+    padding-bottom: 10px;
+}
+
+.navbar-nav {
+    text-align: center;
+}
+
+li {
+    border-bottom: 1px solid #B82233;
+}
+
+#accordian {
+    padding-bottom: 10px;
+}
+
+li.active {
     border-bottom: 5px solid #B82233;
     background-color: #ddd;
 }
 
-#footerLeft{
-    color: white;
+#footerLeft {
     text-align: left;
 }
 
-#footerRight{
-    color: white;
+#footerRight {
     text-align: right;
 }
 
-.footerContent{
+.footerContent {
     width: 65%;
     text-align: center;
     margin: auto;
-
 }
 
 #top {
@@ -86,28 +94,26 @@ li.active{
     background-color: red;
 }
 
-body {
+body {}
 
-}
-
-#welcome {
-
-}
+#welcome {}
 
 #signout {
     float: right;
 }
 
-#headerSection{
+#headerSection {
     background-color: #CDCDCD;
-    margin-bottom: 50px; 
+    margin-bottom: 50px;
+    border-bottom: solid;
+    border-color: #B82233;
 }
 
 #headerTop {
     padding-top: 20px;
     padding-bottom: 20px;
     margin: auto;
-    width: 65%;  
+    width: 65%;
 }
 
 #pageTitle {
@@ -124,9 +130,7 @@ body {
     margin-bottom: 40px;
 }
 
-h2 {
-
-}
+h2 {}
 
 #button1 {
     background-color: #B82233;
@@ -144,6 +148,14 @@ strong {
 
 .card-body {
     padding: 20px;
+}
+
+.row{
+
+}
+
+.class-header{
+    max-width: 80%;
 }
 
 .button {
@@ -198,4 +210,8 @@ strong {
     display: inline;
     color: rgb(255, 255, 250);
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.35);
+}
+
+#accordion>form {
+    border: none;
 }

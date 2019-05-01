@@ -108,6 +108,13 @@ function updateDateFields() {
         endField.setAttribute("value", startField.value);
 }
 
-// if($('.cookie-banner').length) {
-//     $('.cookie-banner').slideDown(10);
-// }
+/**
+ * Updates the health & safety policy modal so that it will
+ * update the correct visit when the user proceeds with the
+ * induction.
+ *
+ * @param {number} visitID The visit ID to update
+ */
+function updateHealthSafetyModal(visitID) {
+    $("#health-safety-modal > #health-safety-visit").setAttribute("value", visitID);
+}

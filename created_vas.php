@@ -1,7 +1,8 @@
 <!-- Variable used to highlight the appropriate button on the navbar -->
 <?php $page = 'CVas';
 require 'includes/header.php';
-require 'includes/deny_hr_role.php' // Redirects users with the "Human Resources" role to prevent access to this page
+require 'includes/deny_hr_role.php'; // Redirects users with the "Human Resources" role to prevent access to this page
+require 'includes/deny_va_role.php'; // Redirect visiting academics to prevent access to the page.
 ?>
 
 <!--Javascript to stop the form being entered when enter key is pressed-->
@@ -143,7 +144,7 @@ if ($myVisitorsResult->num_rows > 0) {
                 <div class='row'>
                     <div class='col-sm-2'><b><?php echo $lang['Visitor Type'] ?>:</b></div>
                     <div class='col-sm-5'><select name="visitorType" id="visitor" class="form-control" value="<?php echo $visitorType ?>" required>
-                    <!-- If the visitorType from the database matches the option, it makes the option selected -->
+                            <!-- If the visitorType from the database matches the option, it makes the option selected -->
                             <option value="Undergraduate" <?php if ($visitorType === 'Undergraduate') {
                                                                 echo "selected";
                                                             } ?>><?php echo $lang['Undergraduate'] ?></option>
