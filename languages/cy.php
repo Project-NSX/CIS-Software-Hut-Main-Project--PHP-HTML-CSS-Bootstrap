@@ -166,7 +166,7 @@
 		"College Manager - Denied Requests2" => "<h2>Rheolwr Coleg - Ceisiadau Wedi'u Gwrthod</h2>",
 		"Visiting academics should login " => "Dylir ymwelwyr academaidd fewngofnodi drwy'r dudalen ",
 		"here." => "yma.",
-		"View Policy" => "Health & Safety Induction",
+		"View Policy" => "Anwythiad Iechyd a Diogelwch",
 
 	);
 ?>
