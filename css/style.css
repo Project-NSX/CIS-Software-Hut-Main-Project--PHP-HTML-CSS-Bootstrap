@@ -26,7 +26,7 @@ footer {
 }
 
 .col-sm {
-    text-align: left;
+    
 }
 
 legend {
@@ -151,6 +151,14 @@ strong {
 
 .card-body {
     padding: 20px;
+}
+
+.row{
+
+}
+
+.class-header{
+    max-width: 80%;
 }
 
 .button {

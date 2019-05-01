@@ -158,8 +158,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
         ?>
 
            <!-- Using a card as an accordion -->
-           
-           
+           <div class="container">
                 <div class="card-header" id="<?php echo $headingId ?>" <button class="btn btn-link collapsed" data-toggle="collapse" data-target=" <?php echo $collapseIdHash ?>" aria-expanded="false" aria-controls=" <?php echo $collapseId ?>">
                     <div class="row">
                         <div class='col-sm'><b><?php echo $lang['Name'] ?>: </b> <?php echo htmlspecialchars($fName) . " " . htmlspecialchars($lName) ?></div>
@@ -173,6 +172,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                 </div>
             </div>
             <div id="<?php echo $collapseId ?>" class="collapse" aria-labelledby="<?php echo $headingId ?>" data-parent="#accordion">
+                <div class="container">
                 <div class="card-body">
 
                     <h5 class='card-title'><?php echo $lang['Email'] ?></h5>
