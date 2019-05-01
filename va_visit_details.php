@@ -19,6 +19,8 @@ while ($row = $result->fetch_assoc()) {
 if (isset($_POST['acceptInduction'])) {
     $accept = "UPDATE visit SET induction = 1 WHERE visitId = '$_POST[hidden]'";
     mysqli_query($link, $accept);
+    header("location: va_visit_details.php");
+    exit;
 }
 
 //SQL statement to retrieve columns from database table
