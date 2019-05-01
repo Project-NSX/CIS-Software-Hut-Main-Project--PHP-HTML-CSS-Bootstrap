@@ -124,6 +124,7 @@ $link->close();
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+<<<<<<< HEAD
             <div class="modal-body">
                 <p><?php echo $lang["H&S Intro"] ?></p>
                 <a href="<?php echo $lang["H&S Policy Link"] ?>"><?php echo $lang["H&S Link"] ?></a>
@@ -133,6 +134,23 @@ $link->close();
                 <button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo $lang["Cancel"] ?></button>
                 <button type="button" class="btn btn-primary"><?php echo $lang["Proceed"] ?></button>
             </div>
+||||||| merged common ancestors
+        <div class="modal-body">
+            <p><?php echo $lang["H&S Intro"] ?></p>
+            <a href="<?php echo $lang["H&S Policy Link"] ?>"><?php echo $lang["H&S Link"] ?></a>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo $lang["Cancel"] ?></button>
+            <button type="button" class="btn btn-primary"><?php echo $lang["Proceed"] ?></button>
+=======
+        <div class="modal-body">
+            <p><?php echo $lang["H&S Intro"] ?></p>
+            <a href="<?php echo $lang["H&S Policy Link"] ?>" target="_blank"><?php echo $lang["H&S Link"] ?></a>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo $lang["Cancel"] ?></button>
+            <button type="button" class="btn btn-primary"><?php echo $lang["Proceed"] ?></button>
+>>>>>>> 6050ae6fc500b802d465116702138c075f2bacba
         </div>
     </div>
 
