@@ -111,7 +111,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                             echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
                         }
                         ?>
-                        <button type="button" onclick="updateHealthSafetyModal(<?php echo $visitId ?>)" class=" btn btn-primary" data-toggle="modal" data-target="#health-safety-dialog"> Open Modal </button>
+                        <button type="button" onclick="updateHealthSafetyModal(<?php echo $visitId ?>)" class=" btn btn-primary" data-toggle="modal" data-target="#health-safety-dialog"><?php echo $lang['View Policy'] ?></button>
                     </div>
                 </div>
             </div>
