@@ -165,8 +165,8 @@
 		"ttShow" => "Select if you want too see your password",
 		"ttLogin" => "Press to login to your account",
 		"College Manager - Denied Requests2" => "<h2>College Manager - Denied Requests</h2>",
-		"Visiting academics should login " => "Visiting academics should login ",
-		"here." => "here.",
+		"VALogin1" => "Visiting academics should login ",
+		"VALogin2" => "here.",
 		"View Policy" => "Health & Safety Induction",
 		"Uni" => "Bangor University",
 

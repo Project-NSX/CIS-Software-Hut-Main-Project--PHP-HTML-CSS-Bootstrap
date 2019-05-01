@@ -115,14 +115,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="container">
     <h2><?php echo $lang['Staff Login Page'] ?></h2>
-    <p><?php echo $lang['Visiting academics should login '] ?><a href="va_login.php"><?php echo $lang['here.'] ?></a></p>
+    <p><?php echo $lang['VALogin1'] ?><a href="va_login.php"><?php echo $lang['VALogin2'] ?></a></p>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+        <div class="form-group <?php echo (!empty($username_err)) ?'has-error' : ''; ?>">
             <label><?php echo $lang['Username'] ?></label>
             <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
             <span class="help-block"><?php echo $username_err; ?></span>
         </div>
-        <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+        <div class="form-group <?php echo (!empty($password_err)) ?'has-error' : ''; ?>">
             <label><?php echo $lang['Password'] ?></label>
             <input type="password" name="password" class="form-control" id="passwordField">
             <span class="help-block"><?php echo $password_err; ?></span>
@@ -138,17 +138,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 <?php
-if (!isset($_COOKIE['accept-cookies'])) {
-    ?>
-    <div class="cookie-banner">
-        <div class="container1">
-            <p><?php echo $lang['Cookies'] ?><a href="/cookies"> <?php echo $lang['Cookies2'] ?></a> </p>
-            <a href="?accept-cookies" class="button"><?php echo $lang['Cookies3'] ?></a>
-        </div>
-    </div>
-<?php
-}
-?>
+                                                                            if (!isset($_COOKIE['accept-cookies'])) {
+                                                                                ?>
+                                                                                <div class="cookie-banner">
+                                                                                    <div class="container1">
+                                                                                        <p><?php echo $lang['Cookies'] ?><a href="/cookies"> <?php echo $lang['Cookies2'] ?></a> </p>
+                                                                                <a href="?accept-cookies" class="button"><?php echo $lang['Cookies3'] ?></a>
+                                                                                </div>
+                                                                            </div>
+                                                                        <?php
+                                                                            }
+                                                                            ?>
 
 <script src="js/bangor_va.js"></script>
 
