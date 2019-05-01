@@ -44,9 +44,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail->SMTPSecure = 'tls';
     $mail->Port = 587;
     $mail->setFrom('support@nwsd.online', 'Visitng Academic Form');
-    $mail->Subject = "Visit At start date :{$s_date} End date : {$e_date}";
-    $mail->Body = "A visit request has been made by the user: {$hostAcademic}. Please sign into the visiting academic form to respond to this.";
-    $message = file_get_contents('Email.html');
+    $mail->Subject = "Visit request has been created that requires your attention.";
+    //$mail->Body = "A visit request has been made by the user: {$hostAcademic}. Please sign into the visiting academic form to respond to this.";
+    $message = file_get_contents('includes/email_approved.html');
     $message = str_replace('%startdate%', $s_date, $message);
     $message = str_replace('%enddate%', $e_date, $message);
     $message = str_replace('%summary%', $summary, $message);

@@ -158,7 +158,7 @@ if ($supervisorApprovedresult->num_rows > 0) {
                     <div class='col-sm'><b><?php echo $lang['Department'] ?>: </b> <?php echo $department ?></div>
                 </div>
                 <div class="row">
-                    <div class='col-md-1 offset-md-11' style="text-align: right;">&#x25BC</div>
+                    <div class='col-md-1 offset-md-11' style="text-align: right;"><?php echo $lang['seeMore'] ?> &#x25BC</div>
                 </div>
             </div>
             <!-- Makes a form with data fields and buttons -->
@@ -180,33 +180,31 @@ if ($supervisorApprovedresult->num_rows > 0) {
                             echo "<p class='card-text'><a href='ipr/$iprFile' download>$iprFile</a>";
                         }
                         ?>
+                        <input type=hidden name=hidden value=<?php echo $visitId ?>>
+                        <div class="container">
+                            <!-- Make three buttons, for approving, denying and sending a visit back for reapproval by the Host Academic -->
+                            <div class="row">
+                                <!-- The button name must match the isset() in the top  -->
+                                <div class="col-md-4"><input type=submit name=hosapprove value="<?php echo $lang['Approve'] ?>" class='btn btn-success' style='width:100%; margin-bottom:5px'></div>
+                                <div class="col-md-4"><input type=submit name=hosrevise value="<?php echo $lang['Prompt User to Resubmit'] ?>" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
+                                <div class="col-md-4"><input type=submit name=hosdeny value="<?php echo $lang['Deny'] ?>" class='btn btn-danger' style='width:100%; margin-bottom:5px'></div>
+                            </div>
+                        </div>
+                        <div class="form-row" style="margin-top:5px">
+                            <div class="form-group col-md-3">
+                                <label for="reason"><b><?php echo $lang['Reason to resubmit'] ?>:</b></label>
+                            </div>
+                            <div class="form-group col-md-9">
+                                <input type=text name=reasoning style="width:100%" class="form-control" onkeypress="return noenter()">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <p style="text-align:right; margin-top:-15px; font-size:0.8em"><?php echo $lang['resubmitText'] ?></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
         </div>
-        <input type=hidden name=hidden value=<?php echo $visitId ?>>
-        <div class="container">
-            <!-- Make three buttons, for approving, denying and sending a visit back for reapproval by the Host Academic -->
-            <div class="row">
-                <!-- The button name must match the isset() in the top  -->
-                <div class="col-md-4"><input type=submit name=hosapprove value="<?php echo $lang['Approve'] ?>" class='btn btn-success' style='width:100%; margin-bottom:5px'></div>
-                <div class="col-md-4"><input type=submit name=hosrevise value="<?php echo $lang['Prompt User to Resubmit'] ?>" class='btn btn-warning' style='width:100%; margin-bottom:5px'></div>
-                <div class="col-md-4"><input type=submit name=hosdeny value="<?php echo $lang['Deny'] ?>" class='btn btn-danger' style='width:100%; margin-bottom:5px'></div>
-            </div>
-        </div>
-        <div class="form-row" style="margin-top:5px">
-            <div class="form-group col-md-3">
-                <label for="reason"><b><?php echo $lang['Reason to resubmit'] ?>:</b></label>
-            </div>
-            <div class="form-group col-md-9">
-                <input type=text name=reasoning style="width:100%" class="form-control" onkeypress="return noenter()">
-            </div>
-            <div class="form-group col-md-12">
-                <p style="text-align:right; margin-top:-15px; font-size:0.8em"><?php echo $lang['resubmitText'] ?></p>
-            </div>
-        </div>
         </form>
-        <br>
-        <br>
     <?php
 }
 echo "</div>";

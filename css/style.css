@@ -9,7 +9,7 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
-    background: grey;
+    background-color: #CDCDCD;
     border-top: solid;
     border-color: #B82233;
 }
@@ -21,17 +21,29 @@ footer {
     text-align: left;
 }
 
+.card {
+    margin-bottom: 10px;
+}
+
 .col-sm {
     text-align: left;
 }
 
 legend {
-    padding-top: 10px;
+    padding-top: 9px;
     text-decoration: underline #B82233;
 }
 
 form {
     border-bottom: 5px solid #ddd;
+}
+
+.form-check-inline {
+    padding-bottom: 10px;
+}
+
+.custom-file {
+    margin-bottom: 10px;
 }
 
 h2 {
@@ -46,10 +58,8 @@ li {
     border-bottom: 1px solid #B82233;
 }
 
-.btn {
-    background-color: #B82233;
-    border-style: solid;
-    border-color: #B82233;
+#accordian {
+    padding-bottom: 10px;
 }
 
 li.active {
@@ -58,12 +68,10 @@ li.active {
 }
 
 #footerLeft {
-    color: white;
     text-align: left;
 }
 
 #footerRight {
-    color: white;
     text-align: right;
 }
 
@@ -92,6 +100,8 @@ body {}
 #headerSection {
     background-color: #CDCDCD;
     margin-bottom: 50px;
+    border-bottom: solid;
+    border-color: #B82233;
 }
 
 #headerTop {

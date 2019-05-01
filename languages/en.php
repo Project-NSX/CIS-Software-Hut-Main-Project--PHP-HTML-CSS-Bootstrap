@@ -28,7 +28,7 @@
 		"CMTitle" => "<h2>College Manager - Approved Requests</h2>",
 		"College Manager - Denied Requests" => "College Manager - Denied Requests",
 		"<h2>College Manager - Outright Denied Requests</h2>" => "<h2>College Manager - Outright Denied Requests</h2>",
-		"College Manager - Requests Pending Approval" => "College Manager - Requests Pending Approval",
+		"College Manager - Requests Pending Approval" => "<h2>College Manager - Requests Pending Approval</h2>",
 		"resubmitText" => "** Required if the visit is prompted for resubmission",
 		"Home" => "Home",
 		"View Requests Pending Approval" => "View Requests Pending Approval",
@@ -152,5 +152,32 @@
 		"H&S Intro" => "Before your visit, you will need to be aware of the University's Health & Safety policies. You may read the policy in the link below; once you have read and understood our policy, click the 'Proceed' button below.",
 		"H&S Policy Link" => "https://www.bangor.ac.uk/hss/policies-guidance/pol-notes.php.en",
 		"H&S Link" => "Click here to read the policy.",
+		"seeMore" => "More",
+		"Resubmit the request" => "Resubmit the request",
+		"Click to resubmit" => "Click to resubmit",
+		"CancelVisit" => "Cancel the visit",
+		"To Approve Requests Only" => "If you're happy with this request, you can approve it",
+		"To Re-submit Only" => "Ask the user to resubmit this request",
+		"To Deny Requests Only" => "If you're unhappy with this request, you can select to deny the visit",
+		"moreInfoNeeded" => "Explain to the user why they need to resubmit their request",
+		"ttUsername" => "Enter your username here",
+		"ttPassword" => "Enter your password here",
+		"ttShow" => "Select if you want too see your password",
+		"ttLogin" => "Press to login to your account",
+		"College Manager - Denied Requests2" => "<h2>College Manager - Denied Requests</h2>",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	);
 ?>
